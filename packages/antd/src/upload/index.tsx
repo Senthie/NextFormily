@@ -6,10 +6,10 @@ import {
   UploadChangeParam,
   UploadProps as AntdUploadProps,
   DraggerProps as AntdDraggerProps,
-} from 'antd/lib/upload'
+  UploadFile,
+} from 'antd/es/upload'
 import { InboxOutlined, UploadOutlined } from '@ant-design/icons'
 import { reaction } from '@formily/reactive'
-import { UploadFile } from 'antd/lib/upload/interface'
 import { isArr, toArr } from '@formily/shared'
 import { UPLOAD_PLACEHOLDER } from './placeholder'
 import { usePrefixCls } from '../__builtins__'

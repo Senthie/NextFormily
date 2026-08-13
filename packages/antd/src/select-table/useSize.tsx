@@ -1,11 +1,13 @@
+import type { SizeType } from 'antd/es/config-provider/SizeContext'
+
 interface ISize {
   (
     fieldSize: 'large' | 'default' | 'small',
-    searchSize: 'large' | 'middle' | 'small',
-    tableSize: 'large' | 'middle' | 'small'
+    searchSize?: SizeType,
+    tableSize?: SizeType
   ): {
-    searchSize: 'large' | 'middle' | 'small'
-    tableSize: 'large' | 'middle' | 'small'
+    searchSize: SizeType
+    tableSize: SizeType
   }
 }
 
@@ -16,12 +18,12 @@ const useSize: ISize = (fieldSize = 'default', searchSize, tableSize) => {
       tableSize: 'small',
     },
     default: {
-      searchSize: 'middle',
-      tableSize: 'middle',
+      searchSize: 'medium',
+      tableSize: 'medium',
     },
     large: {
       searchSize: 'large',
-      tableSize: 'default',
+      tableSize: 'medium',
     },
   }
   const { searchSize: fieldSearchSize, tableSize: fieldTableSize } =

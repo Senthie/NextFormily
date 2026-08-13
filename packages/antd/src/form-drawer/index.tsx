@@ -100,8 +100,8 @@ export function FormDrawer(title: any, id: any, renderer?: any): IFormDrawer {
         formDrawer.close()
       }
     },
-    afterVisibleChange: (visible: boolean) => {
-      props?.afterVisibleChange?.(visible)
+    afterOpenChange: (visible: boolean) => {
+      props?.afterOpenChange?.(visible)
       if (visible) return
       root.unmount()
     },
@@ -111,7 +111,7 @@ export function FormDrawer(title: any, id: any, renderer?: any): IFormDrawer {
   })
   const renderDrawer = (visible = true) => {
     return (
-      <Drawer {...drawer} visible={visible}>
+      <Drawer {...drawer} open={visible}>
         <FormProvider form={env.form}>
           <DrawerContent />
         </FormProvider>
@@ -165,9 +165,9 @@ export function FormDrawer(title: any, id: any, renderer?: any): IFormDrawer {
 }
 
 const DrawerExtra: ReactFC = (props) => {
-  const ref = useRef<HTMLDivElement>()
+  const ref = useRef<HTMLDivElement>(null)
   const [extra, setExtra] = useState<HTMLDivElement>()
-  const extraRef = useRef<HTMLDivElement>()
+  const extraRef = useRef<HTMLDivElement>(null)
   const prefixCls = usePrefixCls('drawer')
   useLayoutEffect(() => {
     const content = ref.current
@@ -196,9 +196,9 @@ const DrawerExtra: ReactFC = (props) => {
 }
 
 const DrawerFooter: ReactFC = (props) => {
-  const ref = useRef<HTMLDivElement>()
+  const ref = useRef<HTMLDivElement>(null)
   const [footer, setFooter] = useState<HTMLDivElement>()
-  const footerRef = useRef<HTMLDivElement>()
+  const footerRef = useRef<HTMLDivElement>(null)
   const prefixCls = usePrefixCls('drawer')
   useLayoutEffect(() => {
     const content = ref.current?.closest(`.${prefixCls}-wrapper-body`)

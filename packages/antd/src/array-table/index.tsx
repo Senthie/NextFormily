@@ -8,9 +8,7 @@ import React, {
   useCallback,
 } from 'react'
 import { Table, Pagination, Space, Select, Badge } from 'antd'
-import { PaginationProps } from 'antd/lib/pagination'
-import { TableProps, ColumnProps } from 'antd/lib/table'
-import { SelectProps } from 'antd/lib/select'
+import { PaginationProps, TableProps, TableColumnType, SelectProps } from 'antd'
 import cls from 'classnames'
 import { GeneralField, FieldDisplayTypes, ArrayField } from '@formily/core'
 import {
@@ -31,7 +29,7 @@ import { ArrayBase, ArrayBaseMixins, IArrayBaseProps } from '../array-base'
 
 interface ObservableColumnSource {
   field: GeneralField
-  columnProps: ColumnProps<any>
+  columnProps: TableColumnType<any>
   schema: Schema
   display: FieldDisplayTypes
   name: string
@@ -56,7 +54,7 @@ type ComposedArrayTable = React.FC<
   React.PropsWithChildren<TableProps<any> & IArrayBaseProps>
 > &
   ArrayBaseMixins & {
-    Column?: React.FC<React.PropsWithChildren<ColumnProps<any>>>
+    Column?: React.FC<React.PropsWithChildren<TableColumnType<any>>>
   }
 
 interface PaginationAction {
@@ -233,7 +231,7 @@ const ArrayTablePagination: ReactFC<IArrayTablePaginationProps> = (props) => {
   const prefixCls = usePrefixCls('formily-array-table')
   const showPagination = props.showPagination ?? true
   const pageSize = props.pageSize || 10
-  const size = props.size || 'default'
+  const size = props.size || 'medium'
   const dataSource = props.dataSource || []
   const startIndex = (current - 1) * pageSize
   const endIndex = startIndex + pageSize - 1
@@ -318,7 +316,7 @@ const RowComp: ReactFC<React.HTMLAttributes<HTMLTableRowElement>> = (props) => {
 }
 
 export const ArrayTable: ComposedArrayTable = observer((props) => {
-  const ref = useRef<HTMLDivElement>()
+  const ref = useRef<HTMLDivElement>(null)
   const field = useField<ArrayField>()
   const prefixCls = usePrefixCls('formily-array-table')
   const dataSource = Array.isArray(field.value) ? field.value.slice() : []

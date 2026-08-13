@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, Empty } from 'antd'
-import { CardProps } from 'antd/lib/card'
+import { CardProps } from 'antd'
 import { ArrayField } from '@formily/core'
 import {
   useField,

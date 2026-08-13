@@ -4,7 +4,7 @@ import { useField, observer } from '@formily/react'
 import { Popover } from 'antd'
 import { EditOutlined, CloseOutlined, MessageOutlined } from '@ant-design/icons'
 import { BaseItem, IFormItemProps } from '../form-item'
-import { PopoverProps } from 'antd/lib/popover'
+import { PopoverProps } from 'antd'
 import { useClickAway, usePrefixCls } from '../__builtins__'
 import cls from 'classnames'
 /**
@@ -66,8 +66,8 @@ export const Editable: ComposedEditable = observer((props) => {
   const field = useField<Field>()
   const basePrefixCls = usePrefixCls()
   const prefixCls = usePrefixCls('formily-editable')
-  const ref = useRef<boolean>()
-  const innerRef = useRef<HTMLDivElement>()
+  const ref = useRef<boolean>(null)
+  const innerRef = useRef<HTMLDivElement>(null)
   const recover = () => {
     if (ref.current && !field?.errors?.length) {
       setEditable(false)
@@ -158,12 +158,12 @@ Editable.Popover = observer((props) => {
     <Popover
       {...props}
       title={props.title || field.title}
-      visible={visible}
+      open={visible}
       className={cls(prefixCls, props.className)}
       content={props.children}
       trigger="click"
-      destroyTooltipOnHide
-      onVisibleChange={(visible) => {
+      destroyOnHidden
+      onOpenChange={(visible) => {
         if (visible) {
           openPopover()
         } else {

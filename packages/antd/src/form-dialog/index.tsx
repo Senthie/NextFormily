@@ -51,7 +51,9 @@ export interface IFormDialog {
 
 export interface IModalProps extends ModalProps {
   onOk?: (event: React.MouseEvent<HTMLElement>) => void | boolean
-  onCancel?: (event: React.MouseEvent<HTMLElement>) => void | boolean
+  onCancel?: (
+    event: React.KeyboardEvent<HTMLElement> | React.MouseEvent<HTMLElement>
+  ) => void | boolean
   loadingText?: React.ReactNode
 }
 
@@ -108,7 +110,7 @@ export function FormDialog(title: any, id: any, renderer?: any): IFormDialog {
         {() => (
           <Modal
             {...modal}
-            visible={visible}
+            open={visible}
             confirmLoading={env.form.submitting}
             onCancel={(e) => {
               if (modal?.onCancel?.(e) !== false) {
@@ -193,9 +195,9 @@ export function FormDialog(title: any, id: any, renderer?: any): IFormDialog {
 }
 
 const DialogFooter: ReactFC = (props) => {
-  const ref = useRef<HTMLDivElement>()
+  const ref = useRef<HTMLDivElement>(null)
   const [footer, setFooter] = useState<HTMLDivElement>()
-  const footerRef = useRef<HTMLDivElement>()
+  const footerRef = useRef<HTMLDivElement>(null)
   const prefixCls = usePrefixCls('modal')
   useLayoutEffect(() => {
     const content = ref.current?.closest(`.${prefixCls}-content`)

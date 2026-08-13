@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect, mapReadPretty, mapProps, ReactFC } from '@formily/react'
 import { Select as AntdSelect } from 'antd'
-import { SelectProps } from 'antd/lib/select'
+import { SelectProps } from 'antd'
 import { PreviewText } from '../preview-text'
 import { LoadingOutlined } from '@ant-design/icons'
 

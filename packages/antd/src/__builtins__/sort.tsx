@@ -123,11 +123,13 @@ export function SortableElement<T extends React.HTMLAttributes<HTMLElement>>(
 
     return (
       <SortableItemContext.Provider value={sortable}>
-        {Component({
-          ...props,
-          style,
-          ref: setNodeRef,
-        } as unknown as T)}
+        {
+          Component({
+            ...props,
+            style,
+            ref: setNodeRef,
+          } as unknown as T) as React.ReactNode
+        }
       </SortableItemContext.Provider>
     )
   }

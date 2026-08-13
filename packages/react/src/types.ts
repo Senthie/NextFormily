@@ -16,7 +16,7 @@ import { ISchema, Schema, SchemaKey } from '@formily/json-schema'
 import { FormPathPattern } from '@formily/shared'
 
 export type JSXComponent =
-  | keyof JSX.IntrinsicElements
+  | keyof React.JSX.IntrinsicElements
   | React.JSXElementConstructor<any>
 
 export type IProviderProps = {

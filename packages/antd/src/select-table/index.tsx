@@ -9,9 +9,8 @@ import {
 import cls from 'classnames'
 import { GeneralField, FieldDisplayTypes } from '@formily/core'
 import { isArr, isBool, isFn } from '@formily/shared'
-import { Input, Table } from 'antd'
-import { TableProps, ColumnProps } from 'antd/lib/table'
-import { SearchProps } from 'antd/lib/input'
+import { Input, Table, TableProps, TableColumnType } from 'antd'
+import { SearchProps } from 'antd/es/input'
 import { useFilterOptions } from './useFilterOptions'
 import { useFlatOptions } from './useFlatOptions'
 import { useSize } from './useSize'
@@ -24,7 +23,7 @@ const { Search } = Input
 
 interface ObservableColumnSource {
   field: GeneralField
-  columnProps: ColumnProps<any>
+  columnProps: TableColumnType<any>
   schema: Schema
   display: FieldDisplayTypes
   name: string
@@ -34,8 +33,8 @@ type IFilterOption = boolean | ((option: any, keyword: string) => boolean)
 
 type IFilterSort = (optionA: any, optionB: any) => number
 
-export interface ISelectTableColumnProps extends ColumnProps<any> {
-  key: React.ReactText
+export interface ISelectTableColumnProps extends TableColumnType<any> {
+  key: string | number
 }
 
 export interface ISelectTableProps extends TableProps<any> {
@@ -357,7 +356,7 @@ export const SelectTable: ComposedSelectTable = observer((props) => {
                               selected,
                               primaryKey
                             ),
-                          }
+                          } as any
                         )
                       },
                     }),

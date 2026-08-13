@@ -260,15 +260,6 @@ export default {
           },
         ],
       },
-      {
-        title: '@formily/reactive-vue',
-        children: [
-          {
-            title: 'observer',
-            path: '/api/vue/observer',
-          },
-        ],
-      },
     ],
     '/zh-CN/guide': [
       {
@@ -358,15 +349,6 @@ export default {
           {
             title: 'observer',
             path: '/zh-CN/api/react/observer',
-          },
-        ],
-      },
-      {
-        title: '@formily/reactive-vue',
-        children: [
-          {
-            title: 'observer',
-            path: '/zh-CN/api/vue/observer',
           },
         ],
       },

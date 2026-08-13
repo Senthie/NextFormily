@@ -1,12 +1,12 @@
-import moment from 'moment'
+import type { Dayjs } from 'dayjs'
 import { connect, mapProps, mapReadPretty } from '@formily/react'
 import { DatePicker as AntdDatePicker } from 'antd'
 import {
   DatePickerProps as AntdDatePickerProps,
   RangePickerProps,
-} from 'antd/lib/date-picker'
+} from 'antd/es/date-picker'
 import { PreviewText } from '../preview-text'
-import { formatMomentValue, momentable } from '../__builtins__'
+import { formatDayjsValue, dayjsable } from '../__builtins__'
 
 type DatePickerProps<PickerProps> = Exclude<
   PickerProps,
@@ -41,10 +41,10 @@ const mapDateFormat = function () {
     return {
       ...props,
       format: format,
-      value: momentable(props.value, format === 'gggg-wo' ? 'gggg-ww' : format),
-      onChange: (value: moment.Moment | moment.Moment[]) => {
+      value: dayjsable(props.value, format === 'gggg-wo' ? 'gggg-ww' : format),
+      onChange: (value: Dayjs | Dayjs[]) => {
         if (onChange) {
-          onChange(formatMomentValue(value, format))
+          onChange(formatDayjsValue(value, format))
         }
       },
     }

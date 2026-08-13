@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react'
 import { define, observable, action, markRaw, model } from '@formily/reactive'
-import { Steps } from 'antd'
+import { Steps, StepsProps } from 'antd'
 import cls from 'classnames'
-import { StepsProps, StepProps } from 'antd/lib/steps'
 import { Form, VoidField } from '@formily/core'
 import {
   connect,
@@ -29,8 +28,10 @@ export interface IFormStepProps extends StepsProps {
   formStep?: IFormStep
 }
 
+type StepItemType = NonNullable<StepsProps['items']>[number]
+
 type ComposedFormStep = React.FC<React.PropsWithChildren<IFormStepProps>> & {
-  StepPane: React.FC<React.PropsWithChildren<StepProps>>
+  StepPane: React.FC<React.PropsWithChildren<StepItemType>>
   createFormStep: (defaultCurrent?: number) => IFormStep
 }
 
@@ -148,11 +149,11 @@ export const FormStep = connect(
           {...props}
           style={{ marginBottom: 10, ...props.style }}
           current={current}
-        >
-          {steps.map(({ props }, key) => {
-            return <Steps.Step {...props} key={key} />
-          })}
-        </Steps>
+          items={steps.map(({ props: stepProps }, key) => ({
+            ...stepProps,
+            key,
+          }))}
+        />
         {steps.map(({ name, schema }, key) => {
           if (key !== current) return
           return <RecursionField key={key} name={name} schema={schema} />
@@ -162,7 +163,7 @@ export const FormStep = connect(
   })
 ) as unknown as ComposedFormStep
 
-const StepPane: React.FC<React.PropsWithChildren<StepProps>> = ({
+const StepPane: React.FC<React.PropsWithChildren<StepItemType>> = ({
   children,
 }) => {
   return <Fragment>{children}</Fragment>

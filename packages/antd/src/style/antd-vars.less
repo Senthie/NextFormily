@@ -1,0 +1,52 @@
+// antd 主题变量本地化
+// antd@6 已移除 less 主题系统（改为 CSS-in-JS + CSS variables），
+// 此处按 antd 默认主题取值，供 formily 自定义布局样式使用。
+@ant-prefix: ant;
+
+@font-size-base: 14px;
+@font-size-lg: 16px;
+@font-size-sm: 12px;
+
+@height-base: 32px;
+@height-lg: 40px;
+@height-sm: 24px;
+
+@primary-5: #40a9ff;
+
+@error-color: #ff4d4f;
+@warning-color: #faad14;
+@success-color: #52c41a;
+
+@disabled-color: rgba(0, 0, 0, 0.25);
+@text-color: rgba(0, 0, 0, 0.85);
+@text-color-secondary: rgba(0, 0, 0, 0.45);
+@heading-color: rgba(0, 0, 0, 0.85);
+
+@border-color-base: #d9d9d9;
+@border-color-split: #f0f0f0;
+
+@background-color-light: #fafafa;
+@card-background: #fff;
+
+@form-item-margin-bottom: 24px;
+@form-error-input-bg: #fff2f0;
+@form-warning-input-bg: #fffbe6;
+
+// antd@4 input mixin 本地化（antd@6 已移除 less mixin）
+@border-width-base: 1px;
+@input-outline-color: @primary-5;
+@input-hover-border-color: @primary-5;
+
+.hover() {
+  &:hover {
+    border-color: @input-hover-border-color;
+    border-right-width: @border-width-base;
+  }
+}
+
+.active(@color: @input-outline-color) {
+  border-color: @color;
+  border-right-width: @border-width-base;
+  outline: 0;
+  box-shadow: 0 0 0 2px fade(@color, 20%);
+}

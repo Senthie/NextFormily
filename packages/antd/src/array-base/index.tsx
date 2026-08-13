@@ -10,7 +10,7 @@ import { ArrayField } from '@formily/core'
 import { JSXComponent, Schema, useField, useFieldSchema } from '@formily/react'
 import { clone, isUndef, isValid } from '@formily/shared'
 import { Button } from 'antd'
-import { ButtonProps } from 'antd/lib/button'
+import { ButtonProps } from 'antd'
 import cls from 'classnames'
 import React, { createContext, useContext } from 'react'
 import { SortableHandle, usePrefixCls } from '../__builtins__'
@@ -212,7 +212,7 @@ ArrayBase.Copy = React.forwardRef((props, ref) => {
         self?.disabled ? `${prefixCls}-copy-disabled` : '',
         props.className
       )}
-      ref={ref}
+      ref={ref as any}
       onClick={(e) => {
         if (self?.disabled) return
         e.stopPropagation()
@@ -250,7 +250,7 @@ ArrayBase.Remove = React.forwardRef((props, ref) => {
         self?.disabled ? `${prefixCls}-remove-disabled` : '',
         props.className
       )}
-      ref={ref}
+      ref={ref as any}
       onClick={(e) => {
         if (self?.disabled) return
         e.stopPropagation()
@@ -285,7 +285,7 @@ ArrayBase.MoveDown = React.forwardRef((props, ref) => {
         self?.disabled ? `${prefixCls}-move-down-disabled` : '',
         props.className
       )}
-      ref={ref}
+      ref={ref as any}
       onClick={(e) => {
         if (self?.disabled) return
         e.stopPropagation()
@@ -320,7 +320,7 @@ ArrayBase.MoveUp = React.forwardRef((props, ref) => {
         self?.disabled ? `${prefixCls}-move-up-disabled` : '',
         props.className
       )}
-      ref={ref}
+      ref={ref as any}
       onClick={(e) => {
         if (self?.disabled) return
         e.stopPropagation()

@@ -2,19 +2,20 @@ import React, { createContext, useContext } from 'react'
 import { isArr, toArr, isValid } from '@formily/shared'
 import { Field } from '@formily/core'
 import { observer, useField } from '@formily/react'
-import { InputProps } from 'antd/lib/input'
-import { InputNumberProps } from 'antd/lib/input-number'
-import { SelectProps } from 'antd/lib/select'
-import { TreeSelectProps } from 'antd/lib/tree-select'
-import { CascaderProps, DefaultOptionType } from 'antd/lib/cascader'
+import { Tag, Space } from 'antd'
+import { InputProps } from 'antd/es/input'
+import { InputNumberProps } from 'antd/es/input-number'
+import { SelectProps } from 'antd/es/select'
+import { TreeSelectProps } from 'antd/es/tree-select'
+import { CascaderProps } from 'antd/es/cascader'
+import { DefaultOptionType } from 'antd/es/cascader'
 import {
   DatePickerProps,
   RangePickerProps as DateRangePickerProps,
-} from 'antd/lib/date-picker'
-import { TimePickerProps, TimeRangePickerProps } from 'antd/lib/time-picker'
-import { Tag, Space } from 'antd'
+} from 'antd/es/date-picker'
+import { TimePickerProps, TimeRangePickerProps } from 'antd/es/time-picker'
 import cls from 'classnames'
-import { formatMomentValue, usePrefixCls } from '../__builtins__'
+import { formatDayjsValue, usePrefixCls } from '../__builtins__'
 
 const PlaceholderContext = createContext<React.ReactNode>('N/A')
 
@@ -244,7 +245,7 @@ const DatePicker: React.FC<React.PropsWithChildren<DatePickerProps>> = (
   const placeholder = usePlaceholder()
   const prefixCls = usePrefixCls('form-text', props)
   const getLabels = () => {
-    const labels = formatMomentValue(props.value, props.format, placeholder)
+    const labels = formatDayjsValue(props.value, props.format, placeholder)
     return isArr(labels) ? labels.join('~') : labels
   }
   return <div className={cls(prefixCls, props.className)}>{getLabels()}</div>
@@ -256,7 +257,7 @@ const DateRangePicker: React.FC<
   const placeholder = usePlaceholder()
   const prefixCls = usePrefixCls('form-text', props)
   const getLabels = () => {
-    const labels = formatMomentValue(props.value, props.format, placeholder)
+    const labels = formatDayjsValue(props.value, props.format, placeholder)
     return isArr(labels) ? labels.join('~') : labels
   }
   return (
@@ -272,7 +273,7 @@ const TimePicker: React.FC<React.PropsWithChildren<TimePickerProps>> = (
   const placeholder = usePlaceholder()
   const prefixCls = usePrefixCls('form-text', props)
   const getLabels = () => {
-    const labels = formatMomentValue(props.value, props.format, placeholder)
+    const labels = formatDayjsValue(props.value, props.format, placeholder)
     return isArr(labels) ? labels.join('~') : labels
   }
   return (
@@ -288,7 +289,7 @@ const TimeRangePicker: React.FC<
   const placeholder = usePlaceholder()
   const prefixCls = usePrefixCls('form-text', props)
   const getLabels = () => {
-    const labels = formatMomentValue(props.value, props.format, placeholder)
+    const labels = formatDayjsValue(props.value, props.format, placeholder)
     return isArr(labels) ? labels.join('~') : labels
   }
   return (

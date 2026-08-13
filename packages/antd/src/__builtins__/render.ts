@@ -16,7 +16,11 @@ const fullClone = {
   createRoot?: CreateRoot
 }
 
-const { version, render: reactRender, unmountComponentAtNode } = fullClone
+const {
+  version,
+  render: reactRender,
+  unmountComponentAtNode,
+} = fullClone as any
 
 let createRoot: CreateRoot
 try {

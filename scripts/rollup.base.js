@@ -10,18 +10,12 @@ import { terser } from 'rollup-plugin-terser'
 const presets = () => {
   const externals = {
     antd: 'antd',
-    vue: 'Vue',
     react: 'React',
-    moment: 'moment',
     'react-is': 'ReactIs',
-    '@alifd/next': 'Next',
     'mobx-react-lite': 'mobxReactLite',
     'react-dom': 'ReactDOM',
-    'element-ui': 'Element',
     '@ant-design/icons': 'icons',
-    '@vue/composition-api': 'VueCompositionAPI',
     '@formily/reactive-react': 'Formily.ReactiveReact',
-    '@formily/reactive-vue': 'Formily.ReactiveVue',
     '@formily/reactive': 'Formily.Reactive',
     '@formily/path': 'Formily.Path',
     '@formily/shared': 'Formily.Shared',
@@ -29,8 +23,6 @@ const presets = () => {
     '@formily/core': 'Formily.Core',
     '@formily/json-schema': 'Formily.JSONSchema',
     '@formily/react': 'Formily.React',
-    '@formily/vue': 'Formily.Vue',
-    'vue-demi': 'VueDemi'
   }
   return [
     typescript({

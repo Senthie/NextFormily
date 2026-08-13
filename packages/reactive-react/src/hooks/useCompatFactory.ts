@@ -12,7 +12,7 @@ export const useCompatFactory = <T extends { dispose: () => void }>(
   factory: () => T
 ): T => {
   const instRef = React.useRef<T>(null)
-  const gcRef = React.useRef<GarbageCollector>()
+  const gcRef = React.useRef<GarbageCollector>(null)
   const [objectRetainedByReact] = React.useState(
     objectToBeRetainedByReactFactory
   )

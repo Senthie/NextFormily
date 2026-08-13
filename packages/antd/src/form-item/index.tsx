@@ -101,8 +101,8 @@ function useOverflow<
   Content extends HTMLElement
 >() {
   const [overflow, setOverflow] = useState(false)
-  const containerRef = useRef<Container>()
-  const contentRef = useRef<Content>()
+  const containerRef = useRef<Container>(null)
+  const contentRef = useRef<Content>(null)
   const layout = useFormLayout()
   const labelCol = JSON.stringify(layout.labelCol)
 
@@ -215,7 +215,7 @@ export const BaseItem: React.FC<React.PropsWithChildren<IFormItemProps>> = ({
             {ICON_MAP[feedbackStatus]} {feedbackText}
           </div>
         }
-        visible={!!feedbackText}
+        open={!!feedbackText}
         getPopupContainer={getPopupContainer}
       >
         {children}

@@ -172,7 +172,7 @@ describe('json schema field', () => {
         DollarOutlined,
       },
     })
-    const { queryByRole, queryAllByTestId } = render(
+    const { container, queryAllByTestId } = render(
       <FormProvider form={form}>
         <SchemaField
           name="object"
@@ -205,7 +205,7 @@ describe('json schema field', () => {
       </FormProvider>
     )
 
-    const rate = queryByRole('radiogroup')
+    const rate = container.querySelector('.ant-rate') as HTMLElement
     expect(rate).toBeVisible()
     const icons = queryAllByTestId('icon')
     expect(icons).toHaveLength(10)

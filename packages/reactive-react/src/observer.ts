@@ -25,7 +25,10 @@ export function observer<
 
   const wrappedComponent = realOptions.forwardRef
     ? forwardRef((props: any, ref: any) => {
-        return useObserver(() => component({ ...props, ref }), realOptions)
+        return useObserver(
+          () => component({ ...props, ref }),
+          realOptions
+        ) as any
       })
     : (props: any) => {
         return useObserver(() => component(props), realOptions)

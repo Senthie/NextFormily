@@ -72,7 +72,7 @@ export const FormGrid: ComposedFormGrid = observer(
       () => markRaw(options?.grid ? options.grid : new Grid(options)),
       [Grid.id(options)]
     )
-    const ref = useRef<HTMLDivElement>()
+    const ref = useRef<HTMLDivElement>(null)
     const prefixCls = usePrefixCls('formily-grid', props)
     const dataProps = pickDataProps(props)
     useLayoutEffect(() => {

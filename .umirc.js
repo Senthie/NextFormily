@@ -31,10 +31,6 @@ export default {
             title: '@formily/react',
             path: 'https://react.formilyjs.org',
           },
-          {
-            title: '@formily/vue',
-            path: 'https://vue.formilyjs.org',
-          },
         ],
       },
       {
@@ -51,14 +47,6 @@ export default {
           {
             title: '@formily/antd-mobile',
             path: 'https://antd-mobile.formilyjs.org',
-          },
-          {
-            title: '@formily/next',
-            path: 'https://fusion.formilyjs.org',
-          },
-          {
-            title: '@formily/element',
-            path: 'https://element.formilyjs.org',
           },
           {
             title: '@formily/element-plus',
@@ -150,10 +138,6 @@ export default {
             title: '@formily/react',
             path: 'https://react.formilyjs.org/zh-CN',
           },
-          {
-            title: '@formily/vue',
-            path: 'https://vue.formilyjs.org',
-          },
         ],
       },
       {
@@ -170,14 +154,6 @@ export default {
           {
             title: '@formily/antd-mobile',
             path: 'https://antd-mobile.formilyjs.org/zh-CN',
-          },
-          {
-            title: '@formily/next',
-            path: 'https://fusion.formilyjs.org/zh-CN',
-          },
-          {
-            title: '@formily/element',
-            path: 'https://element.formilyjs.org',
           },
           {
             title: '@formily/element-plus',

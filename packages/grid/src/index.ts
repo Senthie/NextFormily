@@ -108,7 +108,7 @@ const parseSpan = (gridColumnStart: string) => {
 }
 
 const factor = <T>(value: T | T[], grid: Grid<HTMLElement>): T =>
-  isValid(value) ? calcFactor(value as any, grid.breakpoint) : value
+  isValid(value) ? calcFactor(value as any, grid.breakpoint) : (value as T)
 
 const resolveChildren = (grid: Grid<HTMLElement>) => {
   let walked = 0,

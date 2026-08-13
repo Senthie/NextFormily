@@ -7,7 +7,7 @@ type ReactRenderPropsChildren<T = any> =
   | ((props: T) => React.ReactElement)
 
 interface IPasswordStrengthProps {
-  value?: React.ReactText
+  value?: string | number
   children?: ReactRenderPropsChildren<number>
 }
 

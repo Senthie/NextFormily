@@ -1,14 +1,15 @@
 import React from 'react'
 import { Button } from 'antd'
-import { ButtonProps } from 'antd/lib/button'
+import { ButtonProps } from 'antd'
 import { IFieldResetOptions, IFormFeedback } from '@formily/core'
 import { useParentForm } from '@formily/react'
 
-export interface IResetProps extends IFieldResetOptions, ButtonProps {
-  onClick?: (e: React.MouseEvent<Element, MouseEvent>) => any
-  onResetValidateSuccess?: (payload: any) => void
-  onResetValidateFailed?: (feedbacks: IFormFeedback[]) => void
-}
+export type IResetProps = IFieldResetOptions &
+  ButtonProps & {
+    onClick?: (e: React.MouseEvent<Element, MouseEvent>) => any
+    onResetValidateSuccess?: (payload: any) => void
+    onResetValidateFailed?: (feedbacks: IFormFeedback[]) => void
+  }
 
 export const Reset: React.FC<React.PropsWithChildren<IResetProps>> = ({
   forceClear,
