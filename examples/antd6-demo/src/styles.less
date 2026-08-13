@@ -1,0 +1,40 @@
+// formily 自定义布局样式（@formily/antd 源码 less，经 vite 编译）
+@import '../../packages/antd/src/style.less';
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: #f5f5f5;
+}
+
+.demo-card {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.demo-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 24px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.demo-submit-area {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.demo-json-preview {
+  margin-top: 16px;
+  padding: 12px;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border-radius: 6px;
+  font-size: 12px;
+  overflow: auto;
+  max-height: 320px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}

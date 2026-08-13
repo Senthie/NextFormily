@@ -1,14 +1,18 @@
 import { ReactElement } from 'react'
 import * as ReactDOM from 'react-dom'
+import { createRoot as ReactDOMClientCreateRoot } from 'react-dom/client'
 import type { Root } from 'react-dom/client'
 
 // 移植自rc-util: https://github.com/react-component/util/blob/master/src/React/render.ts
 
 type CreateRoot = (container: ContainerType) => Root
 
-// Let compiler not to search module usage
+// React 19 已将 createRoot 从 react-dom 主入口移入 react-dom/client：
+// - React 17：react-dom 提供 render/unmountComponentAtNode（legacy 路径）
+// - React 18/19：react-dom/client 提供 createRoot（concurrent 路径）
 const fullClone = {
   ...ReactDOM,
+  createRoot: ReactDOMClientCreateRoot,
 } as typeof ReactDOM & {
   __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED?: {
     usingClientEntryPoint?: boolean
@@ -24,8 +28,8 @@ const {
 
 let createRoot: CreateRoot
 try {
-  const mainVersion = Number((version || '').split('.')[0])
-  if (mainVersion >= 18 && fullClone.createRoot) {
+  // 直接以 createRoot 存在性判断，不依赖 version 字符串解析
+  if (fullClone.createRoot) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     createRoot = fullClone.createRoot
   }

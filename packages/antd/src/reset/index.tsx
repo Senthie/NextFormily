@@ -5,8 +5,8 @@ import { IFieldResetOptions, IFormFeedback } from '@formily/core'
 import { useParentForm } from '@formily/react'
 
 export type IResetProps = IFieldResetOptions &
-  ButtonProps & {
-    onClick?: (e: React.MouseEvent<Element, MouseEvent>) => any
+  Omit<ButtonProps, 'onClick'> & {
+    onClick?: (e: React.MouseEvent<Element, MouseEvent>) => boolean | void
     onResetValidateSuccess?: (payload: any) => void
     onResetValidateFailed?: (feedbacks: IFormFeedback[]) => void
   }

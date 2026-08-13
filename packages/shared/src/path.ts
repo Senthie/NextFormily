@@ -1,3 +1,5 @@
-import { Path as FormPath, Pattern as FormPathPattern } from '@formily/path'
+import { Path as FormPath } from '@formily/path'
+import type { Pattern as FormPathPattern } from '@formily/path'
 
-export { FormPath, FormPathPattern }
+export { FormPath }
+export type { FormPathPattern }
