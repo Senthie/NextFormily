@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { createForm, onFieldValueChange } from '@formily/core'
 import {
   FormProvider,
@@ -29,7 +29,8 @@ import {
   FormDrawer,
   PreviewText,
 } from '@formily/antd'
-import { Button } from 'antd'
+import { Button, message } from 'antd'
+import { jsonFormSchema } from './json-schema-template'
 
 /* ============ 1. JSX 模式：基础控件 + dayjs 日期 + 联动 + 校验 ============ */
 const BasicForm = () => {
@@ -437,6 +438,49 @@ const ReadPrettyForm = () => {
   )
 }
 
+/* ============ 7. JSON Schema 模式（纯 JSON 模板 + 提交展示） ============ */
+const JsonSchemaField = createSchemaField({
+  components: {
+    FormItem,
+    FormLayout,
+    Input,
+    NumberPicker,
+    Select,
+    Radio,
+    Switch,
+    DatePicker,
+    ArrayTable,
+  },
+})
+
+const JsonSchemaForm = () => {
+  const [submitted, setSubmitted] = useState<any>(null)
+  const form = useMemo(() => createForm(), [])
+  const onSubmit = (values: any) => {
+    setSubmitted(values)
+    message.success('提交成功！')
+  }
+  return (
+    <FormProvider form={form}>
+      <FormLayout labelCol={6} wrapperCol={14}>
+        <JsonSchemaField schema={jsonFormSchema} />
+      </FormLayout>
+      <FormButtonGroup.FormItem>
+        <Submit onSubmit={onSubmit}>提交</Submit>
+        <Reset>重置</Reset>
+      </FormButtonGroup.FormItem>
+      {submitted && (
+        <div className="demo-json-preview">
+          <div style={{ color: '#7ee787', marginBottom: 8 }}>
+            ✅ 提交内容（{new Date().toLocaleTimeString()}）：
+          </div>
+          <pre>{JSON.stringify(submitted, null, 2)}</pre>
+        </div>
+      )}
+    </FormProvider>
+  )
+}
+
 /* ============ 汇总 ============ */
 const App = () => {
   return (
@@ -477,6 +521,13 @@ const App = () => {
       <section>
         <h2 className="demo-section-title">6. 阅读态（PreviewText）</h2>
         <ReadPrettyForm />
+      </section>
+
+      <section>
+        <h2 className="demo-section-title">
+          7. JSON Schema 模板（纯 JSON 构建 + 提交展示）
+        </h2>
+        <JsonSchemaForm />
       </section>
     </div>
   )
