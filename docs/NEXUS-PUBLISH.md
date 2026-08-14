@@ -1,4 +1,4 @@
-# 发布 @formily/\* 到自建 Nexus 仓库
+# 发布 @next-formily/\* 到自建 Nexus 仓库
 
 > 仓库：alibaba/formily fork（formily_next → react19-antd6 分支）
 > 栈：lerna + yarn workspaces monorepo，10 个 public 包（版本 2.3.7）
@@ -38,18 +38,18 @@ npm 11 要求对象结构且会做运行时强校验（Node v24 不满足 `<23` 
 
 | 顺序 | 包                      | 说明                                                                          |
 | ---- | ----------------------- | ----------------------------------------------------------------------------- |
-| 1    | @formily/shared         | 最底层工具                                                                    |
-| 2    | @formily/reactive       | 响应式内核                                                                    |
-| 3    | @formily/reactive-react | reactive 的 React 绑定                                                        |
-| 4    | @formily/core           | 核心（依赖 shared/reactive/path）                                             |
-| 5    | @formily/validator      | 校验器（依赖 shared）                                                         |
-| 6    | @formily/path           | 路径                                                                          |
-| 7    | @formily/grid           | 栅格布局                                                                      |
-| 8    | @formily/json-schema    | JSON Schema（依赖 shared/validator/reactive）                                 |
-| 9    | @formily/react          | React 绑定（依赖 core/reactive/reactive-react/shared）                        |
-| 10   | @formily/antd           | antd6 组件（依赖 core/grid/json-schema/react/reactive/reactive-react/shared） |
+| 1    | @next-formily/shared         | 最底层工具                                                                    |
+| 2    | @next-formily/reactive       | 响应式内核                                                                    |
+| 3    | @next-formily/reactive-react | reactive 的 React 绑定                                                        |
+| 4    | @next-formily/core           | 核心（依赖 shared/reactive/path）                                             |
+| 5    | @next-formily/validator      | 校验器（依赖 shared）                                                         |
+| 6    | @next-formily/path           | 路径                                                                          |
+| 7    | @next-formily/grid           | 栅格布局                                                                      |
+| 8    | @next-formily/json-schema    | JSON Schema（依赖 shared/validator/reactive）                                 |
+| 9    | @next-formily/react          | React 绑定（依赖 core/reactive/reactive-react/shared）                        |
+| 10   | @next-formily/antd           | antd6 组件（依赖 core/grid/json-schema/react/reactive/reactive-react/shared） |
 
-private 不发布：`@formily/benchmark`、`@formily/reactive-test-cases-for-react18`
+private 不发布：`@next-formily/benchmark`、`@next-formily/reactive-test-cases-for-react18`
 
 ## 2. Nexus 侧准备（管理员）
 
@@ -244,18 +244,18 @@ console.log('ALL PUBLISHED')
 
 ```bash
 # 确认已发布
-npm view @formily/antd version --registry=http://192.168.4.108:8081/repository/npm-private/
+npm view @next-formily/antd version --registry=http://192.168.4.108:8081/repository/npm-private/
 
 # 消费者安装测试（用 group 地址）
-npm i @formily/antd @formily/react @formily/core --registry=http://192.168.4.108:8081/repository/npm-group/
+npm i @next-formily/antd @next-formily/react @next-formily/core --registry=http://192.168.4.108:8081/repository/npm-group/
 ```
 
 ## 8. 常见坑
 
 1. 认证信息只放 `~/.npmrc`，**不要**进项目 `.npmrc`/git
 2. 发布必须指向 **hosted** 仓库；只读 proxy 无法 publish（E401/E404）
-3. 消费者必须用 **group** 地址，否则 `@formily/*` 依赖的官方包（react/antd/rc-\*）解析不到
-4. scoped 包 `@formily/*` 已带 `publishConfig.access:public`，对私有仓无影响，保留即可
+3. 消费者必须用 **group** 地址，否则 `@next-formily/*` 依赖的官方包（react/antd/rc-\*）解析不到
+4. scoped 包 `@next-formily/*` 已带 `publishConfig.access:public`，对私有仓无影响，保留即可
 5. 若 `npm view`/`publish` 报 `E401 Unable to authenticate`，说明 `~/.npmrc` 的认证缺失或权限不足；
    若错误含 `BASIC realm`，说明需用 `_auth`（Basic）而不是 `_authToken`（Bearer）
 6. **EULA**：新装 Nexus 未接受 EULA 时 publish 403 `must accept the EULA`，需先 UI 登录 admin 接受（无 REST API）

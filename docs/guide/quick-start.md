@@ -4,10 +4,10 @@
 
 ### Install the Core Library
 
-To use Formily, you must use [@formily/core](https://core.formilyjs.org), which is responsible for managing the status of the form, form verification, linkage, and so on.
+To use Formily, you must use [@next-formily/core](https://core.formilyjs.org), which is responsible for managing the status of the form, form verification, linkage, and so on.
 
 ```bash
-$ npm install --save @formily/core
+$ npm install --save @next-formily/core
 ```
 
 ### Install UI Bridge Library
@@ -17,29 +17,29 @@ The kernel alone is not enough. We also need a UI library to access kernel data 
 **React users**
 
 ```bash
-$ npm install --save @formily/react
+$ npm install --save @next-formily/react
 ```
 
 **Vue users**
 
 ```bash
-$ npm install --save @formily/vue
+$ npm install --save @next-formily/vue
 ```
 
 ### Install component library
 
-To quickly implement beautiful forms, we usually need to use industry-leading component libraries, such as [Ant Design](https://ant.design) and [Alibaba Fusion](https://fusion.design). However, these excellent component libraries are not fully covered in some scenes of the form. For example, the detailed preview state is not supported by Ant Design, and some scene-based components are not supported, so Formily is in On top of this, @formily/antd and @formily/next are encapsulated to ensure that users can use it out of the box.
+To quickly implement beautiful forms, we usually need to use industry-leading component libraries, such as [Ant Design](https://ant.design) and [Alibaba Fusion](https://fusion.design). However, these excellent component libraries are not fully covered in some scenes of the form. For example, the detailed preview state is not supported by Ant Design, and some scene-based components are not supported, so Formily is in On top of this, @next-formily/antd and @next-formily/next are encapsulated to ensure that users can use it out of the box.
 
 **Ant Design users**
 
 ```bash
-$ npm install --save antd moment @formily/antd
+$ npm install --save antd moment @next-formily/antd
 ```
 
 **Alibaba Fusion users**
 
 ```bash
-$ npm install --save @alifd/next moment @formily/next
+$ npm install --save @alifd/next moment @next-formily/next
 ```
 
 ## Import Dependencies
@@ -48,9 +48,9 @@ Use ES Module import syntax to import dependencies
 
 ```ts
 import React from 'react'
-import { createForm } from '@formily/core'
-import { FormProvider, Field } from '@formily/react'
-import { FormItem, Input } from '@formily/antd'
+import { createForm } from '@next-formily/core'
+import { FormProvider, Field } from '@next-formily/react'
+import { FormItem, Input } from '@next-formily/antd'
 ```
 
 ## Example
@@ -60,15 +60,15 @@ import { FormItem, Input } from '@formily/antd'
  * defaultShowCode: true
  */
 import React from 'react'
-import { createForm } from '@formily/core'
-import { FormProvider, FormConsumer, Field } from '@formily/react'
+import { createForm } from '@next-formily/core'
+import { FormProvider, FormConsumer, Field } from '@next-formily/react'
 import {
   FormItem,
   FormLayout,
   Input,
   FormButtonGroup,
   Submit,
-} from '@formily/antd'
+} from '@next-formily/antd'
 
 const form = createForm()
 
