@@ -30,7 +30,6 @@ let createRoot: CreateRoot
 try {
   // 直接以 createRoot 存在性判断，不依赖 version 字符串解析
   if (fullClone.createRoot) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     createRoot = fullClone.createRoot
   }
 } catch (e) {

@@ -112,7 +112,7 @@ export const createBoundaryFunction = (
   return boundary
 }
 
-export const createBindFunction = <Boundary extends BoundaryFunction>(
+const createBindFunction = <Boundary extends BoundaryFunction>(
   boundary: Boundary
 ) => {
   function bind<F extends (...args: any[]) => any>(

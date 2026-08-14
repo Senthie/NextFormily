@@ -7,7 +7,7 @@ import {
   isIdentifier,
   isDestructorExpression,
 } from './types'
-import { isNum } from './shared'
+import { isNum, isValid } from './shared'
 
 type Mutators = {
   getIn: (segments: Segments, source: any) => any
@@ -17,8 +17,6 @@ type Mutators = {
 }
 
 const DestructorCache = new Map()
-
-const isValid = (val: any) => val !== undefined && val !== null
 
 export const getDestructor = (source: string) => {
   return DestructorCache.get(source)

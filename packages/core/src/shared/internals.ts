@@ -97,12 +97,12 @@ export const getValuesFromEvent = (args: any[]) => {
   })
 }
 
-export const getTypedDefaultValue = (field: Field) => {
+const getTypedDefaultValue = (field: Field) => {
   if (isArrayField(field)) return []
   if (isObjectField(field)) return {}
 }
 
-export const buildFieldPath = (field: GeneralField) => {
+const buildFieldPath = (field: GeneralField) => {
   return buildDataPath(field.form.fields, field.address)
 }
 
@@ -185,7 +185,7 @@ export const destroy = (
   delete target[address]
 }
 
-export const patchFormValues = (
+const patchFormValues = (
   form: Form,
   path: Array<string | number>,
   source: any
@@ -302,7 +302,7 @@ export const updateFeedback = (field: Field, feedback?: IFieldFeedback) => {
   })
 }
 
-export const validateToFeedbacks = async (
+const validateToFeedbacks = async (
   field: Field,
   triggerType: ValidatorTriggerType = 'onInput'
 ) => {
@@ -583,7 +583,7 @@ export const initFieldUpdate = batch.scope.bound((field: GeneralField) => {
   }
 })
 
-export const subscribeUpdate = (
+const subscribeUpdate = (
   form: Form,
   pattern: FormPath,
   callback: (...args: any[]) => void
@@ -985,7 +985,7 @@ export const validateSelf = batch.bound(
   }
 )
 
-export const resetSelf = batch.bound(
+const resetSelf = batch.bound(
   async (target: Field, options?: IFieldResetOptions, noEmit = false) => {
     const typedDefaultValue = getTypedDefaultValue(target)
     target.modified = false

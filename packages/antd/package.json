@@ -35,10 +35,10 @@
   "scripts": {
     "start": "dumi dev",
     "build": "rimraf -rf lib esm dist && npm run create:style && npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:style",
-    "create:style": "ts-node create-style",
-    "build:style": "ts-node build-style",
+    "create:style": "node ../../scripts/run-ts.cjs create-style.ts",
+    "build:style": "node ../../scripts/run-ts.cjs build-style.ts",
     "build:cjs": "rimraf -rf lib && node ../../scripts/esbuild-cjs.js && tsc --project tsconfig.build.json --emitDeclarationOnly --module esnext --outDir lib",
-    "build:esm": "tsc --project tsconfig.build.json --module es2015 --outDir esm && node ../../scripts/copy-less.js",
+    "build:esm": "tsc --project tsconfig.build.json --module esnext --outDir esm && node ../../scripts/copy-less.js",
     "build:umd": "rollup --config",
     "build:docs": "dumi build"
   },

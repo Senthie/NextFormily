@@ -389,7 +389,7 @@ export class Form<ValueType extends object = any> {
     } else if (strategy === 'shallowMerge') {
       Object.assign(this.values, values)
     } else {
-      this.values = values as any
+      this.values = values as ValueType
     }
   }
 
@@ -407,7 +407,7 @@ export class Form<ValueType extends object = any> {
     } else if (strategy === 'shallowMerge') {
       Object.assign(this.initialValues, initialValues)
     } else {
-      this.initialValues = initialValues as any
+      this.initialValues = initialValues as ValueType
     }
   }
 

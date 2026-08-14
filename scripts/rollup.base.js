@@ -1,5 +1,5 @@
 import path from 'path'
-import typescript from 'rollup-plugin-typescript2'
+import createEsbuildPlugin from './rollup-esbuild-plugin.cjs'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import externalGlobals from 'rollup-plugin-external-globals'
@@ -12,7 +12,6 @@ const presets = () => {
     antd: 'antd',
     react: 'React',
     'react-is': 'ReactIs',
-    'mobx-react-lite': 'mobxReactLite',
     'react-dom': 'ReactDOM',
     '@ant-design/icons': 'icons',
     '@next-formily/reactive-react': 'Formily.ReactiveReact',
@@ -25,16 +24,11 @@ const presets = () => {
     '@next-formily/react': 'Formily.React',
   }
   return [
-    typescript({
-      tsconfig: './tsconfig.build.json',
-      tsconfigOverride: {
-        compilerOptions: {
-          module: 'ESNext',
-          declaration: false,
-        },
-      },
+    // TS7 无 compiler API，rollup-plugin-typescript2 不可用；用 esbuild 转译（UMD 无需类型检查）
+    createEsbuildPlugin(),
+    resolve({
+      extensions: ['.mjs', '.js', '.json', '.node', '.ts', '.tsx'],
     }),
-    resolve(),
     commonjs(),
     externalGlobals(externals, {
       exclude: ['**/*.{less,sass,scss}'],
@@ -69,8 +63,9 @@ export const removeImportStyleFromInputFilePlugin = () => ({
   name: 'remove-import-style-from-input-file',
   transform(code, id) {
     // 样式由 build:style 进行打包，所以要删除入口文件上的 `import './style'`
+    // （esbuild 转译后可能为单/双引号，用正则兼容）
     if (inputFilePath === id) {
-      return code.replace(`import './style';`, '')
+      return code.replace(/import ['"]\.\/style['"];/, '')
     }
 
     return code

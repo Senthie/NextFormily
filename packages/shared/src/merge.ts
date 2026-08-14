@@ -33,7 +33,6 @@ function isSpecial(value: any) {
 function emptyTarget(val: any) {
   return Array.isArray(val) ? [] : {}
 }
-// @ts-ignore
 function cloneUnlessOtherwiseSpecified(value: any, options: Options) {
   if (options.clone !== false && options.isMergeableObject?.(value)) {
     return deepmerge(emptyTarget(value), value, options)
@@ -105,7 +104,6 @@ function mergeObject(target: any, source: any, options: Options) {
       destination[key] = source[key]
     } else if (
       propertyIsOnObject(target, key) &&
-      // @ts-ignore
       options.isMergeableObject(source[key])
     ) {
       destination[key] = getMergeFunction(key, options)(
@@ -132,7 +130,6 @@ interface Options {
   cloneUnlessOtherwiseSpecified?: (value: any, options: Options) => any
 }
 
-// @ts-ignore
 function deepmerge(target: any, source: any, options?: Options) {
   options = options || {}
   options.arrayMerge = options.arrayMerge || defaultArrayMerge
@@ -177,10 +174,8 @@ export const lazyMerge = <T extends object | Function>(
       const source = getSource()
       const target = getTarget()
       if (key in source) {
-        // @ts-ignore
         source[key] = value
       } else if (key in target) {
-        // @ts-ignore
         target[key] = value
       } else {
         source[key] = value
@@ -189,11 +184,9 @@ export const lazyMerge = <T extends object | Function>(
     }
     const get = (_: object, key: PropertyKey) => {
       const source = getSource()
-      // @ts-ignore
       if (key in source) {
         return source[key]
       }
-      // @ts-ignore
       return getTarget()[key]
     }
     const ownKeys = () => {

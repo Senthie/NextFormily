@@ -15,13 +15,11 @@ const env: Env = {
 const loadCreatePortal = () => {
   if (!env.createPortal) {
     try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
       env.createPortal ??= require('react-dom')?.createPortal
     } catch {}
   }
   if (!env.createPortal) {
     try {
-      // @ts-ignore
       import('react-dom')
         .then((module) => (env.createPortal ??= module?.createPortal))
         .catch()

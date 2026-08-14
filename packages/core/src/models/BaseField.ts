@@ -118,7 +118,7 @@ export class BaseField<Decorator = any, Component = any, TextType = any> {
   }
 
   get display(): FieldDisplayTypes {
-    const parentDisplay = (this.parent as any)?.display
+    const parentDisplay = this.parent?.display
     if (parentDisplay && parentDisplay !== 'visible') {
       if (this.selfDisplay && this.selfDisplay !== 'visible')
         return this.selfDisplay
@@ -130,7 +130,7 @@ export class BaseField<Decorator = any, Component = any, TextType = any> {
 
   get pattern(): FieldPatternTypes {
     const parentPattern: FieldPatternTypes =
-      (this.parent as any)?.pattern || this.form.pattern || 'editable'
+      this.parent?.pattern || this.form.pattern || 'editable'
     const selfPattern = this.selfPattern
     if (isValid(selfPattern)) {
       if (parentPattern === 'readPretty' && selfPattern !== 'editable') {

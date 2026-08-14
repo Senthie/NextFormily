@@ -158,7 +158,7 @@ export const releaseBindingReactions = (reaction: Reaction) => {
   delete reaction._reactionsSet
 }
 
-export const suspendComputedReactions = (current: Reaction) => {
+const suspendComputedReactions = (current: Reaction) => {
   current._computesSet?.forEach((reaction) => {
     const reactions = getReactionsFromTargetKey(
       reaction._context,
@@ -218,13 +218,13 @@ export const untrackEnd = () => {
   UntrackCount.value--
 }
 
-export const isBatching = () => BatchCount.value > 0
+const isBatching = () => BatchCount.value > 0
 
-export const isScopeBatching = () => BatchScope.value
+const isScopeBatching = () => BatchScope.value
 
 export const isUntracking = () => UntrackCount.value > 0
 
-export const executePendingReactions = () => {
+const executePendingReactions = () => {
   PendingReactions.batchDelete((reaction) => {
     if (isFn(reaction._scheduler)) {
       reaction._scheduler(reaction)
@@ -234,7 +234,7 @@ export const executePendingReactions = () => {
   })
 }
 
-export const executeBatchEndpoints = () => {
+const executeBatchEndpoints = () => {
   BatchEndpoints.batchDelete((callback) => {
     callback()
   })

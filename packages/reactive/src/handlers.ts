@@ -17,6 +17,8 @@ const wellKnownSymbols = new Set(
 
 const hasOwnProperty = Object.prototype.hasOwnProperty
 
+const getProto = (target: any) => Reflect.getPrototypeOf(target) as any
+
 function findObservable(target: any, key: PropertyKey, value: any) {
   const observableObj = RawProxy.get(value)
   if (observableObj) {
@@ -52,19 +54,19 @@ function patchIterator(
 const instrumentations = {
   has(key: PropertyKey) {
     const target = ProxyRaw.get(this)
-    const proto = Reflect.getPrototypeOf(this) as any
+    const proto = getProto(this)
     bindTargetKeyWithCurrentReaction({ target, key, type: 'has' })
     return proto.has.apply(target, arguments)
   },
   get(key: PropertyKey) {
     const target = ProxyRaw.get(this)
-    const proto = Reflect.getPrototypeOf(this) as any
+    const proto = getProto(this)
     bindTargetKeyWithCurrentReaction({ target, key, type: 'get' })
     return findObservable(target, key, proto.get.apply(target, arguments))
   },
   add(key: PropertyKey) {
     const target = ProxyRaw.get(this)
-    const proto = Reflect.getPrototypeOf(this) as any
+    const proto = getProto(this)
     const hadKey = proto.has.call(target, key)
     // forward the operation before queueing reactions
     const result = proto.add.apply(target, arguments)
@@ -75,7 +77,7 @@ const instrumentations = {
   },
   set(key: PropertyKey, value: any) {
     const target = ProxyRaw.get(this)
-    const proto = Reflect.getPrototypeOf(this) as any
+    const proto = getProto(this)
     const hadKey = proto.has.call(target, key)
     const oldValue = proto.get.call(target, key)
     // forward the operation before queueing reactions
@@ -89,7 +91,7 @@ const instrumentations = {
   },
   delete(key: PropertyKey) {
     const target = ProxyRaw.get(this)
-    const proto = Reflect.getPrototypeOf(this) as any
+    const proto = getProto(this)
     const hadKey = proto.has.call(target, key)
     const oldValue = proto.get ? proto.get.call(target, key) : undefined
     // forward the operation before queueing reactions
@@ -101,7 +103,7 @@ const instrumentations = {
   },
   clear() {
     const target = ProxyRaw.get(this)
-    const proto = Reflect.getPrototypeOf(this) as any
+    const proto = getProto(this)
     const hadItems = target.size !== 0
     const oldTarget = target instanceof Map ? new Map(target) : new Set(target)
     // forward the operation before queueing reactions
@@ -113,7 +115,7 @@ const instrumentations = {
   },
   forEach(cb: any, ...args: any[]) {
     const target = ProxyRaw.get(this)
-    const proto = Reflect.getPrototypeOf(this) as any
+    const proto = getProto(this)
     bindTargetKeyWithCurrentReaction({ target, type: 'iterate' })
     // swap out the raw values with their observable pairs
     // before passing them to the callback
@@ -123,20 +125,20 @@ const instrumentations = {
   },
   keys() {
     const target = ProxyRaw.get(this)
-    const proto = Reflect.getPrototypeOf(this) as any
+    const proto = getProto(this)
     bindTargetKeyWithCurrentReaction({ target, type: 'iterate' })
     return proto.keys.apply(target, arguments)
   },
   values() {
     const target = ProxyRaw.get(this)
-    const proto = Reflect.getPrototypeOf(this) as any
+    const proto = getProto(this)
     bindTargetKeyWithCurrentReaction({ target, type: 'iterate' })
     const iterator = proto.values.apply(target, arguments)
     return patchIterator(target, '', iterator, false)
   },
   entries() {
     const target = ProxyRaw.get(this)
-    const proto = Reflect.getPrototypeOf(this) as any
+    const proto = getProto(this)
     bindTargetKeyWithCurrentReaction({ target, type: 'iterate' })
     const iterator = proto.entries.apply(target, arguments)
     return patchIterator(target, '', iterator, true)

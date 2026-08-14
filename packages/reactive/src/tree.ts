@@ -73,7 +73,7 @@ export const getDataNode = (raw: any) => {
   return RawNode.get(raw)
 }
 
-export const setDataNode = (raw: any, node: DataNode) => {
+const setDataNode = (raw: any, node: DataNode) => {
   if (raw?.[ObModelSymbol]) {
     raw[ObModelNodeSymbol] = node
     return

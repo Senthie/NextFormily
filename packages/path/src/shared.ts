@@ -11,6 +11,7 @@ export const isBool = isType<boolean>('Boolean')
 export const isNum = isType<number>('Number')
 export const isObj = (val: unknown): val is object => typeof val === 'object'
 export const isRegExp = isType<RegExp>('RegExp')
+export const isValid = (val: any) => val !== undefined && val !== null
 export const isNumberLike = (t: any) => {
   return isNum(t) || /^(\d+)(\.\d+)?$/.test(t)
 }

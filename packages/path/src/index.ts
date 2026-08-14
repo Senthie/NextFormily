@@ -1,5 +1,5 @@
 import { Parser } from './parser'
-import { isStr, isArr, isFn, isEqual, isObj, isNum, isRegExp } from './shared'
+import { isStr, isArr, isFn, isEqual, isObj, isNum, isRegExp, isValid } from './shared'
 import {
   getDestructor,
   getInByDestructor,
@@ -13,8 +13,6 @@ import { Matcher } from './matcher'
 const pathCache = new Map()
 
 const isMatcher = Symbol('PATH_MATCHER')
-
-const isValid = (val: any) => val !== undefined && val !== null
 
 const isSimplePath = (val: string) =>
   val.indexOf('*') === -1 &&

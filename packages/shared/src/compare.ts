@@ -4,7 +4,6 @@ const isArray = isArr
 const keyList = Object.keys
 const hasProp = Object.prototype.hasOwnProperty
 
-/* eslint-disable */
 function equal(a: any, b: any) {
   // fast-deep-equal index.js 2.0.1
   if (a === b) {
