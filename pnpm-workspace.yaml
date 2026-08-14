@@ -11,15 +11,15 @@ allowBuilds:
   ts-import-plugin: false
   unrs-resolver: true
 minimumReleaseAgeExclude:
-  - '@next-formily/core@2.3.7 || 3.1.1'
-  - '@next-formily/grid@2.3.7 || 3.1.1'
-  - '@next-formily/json-schema@2.3.7 || 3.1.1'
-  - '@next-formily/path@2.3.7 || 3.1.1'
-  - '@next-formily/react@2.3.7 || 3.1.1'
-  - '@next-formily/reactive-react@2.3.7 || 3.1.1'
-  - '@next-formily/reactive@2.3.7 || 3.1.1'
-  - '@next-formily/shared@2.3.7 || 3.1.1'
-  - '@next-formily/validator@2.3.7 || 3.1.1'
+  - '@next-formily/core@2.3.7 || 3.1.2 || 3.1.1'
+  - '@next-formily/grid@2.3.7 || 3.1.2 || 3.1.1'
+  - '@next-formily/json-schema@2.3.7 || 3.1.2 || 3.1.1'
+  - '@next-formily/path@2.3.7 || 3.1.2 || 3.1.1'
+  - '@next-formily/react@2.3.7 || 3.1.2 || 3.1.1'
+  - '@next-formily/reactive-react@2.3.7 || 3.1.2 || 3.1.1'
+  - '@next-formily/reactive@2.3.7 || 3.1.2 || 3.1.1'
+  - '@next-formily/shared@2.3.7 || 3.1.2 || 3.1.1'
+  - '@next-formily/validator@2.3.7 || 3.1.2 || 3.1.1'
 patchedDependencies:
   '@umijs/preset-dumi': patches/@umijs__preset-dumi.patch
   dumi@2.4.49: patches/dumi@2.4.49.patch
