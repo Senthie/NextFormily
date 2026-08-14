@@ -3,9 +3,14 @@
   "compilerOptions": {
     "outDir": "./lib",
     "paths": {
-      "@next-formily/*": ["packages/*", "devtools/*"]
+      "@next-formily/*": [
+        "../../packages/*",
+        "../../devtools/*"
+      ]
     },
     "declaration": true,
-    "types": []
+    "types": [],
+    "module": "commonjs",
+    "rootDir": "./src"
   }
 }

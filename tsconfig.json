@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "jsx": "react",
-    "module": "commonjs",
-    "target": "es5",
-    "allowJs": false,
+    "module": "esnext",
+    "target": "esnext",
+    "strict": false,
     "noUnusedLocals": false,
     "preserveConstEnums": true,
     "skipLibCheck": true,
@@ -13,12 +13,16 @@
     "inlineSources": true,
     "declaration": true,
     "experimentalDecorators": true,
-    "downlevelIteration": true,
-    "baseUrl": ".",
     "paths": {
-      "@next-formily/*": ["packages/*/src", "devtools/*/src"]
+      "@next-formily/*": [
+        "./packages/*/src",
+        "./devtools/*/src"
+      ]
     },
     "preserveSymlinks": true,
-    "lib": ["ESNext"]
+    "types": ["node"],
+    "lib": [
+      "ESNext"
+    ]
   }
 }
