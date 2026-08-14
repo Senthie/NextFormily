@@ -1,6 +1,7 @@
 {
-  "name": "root",
+  "name": "next-formily",
   "private": true,
+  "description": "NextFormily - Formily React 19 + antd 6 fork (NextFormily)",
   "devEngines": {
     "runtime": {
       "name": "node",
