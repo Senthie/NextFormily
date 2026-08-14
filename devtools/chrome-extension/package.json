@@ -16,9 +16,9 @@
     "npm": ">=3.0.0"
   },
   "scripts": {
-    "build:devtools": "webpack --config config/webpack.prod.ts",
+    "build:devtools": "vite build",
     "build:zip": "rimraf package.zip && zip -r package.zip package",
-    "start": "webpack serve --config config/webpack.dev.ts"
+    "start": "vite build --watch"
   },
   "dependencies": {
     "@next-formily/core": "3.0.1",

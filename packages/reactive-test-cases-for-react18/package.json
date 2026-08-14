@@ -16,7 +16,7 @@
     "npm": ">=3.0.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.ts"
+    "start": "vite"
   },
   "devDependencies": {
     "file-loader": "^5.0.2",

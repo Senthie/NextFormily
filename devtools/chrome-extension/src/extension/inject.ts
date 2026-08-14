@@ -1,4 +1,5 @@
-import backend from 'raw-loader!./backend'
+// vite 的 ?raw 导入返回文件原始文本（替代 webpack 的 raw-loader）
+import backend from './backend?raw'
 function nullthrows(x: any, message?: string) {
   if (x != null) {
     return x
