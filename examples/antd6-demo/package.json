@@ -11,8 +11,13 @@
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
+    "@next-formily/antd": "^3.1.1",
+    "@next-formily/core": "^3.1.1",
+    "@next-formily/json-schema": "^3.1.1",
+    "@next-formily/react": "^3.1.1",
     "antd": "^6.0.0",
     "dayjs": "^1.11.0",
+    "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-sticky-box": "^0.9.3"
