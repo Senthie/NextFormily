@@ -1,10 +1,13 @@
 {
   "name": "@next-formily/core",
-  "version": "2.3.7",
+  "version": "3.0.1",
   "license": "MIT",
   "main": "lib",
   "module": "esm",
-  "files": ["lib", "esm"],
+  "files": [
+    "lib",
+    "esm"
+  ],
   "umd:main": "dist/formily.core.umd.production.js",
   "unpkg": "dist/formily.core.umd.production.js",
   "jsdelivr": "dist/formily.core.umd.production.js",
@@ -33,9 +36,9 @@
     "dumi": "^1.1.0-rc.8"
   },
   "dependencies": {
-    "@next-formily/reactive": "2.3.7",
-    "@next-formily/shared": "2.3.7",
-    "@next-formily/validator": "2.3.7"
+    "@next-formily/reactive": "3.0.1",
+    "@next-formily/shared": "3.0.1",
+    "@next-formily/validator": "3.0.1"
   },
   "publishConfig": {
     "access": "public"

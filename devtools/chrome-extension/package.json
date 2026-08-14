@@ -21,8 +21,8 @@
     "start": "webpack serve --config config/webpack.dev.ts"
   },
   "dependencies": {
-    "@next-formily/core": "2.3.7",
-    "@next-formily/shared": "2.3.7",
+    "@next-formily/core": "3.0.1",
+    "@next-formily/shared": "3.0.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-json-view": "^1.19.1",

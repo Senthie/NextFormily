@@ -1,10 +1,13 @@
 {
   "name": "@next-formily/validator",
-  "version": "2.3.7",
+  "version": "3.0.1",
   "license": "MIT",
   "main": "lib",
   "module": "esm",
-  "files": ["lib", "esm"],
+  "files": [
+    "lib",
+    "esm"
+  ],
   "umd:main": "dist/formily.validator.umd.production.js",
   "unpkg": "dist/formily.validator.umd.production.js",
   "jsdelivr": "dist/formily.validator.umd.production.js",
@@ -28,7 +31,7 @@
     "build:umd": "rollup --config"
   },
   "dependencies": {
-    "@next-formily/shared": "2.3.7"
+    "@next-formily/shared": "3.0.1"
   },
   "publishConfig": {
     "access": "public"

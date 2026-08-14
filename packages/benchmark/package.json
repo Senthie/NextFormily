@@ -40,8 +40,8 @@
     "react-is": "next"
   },
   "dependencies": {
-    "@next-formily/reactive": "2.3.7",
-    "@next-formily/reactive-react": "2.3.7",
+    "@next-formily/reactive": "3.0.1",
+    "@next-formily/reactive-react": "3.0.1",
     "react": "next",
     "react-dom": "next",
     "react-is": "next"

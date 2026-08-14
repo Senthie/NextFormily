@@ -1,10 +1,13 @@
 {
   "name": "@next-formily/react",
-  "version": "2.3.7",
+  "version": "3.0.1",
   "license": "MIT",
   "main": "lib",
   "module": "esm",
-  "files": ["lib", "esm"],
+  "files": [
+    "lib",
+    "esm"
+  ],
   "umd:main": "dist/formily.react.umd.production.js",
   "unpkg": "dist/formily.react.umd.production.js",
   "jsdelivr": "dist/formily.react.umd.production.js",
@@ -48,12 +51,12 @@
     "dumi": "^1.1.0-rc.8"
   },
   "dependencies": {
-    "@next-formily/core": "2.3.7",
-    "@next-formily/json-schema": "2.3.7",
-    "@next-formily/reactive": "2.3.7",
-    "@next-formily/reactive-react": "2.3.7",
-    "@next-formily/shared": "2.3.7",
-    "@next-formily/validator": "2.3.7",
+    "@next-formily/core": "3.0.1",
+    "@next-formily/json-schema": "3.0.1",
+    "@next-formily/reactive": "3.0.1",
+    "@next-formily/reactive-react": "3.0.1",
+    "@next-formily/shared": "3.0.1",
+    "@next-formily/validator": "3.0.1",
     "hoist-non-react-statics": "^3.3.2"
   },
   "publishConfig": {
