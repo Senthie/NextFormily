@@ -59,6 +59,42 @@ https://v1.formilyjs.org
 This project exists thanks to all the people who contribute.
 <a href="https://github.com/alibaba/formily/graphs/contributors"><img src="https://contrib.rocks/image?repo=alibaba/formily" /></a>
 
+## 常见问题：安装 `@next-formily` 包时出现 `workspace:*` 错误
+
+### 现象
+
+在消费方项目（例如 `ValueOctpus/web`）中，`pnpm install` 报错：
+
+```
+[ERR_PNPM_WORKSPACE_PKG_NOT_FOUND] In : "@next-formily/core@workspace:*" is in the dependencies but no package named "@next-formily/core" is present in the workspace
+```
+
+可能还会在下载 tarball 时报告 `ERR_PNPM_TARBALL_INTEGRITY`，但此时 `pnpm view @next-formily/antd@3.1.1 dependencies` 显示的却是干净的真实版本（`3.1.1`）。
+
+### 发生原因
+
+发布物本身没有问题——Nexus 上（`sc_formily` 和 `npm-public`）的 tarball 内部依赖都是真实的 `3.1.1`，并非 `workspace:*`。真正的根因是**消费方机器上的 pnpm 元数据缓存残留**：
+
+1. 早期使用 `npm publish` 发布了 `3.1.1`，它会保留 tarball 内部 `package.json` 里的 `workspace:*`。
+2. 之后改用 `pnpm publish` 重新发布，它会将 `workspace:*` 改写为真实版本。
+3. 但 pnpm 会把包元数据缓存在 `~/.cache/pnpm/v11/metadata/<registry>/@next-formily/*.jsonl`，而 `pnpm install` 读取的是这份精简缓存。若缓存里仍是旧元数据就会报错——而 `pnpm view`（使用 `metadata-full`）显示正常，这种“view 干净、install 报错”的矛盾正是缓存未刷新的信号。
+
+### 解决办法
+
+清除 pnpm 元数据缓存后重新安装：
+
+```bash
+rm -rf ~/.cache/pnpm/v11/metadata/*/@next-formily \
+       ~/.cache/pnpm/v11/metadata-full/*/@next-formily \
+       ~/.cache/pnpm/v11/metadata-full-filtered/*/@next-formily
+pnpm install
+```
+
+### 预防措施
+
+- 发布时务必使用 `pnpm publish`（切勿用 `npm publish`），这样 workspace 协议中的 `workspace:*` 才会在发布的 tarball 内转换为真实版本。
+- 发布新版本时，提醒消费方如遇此错误先清除 `@next-formily` 的 pnpm 元数据缓存。
+
 ## LICENSE
 
 Formily is open source software licensed as

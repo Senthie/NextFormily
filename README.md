@@ -59,6 +59,42 @@ https://v1.formilyjs.org
 This project exists thanks to all the people who contribute.
 <a href="https://github.com/alibaba/formily/graphs/contributors"><img src="https://contrib.rocks/image?repo=alibaba/formily" /></a>
 
+## Troubleshooting: `workspace:*` error when installing `@next-formily` packages
+
+### Symptom
+
+In a consumer project (for example `ValueOctpus/web`), `pnpm install` fails with:
+
+```
+[ERR_PNPM_WORKSPACE_PKG_NOT_FOUND] In : "@next-formily/core@workspace:*" is in the dependencies but no package named "@next-formily/core" is present in the workspace
+```
+
+It may also report `ERR_PNPM_TARBALL_INTEGRITY` while downloading the tarballs, even though `pnpm view @next-formily/antd@3.1.1 dependencies` returns clean real versions (`3.1.1`).
+
+### Root cause
+
+The published artifacts are fine — the tarballs on Nexus (both `sc_formily` and `npm-public`) contain real `3.1.1` dependency versions, not `workspace:*`. The real culprit is a **stale pnpm metadata cache on the consumer machine**:
+
+1. An early `3.1.1` was published with `npm publish`, which keeps `workspace:*` inside the tarball's inner `package.json`.
+2. The packages were later re-published with `pnpm publish`, which rewrites `workspace:*` to real versions.
+3. However, pnpm caches the package metadata under `~/.cache/pnpm/v11/metadata/<registry>/@next-formily/*.jsonl`, and `pnpm install` reads this reduced cache. If it still holds the old metadata, it fails — while `pnpm view` (which uses `metadata-full`) looks clean, which is the tell-tale sign.
+
+### Fix
+
+Clear the pnpm metadata caches and reinstall:
+
+```bash
+rm -rf ~/.cache/pnpm/v11/metadata/*/@next-formily \
+       ~/.cache/pnpm/v11/metadata-full/*/@next-formily \
+       ~/.cache/pnpm/v11/metadata-full-filtered/*/@next-formily
+pnpm install
+```
+
+### Prevention
+
+- Always publish with `pnpm publish` (never `npm publish`) so `workspace:*` in the workspace protocol is converted to real versions inside the published tarball.
+- When releasing a new version, remind consumers to clear the `@next-formily` pnpm metadata caches if they hit this error.
+
 ## LICENSE
 
 Formily is open source software licensed as
