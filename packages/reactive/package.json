@@ -4,6 +4,7 @@
   "license": "MIT",
   "main": "lib",
   "module": "esm",
+  "files": ["lib", "esm"],
   "umd:main": "dist/formily.reactive.umd.production.js",
   "unpkg": "dist/formily.reactive.umd.production.js",
   "jsdelivr": "dist/formily.reactive.umd.production.js",

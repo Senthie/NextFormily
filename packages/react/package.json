@@ -4,6 +4,7 @@
   "license": "MIT",
   "main": "lib",
   "module": "esm",
+  "files": ["lib", "esm"],
   "umd:main": "dist/formily.react.umd.production.js",
   "unpkg": "dist/formily.react.umd.production.js",
   "jsdelivr": "dist/formily.react.umd.production.js",

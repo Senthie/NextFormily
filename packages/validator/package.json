@@ -4,6 +4,7 @@
   "license": "MIT",
   "main": "lib",
   "module": "esm",
+  "files": ["lib", "esm"],
   "umd:main": "dist/formily.validator.umd.production.js",
   "unpkg": "dist/formily.validator.umd.production.js",
   "jsdelivr": "dist/formily.validator.umd.production.js",
