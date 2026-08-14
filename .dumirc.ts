@@ -20,6 +20,13 @@ export default defineConfig({
   base: '/NextFormily/',
   publicPath: '/NextFormily/',
   exportStatic: {},
+  // 声明支持的语言（suffix 模式）：
+  // zh-CN 无后缀（默认，路由即 /guide），en-US 带后缀（/guide/en-US）
+  // 注意：必须用 suffix 模式，避免首页 CTA 按钮生成 /zh-CN/guide 这种 exportStatic 未生成的路由
+  locales: [
+    { id: 'zh-CN', name: '简体中文', suffix: '' },
+    { id: 'en-US', name: 'English', suffix: 'en-US' },
+  ],
   resolve: {
     docDirs: ['docs'],
   },
