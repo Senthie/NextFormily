@@ -1,0 +1,1 @@
+.qrcode-group{display:flex;justify-content:center}.qrcode-group .qrcode{width:400px;margin:20px;display:flex;flex-direction:column;justify-content:center;align-items:center}.qrcode-group .qrcode-title{font-size:20px;position:relative}.qrcode-group .qrcode-title-content{position:absolute;left:50%;bottom:0;white-space:nowrap;transform:translate(-50%)}
