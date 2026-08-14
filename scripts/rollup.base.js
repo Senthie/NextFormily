@@ -1,11 +1,11 @@
 import path from 'path'
 import typescript from 'rollup-plugin-typescript2'
-import resolve from 'rollup-plugin-node-resolve'
+import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import externalGlobals from 'rollup-plugin-external-globals'
 import injectProcessEnv from 'rollup-plugin-inject-process-env'
 import dts from 'rollup-plugin-dts'
-import { terser } from 'rollup-plugin-terser'
+import terser from '@rollup/plugin-terser'
 
 const presets = () => {
   const externals = {
@@ -15,14 +15,14 @@ const presets = () => {
     'mobx-react-lite': 'mobxReactLite',
     'react-dom': 'ReactDOM',
     '@ant-design/icons': 'icons',
-    '@formily/reactive-react': 'Formily.ReactiveReact',
-    '@formily/reactive': 'Formily.Reactive',
-    '@formily/path': 'Formily.Path',
-    '@formily/shared': 'Formily.Shared',
-    '@formily/validator': 'Formily.Validator',
-    '@formily/core': 'Formily.Core',
-    '@formily/json-schema': 'Formily.JSONSchema',
-    '@formily/react': 'Formily.React',
+    '@next-formily/reactive-react': 'Formily.ReactiveReact',
+    '@next-formily/reactive': 'Formily.Reactive',
+    '@next-formily/path': 'Formily.Path',
+    '@next-formily/shared': 'Formily.Shared',
+    '@next-formily/validator': 'Formily.Validator',
+    '@next-formily/core': 'Formily.Core',
+    '@next-formily/json-schema': 'Formily.JSONSchema',
+    '@next-formily/react': 'Formily.React',
   }
   return [
     typescript({
@@ -90,10 +90,10 @@ export default (filename, targetName, ...plugins) => {
           id: filename,
         },
         globals: {
-          '@formily/json-schema': 'Formily.JSONSchema',
+          '@next-formily/json-schema': 'Formily.JSONSchema',
         },
       },
-      external: ['react', 'react-dom', 'react-is', '@formily/json-schema'],
+      external: ['react', 'react-dom', 'react-is', '@next-formily/json-schema'],
       plugins: [...presets(), ...plugins, createEnvPlugin('development')],
     },
     {
@@ -107,10 +107,10 @@ export default (filename, targetName, ...plugins) => {
           id: filename,
         },
         globals: {
-          '@formily/json-schema': 'Formily.JSONSchema',
+          '@next-formily/json-schema': 'Formily.JSONSchema',
         },
       },
-      external: ['react', 'react-dom', 'react-is', '@formily/json-schema'],
+      external: ['react', 'react-dom', 'react-is', '@next-formily/json-schema'],
       plugins: [
         ...presets(),
         terser(),

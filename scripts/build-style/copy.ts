@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { copy, readFile, writeFile, existsSync } from 'fs-extra'
-import glob from 'glob'
+import { glob } from 'glob'
 
 export type CopyBaseOptions = Record<'esStr' | 'libStr', string>
 
@@ -21,39 +21,33 @@ const importLibToEs = async ({
   )
 }
 
-export const runCopy = ({
+export const runCopy = async ({
   resolveForItem,
   ...lastOpts
 }: CopyBaseOptions & { resolveForItem?: (filename: string) => unknown }) => {
-  return new Promise((resolve, reject) => {
-    glob(`./src/**/*`, (err, files) => {
-      if (err) {
-        return reject(err)
-      }
+  // glob 9+ 移除回调式 API，改用 Promise 式
+  const files = await glob(`./src/**/*`)
+  const all = [] as Promise<unknown>[]
 
-      const all = [] as Promise<unknown>[]
+  for (let i = 0; i < files.length; i += 1) {
+    const filename = files[i]
 
-      for (let i = 0; i < files.length; i += 1) {
-        const filename = files[i]
+    resolveForItem?.(filename)
 
-        resolveForItem?.(filename)
+    if (/\.(less|scss)$/.test(filename)) {
+      all.push(copy(filename, filename.replace(/src\//, 'esm/')))
+      all.push(copy(filename, filename.replace(/src\//, 'lib/')))
 
-        if (/\.(less|scss)$/.test(filename)) {
-          all.push(copy(filename, filename.replace(/src\//, 'esm/')))
-          all.push(copy(filename, filename.replace(/src\//, 'lib/')))
+      continue
+    }
 
-          continue
-        }
+    if (/\/style.ts$/.test(filename)) {
+      importLibToEs({
+        ...lastOpts,
+        filename: filename.replace(/src\//, 'esm/').replace(/\.ts$/, '.js'),
+      })
 
-        if (/\/style.ts$/.test(filename)) {
-          importLibToEs({
-            ...lastOpts,
-            filename: filename.replace(/src\//, 'esm/').replace(/\.ts$/, '.js'),
-          })
-
-          continue
-        }
-      }
-    })
-  })
+      continue
+    }
+  }
 }
