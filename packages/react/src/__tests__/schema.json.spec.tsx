@@ -31,7 +31,7 @@ describe('json schema field', () => {
             })
           }
         />
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('input')).toBeVisible()
     expect(queryByTestId('input')?.getAttribute('value')).toEqual('123')
@@ -57,7 +57,7 @@ describe('json schema field', () => {
             },
           }}
         />
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('input')).toBeVisible()
   })
@@ -88,7 +88,7 @@ describe('json schema field', () => {
             },
           }}
         />
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('children-test')).toBeVisible()
     expect(queryByTestId('children-test')?.innerHTML).toEqual('children')
@@ -118,7 +118,7 @@ describe('json schema field', () => {
             },
           }}
         />
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('content-test')).toBeVisible()
     expect(queryByTestId('content-test')?.innerHTML).toEqual('content')
@@ -157,7 +157,7 @@ describe('json schema field', () => {
             },
           }}
         />
-      </FormProvider>
+      </FormProvider>,
     )
     const button = queryByTestId('button')
     const icon = queryByTestId('icon')
@@ -202,7 +202,7 @@ describe('json schema field', () => {
             },
           }}
         />
-      </FormProvider>
+      </FormProvider>,
     )
 
     const rate = container.querySelector('.ant-rate') as HTMLElement

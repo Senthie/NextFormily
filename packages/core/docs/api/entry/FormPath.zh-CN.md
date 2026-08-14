@@ -151,19 +151,19 @@ console.log(FormPath.parse('aa.*.cc').match('aa.dd.cc')) //true
 import { FormPath } from '@formily/core'
 
 console.log(
-  FormPath.parse('aa.*(bb,kk,dd,ee.*(oo,gg).gg).cc').match('aa.bb.cc')
+  FormPath.parse('aa.*(bb,kk,dd,ee.*(oo,gg).gg).cc').match('aa.bb.cc'),
 ) //true
 console.log(
-  FormPath.parse('aa.*(bb,kk,dd,ee.*(oo,gg).gg).cc').match('aa.kk.cc')
+  FormPath.parse('aa.*(bb,kk,dd,ee.*(oo,gg).gg).cc').match('aa.kk.cc'),
 ) //true
 console.log(
-  FormPath.parse('aa.*(bb,kk,dd,ee.*(oo,gg).gg).cc').match('aa.dd.cc')
+  FormPath.parse('aa.*(bb,kk,dd,ee.*(oo,gg).gg).cc').match('aa.dd.cc'),
 ) //true
 console.log(
-  FormPath.parse('aa.*(bb,kk,dd,ee.*(oo,gg).gg).cc').match('aa.ee.oo.gg.cc')
+  FormPath.parse('aa.*(bb,kk,dd,ee.*(oo,gg).gg).cc').match('aa.ee.oo.gg.cc'),
 ) //true
 console.log(
-  FormPath.parse('aa.*(bb,kk,dd,ee.*(oo,gg).gg).cc').match('aa.ee.gg.gg.cc')
+  FormPath.parse('aa.*(bb,kk,dd,ee.*(oo,gg).gg).cc').match('aa.ee.gg.gg.cc'),
 ) //true
 ```
 
@@ -213,8 +213,8 @@ import { FormPath } from '@formily/core'
 
 console.log(
   FormPath.parse('aa.\\,\\*\\{\\}\\.\\(\\).bb').match(
-    'aa.\\,\\*\\{\\}\\.\\(\\).bb'
-  )
+    'aa.\\,\\*\\{\\}\\.\\(\\).bb',
+  ),
 ) //true
 console.log(FormPath.parse('aa.[[,*{}.()]].bb').match('aa.[[,*{}.()]].bb')) //true
 ```
@@ -300,7 +300,7 @@ import { FormPath } from '@formily/core'
 
 console.log(FormPath.parse('aa.bb.cc').concat('dd.ee.mm').toString()) //aa.bb.cc.dd.ee.mm
 console.log(
-  FormPath.parse('aa.bb.cc').concat(['dd', 'ee', 'mm'], 'kk.oo').toString()
+  FormPath.parse('aa.bb.cc').concat(['dd', 'ee', 'mm'], 'kk.oo').toString(),
 ) //aa.bb.cc.dd.ee.mm.kk.oo
 ```
 
@@ -448,7 +448,7 @@ import { FormPath } from '@formily/core'
 console.log(
   FormPath.parse('aa.bb.cc').map((key) => {
     return key + '~'
-  }) //['aa~','bb~','cc~']
+  }), //['aa~','bb~','cc~']
 )
 ```
 
@@ -475,7 +475,7 @@ import { FormPath } from '@formily/core'
 console.log(
   FormPath.parse('aa.bb.cc').reduce((count) => {
     return count + 1
-  }, 0)
+  }, 0),
 ) //3
 ```
 
@@ -547,8 +547,8 @@ import { FormPath } from '@formily/core'
 console.log(
   FormPath.parse('aa.1.cc').transform(
     /\d+/,
-    (index) => `aa.${parseInt(index) + 1}.cc`
-  )
+    (index) => `aa.${parseInt(index) + 1}.cc`,
+  ),
 ) //aa.2.cc
 ```
 
@@ -760,7 +760,7 @@ interface transform<T> {
   (
     pattern: FormPathPattern,
     regexp: RegExp,
-    callback: (...matches: string[]) => T
+    callback: (...matches: string[]) => T,
   ): T
 }
 ```
@@ -774,8 +774,8 @@ console.log(
   FormPath.transform(
     'aa.0.bb',
     /\d+/,
-    (index) => `aa.${parseInt(index) + 1}.bb`
-  )
+    (index) => `aa.${parseInt(index) + 1}.bb`,
+  ),
 ) // `aa.1.bb`
 ```
 

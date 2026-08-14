@@ -58,7 +58,7 @@ const createTreeBySegments = (segments: Segments = [], afterNode?: Node) => {
 const calculate = (
   a: string | number,
   b: string | number,
-  operator: string
+  operator: string,
 ) => {
   if (isNumberLike(a) && isNumberLike(b)) {
     if (operator === '+') return String(Number(a) + Number(b))
@@ -267,7 +267,7 @@ export class Parser extends Tokenizer {
             }
           }
           return match
-        }
+        },
       )
       .replace(/\s*\.\s*/g, '')
       .replace(/\s*/g, '')
@@ -360,7 +360,7 @@ export class Parser extends Tokenizer {
       }
       return createTreeBySegments(
         this.data.segments.slice(),
-        this.parseAtom(this.state.type)
+        this.parseAtom(this.state.type),
       )
     } else {
       this.next()

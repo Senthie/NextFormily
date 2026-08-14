@@ -723,8 +723,9 @@ interface IFormFeedback {
   address?: string //The absolute path of the verification field
   triggerType?: 'onInput' | 'onFocus' | 'onBlur' //Verify the trigger type
   type?: 'error' | 'success' | 'warning' //feedback type
-  code?: //Feedback code
-  | 'ValidateError'
+  code?:
+    //Feedback code
+    | 'ValidateError'
     | 'ValidateSuccess'
     | 'ValidateWarning'
     | 'EffectError'

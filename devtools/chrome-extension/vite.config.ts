@@ -14,7 +14,10 @@ function copyExtensionAssets() {
       fs.cpSync(path.resolve(__dirname, 'assets'), outDir, {
         recursive: true,
       })
-      fs.copyFileSync(path.join(ext, 'manifest.json'), path.join(outDir, 'manifest.json'))
+      fs.copyFileSync(
+        path.join(ext, 'manifest.json'),
+        path.join(outDir, 'manifest.json'),
+      )
     },
   }
 }

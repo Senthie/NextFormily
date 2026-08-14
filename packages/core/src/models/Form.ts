@@ -1,4 +1,10 @@
-import { define, observable, batch, action, observe } from '@next-formily/reactive'
+import {
+  define,
+  observable,
+  batch,
+  action,
+  observe,
+} from '@next-formily/reactive'
 import {
   FormPath,
   FormPathPattern,
@@ -173,8 +179,8 @@ export class Form<ValueType extends object = any> {
           triggerFormInitialValuesChange(this, change)
           triggerFormValuesChange(this, change)
         },
-        true
-      )
+        true,
+      ),
     )
   }
 
@@ -290,9 +296,9 @@ export class Form<ValueType extends object = any> {
 
   createField = <
     Decorator extends JSXComponent,
-    Component extends JSXComponent
+    Component extends JSXComponent,
   >(
-    props: IFieldFactoryProps<Decorator, Component>
+    props: IFieldFactoryProps<Decorator, Component>,
   ): Field<Decorator, Component> => {
     const address = FormPath.parse(props.basePath).concat(props.name)
     const identifier = address.toString()
@@ -308,9 +314,9 @@ export class Form<ValueType extends object = any> {
 
   createArrayField = <
     Decorator extends JSXComponent,
-    Component extends JSXComponent
+    Component extends JSXComponent,
   >(
-    props: IFieldFactoryProps<Decorator, Component>
+    props: IFieldFactoryProps<Decorator, Component>,
   ): ArrayField<Decorator, Component> => {
     const address = FormPath.parse(props.basePath).concat(props.name)
     const identifier = address.toString()
@@ -324,7 +330,7 @@ export class Form<ValueType extends object = any> {
             value: isArr(props.value) ? props.value : [],
           },
           this,
-          this.props.designable
+          this.props.designable,
         )
       })
       this.notify(LifeCycleTypes.ON_FORM_GRAPH_CHANGE)
@@ -334,9 +340,9 @@ export class Form<ValueType extends object = any> {
 
   createObjectField = <
     Decorator extends JSXComponent,
-    Component extends JSXComponent
+    Component extends JSXComponent,
   >(
-    props: IFieldFactoryProps<Decorator, Component>
+    props: IFieldFactoryProps<Decorator, Component>,
   ): ObjectField<Decorator, Component> => {
     const address = FormPath.parse(props.basePath).concat(props.name)
     const identifier = address.toString()
@@ -350,7 +356,7 @@ export class Form<ValueType extends object = any> {
             value: isObj(props.value) ? props.value : {},
           },
           this,
-          this.props.designable
+          this.props.designable,
         )
       })
       this.notify(LifeCycleTypes.ON_FORM_GRAPH_CHANGE)
@@ -360,9 +366,9 @@ export class Form<ValueType extends object = any> {
 
   createVoidField = <
     Decorator extends JSXComponent,
-    Component extends JSXComponent
+    Component extends JSXComponent,
   >(
-    props: IVoidFieldFactoryProps<Decorator, Component>
+    props: IVoidFieldFactoryProps<Decorator, Component>,
   ): VoidField<Decorator, Component> => {
     const address = FormPath.parse(props.basePath).concat(props.name)
     const identifier = address.toString()
@@ -395,7 +401,7 @@ export class Form<ValueType extends object = any> {
 
   setInitialValues = (
     initialValues: any,
-    strategy: IFormMergeStrategy = 'merge'
+    strategy: IFormMergeStrategy = 'merge',
   ) => {
     if (!isPlainObj(initialValues)) return
     if (strategy === 'merge' || strategy === 'deepMerge') {
@@ -530,10 +536,10 @@ export class Form<ValueType extends object = any> {
               address: field.address.toString(),
               path: field.path.toString(),
             }))
-            .filter((feedback) => feedback.messages.length > 0)
+            .filter((feedback) => feedback.messages.length > 0),
         )
       },
-      []
+      [],
     )
   }
 
@@ -607,7 +613,7 @@ export class Form<ValueType extends object = any> {
   }
 
   submit = <T>(
-    onSubmit?: (values: ValueType) => Promise<T> | void
+    onSubmit?: (values: ValueType) => Promise<T> | void,
   ): Promise<T> => {
     return batchSubmit(this, onSubmit)
   }

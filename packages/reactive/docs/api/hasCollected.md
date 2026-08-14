@@ -25,12 +25,12 @@ autorun(() => {
   console.log(
     hasCollected(() => {
       obs.aa
-    })
+    }),
   ) //return true
   console.log(
     hasCollected(() => {
       11 + 22
-    })
+    }),
   ) //return false
 })
 

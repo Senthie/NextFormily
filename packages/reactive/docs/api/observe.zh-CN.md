@@ -16,13 +16,7 @@ type PropertyKey = string | number | symbol
 type ObservablePath = Array<string | number>
 
 type OperationType =
-  | 'add'
-  | 'delete'
-  | 'clear'
-  | 'set'
-  | 'get'
-  | 'iterate'
-  | 'has'
+  'add' | 'delete' | 'clear' | 'set' | 'get' | 'iterate' | 'has'
 
 interface IChange {
   key?: PropertyKey
@@ -41,7 +35,7 @@ interface observe {
   (
     target: object,
     observer?: (change: IChange) => void,
-    deep?: boolean //默认为true
+    deep?: boolean, //默认为true
   ): IDispose //释放监听
 }
 ```

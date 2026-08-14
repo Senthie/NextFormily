@@ -33,9 +33,8 @@ export class Schema<
   Display = any,
   Validator = any,
   Message = any,
-  ReactionField = any
-> implements ISchema
-{
+  ReactionField = any,
+> implements ISchema {
   parent?: Schema
   root?: Schema
   name?: SchemaKey
@@ -200,7 +199,7 @@ export class Schema<
       Validator,
       Message
     >,
-    parent?: Schema
+    parent?: Schema,
   ) {
     if (parent) {
       this.parent = parent
@@ -222,7 +221,7 @@ export class Schema<
       Display,
       Validator,
       Message
-    >
+    >,
   ) => {
     this.properties = this.properties || {}
     this.properties[key] = new Schema(schema, this)
@@ -246,7 +245,7 @@ export class Schema<
       Display,
       Validator,
       Message
-    >
+    >,
   ) => {
     for (const key in properties) {
       this.addProperty(key, properties[key])
@@ -265,7 +264,7 @@ export class Schema<
       Display,
       Validator,
       Message
-    >
+    >,
   ) => {
     if (!schema) return
     this.patternProperties = this.patternProperties || {}
@@ -290,7 +289,7 @@ export class Schema<
       Display,
       Validator,
       Message
-    >
+    >,
   ) => {
     if (!properties) return this
     for (const key in properties) {
@@ -309,7 +308,7 @@ export class Schema<
       Display,
       Validator,
       Message
-    >
+    >,
   ) => {
     if (!properties) return
     this.additionalProperties = new Schema(properties)
@@ -337,7 +336,7 @@ export class Schema<
           Display,
           Validator,
           Message
-        >[]
+        >[],
   ) => {
     if (!schema) return
     if (Array.isArray(schema)) {
@@ -358,7 +357,7 @@ export class Schema<
       Display,
       Validator,
       Message
-    >
+    >,
   ) => {
     if (!items) return
     this.additionalItems = new Schema(items, this)
@@ -384,8 +383,8 @@ export class Schema<
         Message
       >,
       key: SchemaKey,
-      index: number
-    ) => T
+      index: number,
+    ) => T,
   ): T[] => {
     return Schema.getOrderProperties(this).map(({ schema, key }, index) => {
       return callback(schema, key, index)
@@ -405,13 +404,13 @@ export class Schema<
         Message
       >,
       key: SchemaKey,
-      index: number
-    ) => T
+      index: number,
+    ) => T,
   ): T[] => {
     return Schema.getOrderProperties(this, 'patternProperties').map(
       ({ schema, key }, index) => {
         return callback(schema, key, index)
-      }
+      },
     )
   }
 
@@ -429,15 +428,15 @@ export class Schema<
         Message
       >,
       key: SchemaKey,
-      index: number
+      index: number,
     ) => R,
-    predicate?: P
+    predicate?: P,
   ): R => {
     let results: any = predicate
     Schema.getOrderProperties(this, 'properties').forEach(
       ({ schema, key }, index) => {
         results = callback(results, schema, key, index)
-      }
+      },
     )
     return results
   }
@@ -456,15 +455,15 @@ export class Schema<
         Message
       >,
       key: SchemaKey,
-      index: number
+      index: number,
     ) => R,
-    predicate?: P
+    predicate?: P,
   ): R => {
     let results: any = predicate
     Schema.getOrderProperties(this, 'patternProperties').forEach(
       ({ schema, key }, index) => {
         results = callback(results, schema, key, index)
-      }
+      },
     )
     return results
   }
@@ -493,7 +492,7 @@ export class Schema<
       Display,
       Validator,
       Message
-    >
+    >,
   ) => {
     if (!json) return this
     if (Schema.isSchemaInstance(json)) return json
@@ -519,7 +518,7 @@ export class Schema<
   }
 
   toJSON = (
-    recursion = true
+    recursion = true,
   ): ISchema<
     Decorator,
     Component,
@@ -559,14 +558,14 @@ export class Schema<
   }
 
   toFieldProps = (
-    options?: ISchemaTransformerOptions
+    options?: ISchemaTransformerOptions,
   ): IFieldFactoryProps<any, any> => {
     return transformFieldProps(this, options)
   }
 
   static getOrderProperties = (
     schema: ISchema = {},
-    propertiesName: keyof ISchema = 'properties'
+    propertiesName: keyof ISchema = 'properties',
   ) => {
     const orderProperties = []
     const unorderProperties = []

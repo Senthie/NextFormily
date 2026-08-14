@@ -18,7 +18,7 @@ export default styled(({ className, dataSource }) => {
             chrome.devtools.inspectedWindow.eval(
               `window.__FORMILY_DEV_TOOLS_HOOK__.setVm("${info.key}","${
                 dataSource[info.current][''].id
-              }")`
+              }")`,
             )
           }
         }}

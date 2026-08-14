@@ -30,7 +30,7 @@ export const expandFilteredNodes = (node, filter, matcher = defaultMatcher) => {
     return Object.assign({}, node, { toggled: false })
   }
   const childrenWithMatches = node.children.filter((child) =>
-    findNode(child, filter, matcher)
+    findNode(child, filter, matcher),
   )
   const shouldExpand = childrenWithMatches.length > 0
   // If im going to expand, go through all the matches and see if thier children need to expand

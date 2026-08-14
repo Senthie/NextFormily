@@ -41,7 +41,7 @@ const useFilterOptions = (
   options: any[],
   searchValue?: string | string[],
   filterOption?: IFilterOption,
-  checkStrictly?: boolean
+  checkStrictly?: boolean,
 ) =>
   React.useMemo(() => {
     if (!searchValue || filterOption === false) {

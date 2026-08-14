@@ -9,7 +9,7 @@ const App = observer(function App() {
   const [slowText] = useState(() =>
     observable({
       text,
-    })
+    }),
   )
 
   function handleChange(e) {

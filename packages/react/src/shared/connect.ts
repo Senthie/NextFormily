@@ -33,20 +33,20 @@ export function mapProps<T extends JSXComponent>(
             }
             return props
           },
-          { ...props }
+          { ...props },
         )
         return React.createElement(target, results)
       },
       {
         forwardRef: true,
-      }
+      },
     )
   }
 }
 
 export function mapReadPretty<T extends JSXComponent, C extends JSXComponent>(
   component: C,
-  readPrettyProps?: React.ComponentProps<C>
+  readPrettyProps?: React.ComponentProps<C>,
 ) {
   return (target: T) => {
     return observer(
@@ -62,7 +62,7 @@ export function mapReadPretty<T extends JSXComponent, C extends JSXComponent>(
       },
       {
         forwardRef: true,
-      }
+      },
     )
   }
 }

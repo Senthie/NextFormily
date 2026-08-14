@@ -723,8 +723,9 @@ interface IFormFeedback {
   address?: string //校验字段绝对路径
   triggerType?: 'onInput' | 'onFocus' | 'onBlur' //校验触发类型
   type?: 'error' | 'success' | 'warning' //反馈类型
-  code?: //反馈编码
-  | 'ValidateError'
+  code?:
+    //反馈编码
+    | 'ValidateError'
     | 'ValidateSuccess'
     | 'ValidateWarning'
     | 'EffectError'

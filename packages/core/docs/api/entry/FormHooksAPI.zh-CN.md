@@ -20,7 +20,7 @@ interface createEffectHook {
       payload: any,
       form: Form,
       ...ctx: any[] //用户注入的上下文
-    ) => (...args: any[]) => void //高阶回调用于处理监听器的封装，帮助用户实现参数定制能力
+    ) => (...args: any[]) => void, //高阶回调用于处理监听器的封装，帮助用户实现参数定制能力
   )
 }
 ```
@@ -36,7 +36,7 @@ const onCustomEvent = createEffectHook(
   'custom-event',
   (payload, form) => (listener) => {
     listener(payload, form)
-  }
+  },
 )
 
 export default () => {
@@ -50,7 +50,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -109,7 +109,7 @@ export default () => {
           useMyHook()
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -164,7 +164,7 @@ export default () => {
           useMyHook()
         },
       }),
-    []
+    [],
   )
   return <ActionResponse response={response} />
 }

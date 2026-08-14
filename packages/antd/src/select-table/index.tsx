@@ -114,7 +114,7 @@ const useSources = () => {
 }
 
 const useColumns = (
-  sources: ObservableColumnSource[]
+  sources: ObservableColumnSource[],
 ): TableProps<any>['columns'] => {
   return sources.reduce((buf, { name, columnProps, schema, display }, key) => {
     if (display !== 'visible') return buf
@@ -167,7 +167,7 @@ export const SelectTable: ComposedSelectTable = observer((props) => {
   const { searchSize, tableSize } = useSize(
     field.decoratorProps?.size,
     searchProps?.size,
-    props?.size
+    props?.size,
   )
   const primaryKey = isFn(rowKey) ? '__formily_key__' : rowKey
   const sources = useSources()
@@ -184,7 +184,7 @@ export const SelectTable: ComposedSelectTable = observer((props) => {
     dataSource,
     searchValue,
     filterOption,
-    rowSelection?.checkStrictly
+    rowSelection?.checkStrictly,
   )
 
   // Order dataSource By filterSort
@@ -222,14 +222,14 @@ export const SelectTable: ComposedSelectTable = observer((props) => {
     optionAsValue,
     mode,
     rowSelection?.checkStrictly,
-    rowKey
+    rowKey,
   )
 
   // readPretty Value
   const readPrettyDataSource = useFilterOptions(
     orderedFilteredDataSource,
     selected,
-    (value, item) => value.includes(item[primaryKey])
+    (value, item) => value.includes(item[primaryKey]),
   )
 
   const onInnerSearch = (searchText) => {
@@ -244,7 +244,7 @@ export const SelectTable: ComposedSelectTable = observer((props) => {
     }
     // 筛选后onChange默认的records数据不完整，此处需使用完整数据过滤
     const wholeRecords = getWholeDataSource().filter((item) =>
-      selectedRowKeys.includes(item?.[primaryKey])
+      selectedRowKeys.includes(item?.[primaryKey]),
     )
     const { outputValue, outputOptions } = getOutputData(
       selectedRowKeys,
@@ -254,7 +254,7 @@ export const SelectTable: ComposedSelectTable = observer((props) => {
       valueType,
       optionAsValue,
       mode,
-      rowSelection?.checkStrictly
+      rowSelection?.checkStrictly,
     )
 
     onChange?.(outputValue, outputOptions)
@@ -291,7 +291,7 @@ export const SelectTable: ComposedSelectTable = observer((props) => {
       flatDataSource,
       flatFilteredDataSource,
       primaryKey,
-      rowSelection?.checkStrictly
+      rowSelection?.checkStrictly,
     )
     onInnerChange(selectedRowKeys)
   }
@@ -306,7 +306,7 @@ export const SelectTable: ComposedSelectTable = observer((props) => {
     disabled,
     readOnly,
     rowSelection?.checkStrictly,
-    onInnerChange
+    onInnerChange,
   )
 
   // Antd rowSelection type
@@ -354,9 +354,9 @@ export const SelectTable: ComposedSelectTable = observer((props) => {
                               record,
                               flatDataSource,
                               selected,
-                              primaryKey
+                              primaryKey,
                             ),
-                          } as any
+                          } as any,
                         )
                       },
                     }),

@@ -101,7 +101,7 @@ export class Tokenizer {
       `Unexpect token "${type.flag}" in ${this.state.pos} char.`,
       {
         pos: this.state.pos,
-      }
+      },
     )
   }
 
@@ -112,7 +112,7 @@ export class Tokenizer {
           `Unexpect token "${next.flag}" token should not be behind "${type.flag}" token.(${this.state.pos}th char)`,
           {
             pos: this.state.pos,
-          }
+          },
         )
       }
     }
@@ -125,7 +125,7 @@ export class Tokenizer {
           `Unexpect token "${type.flag}" should not be behind "${prev.flag}"(${this.state.pos}th char).`,
           {
             pos: this.state.pos,
-          }
+          },
         )
       }
     }
@@ -176,7 +176,7 @@ export class Tokenizer {
     this.skipSpace()
     this.readToken(
       this.getCode(),
-      this.state.pos > 0 ? this.getCode(this.state.pos - 1) : -Infinity
+      this.state.pos > 0 ? this.getCode(this.state.pos - 1) : -Infinity,
     )
   }
 

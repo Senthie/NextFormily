@@ -43,5 +43,5 @@ export const shallow: IObservable = createAnnotation(
       return target
     }
     return store.value
-  }
+  },
 )

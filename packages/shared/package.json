@@ -1,33 +1,30 @@
 {
   "name": "@next-formily/shared",
   "version": "3.0.1",
+  "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
+  "homepage": "https://github.com/alibaba/formily#readme",
+  "bugs": {
+    "url": "https://github.com/alibaba/formily/issues"
+  },
   "license": "MIT",
-  "main": "lib",
-  "module": "esm",
-  "files": [
-    "lib",
-    "esm"
-  ],
-  "umd:main": "dist/formily.shared.umd.production.js",
-  "unpkg": "dist/formily.shared.umd.production.js",
-  "jsdelivr": "dist/formily.shared.umd.production.js",
-  "jsnext:main": "esm",
-  "types": "esm/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alibaba/formily.git"
   },
-  "bugs": {
-    "url": "https://github.com/alibaba/formily/issues"
-  },
-  "homepage": "https://github.com/alibaba/formily#readme",
-  "engines": {
-    "npm": ">=3.0.0"
-  },
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "main": "lib",
+  "module": "esm",
+  "types": "esm/index.d.ts",
+  "unpkg": "dist/formily.shared.umd.production.js",
+  "jsdelivr": "dist/formily.shared.umd.production.js",
+  "jsnext:main": "esm",
+  "umd:main": "dist/formily.shared.umd.production.js",
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
   "scripts": {
     "build": "rimraf -rf lib esm dist && npm run build:cjs && npm run build:esm && npm run build:umd",
     "build:cjs": "rimraf -rf lib && node ../../scripts/esbuild-cjs.js && tsc --project tsconfig.build.json --emitDeclarationOnly --module esnext --outDir lib",
@@ -36,5 +33,8 @@
   },
   "dependencies": {
     "@next-formily/path": "3.0.1"
+  },
+  "engines": {
+    "npm": ">=3.0.0"
   }
 }

@@ -6,7 +6,7 @@ test('create void field', () => {
   const field = attach(
     form.createVoidField({
       name: 'void',
-    })
+    }),
   )
   field.destroy()
 })
@@ -18,7 +18,7 @@ test('create void field props', () => {
       name: 'field1',
       title: 'Field 1',
       description: 'This is Field 1',
-    })
+    }),
   )
   expect(field1.title).toEqual('Field 1')
   expect(field1.description).toEqual('This is Field 1')
@@ -27,7 +27,7 @@ test('create void field props', () => {
       name: 'field2',
       disabled: true,
       hidden: true,
-    })
+    }),
   )
   expect(field2.pattern).toEqual('disabled')
   expect(field2.disabled).toBeTruthy()
@@ -38,7 +38,7 @@ test('create void field props', () => {
       name: 'field3',
       readOnly: true,
       visible: false,
-    })
+    }),
   )
   expect(field3.pattern).toEqual('readOnly')
   expect(field3.readOnly).toBeTruthy()
@@ -51,7 +51,7 @@ test('setComponent/setComponentProps', () => {
   const field = attach(
     form.createVoidField({
       name: 'aa',
-    })
+    }),
   )
   const component = () => null
   field.setComponent(component, { props: 123 })
@@ -68,7 +68,7 @@ test('setTitle/setDescription', () => {
   const aa = attach(
     form.createVoidField({
       name: 'aa',
-    })
+    }),
   )
   aa.setTitle('AAA')
   aa.setDescription('This is AAA')
@@ -82,7 +82,7 @@ test('setComponent/setComponentProps', () => {
   const field = attach(
     form.createVoidField({
       name: 'aa',
-    })
+    }),
   )
 
   field.setComponent(undefined, { props: 123 })
@@ -101,7 +101,7 @@ test('setDecorator/setDecoratorProps', () => {
   const field = attach(
     form.createVoidField({
       name: 'aa',
-    })
+    }),
   )
   field.setDecorator(undefined, { props: 123 })
   field.setDecorator(component)
@@ -118,7 +118,7 @@ test('setState/getState', () => {
   const aa = attach(
     form.createVoidField({
       name: 'aa',
-    })
+    }),
   )
   const state = aa.getState()
   aa.setState((state) => {
@@ -167,31 +167,31 @@ test('nested display/pattern', () => {
   attach(
     form.createObjectField({
       name: 'object',
-    })
+    }),
   )
   const void_ = attach(
     form.createVoidField({
       name: 'void',
       basePath: 'object',
-    })
+    }),
   )
   const void2_ = attach(
     form.createVoidField({
       name: 'void',
       basePath: 'object.void.0',
-    })
+    }),
   )
   const aaa = attach(
     form.createField({
       name: 'aaa',
       basePath: 'object.void',
-    })
+    }),
   )
   const bbb = attach(
     form.createField({
       name: 'bbb',
       basePath: 'object.void',
-    })
+    }),
   )
   void_.setPattern('readPretty')
   expect(void_.pattern).toEqual('readPretty')
@@ -231,7 +231,7 @@ test('reactions', async () => {
   const aa = attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   const bb = attach(
     form.createVoidField({
@@ -257,7 +257,7 @@ test('reactions', async () => {
         },
         null,
       ],
-    })
+    }),
   )
   expect(bb.visible).toBeTruthy()
   aa.setValue('123')
@@ -280,7 +280,7 @@ test('fault tolerance', () => {
   const field = attach(
     form.createVoidField({
       name: 'xxx',
-    })
+    }),
   )
   expect(field.display).toEqual('visible')
   expect(field.pattern).toEqual('editable')
@@ -298,7 +298,7 @@ test('child field reactions', () => {
           field.value = field.query('field3').getIn('value')
         },
       ],
-    })
+    }),
   )
   const field2 = attach(
     form.createField({
@@ -309,7 +309,7 @@ test('child field reactions', () => {
           field.value = field.query('.field3').getIn('value')
         },
       ],
-    })
+    }),
   )
   expect(field1.value).toBeUndefined()
   expect(field2.value).toBeUndefined()
@@ -318,7 +318,7 @@ test('child field reactions', () => {
       name: 'field3',
       basePath: voidField.address,
       value: 1,
-    })
+    }),
   )
   expect(field1.value).toBe(1)
   expect(field2.value).toBe(1)

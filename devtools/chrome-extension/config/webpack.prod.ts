@@ -27,7 +27,7 @@ module.exports = {
         filename: 'devtools.html',
         template: path.resolve(
           __dirname,
-          '../src/extension/views/devtools.ejs'
+          '../src/extension/views/devtools.ejs',
         ),
         chunk: 'devtools',
       },
@@ -35,7 +35,7 @@ module.exports = {
         filename: 'devpanel.html',
         template: path.resolve(
           __dirname,
-          '../src/extension/views/devpanel.ejs'
+          '../src/extension/views/devpanel.ejs',
         ),
         chunk: 'devpanel',
       },

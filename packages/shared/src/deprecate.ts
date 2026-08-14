@@ -5,7 +5,7 @@ const caches = {}
 export function deprecate<P1 = any, P2 = any, P3 = any, P4 = any, P5 = any>(
   method: any,
   message?: string,
-  help?: string
+  help?: string,
 ) {
   if (isFn(method)) {
     return function (p1?: P1, p2?: P2, p3?: P3, p4?: P4, p5?: P5) {
@@ -19,8 +19,8 @@ export function deprecate<P1 = any, P2 = any, P3 = any, P4 = any, P5 = any>(
       new Error(
         `${method} has been deprecated. Do not continue to use this api.${
           message || ''
-        }`
-      )
+        }`,
+      ),
     )
   }
 }

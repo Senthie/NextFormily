@@ -89,8 +89,8 @@ test('destruct getIn', () => {
             d : mm
           }
         }
-      }`
-    )
+      }`,
+    ),
   ).toEqual(value)
   expect(getIn({ bb: undefined, dd: undefined }, `[{aa:bb,cc:dd}]`)).toEqual([])
   expect(
@@ -103,8 +103,8 @@ test('destruct getIn', () => {
             d : mm
           }
         }
-      }`
-    )
+      }`,
+    ),
   ).toEqual({})
 })
 
@@ -122,8 +122,8 @@ test('destruct setIn', () => {
           }
         }
       }`,
-      value
-    )
+      value,
+    ),
   ).toEqual({ c: 2, d: 333 })
 
   expect(
@@ -132,8 +132,8 @@ test('destruct setIn', () => {
       `
       [aa,bb]
       `,
-      [123, 444]
-    )
+      [123, 444],
+    ),
   ).toEqual({ aa: 123, bb: 444 })
   expect(setIn({}, 'aa.bb.ddd.[aa,bb]', [123, 444])).toEqual({
     aa: { bb: { ddd: { aa: 123, bb: 444 } } },
@@ -152,7 +152,7 @@ test('setIn with a.b.c.{aaa,bbb}', () => {
 
 test('getIn with a.b.c.{aaa,bbb}', () => {
   expect(
-    Path.getIn({ a: { b: { c: { aaa: 123, bbb: 321 } } } }, 'a.b.c.{aaa,bbb}')
+    Path.getIn({ a: { b: { c: { aaa: 123, bbb: 321 } } } }, 'a.b.c.{aaa,bbb}'),
   ).toEqual({ aaa: 123, bbb: 321 })
 })
 
@@ -161,7 +161,7 @@ test('setIn with a.b.c.{aaa,bbb} source has extra property', () => {
     Path.setIn({ a: { b: { c: { kkk: 'ddd' } } } }, 'a.b.c.{aaa,bbb}', {
       aaa: 123,
       bbb: 321,
-    })
+    }),
   ).toEqual({ a: { b: { c: { aaa: 123, bbb: 321, kkk: 'ddd' } } } })
 })
 
@@ -169,8 +169,8 @@ test('getIn with a.b.c.{aaa,bbb} source has extra property', () => {
   expect(
     Path.getIn(
       { a: { b: { c: { aaa: 123, bbb: 321, kkk: 'ddd' } } } },
-      'a.b.c.{aaa,bbb}'
-    )
+      'a.b.c.{aaa,bbb}',
+    ),
   ).toEqual({ aaa: 123, bbb: 321 })
 })
 
@@ -179,7 +179,7 @@ test('setIn with a.b.c.{aaa:ooo,bbb}', () => {
     Path.setIn({ a: { b: { c: { kkk: 'ddd' } } } }, 'a.b.c.{aaa:ooo,bbb}', {
       aaa: 123,
       bbb: 321,
-    })
+    }),
   ).toEqual({ a: { b: { c: { ooo: 123, bbb: 321, kkk: 'ddd' } } } })
 })
 
@@ -187,8 +187,8 @@ test('getIn with a.b.c.{aaa:ooo,bbb}', () => {
   expect(
     Path.getIn(
       { a: { b: { c: { ooo: 123, bbb: 321, kkk: 'ddd' } } } },
-      'a.b.c.{aaa:ooo,bbb}'
-    )
+      'a.b.c.{aaa:ooo,bbb}',
+    ),
   ).toEqual({ aaa: 123, bbb: 321 })
 })
 
@@ -200,7 +200,7 @@ test('setIn with a.b.c.[aaa,bbb]', () => {
 
 test('getIn with a.b.c.[aaa,bbb]', () => {
   expect(
-    Path.getIn({ a: { b: { c: { aaa: 123, bbb: 321 } } } }, 'a.b.c.[aaa,bbb]')
+    Path.getIn({ a: { b: { c: { aaa: 123, bbb: 321 } } } }, 'a.b.c.[aaa,bbb]'),
   ).toEqual([123, 321])
 })
 
@@ -209,8 +209,8 @@ test('setIn with a.b.c.[aaa,bbb] source has extra property', () => {
     Path.setIn(
       { a: { b: { c: { kkk: 'ddd' } } } },
       'a.b.c.[aaa,bbb]',
-      [123, 321]
-    )
+      [123, 321],
+    ),
   ).toEqual({ a: { b: { c: { aaa: 123, bbb: 321, kkk: 'ddd' } } } })
 })
 
@@ -218,14 +218,17 @@ test('getIn with a.b.c.[aaa,bbb] source has extra property', () => {
   expect(
     Path.getIn(
       { a: { b: { c: { aaa: 123, bbb: 321, kkk: 'ddd' } } } },
-      'a.b.c.[aaa,bbb]'
-    )
+      'a.b.c.[aaa,bbb]',
+    ),
   ).toEqual([123, 321])
 })
 
 test('setIn with a.b.c.[{ddd,kkk:mmm},bbb]', () => {
   expect(
-    Path.setIn({}, 'a.b.c.[{ddd,kkk:mmm},bbb]', [{ ddd: 123, kkk: 'hhh' }, 321])
+    Path.setIn({}, 'a.b.c.[{ddd,kkk:mmm},bbb]', [
+      { ddd: 123, kkk: 'hhh' },
+      321,
+    ]),
   ).toEqual({ a: { b: { c: { ddd: 123, bbb: 321, mmm: 'hhh' } } } })
 })
 
@@ -233,8 +236,8 @@ test('getIn with a.b.c.[{ddd,kkk:mmm},bbb]', () => {
   expect(
     Path.getIn(
       { a: { b: { c: { ddd: 123, bbb: 321, mmm: 'hhh' } } } },
-      'a.b.c.[{ddd,kkk:mmm},bbb]'
-    )
+      'a.b.c.[{ddd,kkk:mmm},bbb]',
+    ),
   ).toEqual([{ ddd: 123, kkk: 'hhh' }, 321])
 })
 
@@ -243,8 +246,8 @@ test('setIn with a.b.c.{aaa:ooo,bbb:[ccc,ddd]}', () => {
     Path.setIn(
       { a: { b: { c: { kkk: 'ddd' } } } },
       'a.b.c.{aaa:ooo,bbb:[ccc,ddd]}',
-      { aaa: 123, bbb: [123, 321] }
-    )
+      { aaa: 123, bbb: [123, 321] },
+    ),
   ).toEqual({ a: { b: { c: { ooo: 123, ccc: 123, ddd: 321, kkk: 'ddd' } } } })
 })
 
@@ -252,8 +255,8 @@ test('getIn with a.b.c.{aaa:ooo,bbb:[ccc,ddd]}', () => {
   expect(
     Path.getIn(
       { a: { b: { c: { ooo: 123, ccc: 123, ddd: 321, kkk: 'ddd' } } } },
-      'a.b.c.{aaa:ooo,bbb:[ccc,ddd]}'
-    )
+      'a.b.c.{aaa:ooo,bbb:[ccc,ddd]}',
+    ),
   ).toEqual({ aaa: 123, bbb: [123, 321] })
 })
 
@@ -264,14 +267,14 @@ test('existIn with a.b.c', () => {
   expect(
     Path.existIn(
       { a: { b: { c: { ooo: 123, ccc: 123, ddd: 321, kkk: 'ddd' } } } },
-      'a.b.c.{aaa:ooo,bbb:[ccc,ddd]}'
-    )
+      'a.b.c.{aaa:ooo,bbb:[ccc,ddd]}',
+    ),
   ).toEqual(true)
   expect(
     Path.existIn(
       { a: { b: { c: { ooo: 123, ccc: 123, kkk: 'ddd' } } } },
-      'a.b.c.{aaa:ooo,bbb:[ccc,ddd]}'
-    )
+      'a.b.c.{aaa:ooo,bbb:[ccc,ddd]}',
+    ),
   ).toEqual(false)
   expect(Path.existIn({ a: [{}] }, 'a.0')).toEqual(true)
 })
@@ -283,15 +286,15 @@ test('existIn with start Path', () => {
 
 test('deleteIn', () => {
   expect(
-    Path.deleteIn({ a: { b: { c: { ooo: 123, ccc: 234 } } } }, 'a.b.c.ccc')
+    Path.deleteIn({ a: { b: { c: { ooo: 123, ccc: 234 } } } }, 'a.b.c.ccc'),
   ).toEqual({ a: { b: { c: { ooo: 123 } } } })
 
   expect(
-    Path.deleteIn({ a: { b: { c: { ooo: 123, ccc: 234 } } } }, null)
+    Path.deleteIn({ a: { b: { c: { ooo: 123, ccc: 234 } } } }, null),
   ).toEqual({ a: { b: { c: { ooo: 123, ccc: 234 } } } })
 
   expect(
-    Path.deleteIn({ a: { b: { c: { ooo: 123, ccc: 234 } } } }, [])
+    Path.deleteIn({ a: { b: { c: { ooo: 123, ccc: 234 } } } }, []),
   ).toEqual({ a: { b: { c: { ooo: 123, ccc: 234 } } } })
 
   expect(Path.deleteIn({ a: { b: { c: 'c' } } }, 'a.b.c.ccc')).toEqual({
@@ -305,7 +308,7 @@ test('deleteIn', () => {
 test('ensureIn', () => {
   expect(Path.parse('a.b').ensureIn({}, 'default')).toEqual('default')
   expect(Path.parse('a.b').ensureIn({ a: { b: 'value' } }, 'default')).toEqual(
-    'value'
+    'value',
   )
   expect(Path.ensureIn({}, 'a.b.c', 'default')).toEqual('default')
 })
@@ -323,8 +326,8 @@ test('complex destructing', () => {
             ee: 'abcde',
           },
         },
-      }
-    )
+      },
+    ),
   ).toEqual({
     destructor1: 123,
     destructor2: 333,
@@ -339,8 +342,8 @@ test('complex destructing', () => {
         destructor3: 444,
         ee: 'abcde',
       },
-      '{aa:{bb:{cc:destructor1,dd:[destructor2,destructor3],ee}}}'
-    )
+      '{aa:{bb:{cc:destructor1,dd:[destructor2,destructor3],ee}}}',
+    ),
   ).toEqual({
     aa: {
       bb: {
@@ -456,10 +459,10 @@ test('path methods', () => {
   expect(Path.parse('a.b').includes('a.b.c')).toBeFalsy()
 
   expect(Path.parse('a.b.c').transform(/[a-z]/, (...result) => result)).toEqual(
-    ['a', 'b', 'c']
+    ['a', 'b', 'c'],
   )
   expect(Path.parse('a.b.c').transform(/[a-b]/, (...result) => result)).toEqual(
-    ['a', 'b']
+    ['a', 'b'],
   )
   expect(Path.parse('a.b.c').transform('', null)).toEqual('')
   expect(() => Path.parse('*').transform('', () => {})).toThrow()

@@ -20,9 +20,9 @@ export const Cascader = connect(
             props.suffixIcon
           ),
       }
-    }
+    },
   ),
-  mapReadPretty(PreviewText.Cascader)
+  mapReadPretty(PreviewText.Cascader),
 )
 
 export default Cascader

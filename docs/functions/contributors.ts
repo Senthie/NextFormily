@@ -25,7 +25,7 @@ export const handler: Handler = async (event) => {
         repo: 'formily',
         per_page: 1000,
         page: 1,
-      })
+      }),
     ),
   }
 }

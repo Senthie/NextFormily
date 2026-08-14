@@ -1,5 +1,9 @@
 import React from 'react'
-import { Form as FormType, ObjectField, IFormFeedback } from '@next-formily/core'
+import {
+  Form as FormType,
+  ObjectField,
+  IFormFeedback,
+} from '@next-formily/core'
 import { useParentForm, FormProvider, JSXComponent } from '@next-formily/react'
 import { FormLayout, IFormLayoutProps } from '../form-layout'
 import { PreviewText } from '../preview-text'
@@ -32,7 +36,7 @@ export const Form: React.FC<React.PropsWithChildren<FormProps>> = ({
               form.submit(onAutoSubmit).catch(onAutoSubmitFailed)
             },
           },
-          props.children
+          props.children,
         )}
       </FormLayout>
     </PreviewText.Placeholder>

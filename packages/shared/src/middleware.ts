@@ -7,8 +7,8 @@ export const applyMiddleware = (payload: any, fns: IMiddleware[] = []) => {
     const prevPayload = payload
     return Promise.resolve(
       fns[0](payload, (payload) =>
-        compose(payload ?? prevPayload, fns.slice(1))
-      )
+        compose(payload ?? prevPayload, fns.slice(1)),
+      ),
     )
   }
   return new Promise((resolve, reject) => {
@@ -16,7 +16,7 @@ export const applyMiddleware = (payload: any, fns: IMiddleware[] = []) => {
       payload,
       fns.concat((payload) => {
         resolve(payload)
-      })
+      }),
     ).catch(reject)
   })
 }

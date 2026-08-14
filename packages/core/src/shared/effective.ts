@@ -5,10 +5,10 @@ import { isForm } from './checkers'
 import { GlobalState } from './constants'
 
 export const createEffectHook = <
-  F extends (payload: any, ...ctxs: any[]) => AnyFunction
+  F extends (payload: any, ...ctxs: any[]) => AnyFunction,
 >(
   type: string,
-  callback?: F
+  callback?: F,
 ) => {
   return (...args: Parameters<ReturnType<F>>) => {
     if (GlobalState.effectStart) {
@@ -17,11 +17,11 @@ export const createEffectHook = <
           if (isFn(callback)) {
             callback(payload, ctx, ...GlobalState.context)(...args)
           }
-        })
+        }),
       )
     } else {
       throw new Error(
-        'Effect hooks cannot be used in asynchronous function body'
+        'Effect hooks cannot be used in asynchronous function body',
       )
     }
   }
@@ -36,14 +36,14 @@ export const createEffectContext = <T = any>(defaultValue?: T) => {
         GlobalState.context[index] = isValid(value) ? value : defaultValue
       } else {
         throw new Error(
-          'Provide method cannot be used in asynchronous function body'
+          'Provide method cannot be used in asynchronous function body',
         )
       }
     },
     consume(): T {
       if (!GlobalState.effectStart) {
         throw new Error(
-          'Consume method cannot be used in asynchronous function body'
+          'Consume method cannot be used in asynchronous function body',
         )
       }
       return GlobalState.context[index]

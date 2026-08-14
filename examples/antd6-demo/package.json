@@ -1,9 +1,9 @@
 {
   "name": "@next-formily/antd6-demo",
-  "private": true,
   "version": "0.0.1",
-  "type": "module",
+  "private": true,
   "description": "Formily React 19 + antd 6 runtime verification case",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

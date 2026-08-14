@@ -7,7 +7,12 @@ import {
   UpOutlined,
 } from '@ant-design/icons'
 import { ArrayField } from '@next-formily/core'
-import { JSXComponent, Schema, useField, useFieldSchema } from '@next-formily/react'
+import {
+  JSXComponent,
+  Schema,
+  useField,
+  useFieldSchema,
+} from '@next-formily/react'
 import { clone, isUndef, isValid } from '@next-formily/shared'
 import { Button } from 'antd'
 import { ButtonProps } from 'antd'
@@ -210,7 +215,7 @@ ArrayBase.Copy = React.forwardRef((props, ref) => {
       className={cls(
         `${prefixCls}-copy`,
         self?.disabled ? `${prefixCls}-copy-disabled` : '',
-        props.className
+        props.className,
       )}
       ref={ref as any}
       onClick={(e) => {
@@ -248,7 +253,7 @@ ArrayBase.Remove = React.forwardRef((props, ref) => {
       className={cls(
         `${prefixCls}-remove`,
         self?.disabled ? `${prefixCls}-remove-disabled` : '',
-        props.className
+        props.className,
       )}
       ref={ref as any}
       onClick={(e) => {
@@ -283,7 +288,7 @@ ArrayBase.MoveDown = React.forwardRef((props, ref) => {
       className={cls(
         `${prefixCls}-move-down`,
         self?.disabled ? `${prefixCls}-move-down-disabled` : '',
-        props.className
+        props.className,
       )}
       ref={ref as any}
       onClick={(e) => {
@@ -318,7 +323,7 @@ ArrayBase.MoveUp = React.forwardRef((props, ref) => {
       className={cls(
         `${prefixCls}-move-up`,
         self?.disabled ? `${prefixCls}-move-up-disabled` : '',
-        props.className
+        props.className,
       )}
       ref={ref as any}
       onClick={(e) => {

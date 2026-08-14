@@ -122,7 +122,7 @@ interface registerValidateRules {
     [key: string]: (
       value: any,
       rule: ValidatorRules,
-      ctx: Context
+      ctx: Context,
     ) => ValidateResult | Promise<ValidateResult>
   }): void
 }

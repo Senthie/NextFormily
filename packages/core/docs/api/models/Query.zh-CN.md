@@ -39,7 +39,7 @@ interface take {
 interface map {
   (): GeneralField[]
   <Result>(
-    mapper?: (field: GeneralField, address: FormPath) => Result
+    mapper?: (field: GeneralField, address: FormPath) => Result,
   ): Result[]
 }
 ```
@@ -74,7 +74,7 @@ interface forEach {
 interface reduce {
   <Result>(
     reducer: (value: Result, field: GeneralField, address: FormPath) => Result,
-    initial?: Result
+    initial?: Result,
   ): Result
 }
 ```

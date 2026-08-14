@@ -6,7 +6,7 @@ test('hasCollected', () => {
     expect(
       hasCollected(() => {
         obs.value
-      })
+      }),
     ).toBe(true)
     expect(hasCollected(() => {})).toBe(false)
     expect(hasCollected()).toBe(false)

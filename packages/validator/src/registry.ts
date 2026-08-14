@@ -56,7 +56,7 @@ const getISOCode = (language: string) => {
         isoCode = key
         return false
       }
-    }
+    },
   )
   return isoCode
 }
@@ -71,7 +71,7 @@ export const getValidateLanguage = () => registry.locales.language
 
 export const getLocaleByPath = (
   path: string,
-  lang: string = registry.locales.language
+  lang: string = registry.locales.language,
 ) => getIn(registry.locales.messages, `${getISOCode(lang)}.${path}`)
 
 export const getValidateLocale = (path: string) => {
@@ -89,7 +89,7 @@ export const getValidateFormats = (key?: string) =>
   key ? registry.formats[key] : registry.formats
 
 export const getValidateRules = <T>(
-  key?: T
+  key?: T,
 ): T extends string
   ? ValidatorFunction
   : { [key: string]: ValidatorFunction } =>
@@ -116,7 +116,7 @@ export const registerValidateFormats = (formats: IRegistryFormats) => {
 }
 
 export const registerValidateMessageTemplateEngine = (
-  template: (message: ValidatorFunctionResponse, context: any) => any
+  template: (message: ValidatorFunctionResponse, context: any) => any,
 ) => {
   registry.template = template
 }

@@ -46,5 +46,5 @@ export const observable: IObservable = createAnnotation(
       return target
     }
     return store.value
-  }
+  },
 )

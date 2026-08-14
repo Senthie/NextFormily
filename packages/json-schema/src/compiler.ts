@@ -24,12 +24,12 @@ const Registry = {
     if (Registry.silent) {
       try {
         return new Function('$root', `with($root) { return (${expression}); }`)(
-          scope
+          scope,
         )
       } catch {}
     } else {
       return new Function('$root', `with($root) { return (${expression}); }`)(
-        scope
+        scope,
       )
     }
   },
@@ -40,7 +40,7 @@ export const silent = (value = true) => {
 }
 
 export const registerCompiler = (
-  compiler: (expression: string, scope: any) => any
+  compiler: (expression: string, scope: any) => any,
 ) => {
   if (isFn(compiler)) {
     Registry.compile = compiler
@@ -49,7 +49,7 @@ export const registerCompiler = (
 
 export const shallowCompile = <Source = any, Scope = any>(
   source: Source,
-  scope?: Scope
+  scope?: Scope,
 ) => {
   if (isStr(source)) {
     const matched = source.match(ExpRE)
@@ -61,7 +61,7 @@ export const shallowCompile = <Source = any, Scope = any>(
 
 export const compile = <Source = any, Scope = any>(
   source: Source,
-  scope?: Scope
+  scope?: Scope,
 ): any => {
   const seenObjects = []
   const compile = (source: any) => {
@@ -83,7 +83,7 @@ export const compile = <Source = any, Scope = any>(
           buf[key] = compile(value)
           return buf
         },
-        {}
+        {},
       )
       seenObjects.splice(addIndex, 1)
       return results
@@ -96,7 +96,7 @@ export const compile = <Source = any, Scope = any>(
 export const patchCompile = (
   targetState: IGeneralFieldState,
   sourceState: any,
-  scope: any
+  scope: any,
 ) => {
   traverse(sourceState, (value, pattern) => {
     const compiled = compile(value, scope)
@@ -113,7 +113,7 @@ export const patchSchemaCompile = (
   targetState: IGeneralFieldState,
   sourceSchema: ISchema,
   scope: any,
-  demand = false
+  demand = false,
 ) => {
   traverseSchema(sourceSchema, (value, path, omitCompile) => {
     let compiled = value

@@ -28,7 +28,11 @@ export default {
     ],
     [
       'babel-plugin-import',
-      { libraryName: '@next-formily/antd', libraryDirectory: 'esm', style: true },
+      {
+        libraryName: '@next-formily/antd',
+        libraryDirectory: 'esm',
+        style: true,
+      },
       '@next-formily/antd',
     ],
   ],

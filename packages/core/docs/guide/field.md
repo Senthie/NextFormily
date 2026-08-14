@@ -151,8 +151,9 @@ interface Feedback {
   path: string //Field data path
   address: string //field absolute path
   type: 'error' | 'success' | 'warning' //Verification result type
-  code: //Check result code
-  | 'ValidateError'
+  code:
+    //Check result code
+    | 'ValidateError'
     | 'ValidateSuccess'
     | 'ValidateWarning'
     | 'EffectError'

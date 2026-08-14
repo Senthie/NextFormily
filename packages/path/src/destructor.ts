@@ -105,7 +105,7 @@ export const setInByDestructor = (
   source: any,
   rules: DestructorRules,
   value: any,
-  mutators: Mutators
+  mutators: Mutators,
 ) => {
   rules.forEach(({ key, path }) => {
     mutators.setIn([key], source, mutators.getIn(path, value))
@@ -115,7 +115,7 @@ export const setInByDestructor = (
 export const getInByDestructor = (
   source: any,
   rules: DestructorRules,
-  mutators: Mutators
+  mutators: Mutators,
 ) => {
   let response = {}
   if (rules.length) {
@@ -133,7 +133,7 @@ export const getInByDestructor = (
 export const deleteInByDestructor = (
   source: any,
   rules: DestructorRules,
-  mutators: Mutators
+  mutators: Mutators,
 ) => {
   rules.forEach(({ key }) => {
     mutators.deleteIn([key], source)
@@ -144,7 +144,7 @@ export const existInByDestructor = (
   source: any,
   rules: DestructorRules,
   start: number,
-  mutators: Mutators
+  mutators: Mutators,
 ) => {
   return rules.every(({ key }) => {
     return mutators.existIn([key], source, start)

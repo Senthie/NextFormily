@@ -54,19 +54,19 @@ test('test matchGroup', () => {
   expect(pattern.matchAliasGroup('aa', 'bb')).toEqual(true)
   const excludePattern = new Path('aa.bb.*(11,22,33).*(!aa,bb,cc)')
   expect(
-    excludePattern.matchAliasGroup('aa.bb.11.mm', 'aa.cc.dd.bb.11.mm')
+    excludePattern.matchAliasGroup('aa.bb.11.mm', 'aa.cc.dd.bb.11.mm'),
   ).toEqual(true)
   expect(excludePattern.matchAliasGroup('aa.cc', 'aa.kk.cc')).toEqual(false)
   expect(new Path('aa.*(!bb)').matchAliasGroup('kk.mm.aa.bb', 'aa.bb')).toEqual(
-    false
+    false,
   )
   expect(
-    new Path('aa.*(!bb)').matchAliasGroup('kk.mm.aa.bb.cc', 'kk.mm.aa')
+    new Path('aa.*(!bb)').matchAliasGroup('kk.mm.aa.bb.cc', 'kk.mm.aa'),
   ).toEqual(false)
   expect(new Path('aa.*(!bb,oo)').matchAliasGroup('kk.mm', 'aa')).toEqual(false)
   expect(new Path('aa.*(!bb.*)').matchAliasGroup('kk.mm', 'aa')).toEqual(false)
   expect(new Path('aa.*(!bb)').matchAliasGroup('kk.mm.aa.cc', 'aa.cc')).toEqual(
-    true
+    true,
   )
   const patttern2 = Path.parse('*(array)')
   expect(patttern2.matchAliasGroup(['array', 0], ['array', 0])).toEqual(false)
@@ -91,16 +91,18 @@ test('exclude match', () => {
   expect(Path.parse('*(!basic.name,versionTag)').match('basic.id')).toBeTruthy()
   expect(Path.parse('*(!basic.name,versionTag)').match('basic')).toBeFalsy()
   expect(
-    Path.parse('*(!basic.name,versionTag)').match('isExecutable')
+    Path.parse('*(!basic.name,versionTag)').match('isExecutable'),
   ).toBeTruthy()
   expect(
-    Path.parse('*(!basic.name,versionTag)').match('versionTag')
+    Path.parse('*(!basic.name,versionTag)').match('versionTag'),
   ).toBeFalsy()
   expect(
-    Path.parse('*(!basic.name,basic.name.*,versionTag)').match('basic.name')
+    Path.parse('*(!basic.name,basic.name.*,versionTag)').match('basic.name'),
   ).toBeFalsy()
   expect(
-    Path.parse('*(!basic.name,basic.name.*,versionTag)').match('basic.name.kkk')
+    Path.parse('*(!basic.name,basic.name.*,versionTag)').match(
+      'basic.name.kkk',
+    ),
   ).toBeFalsy()
   expect(Path.parse('aa.*(!bb)').match('kk.mm.aa.bb.cc')).toBeFalsy()
   expect(Path.parse('aa.*(!bb)').match('aa')).toBeFalsy()
@@ -136,28 +138,28 @@ test('test optional wild match', () => {
   expect(Path.parse('*(aa.**,bb.**).bb').match(['aa', 'oo'])).toEqual(true)
   expect(Path.parse('*(aa.**,bb.**).bb').match(['bb', 'oo'])).toEqual(true)
   expect(Path.parse('*(aa.**,bb.**).bb').match(['aa', 'oo', 'bb'])).toEqual(
-    true
+    true,
   )
   expect(Path.parse('*(aa.**,bb.**).bb').match(['bb', 'oo', 'bb'])).toEqual(
-    true
+    true,
   )
   expect(
-    Path.parse('*(aa.**,bb.**).bb').match(['aa', 'oo', 'kk', 'dd', 'bb'])
+    Path.parse('*(aa.**,bb.**).bb').match(['aa', 'oo', 'kk', 'dd', 'bb']),
   ).toEqual(true)
   expect(
-    Path.parse('*(aa.**,bb.**).bb').match(['cc', 'oo', 'kk', 'dd', 'bb'])
+    Path.parse('*(aa.**,bb.**).bb').match(['cc', 'oo', 'kk', 'dd', 'bb']),
   ).toEqual(false)
   expect(
-    Path.parse('*(aa.**,bb.**).bb').match(['bb', 'oo', 'kk', 'dd', 'bb'])
+    Path.parse('*(aa.**,bb.**).bb').match(['bb', 'oo', 'kk', 'dd', 'bb']),
   ).toEqual(true)
   expect(
-    Path.parse('*(aa.**,bb.**).bb').match(['kk', 'oo', 'kk', 'dd', 'bb'])
+    Path.parse('*(aa.**,bb.**).bb').match(['kk', 'oo', 'kk', 'dd', 'bb']),
   ).toEqual(false)
 })
 
 test('test expand', () => {
   expect(
-    Path.parse('t.0.value~').match(['t', 0, 'value_list', 'hello'])
+    Path.parse('t.0.value~').match(['t', 0, 'value_list', 'hello']),
   ).toEqual(false)
 })
 
@@ -177,34 +179,34 @@ test('test segments', () => {
 
 test('nested group match', () => {
   expect(
-    Path.parse('aa.*.*(bb,cc).dd.*(kk,oo).ee').match('aa.0.cc.dd.kk.ee')
+    Path.parse('aa.*.*(bb,cc).dd.*(kk,oo).ee').match('aa.0.cc.dd.kk.ee'),
   ).toEqual(true)
 })
 
 test('group match with destructor', () => {
   expect(Path.parse('*([startDate,endDate],date,weak)').match('date')).toEqual(
-    true
+    true,
   )
   expect(Path.parse('*({startDate,endDate},date,weak)').match('date')).toEqual(
-    true
+    true,
   )
   expect(Path.parse('*([startDate,endDate],date,weak)').match('xxx')).toEqual(
-    false
+    false,
   )
   expect(Path.parse('*({startDate,endDate},date,weak)').match('xxx')).toEqual(
-    false
+    false,
   )
   expect(
-    Path.parse('*([startDate,endDate],date,weak)').match('[startDate,endDate]')
+    Path.parse('*([startDate,endDate],date,weak)').match('[startDate,endDate]'),
   ).toEqual(true)
   expect(
-    Path.parse('*({startDate,endDate},date,weak)').match('{startDate,endDate}')
+    Path.parse('*({startDate,endDate},date,weak)').match('{startDate,endDate}'),
   ).toEqual(true)
 })
 
 test('all range match', () => {
   expect(
-    Path.parse('array.*[:].*[:].*[:].bb').match('array.0.0.0.aa')
+    Path.parse('array.*[:].*[:].*[:].bb').match('array.0.0.0.aa'),
   ).toBeFalsy()
 })
 

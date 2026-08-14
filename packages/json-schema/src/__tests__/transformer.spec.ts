@@ -11,7 +11,7 @@ const attach = <T extends { onMount: () => void }>(target: T): T => {
 const getFormAndFields = (
   field1SchemaProps: Omit<ISchema, 'name'> = {},
   field2SchemaProps: Omit<ISchema, 'name'> = {},
-  options: ISchemaTransformerOptions = {}
+  options: ISchemaTransformerOptions = {},
 ) => {
   const filed1Schema = new Schema({
     name: 'field1',
@@ -41,7 +41,7 @@ test('baseReaction', () => {
     },
     {
       title: 'field2Title',
-    }
+    },
   )
 
   expect(field1.title).toBe('field1Title')
@@ -64,7 +64,7 @@ test('baseReaction with scopes', () => {
         scopeTitle,
         scopeDescription,
       },
-    }
+    },
   )
 
   expect(field1.title).toBe(scopeTitle)
@@ -120,7 +120,7 @@ test('userReactions with target(runner)', () => {
       scope: {
         fn: mockFn,
       },
-    }
+    },
   )
 
   expect(mockFn).toHaveBeenCalledTimes(1)
@@ -172,7 +172,7 @@ test('userReactions without target(runner)', () => {
       scope: {
         fn: mockFn,
       },
-    }
+    },
   )
 
   expect(mockFn).toHaveBeenCalledTimes(1)
@@ -199,7 +199,7 @@ test('userReactions with condition', () => {
       scope: {
         mockFn,
       },
-    }
+    },
   )
 
   expect(mockFn).toHaveBeenNthCalledWith(1, true)
@@ -227,7 +227,7 @@ test('userReactions with condition(wrong type)', () => {
       scope: {
         mockFn,
       },
-    }
+    },
   )
 
   expect(mockFn).toHaveBeenNthCalledWith(1, [], [])
@@ -274,7 +274,7 @@ test('userReactions with condition(array)', () => {
       scope: {
         mockFn,
       },
-    }
+    },
   )
 
   expect(mockFn).toHaveBeenNthCalledWith(1, [
@@ -310,7 +310,7 @@ test('userReactions with condition(object)', () => {
       scope: {
         mockFn,
       },
-    }
+    },
   )
 
   expect(mockFn).toHaveBeenNthCalledWith(1, {
@@ -342,7 +342,7 @@ test('userReactions with user-defined effects', () => {
       scope: {
         mockFn,
       },
-    }
+    },
   )
 
   expect(mockFn).toHaveBeenCalledTimes(1)
@@ -378,7 +378,7 @@ test('userReactions with $lookup $record $records $index', () => {
   const form = attach(
     createForm({
       initialValues,
-    })
+    }),
   )
 
   form.createArrayField({
@@ -432,7 +432,7 @@ test('userReactions with primary type record', () => {
   const form = attach(
     createForm({
       initialValues,
-    })
+    }),
   )
 
   const field0Schema = new Schema({

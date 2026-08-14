@@ -54,13 +54,13 @@ const mapDateFormat = function () {
 export const DatePicker: ComposedDatePicker = connect(
   AntdDatePicker,
   mapProps(mapDateFormat()),
-  mapReadPretty(PreviewText.DatePicker)
+  mapReadPretty(PreviewText.DatePicker),
 )
 
 DatePicker.RangePicker = connect(
   AntdDatePicker.RangePicker,
   mapProps(mapDateFormat()),
-  mapReadPretty(PreviewText.DateRangePicker)
+  mapReadPretty(PreviewText.DateRangePicker),
 )
 
 export default DatePicker

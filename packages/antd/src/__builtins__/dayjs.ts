@@ -18,14 +18,14 @@ export const dayjsable = (value: any, format?: string) => {
   return Array.isArray(value)
     ? value.map((val) => dayjs(val, format))
     : value
-    ? dayjs(value, format)
-    : value
+      ? dayjs(value, format)
+      : value
 }
 
 export const formatDayjsValue = (
   value: any,
   format: any,
-  placeholder?: string
+  placeholder?: string,
 ): string | string[] => {
   const formatDate = (date: any, format: any, i = 0) => {
     if (!date) return placeholder

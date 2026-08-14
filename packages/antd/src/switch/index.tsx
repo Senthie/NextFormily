@@ -16,8 +16,8 @@ export const Switch = connect(
           onChange?.(checked, null)
         },
       }
-    }
-  )
+    },
+  ),
 )
 
 export default Switch

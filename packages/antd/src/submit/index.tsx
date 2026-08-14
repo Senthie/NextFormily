@@ -35,7 +35,7 @@ export const Submit: React.FC<React.PropsWithChildren<ISubmitProps>> = observer(
   },
   {
     forwardRef: true,
-  }
+  },
 )
 
 export default Submit

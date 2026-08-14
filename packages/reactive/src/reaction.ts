@@ -19,7 +19,7 @@ const ITERATION_KEY = Symbol('iteration key')
 const addRawReactionsMap = (
   target: any,
   key: PropertyKey,
-  reaction: Reaction
+  reaction: Reaction,
 ) => {
   const reactionsMap = RawReactionsMap.get(target)
   if (reactionsMap) {
@@ -41,7 +41,7 @@ const addRawReactionsMap = (
 
 const addReactionsMapToReaction = (
   reaction: Reaction,
-  reactionsMap: ReactionsMap
+  reactionsMap: ReactionsMap,
 ) => {
   const bindSet = reaction._reactionsSet
   if (bindSet) {
@@ -162,7 +162,7 @@ const suspendComputedReactions = (current: Reaction) => {
   current._computesSet?.forEach((reaction) => {
     const reactions = getReactionsFromTargetKey(
       reaction._context,
-      reaction._property
+      reaction._property,
     )
     if (reactions.length === 0) {
       disposeBindingReactions(reaction)

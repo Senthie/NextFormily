@@ -4,7 +4,7 @@ interface ISize {
   (
     fieldSize: 'large' | 'default' | 'small',
     searchSize?: SizeType,
-    tableSize?: SizeType
+    tableSize?: SizeType,
   ): {
     searchSize: SizeType
     tableSize: SizeType

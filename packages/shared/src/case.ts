@@ -35,7 +35,11 @@ function noCase(input: string, options: CaseOptions = {}): string {
     transform = lowerCase,
     delimiter = ' ',
   } = options
-  const result = replace(replace(input, splitRegexp, '$1\0$2'), stripRegexp, '\0')
+  const result = replace(
+    replace(input, splitRegexp, '$1\0$2'),
+    stripRegexp,
+    '\0',
+  )
   let start = 0
   let end = result.length
   while (result.charAt(start) === '\0') start++
@@ -68,7 +72,11 @@ function pascalCaseTransform(input: string, index: number): string {
 
 /** 转为 PascalCase */
 export function pascalCase(input: string, options: CaseOptions = {}): string {
-  return noCase(input, { delimiter: '', transform: pascalCaseTransform, ...options })
+  return noCase(input, {
+    delimiter: '',
+    transform: pascalCaseTransform,
+    ...options,
+  })
 }
 
 function camelCaseTransform(input: string, index: number): string {
@@ -78,7 +86,11 @@ function camelCaseTransform(input: string, index: number): string {
 
 /** 转为 camelCase */
 export function camelCase(input: string, options: CaseOptions = {}): string {
-  return noCase(input, { delimiter: '', transform: camelCaseTransform, ...options })
+  return noCase(input, {
+    delimiter: '',
+    transform: camelCaseTransform,
+    ...options,
+  })
 }
 
 /** 转为 param-case（kebab-case） */

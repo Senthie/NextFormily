@@ -761,21 +761,18 @@ type ValidatorFunctionResponse = null | string | boolean | IValidateResult
 type ValidatorFunction<Context = any> = (
   value: any,
   rule: IValidatorRules<Context>,
-  ctx: Context
+  ctx: Context,
 ) => ValidatorFunctionResponse | Promise<ValidatorFunctionResponse> | null
 
 //非数组型校验器
 type ValidatorDescription =
-  | ValidatorFormats
-  | ValidatorFunction<Context>
-  | IValidatorRules<Context>
+  ValidatorFormats | ValidatorFunction<Context> | IValidatorRules<Context>
 
 //数组型校验器
 type MultiValidator<Context = any> = ValidatorDescription<Context>[]
 
 type FieldValidator<Context = any> =
-  | ValidatorDescription<Context>
-  | MultiValidator<Context>
+  ValidatorDescription<Context> | MultiValidator<Context>
 ```
 
 ### FieldMessage
@@ -860,8 +857,9 @@ ObjectField 参考 [ObjectField](/api/models/object-field)
 interface IFieldFeedback {
   triggerType?: 'onInput' | 'onFocus' | 'onBlur' //校验触发类型
   type?: 'error' | 'success' | 'warning' //反馈类型
-  code?: //反馈编码
-  | 'ValidateError'
+  code?:
+    //反馈编码
+    | 'ValidateError'
     | 'ValidateSuccess'
     | 'ValidateWarning'
     | 'EffectError'
@@ -877,8 +875,9 @@ interface IFieldFeedback {
 interface ISearchFeedback {
   triggerType?: 'onInput' | 'onFocus' | 'onBlur' //校验触发类型
   type?: 'error' | 'success' | 'warning' //反馈类型
-  code?: //反馈编码
-  | 'ValidateError'
+  code?:
+    //反馈编码
+    | 'ValidateError'
     | 'ValidateSuccess'
     | 'ValidateWarning'
     | 'EffectError'

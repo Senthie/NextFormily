@@ -38,7 +38,7 @@ type IExtendsUploadProps = {
 
 const testOpts = (
   ext: RegExp,
-  options: { exclude?: string[]; include?: string[] }
+  options: { exclude?: string[]; include?: string[] },
 ) => {
   if (options && isArr(options.include)) {
     return options.include.some((url) => ext.test(url))
@@ -105,7 +105,7 @@ const normalizeFileList = (fileList: UploadFile[]) => {
           getThumbURL(file) || getThumbURL(file?.response),
           {
             exclude: ['.png', '.jpg', '.jpeg', '.gif'],
-          }
+          },
         ),
       }
     })
@@ -125,7 +125,7 @@ const useValidator = (validator: (value: any) => string) => {
           code: 'UploadError',
           messages: message ? [message] : [],
         })
-      }
+      },
     )
     return () => {
       dispose()
@@ -185,7 +185,7 @@ export const Upload: ComposedUpload = connect(
   },
   mapProps({
     value: 'fileList',
-  })
+  }),
 )
 
 const Dragger = connect(
@@ -209,7 +209,7 @@ const Dragger = connect(
   },
   mapProps({
     value: 'fileList',
-  })
+  }),
 )
 
 Upload.Dragger = Dragger

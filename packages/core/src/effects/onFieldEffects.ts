@@ -11,14 +11,14 @@ import {
 import { createEffectHook, useEffectForm } from '../shared/effective'
 
 function createFieldEffect<Result extends GeneralField = GeneralField>(
-  type: LifeCycleTypes
+  type: LifeCycleTypes,
 ) {
   return createEffectHook(
     type,
     (field: Result, form: Form) =>
       (
         pattern: FormPathPattern,
-        callback: (field: Result, form: Form) => void
+        callback: (field: Result, form: Form) => void,
       ) => {
         if (
           FormPath.parse(pattern).matchAliasGroup(field.address, field.path)
@@ -27,73 +27,73 @@ function createFieldEffect<Result extends GeneralField = GeneralField>(
             callback(field, form)
           })
         }
-      }
+      },
   )
 }
 const _onFieldInit = createFieldEffect(LifeCycleTypes.ON_FIELD_INIT)
 export const onFieldMount = createFieldEffect(LifeCycleTypes.ON_FIELD_MOUNT)
 export const onFieldUnmount = createFieldEffect(LifeCycleTypes.ON_FIELD_UNMOUNT)
 export const onFieldValueChange = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_VALUE_CHANGE
+  LifeCycleTypes.ON_FIELD_VALUE_CHANGE,
 )
 export const onFieldInitialValueChange = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_INITIAL_VALUE_CHANGE
+  LifeCycleTypes.ON_FIELD_INITIAL_VALUE_CHANGE,
 )
 export const onFieldInputValueChange = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_INPUT_VALUE_CHANGE
+  LifeCycleTypes.ON_FIELD_INPUT_VALUE_CHANGE,
 )
 export const onFieldValidateStart = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_VALIDATE_START
+  LifeCycleTypes.ON_FIELD_VALIDATE_START,
 )
 export const onFieldValidateEnd = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_VALIDATE_END
+  LifeCycleTypes.ON_FIELD_VALIDATE_END,
 )
 export const onFieldValidating = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_VALIDATING
+  LifeCycleTypes.ON_FIELD_VALIDATING,
 )
 export const onFieldValidateFailed = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_VALIDATE_FAILED
+  LifeCycleTypes.ON_FIELD_VALIDATE_FAILED,
 )
 export const onFieldValidateSuccess = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_VALIDATE_SUCCESS
+  LifeCycleTypes.ON_FIELD_VALIDATE_SUCCESS,
 )
 export const onFieldSubmit = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_SUBMIT
+  LifeCycleTypes.ON_FIELD_SUBMIT,
 )
 export const onFieldSubmitStart = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_SUBMIT_START
+  LifeCycleTypes.ON_FIELD_SUBMIT_START,
 )
 export const onFieldSubmitEnd = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_SUBMIT_END
+  LifeCycleTypes.ON_FIELD_SUBMIT_END,
 )
 export const onFieldSubmitValidateStart = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_START
+  LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_START,
 )
 export const onFieldSubmitValidateEnd = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_END
+  LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_END,
 )
 export const onFieldSubmitSuccess = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_SUBMIT_SUCCESS
+  LifeCycleTypes.ON_FIELD_SUBMIT_SUCCESS,
 )
 export const onFieldSubmitFailed = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_SUBMIT_FAILED
+  LifeCycleTypes.ON_FIELD_SUBMIT_FAILED,
 )
 export const onFieldSubmitValidateSuccess = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_SUCCESS
+  LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_SUCCESS,
 )
 export const onFieldSubmitValidateFailed = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_FAILED
+  LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_FAILED,
 )
 export const onFieldReset = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_RESET
+  LifeCycleTypes.ON_FIELD_RESET,
 )
 export const onFieldLoading = createFieldEffect<DataField>(
-  LifeCycleTypes.ON_FIELD_LOADING
+  LifeCycleTypes.ON_FIELD_LOADING,
 )
 
 export function onFieldInit(
   pattern: FormPathPattern,
-  callback?: (field: GeneralField, form: Form) => void
+  callback?: (field: GeneralField, form: Form) => void,
 ) {
   const form = useEffectForm()
   const count = form.query(pattern).reduce((count, field) => {
@@ -107,29 +107,29 @@ export function onFieldInit(
 
 export function onFieldReact(
   pattern: FormPathPattern,
-  callback?: (field: GeneralField, form: Form) => void
+  callback?: (field: GeneralField, form: Form) => void,
 ) {
   onFieldInit(pattern, (field, form) => {
     field.disposers.push(
       autorun(() => {
         if (isFn(callback)) callback(field, form)
-      })
+      }),
     )
   })
 }
 export function onFieldChange(
   pattern: FormPathPattern,
-  callback?: (field: GeneralField, form: Form) => void
+  callback?: (field: GeneralField, form: Form) => void,
 ): void
 export function onFieldChange(
   pattern: FormPathPattern,
   watches: (keyof IFieldState)[],
-  callback?: (field: GeneralField, form: Form) => void
+  callback?: (field: GeneralField, form: Form) => void,
 ): void
 export function onFieldChange(
   pattern: FormPathPattern,
   watches: any,
-  callback?: (field: GeneralField, form: Form) => void
+  callback?: (field: GeneralField, form: Form) => void,
 ): void {
   if (isFn(watches)) {
     callback = watches
@@ -147,7 +147,7 @@ export function onFieldChange(
       },
       () => {
         if (isFn(callback)) callback(field, form)
-      }
+      },
     )
     field.disposers.push(dispose)
   })

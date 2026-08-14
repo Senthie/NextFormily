@@ -73,8 +73,8 @@ export const FormButtonGroup: ComposedButtonGroup = ({
           align === 'left'
             ? 'flex-start'
             : align === 'right'
-            ? 'flex-end'
-            : 'center',
+              ? 'flex-end'
+              : 'center',
         display: 'flex',
       }}
     >
@@ -137,8 +137,8 @@ FormButtonGroup.Sticky = ({ align = 'left', ...props }) => {
             align === 'left'
               ? 'flex-start'
               : align === 'right'
-              ? 'flex-end'
-              : 'center',
+                ? 'flex-end'
+                : 'center',
         }}
       >
         {props.children}

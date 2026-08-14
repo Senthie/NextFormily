@@ -12,7 +12,7 @@ test('create array field', () => {
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   expect(array.value).toEqual([])
   expect(array.push).toBeDefined()
@@ -32,7 +32,7 @@ test('array field methods', () => {
     form.createArrayField({
       name: 'array',
       value: [],
-    })
+    }),
   )
   array.push({ aa: 11 }, { bb: 22 })
   expect(array.value).toEqual([{ aa: 11 }, { bb: 22 }])
@@ -62,26 +62,26 @@ test('array field children state exchanges', () => {
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'other',
       basePath: 'array',
-    })
+    }),
   )
   array.push({ value: 11 }, { value: 22 })
   attach(
     form.createField({
       name: 'value',
       basePath: 'array.0',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'value',
       basePath: 'array.1',
-    })
+    }),
   )
   expect(array.value).toEqual([{ value: 11 }, { value: 22 }])
   expect(form.query('array.0.value').get('value')).toEqual(11)
@@ -101,13 +101,13 @@ test('array field children state exchanges', () => {
     form.createField({
       name: 'value',
       basePath: 'array.0',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'value',
       basePath: 'array.1',
-    })
+    }),
   )
   expect(array.value).toEqual([{ value: 33 }, { value: 11 }])
   expect(form.query('array.0.value').get('value')).toEqual(33)
@@ -121,13 +121,13 @@ test('array field children state exchanges', () => {
     form.createField({
       name: 'value',
       basePath: 'array.1',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'value',
       basePath: 'array.2',
-    })
+    }),
   )
   expect(array.value).toEqual([{ value: 33 }, { value: 44 }, { value: 55 }])
   expect(form.query('array.0.value').get('value')).toEqual(33)
@@ -150,31 +150,31 @@ test('array field move up/down then fields move', () => {
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'value',
       basePath: 'array.0',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'value',
       basePath: 'array.1',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'value',
       basePath: 'array.2',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'value',
       basePath: 'array.3',
-    })
+    }),
   )
   const line0 = form.fields['array.0.value']
   const line1 = form.fields['array.1.value']
@@ -206,7 +206,7 @@ test('lazy array field query each', () => {
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
 
   const init = Array.from({ length: 6 }).map((_, i) => ({ value: i }))
@@ -225,7 +225,7 @@ test('lazy array field query each', () => {
         form.createField({
           name: 'value',
           basePath: 'array.' + len,
-        })
+        }),
       )
     }
   })
@@ -246,26 +246,26 @@ test('void children', () => {
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'other',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createVoidField({
       name: 0,
       basePath: 'array',
-    })
+    }),
   )
   const aaa = attach(
     form.createField({
       name: 'aaa',
       basePath: 'array.0',
       value: 123,
-    })
+    }),
   )
   expect(aaa.value).toEqual(123)
   expect(array.value).toEqual([123])
@@ -276,34 +276,34 @@ test('exchange children', () => {
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'other',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: '0.aaa',
       basePath: 'array',
       value: '123',
-    })
+    }),
   )
   attach(
     form.createField({
       name: '0.bbb',
       basePath: 'array',
       value: '321',
-    })
+    }),
   )
   attach(
     form.createField({
       name: '1.bbb',
       basePath: 'array',
       value: 'kkk',
-    })
+    }),
   )
   expect(array.value).toEqual([{ aaa: '123', bbb: '321' }, { bbb: 'kkk' }])
   array.move(0, 1)
@@ -316,13 +316,13 @@ test('fault tolerance', () => {
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   const array2 = attach(
     form.createArrayField({
       name: 'array2',
       value: [1, 2],
-    })
+    }),
   )
   array.setValue({} as any)
   array.push(11)
@@ -363,47 +363,47 @@ test('mutation fault tolerance', () => {
   const pushArray = attach(
     form.createArrayField({
       name: 'array1',
-    })
+    }),
   )
   const popArray = attach(
     form.createArrayField({
       name: 'array2',
-    })
+    }),
   )
   const insertArray = attach(
     form.createArrayField({
       name: 'array3',
-    })
+    }),
   )
   const removeArray = attach(
     form.createArrayField({
       name: 'array4',
-    })
+    }),
   )
   const shiftArray = attach(
     form.createArrayField({
       name: 'array5',
-    })
+    }),
   )
   const unshiftArray = attach(
     form.createArrayField({
       name: 'array6',
-    })
+    }),
   )
   const moveArray = attach(
     form.createArrayField({
       name: 'array7',
-    })
+    }),
   )
   const moveUpArray = attach(
     form.createArrayField({
       name: 'array8',
-    })
+    }),
   )
   const moveDownArray = attach(
     form.createArrayField({
       name: 'array9',
-    })
+    }),
   )
   pushArray.setValue({} as any)
   pushArray.push(123)
@@ -439,36 +439,36 @@ test('array field move api with children', async () => {
   attach(
     form.createField({
       name: 'other',
-    })
+    }),
   )
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createArrayField({
       name: '0',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createArrayField({
       name: '1',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createArrayField({
       name: '2',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createArrayField({
       name: 'name',
       basePath: 'array.2',
-    })
+    }),
   )
   await array.move(0, 2)
   expect(form.fields['array.0.name']).toBeUndefined()
@@ -487,19 +487,19 @@ test('array field remove memo leak', async () => {
         onFormInitialValuesChange(initialValuesChange)
         onFieldValueChange('*', handler)
       },
-    })
+    }),
   )
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   await array.push('')
   attach(
     form.createField({
       name: '0',
       basePath: 'array',
-    })
+    }),
   )
   await array.remove(0)
   await array.push('')
@@ -507,7 +507,7 @@ test('array field remove memo leak', async () => {
     form.createField({
       name: '0',
       basePath: 'array',
-    })
+    }),
   )
   expect(handler).toHaveBeenCalledTimes(0)
   expect(valuesChange).toHaveBeenCalledTimes(4)
@@ -520,49 +520,49 @@ test('nest array remove', async () => {
   const metrics = attach(
     form.createArrayField({
       name: 'metrics',
-    })
+    }),
   )
 
   attach(
     form.createObjectField({
       name: '0',
       basePath: 'metrics',
-    })
+    }),
   )
 
   attach(
     form.createObjectField({
       name: '1',
       basePath: 'metrics',
-    })
+    }),
   )
 
   attach(
     form.createArrayField({
       name: 'content',
       basePath: 'metrics.0',
-    })
+    }),
   )
 
   attach(
     form.createArrayField({
       name: 'content',
       basePath: 'metrics.1',
-    })
+    }),
   )
 
   const obj00 = attach(
     form.createObjectField({
       name: '0',
       basePath: 'metrics.0.content',
-    })
+    }),
   )
 
   const obj10 = attach(
     form.createObjectField({
       name: '0',
       basePath: 'metrics.1.content',
-    })
+    }),
   )
 
   attach(
@@ -570,7 +570,7 @@ test('nest array remove', async () => {
       name: 'attr',
       basePath: 'metrics.0.content.0',
       initialValue: '123',
-    })
+    }),
   )
 
   attach(
@@ -578,7 +578,7 @@ test('nest array remove', async () => {
       name: 'attr',
       basePath: 'metrics.1.content.0',
       initialValue: '123',
-    })
+    }),
   )
   expect(obj00.indexes[0]).toBe(0)
   expect(obj00.index).toBe(0)
@@ -589,7 +589,7 @@ test('nest array remove', async () => {
   await metrics.remove(1)
   expect(form.fields['metrics.0.content.0.attr']).not.toBeUndefined()
   expect(
-    form.initialValues.metrics?.[1]?.content?.[0]?.attr
+    form.initialValues.metrics?.[1]?.content?.[0]?.attr,
   ).not.toBeUndefined()
 })
 
@@ -600,7 +600,7 @@ test('indexes: nest path need exclude incomplete number', () => {
     form.createField({
       name: 'attr',
       basePath: 'metrics.0.a.10.iconWidth50',
-    })
+    }),
   )
 
   expect(objPathIncludeNum.indexes.length).toBe(2)
@@ -614,36 +614,36 @@ test('incomplete insertion of array elements', async () => {
       values: {
         array: [{ aa: 1 }, { aa: 2 }, { aa: 3 }],
       },
-    })
+    }),
   )
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: '0',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'aa',
       basePath: 'array.0',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: '2',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'aa',
       basePath: 'array.2',
-    })
+    }),
   )
   expect(form.fields['array.0.aa']).not.toBeUndefined()
   expect(form.fields['array.1.aa']).toBeUndefined()
@@ -660,42 +660,42 @@ test('void array items need skip data', () => {
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   const array2 = attach(
     form.createArrayField({
       name: 'array2',
-    })
+    }),
   )
   attach(
     form.createVoidField({
       name: '0',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createVoidField({
       name: '0',
       basePath: 'array2',
-    })
+    }),
   )
   attach(
     form.createVoidField({
       name: 'space',
       basePath: 'array.0',
-    })
+    }),
   )
   const select = attach(
     form.createField({
       name: 'select',
       basePath: 'array.0.space',
-    })
+    }),
   )
   const select2 = attach(
     form.createField({
       name: 'select2',
       basePath: 'array2.0',
-    })
+    }),
   )
 
   select.value = 123
@@ -709,20 +709,20 @@ test('array field reset', () => {
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: '0',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'input',
       initialValue: '123',
       basePath: 'array.0',
-    })
+    }),
   )
   form.reset('*', { forceClear: true })
   expect(form.values).toEqual({ array: [] })
@@ -739,36 +739,36 @@ test('array field remove can not memory leak', async () => {
       effects() {
         onFieldValueChange('array.*.aa', handler)
       },
-    })
+    }),
   )
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: '0',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'aa',
       basePath: 'array.0',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: '1',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'aa',
       basePath: 'array.1',
-    })
+    }),
   )
   const bb = attach(
     form.createField({
@@ -777,7 +777,7 @@ test('array field remove can not memory leak', async () => {
       reactions: (field) => {
         field.visible = field.query('.aa').value() === '123'
       },
-    })
+    }),
   )
   expect(bb.visible).toBeFalsy()
   await array.remove(0)
@@ -794,7 +794,7 @@ test('array field patch values', async () => {
   const arr = attach(
     form.createArrayField({
       name: 'a',
-    })
+    }),
   )
 
   await arr.unshift({})
@@ -802,14 +802,14 @@ test('array field patch values', async () => {
     form.createObjectField({
       name: '0',
       basePath: 'a',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'c',
       initialValue: 'A',
       basePath: 'a.0',
-    })
+    }),
   )
   expect(form.values).toEqual({ a: [{ c: 'A' }] })
   await arr.unshift({})
@@ -817,27 +817,27 @@ test('array field patch values', async () => {
     form.createObjectField({
       name: '0',
       basePath: 'a',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'c',
       initialValue: 'A',
       basePath: 'a.0',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: '1',
       basePath: 'a',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'c',
       initialValue: 'A',
       basePath: 'a.1',
-    })
+    }),
   )
   expect(form.values).toEqual({ a: [{ c: 'A' }, { c: 'A' }] })
 })
@@ -848,36 +848,36 @@ test('array remove with initialValues', async () => {
       initialValues: {
         array: [{ a: 1 }, { a: 2 }],
       },
-    })
+    }),
   )
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: '0',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: '1',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'a',
       basePath: 'array.0',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'a',
       basePath: 'array.1',
-    })
+    }),
   )
   expect(form.values).toEqual({ array: [{ a: 1 }, { a: 2 }] })
   await array.remove(1)
@@ -888,19 +888,19 @@ test('array remove with initialValues', async () => {
     form.createObjectField({
       name: '1',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'a',
       basePath: 'array.0',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'a',
       basePath: 'array.1',
-    })
+    }),
   )
   expect(form.values).toEqual({ array: [{ a: 1 }, { a: 2 }] })
   expect(form.initialValues).toEqual({ array: [{ a: 1 }, { a: 2 }] })
@@ -912,38 +912,38 @@ test('records: find array fields', () => {
       initialValues: {
         array: [{ a: 1 }, { a: 2 }],
       },
-    })
+    }),
   )
 
   attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
 
   attach(
     form.createObjectField({
       name: '0',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: '1',
       basePath: 'array',
-    })
+    }),
   )
   const field0 = attach(
     form.createField({
       name: 'a',
       basePath: 'array.0',
-    })
+    }),
   )
   const field1 = attach(
     form.createField({
       name: 'a',
       basePath: 'array.1',
-    })
+    }),
   )
 
   expect(field0.records.length).toBe(2)
@@ -957,74 +957,74 @@ test('record: find array nest field record', () => {
       initialValues: {
         array: [{ a: { b: { c: 1, d: 1 } } }, { a: { b: { c: 2, d: 2 } } }],
       },
-    })
+    }),
   )
 
   attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
 
   attach(
     form.createObjectField({
       name: '0',
       basePath: 'array',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: '1',
       basePath: 'array',
-    })
+    }),
   )
 
   attach(
     form.createObjectField({
       name: 'a',
       basePath: 'array.0',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: 'a',
       basePath: 'array.1',
-    })
+    }),
   )
 
   attach(
     form.createObjectField({
       name: 'b',
       basePath: 'array.0.a',
-    })
+    }),
   )
 
   attach(
     form.createObjectField({
       name: 'b',
       basePath: 'array.1.a',
-    })
+    }),
   )
 
   const field0 = attach(
     form.createField({
       name: 'c',
       basePath: 'array.0.a.b',
-    })
+    }),
   )
 
   const field1 = attach(
     form.createField({
       name: 'c',
       basePath: 'array.1.a.b',
-    })
+    }),
   )
 
   const field2 = attach(
     form.createField({
       name: 'cc',
       basePath: 'array.1.a.b.c',
-    })
+    }),
   )
 
   expect(field0.records.length).toBe(2)
@@ -1044,20 +1044,20 @@ test('record: find array field record', () => {
       initialValues: {
         array: [1, 2, 3],
       },
-    })
+    }),
   )
 
   attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
 
   const field = attach(
     form.createField({
       basePath: 'array',
       name: '0',
-    })
+    }),
   )
 
   expect(field.records.length).toBe(3)
@@ -1075,27 +1075,27 @@ test('record: find object field record', () => {
           },
         },
       },
-    })
+    }),
   )
 
   attach(
     form.createArrayField({
       name: 'a',
-    })
+    }),
   )
 
   attach(
     form.createObjectField({
       name: 'b',
       basePath: 'a',
-    })
+    }),
   )
 
   const fieldc = attach(
     form.createObjectField({
       name: 'c',
       basePath: 'a.b',
-    })
+    }),
   )
 
   expect(fieldc.records).toEqual(undefined)
@@ -1111,13 +1111,13 @@ test('record: find form fields', () => {
       initialValues: {
         array: [{ a: 1 }, { a: 2 }],
       },
-    })
+    }),
   )
 
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
 
   expect(array.record).toEqual({ array: [{ a: 1 }, { a: 2 }] })

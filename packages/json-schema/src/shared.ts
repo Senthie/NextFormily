@@ -1,4 +1,11 @@
-import { isFn, each, isPlainObj, isArr, toArr, FormPath } from '@next-formily/shared'
+import {
+  isFn,
+  each,
+  isPlainObj,
+  isArr,
+  toArr,
+  FormPath,
+} from '@next-formily/shared'
 import { isObservable, untracked } from '@next-formily/reactive'
 import { Schema } from './schema'
 import { ISchema } from './types'
@@ -65,7 +72,7 @@ export const hasOwnProperty = Object.prototype.hasOwnProperty
 
 export const traverse = (
   target: any,
-  visitor: (value: any, path: Array<string | number>) => void
+  visitor: (value: any, path: Array<string | number>) => void,
 ) => {
   const seenObjects = []
   const root = target
@@ -94,13 +101,13 @@ export const traverse = (
 
 export const traverseSchema = (
   schema: ISchema,
-  visitor: (value: any, path: any[], omitCompile?: boolean) => void
+  visitor: (value: any, path: any[], omitCompile?: boolean) => void,
 ) => {
   if (schema['x-validator'] !== undefined) {
     visitor(
       schema['x-validator'],
       ['x-validator'],
-      schema['x-compile-omitted']?.includes('x-validator')
+      schema['x-compile-omitted']?.includes('x-validator'),
     )
   }
   const seenObjects = []
@@ -186,7 +193,7 @@ export const createDataSource = (source: any[]) => {
 export const patchStateFormSchema = (
   targetState: any,
   pattern: any[],
-  compiled: any
+  compiled: any,
 ) => {
   untracked(() => {
     const path = FormPath.parse(pattern)
@@ -198,7 +205,7 @@ export const patchStateFormSchema = (
       FormPath.setIn(
         targetState,
         [schemaMapKey].concat(segments.slice(1)),
-        isEnum ? createDataSource(compiled) : compiled
+        isEnum ? createDataSource(compiled) : compiled,
       )
     } else {
       const isValidatorKey = SchemaValidatorMap[key]

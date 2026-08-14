@@ -43,7 +43,7 @@ export const createObservable = (
   target: any,
   key?: PropertyKey,
   value?: any,
-  shallow?: boolean
+  shallow?: boolean,
 ) => {
   if (typeof value !== 'object') return value
   const raw = ProxyRaw.get(value)
@@ -71,7 +71,7 @@ export const createObservable = (
 }
 
 export const createAnnotation = <T extends (visitor: IVisitor) => any>(
-  maker: T
+  maker: T,
 ) => {
   const annotation = (target: any): ReturnType<T> => {
     return maker({ value: target })
@@ -93,7 +93,7 @@ export const getObservableMaker = (target: any) => {
 
 export const createBoundaryFunction = (
   start: (...args: any) => void,
-  end: (...args: any) => void
+  end: (...args: any) => void,
 ) => {
   function boundary<F extends (...args: any) => any>(fn?: F): ReturnType<F> {
     let results: ReturnType<F>
@@ -113,11 +113,11 @@ export const createBoundaryFunction = (
 }
 
 const createBindFunction = <Boundary extends BoundaryFunction>(
-  boundary: Boundary
+  boundary: Boundary,
 ) => {
   function bind<F extends (...args: any[]) => any>(
     callback?: F,
-    context?: any
+    context?: any,
   ): F {
     return ((...args: any[]) =>
       boundary(() => callback.apply(context, args))) as any
@@ -127,7 +127,7 @@ const createBindFunction = <Boundary extends BoundaryFunction>(
 
 export const createBoundaryAnnotation = (
   start: (...args: any) => void,
-  end: (...args: any) => void
+  end: (...args: any) => void,
 ) => {
   const boundary = createBoundaryFunction(start, end)
   const annotation = createAnnotation(({ target, key }) => {

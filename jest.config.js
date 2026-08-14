@@ -17,7 +17,9 @@ module.exports = {
       },
     ],
   },
-  transformIgnorePatterns: ['/node_modules/(?!\\.pnpm/@ant-design\\+|@ant-design/)'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!\\.pnpm/@ant-design\\+|@ant-design/)',
+  ],
   // moduleNameMapper: process.env.TEST_ENV === 'production' ? undefined : alias,
   coveragePathIgnorePatterns: [
     '/node_modules/',

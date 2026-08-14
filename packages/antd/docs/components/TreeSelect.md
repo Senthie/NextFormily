@@ -110,7 +110,7 @@ const SchemaField = createSchemaField({
 
 const useAsyncDataSource = (
   pattern: FormPathPattern,
-  service: (field: Field) => Promise<{ label: string; value: any }[]>
+  service: (field: Field) => Promise<{ label: string; value: any }[]>,
 ) => {
   onFieldReact(pattern, (field) => {
     field.loading = true
@@ -118,7 +118,7 @@ const useAsyncDataSource = (
       action.bound((data) => {
         field.dataSource = data
         field.loading = false
-      })
+      }),
     )
   })
 }
@@ -481,7 +481,7 @@ const useAsyncDataSource = (service) => (field) => {
     action.bound((data) => {
       field.dataSource = data
       field.loading = false
-    })
+    }),
   )
 }
 
@@ -621,7 +621,7 @@ import { action } from '@formily/reactive'
 
 const useAsyncDataSource = (
   pattern: FormPathPattern,
-  service: (field: FieldType) => Promise<{ label: string; value: any }[]>
+  service: (field: FieldType) => Promise<{ label: string; value: any }[]>,
 ) => {
   onFieldReact(pattern, (field) => {
     field.loading = true
@@ -629,7 +629,7 @@ const useAsyncDataSource = (
       action.bound((data) => {
         field.dataSource = data
         field.loading = false
-      })
+      }),
     )
   })
 }

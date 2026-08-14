@@ -12,7 +12,7 @@ backgroundPageConnection.postMessage({
 })
 
 chrome.devtools.inspectedWindow.eval(
-  'window.__FORMILY_DEV_TOOLS_HOOK__.openDevtools()'
+  'window.__FORMILY_DEV_TOOLS_HOOK__.openDevtools()',
 )
 
 const Devtools = () => {
@@ -23,17 +23,17 @@ const Devtools = () => {
       setState(
         Object.keys(store).map((key) => {
           return store[key]
-        })
+        }),
       )
     }
     chrome.devtools.inspectedWindow.eval(
-      'window.__FORMILY_DEV_TOOLS_HOOK__.update()'
+      'window.__FORMILY_DEV_TOOLS_HOOK__.update()',
     )
     backgroundPageConnection.onMessage.addListener(({ type, id, graph }) => {
       if (type === 'init') {
         store = {}
         chrome.devtools.inspectedWindow.eval(
-          'window.__FORMILY_DEV_TOOLS_HOOK__.openDevtools()'
+          'window.__FORMILY_DEV_TOOLS_HOOK__.openDevtools()',
         )
       } else if (type !== 'uninstall') {
         store[id] = JSON.parse(graph)

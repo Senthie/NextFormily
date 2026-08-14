@@ -114,7 +114,11 @@ test('no action annotation', () => {
   }, handler)
   setData()
   expect(handler).toHaveBeenCalledTimes(2)
-  expect(handler).toHaveBeenNthCalledWith(1, [123, undefined], [undefined, undefined])
+  expect(handler).toHaveBeenNthCalledWith(
+    1,
+    [123, undefined],
+    [undefined, undefined],
+  )
   expect(handler).toHaveBeenNthCalledWith(2, [123, 321], [123, undefined])
 })
 
@@ -350,7 +354,7 @@ test('computed normal object', () => {
     {
       _value: observable.ref,
       value: observable.computed,
-    }
+    },
   )
   const handler = jest.fn()
   autorun(() => {

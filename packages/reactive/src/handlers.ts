@@ -12,7 +12,7 @@ const wellKnownSymbols = new Set(
     const value = Symbol[key]
     if (typeof value === 'symbol') return buf.concat(value)
     return buf
-  }, [])
+  }, []),
 )
 
 const hasOwnProperty = Object.prototype.hasOwnProperty
@@ -34,7 +34,7 @@ function patchIterator(
   target: any,
   key: PropertyKey,
   iterator: IterableIterator<any>,
-  isEntries: boolean
+  isEntries: boolean,
 ) {
   const originalNext = iterator.next
   iterator.next = () => {

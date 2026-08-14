@@ -322,26 +322,26 @@ const dataSource = [
     feature: 'performance',
     antd: text(
       '4.x performance is better',
-      'Only solved the value synchronization and accurate rendering'
+      'Only solved the value synchronization and accurate rendering',
     ),
     fusion: 'bad',
     formik: 'bad',
     finalForm: text(
       'better',
-      'But only solved the value synchronization and accurate rendering'
+      'But only solved the value synchronization and accurate rendering',
     ),
     schemaForm: 'bad',
     hookForm: text(
       'good',
-      'But only solved the value synchronization and accurate rendering'
+      'But only solved the value synchronization and accurate rendering',
     ),
     'formily1.x': text(
       'excellent',
-      'Can solve the precise rendering in the linkage process'
+      'Can solve the precise rendering in the linkage process',
     ),
     'formily2.x': text(
       'excellent',
-      'Can solve the precise rendering in the linkage process'
+      'Can solve the precise rendering in the linkage process',
     ),
   },
   {
@@ -385,7 +385,7 @@ const dataSource = [
     finalForm: 'general',
     schemaForm: text(
       'low',
-      'Source code development requires manual maintenance of JSON'
+      'Source code development requires manual maintenance of JSON',
     ),
     hookForm: 'general',
     'formily1.x': 'high',

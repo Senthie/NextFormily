@@ -44,7 +44,7 @@ const createEnvPlugin = (env) => {
     {
       exclude: '**/*.{css,less,sass,scss}',
       verbose: false,
-    }
+    },
   )
 }
 

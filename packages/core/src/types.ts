@@ -31,7 +31,7 @@ export type LifeCyclePayload<T> = (
     type: string
     payload: T
   },
-  context: any
+  context: any,
 ) => void
 
 export enum LifeCycleTypes {
@@ -262,7 +262,7 @@ export interface IFieldFactoryProps<
   Decorator extends JSXComponent,
   Component extends JSXComponent,
   TextType = any,
-  ValueType = any
+  ValueType = any,
 > extends IFieldProps<Decorator, Component, TextType, ValueType> {
   name: FormPathPattern
   basePath?: FormPathPattern
@@ -271,7 +271,7 @@ export interface IFieldFactoryProps<
 export interface IVoidFieldFactoryProps<
   Decorator extends JSXComponent,
   Component extends JSXComponent,
-  TextType = any
+  TextType = any,
 > extends IVoidFieldProps<Decorator, Component, TextType> {
   name: FormPathPattern
   basePath?: FormPathPattern
@@ -319,12 +319,12 @@ export type FieldDataSource = {
 
 export type FieldComponent<
   Component extends JSXComponent,
-  ComponentProps = any
+  ComponentProps = any,
 > = [Component] | [Component, ComponentProps] | boolean | any[]
 
 export type FieldDecorator<
   Decorator extends JSXComponent,
-  ComponentProps = any
+  ComponentProps = any,
 > = [Decorator] | [Decorator, ComponentProps] | boolean | any[]
 
 export type FieldReaction = (field: Field) => void
@@ -332,7 +332,7 @@ export interface IFieldProps<
   Decorator extends JSXComponent = any,
   Component extends JSXComponent = any,
   TextType = any,
-  ValueType = any
+  ValueType = any,
 > {
   name: FormPathPattern
   basePath?: FormPathPattern
@@ -364,7 +364,7 @@ export interface IFieldProps<
 export interface IVoidFieldProps<
   Decorator extends JSXComponent = any,
   Component extends JSXComponent = any,
-  TextType = any
+  TextType = any,
 > {
   name: FormPathPattern
   basePath?: FormPathPattern
@@ -433,7 +433,7 @@ export interface IFieldStateSetter {
 export interface IFieldStateGetter {
   <Getter extends (state: IGeneralFieldState) => any>(
     pattern: FieldMatchPattern,
-    getter: Getter
+    getter: Getter,
   ): ReturnType<Getter>
   (pattern: FieldMatchPattern): IGeneralFieldState
 }

@@ -19,9 +19,9 @@ export const TreeSelect = connect(
             props.suffixIcon
           ),
       }
-    }
+    },
   ),
-  mapReadPretty(PreviewText.TreeSelect)
+  mapReadPretty(PreviewText.TreeSelect),
 )
 
 export default TreeSelect

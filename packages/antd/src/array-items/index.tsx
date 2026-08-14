@@ -36,7 +36,7 @@ const SortableItem = SortableElement(
         {props.children}
       </div>
     )
-  }
+  },
 )
 
 const SortableList = SortableContainer(
@@ -47,7 +47,7 @@ const SortableList = SortableContainer(
         {props.children}
       </div>
     )
-  }
+  },
 )
 
 const isAdditionComponent = (schema: ISchema) => {

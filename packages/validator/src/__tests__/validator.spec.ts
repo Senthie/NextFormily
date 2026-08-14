@@ -91,7 +91,7 @@ test('message scope', async () => {
       context: {
         name: 'scopeName',
       },
-    }
+    },
   )
   expect(results).toEqual({
     error: ['The field value is required', 'validate error scopeName'],
@@ -111,7 +111,7 @@ test('first validate', async () => {
     },
     {
       validateFirst: true,
-    }
+    },
   )
   expect(results).toEqual({
     error: ['The field value is required'],
@@ -248,7 +248,7 @@ test('uniqueItems', async () => {
   hasError(
     await validate([{ label: '11', value: '11' }, { label: '11' }], {
       uniqueItems: true,
-    })
+    }),
   )
   noError(await validate([1, 1], { uniqueItems: true }))
   noError(
@@ -257,8 +257,8 @@ test('uniqueItems', async () => {
         { label: '11', value: '11' },
         { label: '11', value: '11' },
       ],
-      { uniqueItems: true }
-    )
+      { uniqueItems: true },
+    ),
   )
 })
 
@@ -274,7 +274,7 @@ test('validator', async () => {
       },
       message: 'error',
     }),
-    'error'
+    'error',
   )
 })
 
@@ -282,7 +282,7 @@ test('whitespace', async () => {
   hasError(
     await validate(' ', {
       whitespace: true,
-    })
+    }),
   )
 })
 
@@ -290,12 +290,12 @@ test('enum', async () => {
   hasError(
     await validate('11', {
       enum: ['22', '33'],
-    })
+    }),
   )
   noError(
     await validate('11', {
       enum: ['22', '33', '11'],
-    })
+    }),
   )
 })
 
@@ -313,8 +313,8 @@ test('filter trigger type(unmatch)', async () => {
       {
         validateFirst: true,
         triggerType: 'onInput',
-      }
-    )
+      },
+    ),
   ).toEqual({
     error: [],
     success: [],
@@ -336,8 +336,8 @@ test('filter trigger type(match first validate)', async () => {
       {
         validateFirst: true,
         triggerType: 'onBlur',
-      }
-    )
+      },
+    ),
   ).toEqual({
     error: ['The field value is required'],
     success: [],
@@ -358,8 +358,8 @@ test('filter trigger type(match multi validate)', async () => {
       },
       {
         triggerType: 'onBlur',
-      }
-    )
+      },
+    ),
   ).toEqual({
     error: ['The field value is required', 'validate error'],
     success: [],
@@ -430,7 +430,7 @@ test('validate undefined format', async () => {
         format: undefined,
         message: 'error',
       })
-    ).error
+    ).error,
   ).toEqual(['error'])
 })
 
@@ -440,13 +440,13 @@ test('validator return boolean', async () => {
       customBool: true,
       message: 'custom error',
     }),
-    'custom error'
+    'custom error',
   )
   noError(
     await validate('123', {
       customBool2: true,
       message: 'custom error',
-    })
+    }),
   )
 })
 
@@ -456,14 +456,14 @@ test('language', async () => {
     await validate('', {
       required: true,
     }),
-    '该字段是必填字段'
+    '该字段是必填字段',
   )
   setValidateLanguage('en-US')
   hasError(
     await validate('', {
       required: true,
     }),
-    'The field value is required'
+    'The field value is required',
   )
 })
 
@@ -478,7 +478,7 @@ test('validator template', async () => {
     await validate('', () => {
       return `<<aa>>=123`
     }),
-    '123=123'
+    '123=123',
   )
 })
 
@@ -493,7 +493,7 @@ test('validator template with format', async () => {
     await validate('', (value, rules, ctx, format) => {
       return `<<aa>>=123&${format('<<aa>>')}`
     }),
-    '123=123&123'
+    '123=123&123',
   )
 })
 
@@ -514,7 +514,7 @@ test('validator template with format and scope', async () => {
       context: {
         name: 'scopeName',
       },
-    }
+    },
   )
 
   expect(result.error[0]).toEqual('123=123&123scopeName')
@@ -528,6 +528,6 @@ test('validator order with format', async () => {
         format: 'url',
       },
     ]),
-    'The field value is required'
+    'The field value is required',
   )
 })

@@ -284,15 +284,14 @@ export default () => {
 import { IFormProps, Form } from '@formily/core'
 
 type FormDrawerRenderer =
-  | React.ReactElement
-  | ((form: Form) => React.ReactElement)
+  React.ReactElement | ((form: Form) => React.ReactElement)
 
 interface IFormDrawer {
   forOpen(
     middleware: (
       props: IFormProps,
-      next: (props?: IFormProps) => Promise<any>
-    ) => any
+      next: (props?: IFormProps) => Promise<any>,
+    ) => any,
   ): any //Middleware interceptor, can intercept Drawer to open
   //Open the pop-up window to receive form attributes, you can pass in initialValues/values/effects etc.
   open(props: IFormProps): Promise<any> //return form data

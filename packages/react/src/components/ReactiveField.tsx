@@ -12,7 +12,7 @@ interface IReactiveFieldProps {
 
 const mergeChildren = (
   children: RenderPropsChildren<GeneralField>,
-  content: React.ReactNode
+  content: React.ReactNode,
 ) => {
   if (!children && !content) return
   if (isFn(children)) return
@@ -30,7 +30,7 @@ const isValidComponent = (target: any) =>
 const renderChildren = (
   children: RenderPropsChildren<GeneralField>,
   field?: GeneralField,
-  form?: Form
+  form?: Form,
 ) => (isFn(children) ? children(field, form) : children)
 
 const ReactiveInternal: React.FC<IReactiveFieldProps> = (props) => {
@@ -41,14 +41,14 @@ const ReactiveInternal: React.FC<IReactiveFieldProps> = (props) => {
   const field = props.field
   const content = mergeChildren(
     renderChildren(props.children, field, field.form),
-    field.content ?? field.componentProps.children
+    field.content ?? field.componentProps.children,
   )
   if (field.display !== 'visible') return null
 
   const getComponent = (target: any) => {
     return isValidComponent(target)
       ? target
-      : FormPath.getIn(components, target) ?? target
+      : (FormPath.getIn(components, target) ?? target)
   }
 
   const renderDecorator = (children: React.ReactNode) => {
@@ -59,7 +59,7 @@ const ReactiveInternal: React.FC<IReactiveFieldProps> = (props) => {
     return React.createElement(
       getComponent(field.decoratorType),
       toJS(field.decoratorProps),
-      children
+      children,
     )
   }
 
@@ -101,7 +101,7 @@ const ReactiveInternal: React.FC<IReactiveFieldProps> = (props) => {
         onFocus,
         onBlur,
       },
-      content
+      content,
     )
   }
 

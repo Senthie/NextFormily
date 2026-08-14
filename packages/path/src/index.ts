@@ -1,5 +1,14 @@
 import { Parser } from './parser'
-import { isStr, isArr, isFn, isEqual, isObj, isNum, isRegExp, isValid } from './shared'
+import {
+  isStr,
+  isArr,
+  isFn,
+  isEqual,
+  isObj,
+  isNum,
+  isRegExp,
+  isValid,
+} from './shared'
 import {
   getDestructor,
   getInByDestructor,
@@ -351,7 +360,7 @@ export class Path {
 
   reduce = <T>(
     callback: (buf: T, item: string | number, index: number) => T,
-    initial: T
+    initial: T,
   ): T => {
     if (this.isMatchPattern || this.isRegExp) {
       throw new Error(`${this.entire} cannot be reduce`)
@@ -392,7 +401,7 @@ export class Path {
 
   transform = <T>(
     regexp: string | RegExp,
-    callback: (...args: string[]) => T
+    callback: (...args: string[]) => T,
   ): T | string => {
     if (!isFn(callback)) return ''
     if (this.isMatchPattern) {
@@ -400,7 +409,7 @@ export class Path {
     }
     const reg = new RegExp(regexp)
     const args = this.segments.filter((key) =>
-      reg.test(key as string)
+      reg.test(key as string),
     ) as string[]
     return callback(...args)
   }
@@ -438,7 +447,7 @@ export class Path {
           score: 0,
         }
         const result = cacheWith(
-          new Matcher(this.tree, record).match(path.segments)
+          new Matcher(this.tree, record).match(path.segments),
         )
         this.matchScore = record.score
         return result.matched
@@ -447,7 +456,7 @@ export class Path {
           score: 0,
         }
         const result = cacheWith(
-          Matcher.matchSegments(this.segments, path.segments, record)
+          Matcher.matchSegments(this.segments, path.segments, record),
         )
         this.matchScore = record.score
         return result.matched
@@ -523,7 +532,7 @@ export class Path {
   static transform<T>(
     pattern: Pattern,
     regexp: string | RegExp,
-    callback: (...args: string[]) => T
+    callback: (...args: string[]) => T,
   ): any {
     return Path.parse(pattern).transform(regexp, callback)
   }

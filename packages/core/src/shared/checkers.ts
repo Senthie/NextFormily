@@ -28,39 +28,39 @@ export const isField = <
   Decorator extends JSXComponent = any,
   Component extends JSXComponent = any,
   TextType = any,
-  ValueType = any
+  ValueType = any,
 >(
-  node: any
+  node: any,
 ): node is Field<Decorator, Component, TextType, ValueType> => {
   return node instanceof Field
 }
 
 export const isArrayField = <
   Decorator extends JSXComponent = any,
-  Component extends JSXComponent = any
+  Component extends JSXComponent = any,
 >(
-  node: any
+  node: any,
 ): node is ArrayField<Decorator, Component> => {
   return node instanceof ArrayField
 }
 
 export const isObjectField = <
   Decorator extends JSXComponent = any,
-  Component extends JSXComponent = any
+  Component extends JSXComponent = any,
 >(
-  node: any
+  node: any,
 ): node is ObjectField<Decorator, Component> => {
   return node instanceof ObjectField
 }
 
 export const isVoidField = <Decorator = any, Component = any, TextType = any>(
-  node: any
+  node: any,
 ): node is VoidField<Decorator, Component, TextType> => {
   return node instanceof VoidField
 }
 
 export const isFormState = <T extends Record<any, any> = any>(
-  state: any
+  state: any,
 ): state is IFormState<T> => {
   if (isFn(state?.initialize)) return false
   return state?.displayName === 'Form'

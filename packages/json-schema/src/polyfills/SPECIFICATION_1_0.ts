@@ -93,14 +93,15 @@ const SpecificationV1Polyfill = (schema: ISchema) => {
   }
   if (schema['x-linkages']) {
     schema['x-reactions'] = toArr(schema['x-reactions']).concat(
-      transformXLinkage(schema['x-linkages'])
+      transformXLinkage(schema['x-linkages']),
     )
     delete schema['x-linkages']
   }
   if (schema['x-component']) {
     if (
       VOID_COMPONENTS.some(
-        (component) => lowerCase(component) === lowerCase(schema['x-component'])
+        (component) =>
+          lowerCase(component) === lowerCase(schema['x-component']),
       )
     ) {
       schema['type'] = 'void'

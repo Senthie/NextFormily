@@ -19,7 +19,7 @@ import { BaseField } from './BaseField'
 export class VoidField<
   Decorator = any,
   Component = any,
-  TextType = any
+  TextType = any,
 > extends BaseField<Decorator, Component, TextType> {
   displayName: 'VoidField' = 'VoidField'
   props: IVoidFieldProps<Decorator, Component>
@@ -28,7 +28,7 @@ export class VoidField<
     address: FormPathPattern,
     props: IVoidFieldProps<Decorator, Component>,
     form: Form,
-    designable: boolean
+    designable: boolean,
   ) {
     super()
     this.form = form

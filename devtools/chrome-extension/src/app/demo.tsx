@@ -1824,5 +1824,5 @@ const dataSource = [
 
 ReactDOM.render(
   <App dataSource={dataSource} />,
-  document.getElementById('root')
+  document.getElementById('root'),
 )

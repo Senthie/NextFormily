@@ -347,11 +347,10 @@ console.log(isVoidFieldState(field.getState())) //true
 
 ```ts
 interface isGeneralFieldState {
-  (target: any): target is
-    | IFieldState
-    | IArrayFieldState
-    | IObjectFieldState
-    | IVoidFieldState
+  (
+    target: any,
+  ): target is
+    IFieldState | IArrayFieldState | IObjectFieldState | IVoidFieldState
 }
 ```
 

@@ -7,7 +7,7 @@ export interface IQrCodeProps {
 }
 
 export const QrCode: React.FC<React.PropsWithChildren<IQrCodeProps>> = (
-  props
+  props,
 ) => {
   return (
     <div className="qrcode">

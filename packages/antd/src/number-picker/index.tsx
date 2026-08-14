@@ -4,7 +4,7 @@ import { PreviewText } from '../preview-text'
 
 export const NumberPicker = connect(
   InputNumber,
-  mapReadPretty(PreviewText.NumberPicker)
+  mapReadPretty(PreviewText.NumberPicker),
 )
 
 export default NumberPicker

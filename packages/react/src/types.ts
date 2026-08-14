@@ -34,7 +34,7 @@ export type RenderPropsChildren<Payload> =
 export interface IFieldProps<
   D extends JSXComponent,
   C extends JSXComponent,
-  Field = FieldType
+  Field = FieldType,
 > extends IFieldFactoryProps<D, C> {
   children?: RenderPropsChildren<Field>
   decorator?: [] | [D] | [D, React.ComponentProps<D>] | any[]
@@ -44,7 +44,7 @@ export interface IFieldProps<
 export interface IVoidFieldProps<
   D extends JSXComponent,
   C extends JSXComponent,
-  Field = VoidField
+  Field = VoidField,
 > extends IVoidFieldFactoryProps<D, C> {
   children?: RenderPropsChildren<Field>
   decorator?: [] | [D] | [D, React.ComponentProps<D>] | any[]
@@ -64,7 +64,7 @@ export type IStateMapper<Props> =
 export type SchemaReactComponents = Record<string, JSXComponent>
 
 export interface ISchemaFieldReactFactoryOptions<
-  Components extends SchemaReactComponents = any
+  Components extends SchemaReactComponents = any,
 > {
   components?: Components
   scope?: any
@@ -77,7 +77,7 @@ export interface ISchemaFieldOptionContext {
 export interface ISchemaFieldProps<
   Decorator extends JSXComponent = any,
   Component extends JSXComponent = any,
-  InnerField = ObjectField<Decorator, Component>
+  InnerField = ObjectField<Decorator, Component>,
 > extends Omit<IFieldFactoryProps<Decorator, Component, InnerField>, 'name'> {
   schema?: ISchema
   components?: {
@@ -120,7 +120,7 @@ export type Path<T, Key extends keyof T = keyof T> = Key extends string
 
 export type PathValue<
   T,
-  P extends Path<T>
+  P extends Path<T>,
 > = P extends `${infer Key}.${infer Rest}`
   ? Key extends keyof T
     ? Rest extends Path<T[Key]>
@@ -128,8 +128,8 @@ export type PathValue<
       : never
     : never
   : P extends keyof T
-  ? T[P]
-  : never
+    ? T[P]
+    : never
 
 export type KeyOfReactComponent<T> = Exclude<
   keyof T,
@@ -138,7 +138,7 @@ export type KeyOfReactComponent<T> = Exclude<
 
 export type ReactComponentPath<
   T,
-  Key extends KeyOfReactComponent<T> = KeyOfReactComponent<T>
+  Key extends KeyOfReactComponent<T> = KeyOfReactComponent<T>,
 > = Key extends string
   ? T[Key] extends Record<string, any>
     ?
@@ -150,7 +150,7 @@ export type ReactComponentPath<
 
 export type ReactComponentPropsByPathValue<
   T extends Record<string, any>,
-  P extends ReactComponentPath<T>
+  P extends ReactComponentPath<T>,
 > = P extends `${infer Key}.${infer Rest}`
   ? Key extends keyof T
     ? Rest extends ReactComponentPath<T[Key]>
@@ -158,30 +158,30 @@ export type ReactComponentPropsByPathValue<
       : never
     : React.ComponentProps<T[P]>
   : P extends keyof T
-  ? React.ComponentProps<T[P]>
-  : never
+    ? React.ComponentProps<T[P]>
+    : never
 export interface ISchemaMarkupFieldProps<
   Components extends SchemaReactComponents,
   Decorator extends ReactComponentPath<Components>,
-  Component extends ReactComponentPath<Components>
+  Component extends ReactComponentPath<Components>,
 > extends ISchema<
-    Decorator,
-    Component,
-    ReactComponentPropsByPathValue<Components, Decorator>,
-    ReactComponentPropsByPathValue<Components, Component>,
-    FormPatternTypes,
-    FieldDisplayTypes,
-    FieldValidator,
-    React.ReactNode,
-    GeneralField
-  > {
+  Decorator,
+  Component,
+  ReactComponentPropsByPathValue<Components, Decorator>,
+  ReactComponentPropsByPathValue<Components, Component>,
+  FormPatternTypes,
+  FieldDisplayTypes,
+  FieldValidator,
+  React.ReactNode,
+  GeneralField
+> {
   children?: React.ReactNode
 }
 
 export type ISchemaTypeFieldProps<
   Components extends SchemaReactComponents,
   Decorator extends ReactComponentPath<Components>,
-  Component extends ReactComponentPath<Components>
+  Component extends ReactComponentPath<Components>,
 > = ISchemaMarkupFieldProps<Components, Decorator, Component>
 
 export interface IExpressionScopeProps {

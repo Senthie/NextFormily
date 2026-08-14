@@ -5,7 +5,7 @@ import { Form } from './Form'
 
 const output = (
   field: GeneralField,
-  taker: (field: GeneralField, address: FormPath) => any
+  taker: (field: GeneralField, address: FormPath) => any,
 ) => {
   if (!field) return
   if (isFn(taker)) {
@@ -38,7 +38,7 @@ export class Query {
         this.form,
         this.pattern.haveRelativePattern
           ? buildDataPath(props.form.fields, this.pattern)
-          : this.pattern
+          : this.pattern,
       )
       if (matched) {
         this.addresses = [matched]
@@ -58,7 +58,7 @@ export class Query {
 
   take(): GeneralField | undefined
   take<Result>(
-    getter: (field: GeneralField, address: FormPath) => Result
+    getter: (field: GeneralField, address: FormPath) => Result,
   ): Result
   take(taker?: any): any {
     return output(this.form.fields[this.addresses[0]], taker)
@@ -66,32 +66,32 @@ export class Query {
 
   map(): GeneralField[]
   map<Result>(
-    iterator?: (field: GeneralField, address: FormPath) => Result
+    iterator?: (field: GeneralField, address: FormPath) => Result,
   ): Result[]
   map(iterator?: any): any {
     return this.addresses.map((address) =>
-      output(this.form.fields[address], iterator)
+      output(this.form.fields[address], iterator),
     )
   }
 
   forEach<Result>(
-    iterator: (field: GeneralField, address: FormPath) => Result
+    iterator: (field: GeneralField, address: FormPath) => Result,
   ) {
     return this.addresses.forEach((address) =>
-      output(this.form.fields[address], iterator)
+      output(this.form.fields[address], iterator),
     )
   }
 
   reduce<Result>(
     reducer: (value: Result, field: GeneralField, address: FormPath) => Result,
-    initial?: Result
+    initial?: Result,
   ): Result {
     return this.addresses.reduce(
       (value, address) =>
         output(this.form.fields[address], (field, address) =>
-          reducer(value, field, address)
+          reducer(value, field, address),
         ),
-      initial
+      initial,
     )
   }
 

@@ -12,7 +12,7 @@ export const Radio: ComposedRadio = connect(
   AntdRadio,
   mapProps({
     value: 'checked',
-  })
+  }),
 )
 
 Radio.__ANT_RADIO = true
@@ -22,7 +22,7 @@ Radio.Group = connect(
   mapProps({
     dataSource: 'options',
   }),
-  mapReadPretty(PreviewText.Select)
+  mapReadPretty(PreviewText.Select),
 )
 
 export default Radio

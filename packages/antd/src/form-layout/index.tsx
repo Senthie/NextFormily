@@ -37,11 +37,10 @@ export interface IFormLayoutProps {
   gridRowGap?: number
 }
 
-export interface IFormLayoutContext
-  extends Omit<
-    IFormLayoutProps,
-    'labelAlign' | 'wrapperAlign' | 'layout' | 'labelCol' | 'wrapperCol'
-  > {
+export interface IFormLayoutContext extends Omit<
+  IFormLayoutProps,
+  'labelAlign' | 'wrapperAlign' | 'layout' | 'labelCol' | 'wrapperCol'
+> {
   labelAlign?: 'right' | 'left'
   wrapperAlign?: 'right' | 'left'
   layout?: 'vertical' | 'horizontal' | 'inline'
@@ -85,7 +84,7 @@ export const FormLayout: React.FC<React.PropsWithChildren<IFormLayoutProps>> & {
       [`${formPrefixCls}-rtl`]: props.direction === 'rtl',
       [`${formPrefixCls}-${props.size}`]: props.size,
     },
-    className
+    className,
   )
   const renderChildren = () => {
     const newDeepLayout = {

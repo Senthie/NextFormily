@@ -52,7 +52,7 @@ export interface IFormDialog {
 export interface IModalProps extends ModalProps {
   onOk?: (event: React.MouseEvent<HTMLElement>) => void | boolean
   onCancel?: (
-    event: React.KeyboardEvent<HTMLElement> | React.MouseEvent<HTMLElement>
+    event: React.KeyboardEvent<HTMLElement> | React.MouseEvent<HTMLElement>,
   ) => void | boolean
   loadingText?: React.ReactNode
 }
@@ -60,20 +60,20 @@ export interface IModalProps extends ModalProps {
 export function FormDialog(
   title: IModalProps,
   id: string,
-  renderer: FormDialogRenderer
+  renderer: FormDialogRenderer,
 ): IFormDialog
 export function FormDialog(
   title: IModalProps,
-  renderer: FormDialogRenderer
+  renderer: FormDialogRenderer,
 ): IFormDialog
 export function FormDialog(
   title: ModalTitle,
   id: string,
-  renderer: FormDialogRenderer
+  renderer: FormDialogRenderer,
 ): IFormDialog
 export function FormDialog(
   title: ModalTitle,
-  renderer: FormDialogRenderer
+  renderer: FormDialogRenderer,
 ): IFormDialog
 export function FormDialog(title: any, id: any, renderer?: any): IFormDialog {
   if (isFn(id) || React.isValidElement(id)) {
@@ -103,7 +103,7 @@ export function FormDialog(title: any, id: any, renderer?: any): IFormDialog {
   const renderDialog = (
     visible = true,
     resolve?: () => any,
-    reject?: () => any
+    reject?: () => any,
   ) => {
     return (
       <Observer>
@@ -157,7 +157,7 @@ export function FormDialog(title: any, id: any, renderer?: any): IFormDialog {
       env.promise = new Promise(async (resolve, reject) => {
         try {
           props = await loading(modal.loadingText, () =>
-            applyMiddleware(props, env.openMiddlewares)
+            applyMiddleware(props, env.openMiddlewares),
           )
           env.form = env.form || createForm(props)
         } catch (e) {
@@ -177,11 +177,11 @@ export function FormDialog(title: any, id: any, renderer?: any): IFormDialog {
             },
             async () => {
               await loading(modal.loadingText, () =>
-                applyMiddleware(env.form, env.cancelMiddlewares)
+                applyMiddleware(env.form, env.cancelMiddlewares),
               )
               formDialog.close()
-            }
-          )
+            },
+          ),
         )
       })
       return env.promise

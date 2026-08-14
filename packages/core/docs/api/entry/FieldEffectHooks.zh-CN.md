@@ -40,7 +40,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -88,7 +88,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -139,7 +139,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -189,12 +189,12 @@ export default () => {
         effects(form) {
           onFieldReact('target', () => {
             setResponse(
-              'target ' + (form.values.other === 123 ? '显示' : '隐藏')
+              'target ' + (form.values.other === 123 ? '显示' : '隐藏'),
             )
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -241,7 +241,7 @@ interface onFieldChange {
   (
     pattern: FormPathPattern,
     watches?: string[],
-    callback: (field: Field, form: Form) => void
+    callback: (field: Field, form: Form) => void,
   )
   (pattern: FormPathPattern, callback: (field: Field, form: Form) => void)
 }
@@ -270,7 +270,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -325,7 +325,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -372,7 +372,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -419,7 +419,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -468,7 +468,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -517,7 +517,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -566,7 +566,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -622,7 +622,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>

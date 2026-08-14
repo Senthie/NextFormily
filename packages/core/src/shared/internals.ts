@@ -65,7 +65,7 @@ const hasOwnProperty = Object.prototype.hasOwnProperty
 const notify = (
   target: Form | Field,
   formType: LifeCycleTypes,
-  fieldType: LifeCycleTypes
+  fieldType: LifeCycleTypes,
 ) => {
   if (isForm(target)) {
     target.notify(formType)
@@ -108,7 +108,7 @@ const buildFieldPath = (field: GeneralField) => {
 
 export const buildDataPath = (
   fields: Record<string, GeneralField>,
-  pattern: FormPath
+  pattern: FormPath,
 ) => {
   let prevArray = false
   const segments = pattern.segments
@@ -150,7 +150,7 @@ export const locateNode = (field: GeneralField, address: FormPathPattern) => {
 
 export const patchFieldStates = (
   target: Record<string, GeneralField>,
-  patches: INodePatch<GeneralField>[]
+  patches: INodePatch<GeneralField>[],
 ) => {
   patches.forEach(({ type, address, oldAddress, payload }) => {
     if (type === 'remove') {
@@ -172,7 +172,7 @@ export const patchFieldStates = (
 export const destroy = (
   target: Record<string, GeneralField>,
   address: string,
-  forceClear = true
+  forceClear = true,
 ) => {
   const field = target[address]
   field?.dispose()
@@ -188,7 +188,7 @@ export const destroy = (
 const patchFormValues = (
   form: Form,
   path: Array<string | number>,
-  source: any
+  source: any,
 ) => {
   const update = (path: Array<string | number>, source: any) => {
     if (path.length) {
@@ -233,7 +233,7 @@ const patchFormValues = (
 
 export const matchFeedback = (
   search?: ISearchFeedback,
-  feedback?: IFormFeedback
+  feedback?: IFormFeedback,
 ) => {
   if (!search || !feedback) return false
   if (search.type && search.type !== feedback.type) return false
@@ -262,12 +262,12 @@ export const queryFeedbacks = (field: Field, search?: ISearchFeedback) => {
 
 export const queryFeedbackMessages = (
   field: Field,
-  search: ISearchFeedback
+  search: ISearchFeedback,
 ) => {
   if (!field.feedbacks.length) return []
   return queryFeedbacks(field, search).reduce(
     (buf, info) => (isEmpty(info.messages) ? buf : buf.concat(info.messages)),
-    []
+    [],
   )
 }
 
@@ -304,7 +304,7 @@ export const updateFeedback = (field: Field, feedback?: IFieldFeedback) => {
 
 const validateToFeedbacks = async (
   field: Field,
-  triggerType: ValidatorTriggerType = 'onInput'
+  triggerType: ValidatorTriggerType = 'onInput',
 ) => {
   const results = await validate(field.value, field.validator, {
     triggerType,
@@ -351,7 +351,7 @@ export const setValidatorRule = (field: Field, name: string, value: any) => {
 
 export const spliceArrayState = (
   field: ArrayField,
-  props?: ISpliceArrayStateProps
+  props?: ISpliceArrayStateProps,
 ) => {
   const { startIndex, deleteCount, insertCount } = {
     startIndex: 0,
@@ -430,7 +430,7 @@ export const spliceArrayState = (
 
 export const exchangeArrayState = (
   field: ArrayField,
-  props: IExchangeArrayStateProps
+  props: IExchangeArrayStateProps,
 ) => {
   const { fromIndex, toIndex } = {
     fromIndex: 0,
@@ -586,7 +586,7 @@ export const initFieldUpdate = batch.scope.bound((field: GeneralField) => {
 const subscribeUpdate = (
   form: Form,
   pattern: FormPath,
-  callback: (...args: any[]) => void
+  callback: (...args: any[]) => void,
 ) => {
   const updates = FormPath.ensureIn(form, 'requests.updates', [])
   const indexes = FormPath.ensureIn(form, 'requests.updateIndexes', {})
@@ -596,7 +596,7 @@ const subscribeUpdate = (
     if (
       updates[current] &&
       !updates[current].callbacks.some((fn: any) =>
-        fn.toString() === callback.toString() ? fn === callback : false
+        fn.toString() === callback.toString() ? fn === callback : false,
       )
     ) {
       updates[current].callbacks.push(callback)
@@ -707,7 +707,7 @@ export const createBatchStateGetter = (form: Form) => {
 
 export const triggerFormInitialValuesChange = (
   form: Form,
-  change: DataChange
+  change: DataChange,
 ) => {
   if (Array.isArray(change.object) && change.key === 'length') return
   if (
@@ -742,14 +742,14 @@ export const setValidating = (target: Form | Field, validating: boolean) => {
         notify(
           target,
           LifeCycleTypes.ON_FORM_VALIDATING,
-          LifeCycleTypes.ON_FIELD_VALIDATING
+          LifeCycleTypes.ON_FIELD_VALIDATING,
         )
       })
     }, RESPONSE_REQUEST_DURATION)
     notify(
       target,
       LifeCycleTypes.ON_FORM_VALIDATE_START,
-      LifeCycleTypes.ON_FIELD_VALIDATE_START
+      LifeCycleTypes.ON_FIELD_VALIDATE_START,
     )
   } else {
     if (target.validating !== validating) {
@@ -758,7 +758,7 @@ export const setValidating = (target: Form | Field, validating: boolean) => {
     notify(
       target,
       LifeCycleTypes.ON_FORM_VALIDATE_END,
-      LifeCycleTypes.ON_FIELD_VALIDATE_END
+      LifeCycleTypes.ON_FIELD_VALIDATE_END,
     )
   }
 }
@@ -772,14 +772,14 @@ export const setSubmitting = (target: Form | Field, submitting: boolean) => {
         notify(
           target,
           LifeCycleTypes.ON_FORM_SUBMITTING,
-          LifeCycleTypes.ON_FIELD_SUBMITTING
+          LifeCycleTypes.ON_FIELD_SUBMITTING,
         )
       })
     }, RESPONSE_REQUEST_DURATION)
     notify(
       target,
       LifeCycleTypes.ON_FORM_SUBMIT_START,
-      LifeCycleTypes.ON_FIELD_SUBMIT_START
+      LifeCycleTypes.ON_FIELD_SUBMIT_START,
     )
   } else {
     if (target.submitting !== submitting) {
@@ -788,7 +788,7 @@ export const setSubmitting = (target: Form | Field, submitting: boolean) => {
     notify(
       target,
       LifeCycleTypes.ON_FORM_SUBMIT_END,
-      LifeCycleTypes.ON_FIELD_SUBMIT_END
+      LifeCycleTypes.ON_FIELD_SUBMIT_END,
     )
   }
 }
@@ -802,7 +802,7 @@ export const setLoading = (target: Form | Field, loading: boolean) => {
         notify(
           target,
           LifeCycleTypes.ON_FORM_LOADING,
-          LifeCycleTypes.ON_FIELD_LOADING
+          LifeCycleTypes.ON_FIELD_LOADING,
         )
       })
     }, RESPONSE_REQUEST_DURATION)
@@ -813,7 +813,7 @@ export const setLoading = (target: Form | Field, loading: boolean) => {
 
 export const batchSubmit = async <T>(
   target: Form | Field,
-  onSubmit?: (values: any) => Promise<T> | void
+  onSubmit?: (values: any) => Promise<T> | void,
 ): Promise<T> => {
   const getValues = (target: Form | Field) => {
     if (isForm(target)) {
@@ -826,25 +826,25 @@ export const batchSubmit = async <T>(
     notify(
       target,
       LifeCycleTypes.ON_FORM_SUBMIT_VALIDATE_START,
-      LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_START
+      LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_START,
     )
     await target.validate()
     notify(
       target,
       LifeCycleTypes.ON_FORM_SUBMIT_VALIDATE_SUCCESS,
-      LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_SUCCESS
+      LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_SUCCESS,
     )
   } catch (e) {
     notify(
       target,
       LifeCycleTypes.ON_FORM_SUBMIT_VALIDATE_FAILED,
-      LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_FAILED
+      LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_FAILED,
     )
   }
   notify(
     target,
     LifeCycleTypes.ON_FORM_SUBMIT_VALIDATE_END,
-    LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_END
+    LifeCycleTypes.ON_FIELD_SUBMIT_VALIDATE_END,
   )
   let results: any
   try {
@@ -859,19 +859,19 @@ export const batchSubmit = async <T>(
     notify(
       target,
       LifeCycleTypes.ON_FORM_SUBMIT_SUCCESS,
-      LifeCycleTypes.ON_FIELD_SUBMIT_SUCCESS
+      LifeCycleTypes.ON_FIELD_SUBMIT_SUCCESS,
     )
   } catch (e) {
     target.setSubmitting(false)
     notify(
       target,
       LifeCycleTypes.ON_FORM_SUBMIT_FAILED,
-      LifeCycleTypes.ON_FIELD_SUBMIT_FAILED
+      LifeCycleTypes.ON_FIELD_SUBMIT_FAILED,
     )
     notify(
       target,
       LifeCycleTypes.ON_FORM_SUBMIT,
-      LifeCycleTypes.ON_FIELD_SUBMIT
+      LifeCycleTypes.ON_FIELD_SUBMIT,
     )
     throw e
   }
@@ -894,7 +894,7 @@ const shouldValidate = (field: Field) => {
 export const batchValidate = async (
   target: Form | Field,
   pattern: FormPathPattern,
-  triggerType?: ValidatorTriggerType
+  triggerType?: ValidatorTriggerType,
 ) => {
   if (isForm(target)) target.setValidating(true)
   else {
@@ -912,21 +912,21 @@ export const batchValidate = async (
     notify(
       target,
       LifeCycleTypes.ON_FORM_VALIDATE_FAILED,
-      LifeCycleTypes.ON_FIELD_VALIDATE_FAILED
+      LifeCycleTypes.ON_FIELD_VALIDATE_FAILED,
     )
     throw target.errors
   }
   notify(
     target,
     LifeCycleTypes.ON_FORM_VALIDATE_SUCCESS,
-    LifeCycleTypes.ON_FIELD_VALIDATE_SUCCESS
+    LifeCycleTypes.ON_FIELD_VALIDATE_SUCCESS,
   )
 }
 
 export const batchReset = async (
   target: Form | Field,
   pattern: FormPathPattern,
-  options?: IFieldResetOptions
+  options?: IFieldResetOptions,
 ) => {
   const tasks = []
   target.query(pattern).forEach((field) => {
@@ -960,13 +960,13 @@ export const validateSelf = batch.bound(
     start()
     if (!triggerType) {
       const allTriggerTypes = parseValidatorDescriptions(
-        target.validator
+        target.validator,
       ).reduce(
         (types, desc) =>
           types.indexOf(desc.triggerType) > -1
             ? types
             : types.concat(desc.triggerType),
-        []
+        [],
       )
       const results = {}
       for (let i = 0; i < allTriggerTypes.length; i++) {
@@ -982,7 +982,7 @@ export const validateSelf = batch.bound(
     const results = await validateToFeedbacks(target, triggerType)
     end()
     return results
-  }
+  },
 )
 
 const resetSelf = batch.bound(
@@ -1001,7 +1001,7 @@ const resetSelf = batch.bound(
       } else {
         const initialValue = target.initialValue
         target.value = toJS(
-          !isUndef(initialValue) ? initialValue : typedDefaultValue
+          !isUndef(initialValue) ? initialValue : typedDefaultValue,
         )
       }
     }
@@ -1011,7 +1011,7 @@ const resetSelf = batch.bound(
     if (options?.validate) {
       return await validateSelf(target)
     }
-  }
+  },
 )
 
 export const modifySelf = (target: Field) => {
@@ -1069,8 +1069,8 @@ export const createReactions = (field: GeneralField) => {
             batch.scope.bound(() => {
               if (field.destroyed) return
               reaction(field)
-            })
-          )
+            }),
+          ),
         )
       }
     })
@@ -1079,7 +1079,7 @@ export const createReactions = (field: GeneralField) => {
 
 export const createReaction = <T>(
   tracker: () => T,
-  scheduler?: (value: T) => void
+  scheduler?: (value: T) => void,
 ) => {
   return reaction(tracker, untracked.bound(scheduler))
 }

@@ -42,7 +42,7 @@ interface IArrayTablePaginationProps extends PaginationProps {
     pagination: React.ReactNode,
     options: {
       startIndex: number
-    }
+    },
   ) => React.ReactElement
 }
 
@@ -132,7 +132,7 @@ const useArrayTableSources = () => {
 const useArrayTableColumns = (
   dataSource: any[],
   field: ArrayField,
-  sources: ObservableColumnSource[]
+  sources: ObservableColumnSource[],
 ): TableProps<any>['columns'] => {
   return sources.reduce((buf, { name, columnProps, schema, display }, key) => {
     if (display !== 'visible') return buf
@@ -177,7 +177,7 @@ const StatusSelect: ReactFC<IStatusSelectProps> = observer(
       return Number(
         address
           .slice(address.indexOf(field.address.toString()) + 1)
-          .match(/(\d+)/)?.[1]
+          .match(/(\d+)/)?.[1],
       )
     }
     const options = props.options?.map(({ label, value }) => {
@@ -218,7 +218,7 @@ const StatusSelect: ReactFC<IStatusSelectProps> = observer(
         update()
       }, 100)
     },
-  }
+  },
 )
 
 const PaginationContext = createContext<PaginationAction>({})
@@ -295,7 +295,7 @@ const ArrayTablePagination: ReactFC<IArrayTablePaginationProps> = (props) => {
             ? dataSource?.slice(startIndex, endIndex + 1)
             : dataSource,
           renderPagination(),
-          { startIndex }
+          { startIndex },
         )}
       </PaginationContext.Provider>
     </Fragment>
@@ -345,25 +345,24 @@ export const ArrayTable: ComposedArrayTable = observer((props) => {
     })
   }
   const getWrapperComp = useCallback(
-    (dataSource: any[], start: number) => (props: any) =>
-      (
-        <SortableBody
-          {...props}
-          start={start}
-          list={dataSource.slice()}
-          accessibility={{
-            container: ref.current || undefined,
-          }}
-          onSortStart={(event) => {
-            addTdStyles(event.active.id as number)
-          }}
-          onSortEnd={({ oldIndex, newIndex }) => {
-            field.move(oldIndex, newIndex)
-          }}
-          className={cls(`${prefixCls}-sort-helper`, props.className)}
-        />
-      ),
-    [field]
+    (dataSource: any[], start: number) => (props: any) => (
+      <SortableBody
+        {...props}
+        start={start}
+        list={dataSource.slice()}
+        accessibility={{
+          container: ref.current || undefined,
+        }}
+        onSortStart={(event) => {
+          addTdStyles(event.active.id as number)
+        }}
+        onSortEnd={({ oldIndex, newIndex }) => {
+          field.move(oldIndex, newIndex)
+        }}
+        className={cls(`${prefixCls}-sort-helper`, props.className)}
+      />
+    ),
+    [field],
   )
   return (
     <ArrayTablePagination {...pagination} dataSource={dataSource}>

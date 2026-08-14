@@ -50,7 +50,7 @@ test('onFormInit/onFormMount/onFormUnmount', () => {
         onFormMount(mount)
         onFormUnmount(unmount)
       },
-    })
+    }),
   )
   expect(init).toHaveBeenCalled()
   expect(mount).toHaveBeenCalled()
@@ -68,7 +68,7 @@ test('onFormValuesChange/onFormInitialValuesChange', () => {
         onFormValuesChange(valuesChange)
         onFormInitialValuesChange(initialValuesChange)
       },
-    })
+    }),
   )
   expect(valuesChange).not.toHaveBeenCalled()
   expect(initialValuesChange).not.toHaveBeenCalled()
@@ -95,12 +95,12 @@ test('onFormInputChange', () => {
         onFormValuesChange(valuesChange)
         onFormInputChange(inputChange)
       },
-    })
+    }),
   )
   const field = attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   expect(inputChange).not.toHaveBeenCalled()
   expect(valuesChange).not.toHaveBeenCalled()
@@ -126,7 +126,7 @@ test('onFormReact', () => {
           }
         })
       },
-    })
+    }),
   )
   expect(react).not.toHaveBeenCalled()
   form.setValues({ aa: 123 })
@@ -139,7 +139,7 @@ test('onFormReact', () => {
       effects() {
         onFormReact()
       },
-    })
+    }),
   )
 
   form2.onUnmount()
@@ -155,13 +155,13 @@ test('onFormReset', async () => {
       effects() {
         onFormReset(reset)
       },
-    })
+    }),
   )
 
   const field = attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
 
   field.setValue('xxxx')
@@ -198,14 +198,14 @@ test('onFormSubmit', async () => {
         onFormSubmitValidateSuccess(submitValidateSuccess)
         onFormSubmitValidateEnd(submitValidateEnd)
       },
-    })
+    }),
   )
 
   const field = attach(
     form.createField({
       name: 'aa',
       required: true,
-    })
+    }),
   )
   try {
     await form.submit()
@@ -247,13 +247,13 @@ test('onFormValidate', async () => {
         onFormValidateFailed(validateFailed)
         onFormValidateSuccess(validateSuccess)
       },
-    })
+    }),
   )
   const field = attach(
     form.createField({
       name: 'aa',
       required: true,
-    })
+    }),
   )
   try {
     await form.validate()
@@ -290,18 +290,18 @@ test('onFieldChange', async () => {
             'visible',
             'editable',
           ],
-          fieldChange
+          fieldChange,
         )
         onFieldChange('aa', valueChange)
         onFieldChange('aa', undefined, valueChange2)
         onFieldChange('aa')
       },
-    })
+    }),
   )
   const field = attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   expect(fieldChange).toHaveBeenCalledTimes(1)
   field.setValue('123')
@@ -332,12 +332,12 @@ test('onFieldInit/onFieldMount/onFieldUnmount', () => {
         onFieldMount('aa', fieldMount)
         onFieldUnmount('aa', fieldUnmount)
       },
-    })
+    }),
   )
   const field = attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   expect(fieldInit).toHaveBeenCalledTimes(1)
   expect(fieldMount).toHaveBeenCalledTimes(1)
@@ -359,12 +359,12 @@ test('onFieldInitialValueChange/onFieldValueChange/onFieldInputValueChange', () 
         onFieldInputValueChange('aa', fieldInputValueChange)
         onFieldValueChange('xx', notTrigger)
       },
-    })
+    }),
   )
   const field = attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   field.setValue('123')
   expect(fieldValueChange).toHaveBeenCalledTimes(1)
@@ -397,12 +397,12 @@ test('onFieldReact', () => {
         })
         onFieldReact('aa', null)
       },
-    })
+    }),
   )
   const field = attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   expect(react).not.toHaveBeenCalled()
   form.setValues({ aa: 123 })
@@ -425,13 +425,13 @@ test('onFieldValidate', async () => {
         onFieldValidateFailed('aa', validateFailed)
         onFieldValidateSuccess('aa', validateSuccess)
       },
-    })
+    }),
   )
   const field = attach(
     form.createField({
       name: 'aa',
       required: true,
-    })
+    }),
   )
   try {
     await field.validate()
@@ -464,12 +464,12 @@ test('async use will throw error', async () => {
           }
         }, 0)
       },
-    })
+    }),
   )
   const aa = attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   await sleep(10)
   aa.setValue('123')
@@ -511,7 +511,7 @@ test('effect context', async () => {
         }, 0)
         consumer2()
       },
-    })
+    }),
   )
   await sleep(10)
   expect(results).toEqual(123)
@@ -523,6 +523,6 @@ test('runEffects', () => {
   expect(
     runEffects(123, () => {
       onFormMount(() => {})
-    }).length
+    }).length,
   ).toEqual(1)
 })

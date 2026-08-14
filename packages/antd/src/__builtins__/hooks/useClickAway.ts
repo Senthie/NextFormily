@@ -14,7 +14,7 @@ type TargetElement = HTMLElement | Element | Document | Window
 
 function getTargetElement(
   target?: BasicTarget<TargetElement>,
-  defaultElement?: TargetElement
+  defaultElement?: TargetElement,
 ): TargetElement | undefined | null {
   if (!target) {
     return defaultElement
@@ -36,7 +36,7 @@ function getTargetElement(
 export const useClickAway = (
   onClickAway: (event: EventType) => void,
   target: BasicTarget | BasicTarget[],
-  eventName: string = defaultEvent
+  eventName: string = defaultEvent,
 ) => {
   const onClickAwayRef = useRef(onClickAway)
   onClickAwayRef.current = onClickAway

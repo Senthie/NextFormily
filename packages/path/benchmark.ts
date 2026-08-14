@@ -28,5 +28,5 @@ b.suite(
     })
   }),
   b.cycle(),
-  b.complete()
+  b.complete(),
 )

@@ -35,19 +35,19 @@ test('patchFieldStates should be sequence', () => {
   attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'input',
       basePath: 'array.0',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'input',
       basePath: 'array.1',
-    })
+    }),
   )
   const before = Object.keys(form.fields)
   form.fields['array'].move(1, 0)
@@ -59,13 +59,13 @@ test('patchFieldStates should be sequence', () => {
     form2.createField({
       name: 'field1',
       title: 'Field 1',
-    })
+    }),
   )
   attach(
     form2.createField({
       name: 'field2',
       title: 'Field 1',
-    })
+    }),
   )
 
   patchFieldStates(form2.fields, [
@@ -93,8 +93,8 @@ test('deserialize', () => {
       {},
       {
         parent: null,
-      }
-    )
+      },
+    ),
   ).toEqual({})
 })
 
@@ -102,7 +102,7 @@ test('isHTMLInputEvent', () => {
   expect(isHTMLInputEvent({ target: { checked: true } })).toBeTruthy()
   expect(isHTMLInputEvent({ target: { value: 123 } })).toBeTruthy()
   expect(
-    isHTMLInputEvent({ target: { tagName: 'INPUT', value: null } })
+    isHTMLInputEvent({ target: { tagName: 'INPUT', value: null } }),
   ).toBeTruthy()
   expect(isHTMLInputEvent({ target: { tagName: 'INPUT' } })).toBeFalsy()
   expect(isHTMLInputEvent({ target: { tagName: 'DIV' } })).toBeFalsy()

@@ -76,8 +76,8 @@ const SchemaField = createSchemaField({
             children: _cities.length
               ? _cities
               : _districts.length
-              ? _districts
-              : undefined,
+                ? _districts
+                : undefined,
           })
         }, [])
       }
@@ -89,7 +89,7 @@ const SchemaField = createSchemaField({
           action.bound((data) => {
             field.dataSource = transform(data)
             field.loading = false
-          })
+          }),
         )
     },
   },
@@ -398,8 +398,8 @@ const SchemaField = createSchemaField({
             children: _cities.length
               ? _cities
               : _districts.length
-              ? _districts
-              : undefined,
+                ? _districts
+                : undefined,
           })
         }, [])
       }
@@ -411,7 +411,7 @@ const SchemaField = createSchemaField({
           action.bound((data) => {
             field.dataSource = transform(data)
             field.loading = false
-          })
+          }),
         )
     },
   },
@@ -721,8 +721,8 @@ const fetchAddress = (field) => {
         children: _cities.length
           ? _cities
           : _districts.length
-          ? _districts
-          : undefined,
+            ? _districts
+            : undefined,
       })
     }, [])
   }
@@ -734,7 +734,7 @@ const fetchAddress = (field) => {
       action.bound((data) => {
         field.dataSource = transform(data)
         field.loading = false
-      })
+      }),
     )
 }
 
@@ -1048,8 +1048,8 @@ const SchemaField = createSchemaField({
             children: _cities.length
               ? _cities
               : _districts.length
-              ? _districts
-              : undefined,
+                ? _districts
+                : undefined,
           })
         }, [])
       }
@@ -1061,7 +1061,7 @@ const SchemaField = createSchemaField({
           action.bound((data) => {
             field.dataSource = transform(data)
             field.loading = false
-          })
+          }),
         )
     },
   },
@@ -1369,8 +1369,8 @@ const SchemaField = createSchemaField({
             children: _cities.length
               ? _cities
               : _districts.length
-              ? _districts
-              : undefined,
+                ? _districts
+                : undefined,
           })
         }, [])
       }
@@ -1382,7 +1382,7 @@ const SchemaField = createSchemaField({
           action.bound((data) => {
             field.dataSource = transform(data)
             field.loading = false
-          })
+          }),
         )
     },
   },
@@ -1692,8 +1692,8 @@ const fetchAddress = (field) => {
         children: _cities.length
           ? _cities
           : _districts.length
-          ? _districts
-          : undefined,
+            ? _districts
+            : undefined,
       })
     }, [])
   }
@@ -1705,7 +1705,7 @@ const fetchAddress = (field) => {
       action.bound((data) => {
         field.dataSource = transform(data)
         field.loading = false
-      })
+      }),
     )
 }
 

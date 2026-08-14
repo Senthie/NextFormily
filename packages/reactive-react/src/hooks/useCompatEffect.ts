@@ -16,7 +16,7 @@ const isEqualDeps = (target: any, source: any) => {
 
 export const useCompatEffect = (
   effect: EffectCallback,
-  deps?: DependencyList
+  deps?: DependencyList,
 ) => {
   const depsRef = useRef<DependencyList>(null)
   const mountedRef = useRef(false)

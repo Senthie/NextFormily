@@ -1,28 +1,29 @@
 {
   "name": "@next-formily/reactive-react",
   "version": "3.0.1",
+  "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
+  "homepage": "https://github.com/alibaba/formily#readme",
+  "bugs": {
+    "url": "https://github.com/alibaba/formily/issues"
+  },
   "license": "MIT",
-  "main": "lib",
-  "module": "esm",
-  "files": [
-    "lib",
-    "esm"
-  ],
-  "umd:main": "dist/formily.reactive-react.umd.production.js",
-  "unpkg": "dist/formily.reactive-react.umd.production.js",
-  "jsdelivr": "dist/formily.reactive-react.umd.production.js",
-  "jsnext:main": "esm",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alibaba/formily.git"
   },
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "main": "lib",
+  "module": "esm",
   "types": "esm/index.d.ts",
-  "bugs": {
-    "url": "https://github.com/alibaba/formily/issues"
-  },
-  "homepage": "https://github.com/alibaba/formily#readme",
-  "engines": {
-    "npm": ">=3.0.0"
+  "unpkg": "dist/formily.reactive-react.umd.production.js",
+  "jsdelivr": "dist/formily.reactive-react.umd.production.js",
+  "jsnext:main": "esm",
+  "umd:main": "dist/formily.reactive-react.umd.production.js",
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "start": "dumi dev",
@@ -31,6 +32,13 @@
     "build:esm": "tsc --project tsconfig.build.json --module esnext --outDir esm",
     "build:umd": "rollup --config",
     "build:docs": "dumi build"
+  },
+  "dependencies": {
+    "@next-formily/reactive": "3.0.1",
+    "hoist-non-react-statics": "^3.3.2"
+  },
+  "devDependencies": {
+    "dumi": "^1.1.0-rc.8"
   },
   "peerDependencies": {
     "@types/react": ">=16.8.0",
@@ -47,15 +55,7 @@
       "optional": true
     }
   },
-  "devDependencies": {
-    "dumi": "^1.1.0-rc.8"
-  },
-  "dependencies": {
-    "@next-formily/reactive": "3.0.1",
-    "hoist-non-react-statics": "^3.3.2"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283"
+  "engines": {
+    "npm": ">=3.0.0"
+  }
 }

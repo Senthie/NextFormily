@@ -24,8 +24,8 @@ export const Transfer = connect(
             }
           }) || [],
       }
-    }
-  )
+    },
+  ),
 )
 
 export default Transfer

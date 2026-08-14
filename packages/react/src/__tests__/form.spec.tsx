@@ -11,7 +11,7 @@ test('render form', () => {
     <FormProvider form={form}>
       <FormConsumer>{(form) => `${form.mounted}`}</FormConsumer>
       <FormConsumer />
-    </FormProvider>
+    </FormProvider>,
   )
   expect(form.mounted).toBeTruthy()
 })
@@ -37,7 +37,7 @@ test('useParentForm', () => {
         </Field>
       </VoidField>
       <DisplayParentForm data-testid="333" />
-    </FormProvider>
+    </FormProvider>,
   )
 
   expect(queryByTestId('111').textContent).toBe('ObjectField')

@@ -6,7 +6,7 @@ import { Form } from './Form'
 
 export class ObjectField<
   Decorator extends JSXComponent = any,
-  Component extends JSXComponent = any
+  Component extends JSXComponent = any,
 > extends Field<Decorator, Component, any, Record<string, any>> {
   displayName = 'ObjectField'
   private additionalProperties: string[] = []
@@ -14,7 +14,7 @@ export class ObjectField<
     address: FormPathPattern,
     props: IFieldProps<Decorator, Component>,
     form: Form,
-    designable: boolean
+    designable: boolean,
   ) {
     super(address, props, form, designable)
     this.makeAutoCleanable()
@@ -26,11 +26,11 @@ export class ObjectField<
         () => Object.keys(this.value || {}),
         (newKeys) => {
           const filterKeys = this.additionalProperties.filter(
-            (key) => !newKeys.includes(key)
+            (key) => !newKeys.includes(key),
           )
           cleanupObjectChildren(this, filterKeys)
-        }
-      )
+        },
+      ),
     )
   }
 

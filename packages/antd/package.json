@@ -1,17 +1,20 @@
 {
   "name": "@next-formily/antd",
   "version": "3.0.1",
+  "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
+  "homepage": "https://github.com/alibaba/formily#readme",
+  "bugs": {
+    "url": "https://github.com/alibaba/formily/issues"
+  },
   "license": "MIT",
-  "main": "lib",
-  "module": "esm",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alibaba/formily.git"
+  },
   "files": [
     "lib",
     "esm"
   ],
-  "umd:main": "dist/formily.antd.umd.production.js",
-  "unpkg": "dist/formily.antd.umd.production.js",
-  "jsdelivr": "dist/formily.antd.umd.production.js",
-  "jsnext:main": "esm",
   "sideEffects": [
     "dist/*",
     "esm/*.js",
@@ -20,17 +23,15 @@
     "*.less",
     "**/*/style.js"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alibaba/formily.git"
-  },
+  "main": "lib",
+  "module": "esm",
   "types": "esm/index.d.ts",
-  "bugs": {
-    "url": "https://github.com/alibaba/formily/issues"
-  },
-  "homepage": "https://github.com/alibaba/formily#readme",
-  "engines": {
-    "npm": ">=3.0.0"
+  "unpkg": "dist/formily.antd.umd.production.js",
+  "jsdelivr": "dist/formily.antd.umd.production.js",
+  "jsnext:main": "esm",
+  "umd:main": "dist/formily.antd.umd.production.js",
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "start": "dumi dev",
@@ -41,6 +42,20 @@
     "build:esm": "tsc --project tsconfig.build.json --module esnext --outDir esm && node ../../scripts/copy-less.js",
     "build:umd": "rollup --config",
     "build:docs": "dumi build"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.0.0",
+    "@dnd-kit/sortable": "^7.0.0",
+    "@next-formily/core": "3.0.1",
+    "@next-formily/grid": "3.0.1",
+    "@next-formily/json-schema": "3.0.1",
+    "@next-formily/react": "3.0.1",
+    "@next-formily/reactive": "3.0.1",
+    "@next-formily/reactive-react": "3.0.1",
+    "@next-formily/shared": "3.0.1",
+    "classnames": "^2.2.6",
+    "dayjs": "^1.11.0",
+    "react-sticky-box": "^0.9.3"
   },
   "devDependencies": {
     "@umijs/plugin-sass": "^1.1.1",
@@ -63,22 +78,7 @@
       "optional": true
     }
   },
-  "dependencies": {
-    "@dnd-kit/core": "^6.0.0",
-    "@dnd-kit/sortable": "^7.0.0",
-    "@next-formily/core": "3.0.1",
-    "@next-formily/grid": "3.0.1",
-    "@next-formily/json-schema": "3.0.1",
-    "@next-formily/react": "3.0.1",
-    "@next-formily/reactive": "3.0.1",
-    "@next-formily/reactive-react": "3.0.1",
-    "@next-formily/shared": "3.0.1",
-    "classnames": "^2.2.6",
-    "dayjs": "^1.11.0",
-    "react-sticky-box": "^0.9.3"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283"
+  "engines": {
+    "npm": ">=3.0.0"
+  }
 }

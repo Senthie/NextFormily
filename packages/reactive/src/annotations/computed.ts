@@ -48,7 +48,7 @@ function getPropertyDescriptorCache(obj: any, key: PropertyKey) {
 function getPrototypeDescriptor(
   target: any,
   key: PropertyKey,
-  value: any
+  value: any,
 ): PropertyDescriptor {
   if (!target) {
     if (value) {
@@ -151,5 +151,5 @@ export const computed: IComputed = createAnnotation(
       proxy[ObModelSymbol] = store
     }
     return proxy
-  }
+  },
 )

@@ -7,7 +7,7 @@ test('isNoNeedCompileObject', () => {
   expect(isNoNeedCompileObject({ $$typeof: null, _owner: null })).toBeTruthy()
   expect(isNoNeedCompileObject({ _isAMomentObject: true })).toBeTruthy()
   expect(
-    isNoNeedCompileObject({ [Symbol.for('__REVA_ACTIONS')]: true })
+    isNoNeedCompileObject({ [Symbol.for('__REVA_ACTIONS')]: true }),
   ).toBeTruthy()
   expect(isNoNeedCompileObject({ toJSON: () => {} })).toBeTruthy()
   expect(isNoNeedCompileObject({ toJS: () => {} })).toBeTruthy()

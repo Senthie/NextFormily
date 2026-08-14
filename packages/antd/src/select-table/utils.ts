@@ -45,7 +45,7 @@ const hasSelectedKey = (tree: any[], selected: any[], primaryKey: string) => {
 const isAllSelected = (list: any[], selected: any[], primaryKey: string) => {
   const validList = list.filter((item) => !item?.disabled)
   const selectedList = validList.filter((item) =>
-    selected?.includes(item[primaryKey])
+    selected?.includes(item[primaryKey]),
   )
   return selectedList.length === validList.length
 }
@@ -60,7 +60,7 @@ const isAllSelected = (list: any[], selected: any[], primaryKey: string) => {
 const completedKeys = (
   flatDataSource: any[] = [],
   selected: any[],
-  primaryKey: string
+  primaryKey: string,
 ) => {
   let allSelectedKeys = [...selected]
   flatDataSource.forEach((item) => {
@@ -69,7 +69,7 @@ const completedKeys = (
       allSelectedKeys = completedKeys(
         item.children,
         allSelectedKeys,
-        primaryKey
+        primaryKey,
       )
       if (isAllSelected(item.children, allSelectedKeys, primaryKey)) {
         // 如果该元素的子元素全部选中，且该元素未禁用，则也选中该项（即包含全选子元素的父元素）
@@ -79,7 +79,7 @@ const completedKeys = (
       } else {
         // 如果该元素的子元素未全部选中，则移除该项
         allSelectedKeys = allSelectedKeys.filter(
-          (key) => key !== item[primaryKey]
+          (key) => key !== item[primaryKey],
         )
       }
     }
@@ -146,7 +146,7 @@ const getOutputData = (
   originalValueType,
   originalOptionAsValue,
   mode,
-  checkStrictly
+  checkStrictly,
 ) => {
   const valueType = checkStrictly !== false ? 'all' : originalValueType // valueType 在 Strictly 为 false 时生效
   const optionAsValue = valueType === 'path' ? false : originalOptionAsValue // optionAsValue 在 path 模式不生效
@@ -164,7 +164,7 @@ const getOutputData = (
     })
     outputValue = keys.filter((key) => !childrenKeys.includes(key))
     outputOptions = options.filter((options) =>
-      outputValue.includes(options[primaryKey])
+      outputValue.includes(options[primaryKey]),
     )
   } else if (valueType === 'child') {
     outputValue = [...keys]
@@ -174,7 +174,7 @@ const getOutputData = (
       if (hasSelectedKey(option.children, keys, primaryKey)) {
         outputValue = outputValue.filter((key) => key !== option[primaryKey])
         outputOptions = outputOptions.filter(
-          (options) => options[primaryKey] !== option[primaryKey]
+          (options) => options[primaryKey] !== option[primaryKey],
         )
       }
     })
@@ -218,7 +218,7 @@ const getUISelected = (
   originalOptionAsValue,
   mode,
   checkStrictly,
-  rowKey
+  rowKey,
 ) => {
   const valueType = checkStrictly !== false ? 'all' : originalValueType // valueType 在 Strictly 为 false 时生效
   const optionAsValue = valueType === 'path' ? false : originalOptionAsValue // optionAsValue 在 path 模式不生效
@@ -227,14 +227,14 @@ const getUISelected = (
   keys =
     optionAsValue && valueType !== 'path'
       ? keys.map((record: any) =>
-          isFn(rowKey) ? rowKey(record) : record?.[primaryKey]
+          isFn(rowKey) ? rowKey(record) : record?.[primaryKey],
         )
       : keys
 
   let newKeys = []
   if (valueType === 'parent') {
     const options = flatDataSource.filter((item) =>
-      keys.includes(item[primaryKey])
+      keys.includes(item[primaryKey]),
     )
     let childrenKeys = []
     options.forEach((option) => {
@@ -271,7 +271,7 @@ const getCompatibleAllSelected = (
   dataSource,
   usableKeys,
   checkStrictly,
-  primaryKey
+  primaryKey,
 ) => {
   if (!usableKeys.length) {
     return false

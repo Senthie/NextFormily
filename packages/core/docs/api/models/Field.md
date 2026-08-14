@@ -761,21 +761,18 @@ type ValidatorFunctionResponse = null | string | boolean | IValidateResult
 type ValidatorFunction<Context = any> = (
   value: any,
   rule: IValidatorRules<Context>,
-  ctx: Context
+  ctx: Context,
 ) => ValidatorFunctionResponse | Promise<ValidatorFunctionResponse> | null
 
 //Non-array validator
 type ValidatorDescription =
-  | ValidatorFormats
-  | ValidatorFunction<Context>
-  | IValidatorRules<Context>
+  ValidatorFormats | ValidatorFunction<Context> | IValidatorRules<Context>
 
 //Array type validator
 type MultiValidator<Context = any> = ValidatorDescription<Context>[]
 
 type FieldValidator<Context = any> =
-  | ValidatorDescription<Context>
-  | MultiValidator<Context>
+  ValidatorDescription<Context> | MultiValidator<Context>
 ```
 
 ### FieldMessage
@@ -860,8 +857,9 @@ ObjectField Reference [ObjectField](/api/models/object-field)
 interface IFieldFeedback {
   triggerType?: 'onInput' | 'onFocus' | 'onBlur' //Verify the trigger type
   type?: 'error' | 'success' | 'warning' //feedback type
-  code?: //Feedback code
-  | 'ValidateError'
+  code?:
+    //Feedback code
+    | 'ValidateError'
     | 'ValidateSuccess'
     | 'ValidateWarning'
     | 'EffectError'
@@ -877,8 +875,9 @@ interface IFieldFeedback {
 interface ISearchFeedback {
   triggerType?: 'onInput' | 'onFocus' | 'onBlur' //Verify the trigger type
   type?: 'error' | 'success' | 'warning' //feedback type
-  code?: //Feedback code
-  | 'ValidateError'
+  code?:
+    //Feedback code
+    | 'ValidateError'
     | 'ValidateSuccess'
     | 'ValidateWarning'
     | 'EffectError'

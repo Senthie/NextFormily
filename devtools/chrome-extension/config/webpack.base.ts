@@ -16,7 +16,7 @@ fs.copy(path.resolve(__dirname, '../assets'), packageDir)
 
 fs.copy(
   path.resolve(__dirname, '../src/extension/manifest.json'),
-  path.resolve(__dirname, '../package/manifest.json')
+  path.resolve(__dirname, '../package/manifest.json'),
 )
 
 export default {

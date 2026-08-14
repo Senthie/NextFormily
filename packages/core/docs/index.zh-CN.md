@@ -88,7 +88,7 @@ const Field = observer((props) => {
   const decorator = React.createElement(
     field.decorator[0],
     field.decorator[1],
-    component
+    component,
   )
 
   return (

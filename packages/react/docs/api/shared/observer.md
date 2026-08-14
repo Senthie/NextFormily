@@ -22,7 +22,7 @@ interface IObserverOptions {
 
 function observer<P, Options extends IObserverOptions>(
   component: React.FunctionComponent<P>,
-  options?: Options
+  options?: Options,
 ): React.MemoExoticComponent<
   React.FunctionComponent<
     Options extends { forwardRef: true }

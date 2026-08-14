@@ -130,7 +130,7 @@ const App = () => {
         ],
         rootComponentName: 'Form',
       }),
-    []
+    [],
   )
   return (
     <Designer engine={engine}>

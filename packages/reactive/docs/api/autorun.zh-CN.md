@@ -59,7 +59,7 @@ const dispose = autorun(() => {
   const obs2 = autorun.memo(() =>
     observable({
       bb: 0,
-    })
+    }),
   )
   console.log(obs1.aa, obs2.bb++)
 })
@@ -108,7 +108,7 @@ const dispose = autorun(() => {
   const obs2 = autorun.memo(() =>
     observable({
       bb: 0,
-    })
+    }),
   )
   console.log(obs1.aa, obs2.bb++)
   autorun.effect(() => {

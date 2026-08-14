@@ -46,7 +46,7 @@ const BasicForm = () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <FormProvider form={form}>
@@ -397,7 +397,7 @@ const ReadPrettyForm = () => {
           'rp-select': ['a'],
         },
       }),
-    []
+    [],
   )
   return (
     <FormProvider form={form}>

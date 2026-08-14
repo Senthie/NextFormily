@@ -12,7 +12,7 @@ export class Tracker {
   private results: any
   constructor(
     scheduler?: (reaction: Reaction) => void,
-    name = 'TrackerReaction'
+    name = 'TrackerReaction',
   ) {
     this.track._scheduler = (callback) => {
       if (this.track._boundary === 0) this.dispose()

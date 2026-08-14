@@ -11,7 +11,7 @@ import { JSXComponent, IFieldProps, FormPathPattern } from '../types'
 
 export class ArrayField<
   Decorator extends JSXComponent = any,
-  Component extends JSXComponent = any
+  Component extends JSXComponent = any,
 > extends Field<Decorator, Component, any, any[]> {
   displayName = 'ArrayField'
 
@@ -19,7 +19,7 @@ export class ArrayField<
     address: FormPathPattern,
     props: IFieldProps<Decorator, Component>,
     form: Form,
-    designable: boolean
+    designable: boolean,
   ) {
     super(address, props, form, designable)
     this.makeAutoCleanable()
@@ -35,8 +35,8 @@ export class ArrayField<
           } else if (newLength < oldLength) {
             cleanupArrayChildren(this, newLength)
           }
-        }
-      )
+        },
+      ),
     )
   }
 

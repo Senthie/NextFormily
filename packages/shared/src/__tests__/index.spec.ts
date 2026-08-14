@@ -79,20 +79,20 @@ describe('array', () => {
     expect(
       isEqual(
         findIndex(value, (item) => item > 3),
-        3
-      )
+        3,
+      ),
     ).toBeTruthy()
     expect(
       isEqual(
         findIndex(value, (item) => item < 3, true),
-        1
-      )
+        1,
+      ),
     ).toBeTruthy()
     expect(
       isEqual(
         findIndex(value, (item) => item > 6),
-        -1
-      )
+        -1,
+      ),
     ).toBeTruthy()
   })
 
@@ -101,20 +101,20 @@ describe('array', () => {
     expect(
       isEqual(
         find(value, (item) => item > 3),
-        4
-      )
+        4,
+      ),
     ).toBeTruthy()
     expect(
       isEqual(
         find(value, (item) => item < 3, true),
-        2
-      )
+        2,
+      ),
     ).toBeTruthy()
     expect(
       isEqual(
         find(value, (item) => item > 6),
-        void 0
-      )
+        void 0,
+      ),
     ).toBeTruthy()
   })
 
@@ -133,20 +133,20 @@ describe('array', () => {
     expect(
       isEqual(
         map(value, (item) => item + 1, true),
-        [6, 5, 4, 3, 2]
-      )
+        [6, 5, 4, 3, 2],
+      ),
     ).toBeTruthy()
     expect(
       isEqual(
         map(stringVal, (item) => item),
-        stringVal.split('')
-      )
+        stringVal.split(''),
+      ),
     ).toBeTruthy()
     expect(
       isEqual(
         map(obj, (item) => `${item}-copy`),
-        { k1: 'v1-copy', k2: 'v2-copy' }
-      )
+        { k1: 'v1-copy', k2: 'v2-copy' },
+      ),
     ).toBeTruthy()
   })
 
@@ -155,8 +155,8 @@ describe('array', () => {
     expect(
       isEqual(
         reduce(value, (acc, item) => acc + item, 0, true),
-        15
-      )
+        15,
+      ),
     ).toBeTruthy()
   })
 })
@@ -174,7 +174,7 @@ describe('compare', () => {
 
   // array
   expect(
-    isEqual([{ k1: 'v1' }, { k2: 'v2' }], [{ k1: 'v1' }, { k2: 'v2' }])
+    isEqual([{ k1: 'v1' }, { k2: 'v2' }], [{ k1: 'v1' }, { k2: 'v2' }]),
   ).toBeTruthy()
   expect(isEqual([{ k1: 'v1' }, { k2: 'v2' }], [{ k1: 'v1' }])).toBeFalsy()
 
@@ -223,7 +223,7 @@ describe('compare', () => {
   expect(instOf(new URL('https://aa.test'), 'URL')).toBeTruthy()
   expect(instOf(new Date(), 'Date')).toBeTruthy()
   expect(
-    isEqual(new URL('https://aa.test'), new URL('https://aa.test'))
+    isEqual(new URL('https://aa.test'), new URL('https://aa.test')),
   ).toBeTruthy()
   expect(
     isEqual(
@@ -236,8 +236,8 @@ describe('compare', () => {
         $$typeof: true,
         _owner: true,
         aaa: 123,
-      }
-    )
+      },
+    ),
   ).toBeTruthy()
   expect(
     isEqual(
@@ -250,8 +250,8 @@ describe('compare', () => {
         $$typeof: true,
         _owner: true,
         bbb: 123,
-      }
-    )
+      },
+    ),
   ).toBeFalsy()
   expect(
     isEqual(
@@ -264,8 +264,8 @@ describe('compare', () => {
         $$typeof: true,
         _owner: true,
         aaa: 333,
-      }
-    )
+      },
+    ),
   ).toBeFalsy()
 })
 
@@ -317,7 +317,7 @@ describe('clone and compare', () => {
         dd: {
           _isBigNumber: true,
         },
-      })
+      }),
     ).toEqual({
       aa: {
         _isAMomentObject: true,
@@ -338,14 +338,14 @@ describe('clone and compare', () => {
         toJS() {
           return 123
         },
-      })
+      }),
     ).toEqual(123)
     expect(
       clone({
         toJSON() {
           return 123
         },
-      })
+      }),
     ).toEqual(123)
   })
 
@@ -386,14 +386,14 @@ describe('clone and compare', () => {
     expect(
       shallowClone({
         _isBigNumber: true,
-      })
+      }),
     ).toEqual({
       _isBigNumber: true,
     })
     expect(
       shallowClone({
         _isJSONSchemaObject: true,
-      })
+      }),
     ).toEqual({
       _isJSONSchemaObject: true,
     })
@@ -401,7 +401,7 @@ describe('clone and compare', () => {
       shallowClone({
         $$typeof: true,
         _owner: true,
-      })
+      }),
     ).toEqual({
       $$typeof: true,
       _owner: true,
@@ -411,14 +411,14 @@ describe('clone and compare', () => {
         toJS() {
           return 123
         },
-      }).toJS()
+      }).toJS(),
     ).toEqual(123)
     expect(
       shallowClone({
         toJSON() {
           return 123
         },
-      }).toJSON()
+      }).toJSON(),
     ).toEqual(123)
     expect(shallowClone(1)).toEqual(1)
   })
@@ -430,7 +430,7 @@ describe('deprecate', () => {
       console.info('### deprecated function called ###')
     })
     const deprecatedFn = jest.fn(
-      deprecate(test, 'Some.Deprecated.Api', 'some deprecated error')
+      deprecate(test, 'Some.Deprecated.Api', 'some deprecated error'),
     )
 
     // arguments - function
@@ -440,7 +440,7 @@ describe('deprecate', () => {
 
     // arguments - string
     const testDeprecatedFn = jest.fn(() =>
-      deprecate('Some.Deprecated.Api', 'some deprecated error')
+      deprecate('Some.Deprecated.Api', 'some deprecated error'),
     )
     testDeprecatedFn()
     expect(testDeprecatedFn).toHaveBeenCalledTimes(1)
@@ -631,7 +631,7 @@ describe('merge', () => {
     expect(
       merge(target, source, {
         assign: true,
-      })
+      }),
     ).toEqual({
       aa: {
         bb: {
@@ -670,8 +670,8 @@ describe('merge', () => {
         },
         {
           assign: true,
-        }
-      )
+        },
+      ),
     ).toEqual({
       react: {
         $$typeof: true,
@@ -695,8 +695,8 @@ describe('merge', () => {
         },
         {
           assign: true,
-        }
-      )
+        },
+      ),
     ).toEqual({
       react: {
         _isAMomentObject: true,
@@ -719,8 +719,8 @@ describe('merge', () => {
         },
         {
           assign: true,
-        }
-      )
+        },
+      ),
     ).toEqual({
       react: {
         _isJSONSchemaObject: true,
@@ -747,8 +747,8 @@ describe('merge', () => {
         },
         {
           assign: true,
-        }
-      )
+        },
+      ),
     ).toEqual({
       react: {
         _isBigNumber: true,
@@ -774,8 +774,8 @@ describe('merge', () => {
         },
         {
           assign: true,
-        }
-      )
+        },
+      ),
     ).toEqual({
       toJSObj,
     })
@@ -796,8 +796,8 @@ describe('merge', () => {
         },
         {
           assign: true,
-        }
-      )
+        },
+      ),
     ).toEqual({
       toJSONObj,
     })
@@ -811,8 +811,8 @@ describe('merge', () => {
         },
         {
           aa: {},
-        }
-      )
+        },
+      ),
     ).toEqual({ aa: {} })
   })
 
@@ -868,8 +868,8 @@ describe('merge', () => {
           customMerge() {
             return (a, b) => ({ ...a, ...b })
           },
-        }
-      )
+        },
+      ),
     ).toEqual({ aa: { cc: 123, bb: 321 } })
   })
   test('merge symbols', () => {
@@ -917,7 +917,7 @@ describe('merge', () => {
         get y() {
           return 'y'
         },
-      }
+      },
     )
     expect(merge7.x).toBe('x')
     expect(merge7.y).toBe('y')
@@ -935,7 +935,7 @@ describe('merge', () => {
         get y() {
           return effects.b
         },
-      }
+      },
     )
     expect(merge8.x).toBe(1)
     expect(merge8.y).toBe(2)
@@ -1012,8 +1012,8 @@ test('defaults', () => {
             s: 1,
           },
         },
-      }
-    )
+      },
+    ),
   ).toEqual({
     aa: { value: 111 },
     bb: { value: 222 },
@@ -1046,14 +1046,14 @@ test('applyMiddleware', async () => {
       (num: number, next) => next(num + 1),
       (num: number, next) => next(num + 1),
       (num: number, next) => next(num + 1),
-    ])
+    ]),
   ).toEqual(3)
   expect(
     await applyMiddleware(0, [
       (num: number, next) => next(),
       (num: number, next) => next(num + 1),
       (num: number, next) => next(num + 1),
-    ])
+    ]),
   ).toEqual(2)
   const resolved = jest.fn()
   applyMiddleware(0, [

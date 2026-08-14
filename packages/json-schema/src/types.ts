@@ -30,7 +30,7 @@ export type SchemaProperties<
   Pattern,
   Display,
   Validator,
-  Message
+  Message,
 > = Record<
   string,
   ISchema<
@@ -103,7 +103,7 @@ export type SchemaItems<
   Pattern,
   Display,
   Validator,
-  Message
+  Message,
 > =
   | ISchema<
       Decorator,
@@ -171,7 +171,7 @@ export type ISchema<
   Display = any,
   Validator = any,
   Message = any,
-  ReactionField = any
+  ReactionField = any,
 > = Stringify<{
   version?: string
   name?: SchemaKey

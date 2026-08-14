@@ -35,7 +35,7 @@ const getLength = (value: any) =>
 
 const extendSameRules = (
   rules: IRegistryRules,
-  names: Record<string, string>
+  names: Record<string, string>,
 ) => {
   each(names, (realName, name) => {
     rules[name] = (value, rule, ...args) =>
@@ -96,7 +96,7 @@ const RULES: IRegistryRules = {
   async validator(value, rule, context, format) {
     if (isFn(rule.validator)) {
       const response = await Promise.resolve(
-        rule.validator(value, rule, context, format)
+        rule.validator(value, rule, context, format),
       )
       if (isBool(response)) {
         return !response ? rule.message : ''

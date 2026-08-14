@@ -257,7 +257,7 @@ reduce 当前 Schema 的 properties 属性，同时会基于 x-index 顺序来�
 interface reduceProperties<T> {
   (
     reducer: (value: T, property: Schema, key: string | number) => T,
-    initialValue?: T
+    initialValue?: T,
   ): T
 }
 ```
@@ -274,7 +274,7 @@ reduce 当前 Schema 的 patternProperties 属性，同时会基于 x-index 顺�
 interface reducePatternProperties<T> {
   (
     reducer: (value: T, property: Schema, key: string | number) => T,
-    initialValue?: T
+    initialValue?: T,
   ): T
 }
 ```
@@ -653,8 +653,9 @@ type SchemaReactionEffect =
 
 type SchemaReaction<Field = any> =
   | {
-      dependencies?: //依赖的字段路径列表，支持FormPathPattern数据路径语法, 只能以点路径描述依赖，支持相对路径
-      | Array<
+      dependencies?:
+        //依赖的字段路径列表，支持FormPathPattern数据路径语法, 只能以点路径描述依赖，支持相对路径
+        | Array<
             | string //如果数组里是string，那么读的时候也是数组格式
             | {
                 //如果数组里是对象, 那么读的时候通过name从$deps获取
@@ -684,8 +685,7 @@ type SchemaReaction<Field = any> =
   | ((field: Field) => void) //支持函数, 可以复杂联动
 
 type SchemaReactions<Field = any> =
-  | SchemaReaction<Field>
-  | SchemaReaction<Field>[] //支持传入数组
+  SchemaReaction<Field> | SchemaReaction<Field>[] //支持传入数组
 ```
 
 #### 用例

@@ -17,7 +17,7 @@ export const action: IAction = createBoundaryAnnotation(
   () => {
     untrackEnd()
     batchEnd()
-  }
+  },
 )
 
 action.scope = createBoundaryAnnotation(
@@ -28,5 +28,5 @@ action.scope = createBoundaryAnnotation(
   () => {
     untrackEnd()
     batchScopeEnd()
-  }
+  },
 )

@@ -21,7 +21,7 @@ export default observer(function MySlowList({ text }) {
   let items = []
   for (let i = 0; i < 50; i++) {
     items.push(
-      <ListItem key={i}>{'Result ' + i + ' for ' + text.text}</ListItem>
+      <ListItem key={i}>{'Result ' + i + ' for ' + text.text}</ListItem>,
     )
   }
   return (

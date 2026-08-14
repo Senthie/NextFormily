@@ -2,11 +2,9 @@
   "name": "next-formily",
   "private": true,
   "description": "NextFormily - Formily React 19 + antd 6 fork (NextFormily)",
-  "devEngines": {
-    "runtime": {
-      "name": "node",
-      "version": ">=18"
-    }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alibaba/formily.git"
   },
   "scripts": {
     "build": "rimraf -rf packages/*/{lib,dist,esm} && pnpm -r run build",
@@ -31,13 +29,8 @@
     "format": "oxfmt .",
     "format:check": "oxfmt --check ."
   },
-  "resolutions": {
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "@mapbox/hast-util-to-jsx": "~1.0.0",
-    "yargs": "^16.x",
-    "commander": "^6.x",
-    "ttypescript": "1.5.15"
+  "dependencies": {
+    "@ant-design/icons": "^6.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.1",
@@ -89,9 +82,13 @@
     "typescript": "^7.0.2",
     "vite": "^7.3.6"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alibaba/formily.git"
+  "resolutions": {
+    "@mapbox/hast-util-to-jsx": "~1.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "commander": "^6.x",
+    "ttypescript": "1.5.15",
+    "yargs": "^16.x"
   },
   "config": {
     "ghooks": {
@@ -99,8 +96,11 @@
       "commit-msg": "commitlint --edit"
     }
   },
-  "dependencies": {
-    "@ant-design/icons": "^6.0.0"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=18"
+    }
   },
   "packageManager": "pnpm@11.10.0"
 }

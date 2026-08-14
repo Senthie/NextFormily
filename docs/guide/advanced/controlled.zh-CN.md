@@ -34,7 +34,7 @@ const MyForm = (props) => {
           })
         },
       }),
-    []
+    [],
   )
   const count = useRef(1)
 
@@ -109,7 +109,7 @@ const MyForm = (props) => {
       createForm({
         values: props.values,
       }),
-    []
+    [],
   )
 
   return (
@@ -148,7 +148,7 @@ export default () => {
   const values = useMemo(() =>
     observable({
       input: '',
-    })
+    }),
   )
   return (
     <>

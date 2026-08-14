@@ -17,13 +17,13 @@ const getIndeterminate = (
   record: any,
   flatDataSource: any,
   selected: any[],
-  primaryKey: string
+  primaryKey: string,
 ) => {
   if (selected?.includes(record[primaryKey])) {
     return undefined
   }
   const wholeRecord = flatDataSource.find(
-    (item) => item[primaryKey] === record[primaryKey]
+    (item) => item[primaryKey] === record[primaryKey],
   )
   return hasSelectedKey(wholeRecord.children, selected, primaryKey) || undefined
 }
@@ -35,7 +35,7 @@ interface ICheckSlackly {
     flatDataSource: any[],
     flatFilteredDataSource: any[],
     primaryKey: string,
-    checkStrictly: boolean
+    checkStrictly: boolean,
   ): { selectedRowKeys: any[] }
 }
 
@@ -46,16 +46,16 @@ const useCheckSlackly: ICheckSlackly = (
   flatDataSource,
   flatFilteredDataSource,
   primaryKey,
-  checkStrictly
+  checkStrictly,
 ) => {
   let isSelected = currentSelected.length > selected.length // 判断是选中还是取消
 
   const currentKey = [...currentSelected, ...selected].find(
-    (key) => !(currentSelected.includes(key) && selected.includes(key)) // 当前变化key不同时存在于两个selected
+    (key) => !(currentSelected.includes(key) && selected.includes(key)), // 当前变化key不同时存在于两个selected
   )
   // 从过滤后的数据中获取当前record
   const currentRecord = flatFilteredDataSource.find(
-    (item) => item[primaryKey] === currentKey
+    (item) => item[primaryKey] === currentKey,
   )
   const currentTreeKeys = getTreeKeys(currentRecord.children, primaryKey)
 
@@ -66,7 +66,7 @@ const useCheckSlackly: ICheckSlackly = (
       currentRecord.children,
       currentTreeKeys,
       checkStrictly,
-      primaryKey
+      primaryKey,
     )
   ) {
     isSelected = false
@@ -79,7 +79,7 @@ const useCheckSlackly: ICheckSlackly = (
   } else {
     // 移除当前key及其子keys
     newSelected = selected.filter(
-      (key) => ![currentKey, ...currentTreeKeys].includes(key)
+      (key) => ![currentKey, ...currentTreeKeys].includes(key),
     )
   }
 

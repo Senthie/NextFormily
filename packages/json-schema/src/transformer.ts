@@ -50,7 +50,7 @@ const DefaultFieldEffects = ['onFieldInit', 'onFieldValueChange']
 const getDependencyValue = (
   field: Field,
   pattern: string,
-  property?: string
+  property?: string,
 ) => {
   const [target, path] = String(pattern).split(/\s*#\s*/)
   return field.query(target).getIn(path || property || 'value')
@@ -60,7 +60,7 @@ const getDependencies = (
   field: Field,
   dependencies:
     | Array<string | { name?: string; source?: string; property?: string }>
-    | object
+    | object,
 ) => {
   if (isArr(dependencies)) {
     const results = []
@@ -72,7 +72,7 @@ const getDependencies = (
           results[pattern.name] = getDependencyValue(
             field,
             pattern.source,
-            pattern.property
+            pattern.property,
           )
         }
       }
@@ -85,7 +85,7 @@ const getDependencies = (
         buf[key] = getDependencyValue(field, pattern)
         return buf
       },
-      {}
+      {},
     )
   }
   return []
@@ -93,7 +93,7 @@ const getDependencies = (
 
 const setSchemaFieldState = (
   options: IFieldStateSetterOptions,
-  demand = false
+  demand = false,
 ) => {
   const { request, target, runner, field, scope } = options || {}
   if (!request) return
@@ -105,8 +105,8 @@ const setSchemaFieldState = (
           request.state,
           lazyMerge(scope, {
             $target: state,
-          })
-        )
+          }),
+        ),
       )
     }
     if (request.schema) {
@@ -117,8 +117,8 @@ const setSchemaFieldState = (
           lazyMerge(scope, {
             $target: state,
           }),
-          demand
-        )
+          demand,
+        ),
       )
     }
     if (isStr(runner) && runner) {
@@ -127,7 +127,7 @@ const setSchemaFieldState = (
           `{{function(){${runner}}}}`,
           lazyMerge(scope, {
             $target: state,
-          })
+          }),
         )()
       })
     }
@@ -137,7 +137,7 @@ const setSchemaFieldState = (
     }
     if (request.schema) {
       field.setState((state) =>
-        patchSchemaCompile(state, request.schema, scope, demand)
+        patchSchemaCompile(state, request.schema, scope, demand),
       )
     }
     if (isStr(runner) && runner) {
@@ -148,7 +148,7 @@ const setSchemaFieldState = (
 
 const getBaseScope = (
   field: Field,
-  options: ISchemaTransformerOptions = {}
+  options: ISchemaTransformerOptions = {},
 ) => {
   const $observable = (target: any, deps?: any[]) =>
     autorun.memo(() => observable(target), deps)
@@ -193,7 +193,7 @@ const getBaseScope = (
       $memo,
       $props,
       $values,
-    }
+    },
   )
 }
 
@@ -205,13 +205,13 @@ const getBaseReactions =
         request: { schema },
         scope: getBaseScope(field, options),
       },
-      true
+      true,
     )
   }
 
 const getUserReactions = (
   schema: ISchema,
-  options: ISchemaTransformerOptions
+  options: ISchemaTransformerOptions,
 ) => {
   const reactions: SchemaReaction[] = toArr(schema['x-reactions'])
   return reactions.map((unCompiled) => {
@@ -266,12 +266,12 @@ const getUserReactions = (
 
 export const transformFieldProps = (
   schema: Schema,
-  options: ISchemaTransformerOptions
+  options: ISchemaTransformerOptions,
 ): IFieldFactoryProps<any, any> => {
   return {
     name: schema.name,
     reactions: [getBaseReactions(schema, options)].concat(
-      getUserReactions(schema, options)
+      getUserReactions(schema, options),
     ),
   }
 }

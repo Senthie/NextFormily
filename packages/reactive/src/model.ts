@@ -9,7 +9,7 @@ import { ObModelSymbol } from './environment'
 
 export function define<Target extends object = any>(
   target: Target,
-  annotations?: Annotations<Target>
+  annotations?: Annotations<Target>,
 ): Target {
   if (isObservable(target)) return target
   if (!isSupportObservable(target)) return target

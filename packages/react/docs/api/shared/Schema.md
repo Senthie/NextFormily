@@ -257,7 +257,7 @@ reduce the properties of the current Schema, and it will be traversed based on t
 interface reduceProperties<T> {
   (
     reducer: (value: T, property: Schema, key: string | number) => T,
-    initialValue?: T
+    initialValue?: T,
   ): T
 }
 ```
@@ -274,7 +274,7 @@ reduce the patternProperties attribute of the current Schema, and it will be tra
 interface reducePatternProperties<T> {
   (
     reducer: (value: T, property: Schema, key: string | number) => T,
-    initialValue?: T
+    initialValue?: T,
   ): T
 }
 ```
@@ -653,8 +653,9 @@ type SchemaReactionEffect =
 
 type SchemaReaction<Field = any> =
   | {
-      dependencies?: //The list of dependent field paths can only describe dependencies in dot paths, and supports relative paths
-      | Array<
+      dependencies?:
+        //The list of dependent field paths can only describe dependencies in dot paths, and supports relative paths
+        | Array<
             | string //If it is an array contains string format, then it is also an array format when reading
             | {
                 //If it is an array contains object format, then it is an object format when reading, but the name field is equivalent to an alias
@@ -684,8 +685,7 @@ type SchemaReaction<Field = any> =
   | ((field: Field) => void) //Can be complex linkage
 
 type SchemaReactions<Field = any> =
-  | SchemaReaction<Field>
-  | SchemaReaction<Field>[]
+  SchemaReaction<Field> | SchemaReaction<Field>[]
 ```
 
 #### Example

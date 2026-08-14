@@ -22,9 +22,9 @@ export const Select: ReactFC<SelectProps<any, any>> = connect(
             props.suffixIcon
           ),
       }
-    }
+    },
   ),
-  mapReadPretty(PreviewText.Select)
+  mapReadPretty(PreviewText.Select),
 )
 
 export default Select

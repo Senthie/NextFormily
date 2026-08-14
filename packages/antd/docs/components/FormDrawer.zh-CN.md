@@ -284,15 +284,14 @@ export default () => {
 import { IFormProps, Form } from '@formily/core'
 
 type FormDrawerRenderer =
-  | React.ReactElement
-  | ((form: Form) => React.ReactElement)
+  React.ReactElement | ((form: Form) => React.ReactElement)
 
 interface IFormDrawer {
   forOpen(
     middleware: (
       props: IFormProps,
-      next: (props?: IFormProps) => Promise<any>
-    ) => any
+      next: (props?: IFormProps) => Promise<any>,
+    ) => any,
   ): any //中间件拦截器，可以拦截Drawer打开
   //打开弹窗，接收表单属性，可以传入initialValues/values/effects etc.
   open(props: IFormProps): Promise<any> //返回表单数据

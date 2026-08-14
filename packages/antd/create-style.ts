@@ -18,7 +18,7 @@ ${files
     return `import '${normalize(p)}'\n`
   })
   .join('')}`,
-    'utf8'
+    'utf8',
   )
   await fs.writeFile(
     path.resolve(process.cwd(), './src/style.less'),
@@ -28,7 +28,7 @@ ${files
     return `@import '${normalize(p)}';\n`
   })
   .join('')}`,
-    'utf8'
+    'utf8',
   )
 }
 

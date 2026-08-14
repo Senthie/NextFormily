@@ -137,9 +137,27 @@ describe('normal batch', () => {
     })
 
     expect(handler).toHaveBeenCalledTimes(4)
-    expect(handler).toHaveBeenNthCalledWith(1, undefined, undefined, undefined, undefined)
-    expect(handler).toHaveBeenNthCalledWith(2, 123, undefined, undefined, undefined)
-    expect(handler).toHaveBeenNthCalledWith(3, 123, undefined, 'ccccc', undefined)
+    expect(handler).toHaveBeenNthCalledWith(
+      1,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+    )
+    expect(handler).toHaveBeenNthCalledWith(
+      2,
+      123,
+      undefined,
+      undefined,
+      undefined,
+    )
+    expect(handler).toHaveBeenNthCalledWith(
+      3,
+      123,
+      undefined,
+      'ccccc',
+      undefined,
+    )
     expect(handler).toHaveBeenNthCalledWith(4, 123, 321, 'ccccc', 'ddddd')
   })
 
@@ -165,9 +183,27 @@ describe('normal batch', () => {
     })
 
     expect(handler).toHaveBeenCalledTimes(4)
-    expect(handler).toHaveBeenNthCalledWith(1, undefined, undefined, undefined, undefined)
-    expect(handler).toHaveBeenNthCalledWith(2, 123, undefined, undefined, undefined)
-    expect(handler).toHaveBeenNthCalledWith(3, 123, undefined, 'ccccc', undefined)
+    expect(handler).toHaveBeenNthCalledWith(
+      1,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+    )
+    expect(handler).toHaveBeenNthCalledWith(
+      2,
+      123,
+      undefined,
+      undefined,
+      undefined,
+    )
+    expect(handler).toHaveBeenNthCalledWith(
+      3,
+      123,
+      undefined,
+      'ccccc',
+      undefined,
+    )
     expect(handler).toHaveBeenNthCalledWith(4, 123, 321, 'ccccc', 'ddddd')
   })
 
@@ -245,7 +281,7 @@ describe('annotation batch', () => {
       {
         aa: observable,
         setData: batch,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -277,7 +313,7 @@ describe('annotation batch', () => {
       {
         aa: observable,
         setData: batch,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -304,7 +340,7 @@ describe('annotation batch', () => {
       {
         aa: observable,
         setData: batch.bound,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -336,7 +372,7 @@ describe('annotation batch', () => {
       {
         aa: observable,
         setData: batch.bound,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -370,7 +406,7 @@ describe('annotation batch', () => {
         dd: observable,
         scope1: batch.scope,
         scope2: batch.scope,
-      }
+      },
     )
 
     const handler = jest.fn()
@@ -414,7 +450,7 @@ describe('annotation batch', () => {
         dd: observable,
         scope1: batch.scope.bound,
         scope2: batch.scope.bound,
-      }
+      },
     )
 
     const handler = jest.fn()
@@ -455,7 +491,7 @@ describe('annotation batch', () => {
         aa: observable,
         cc: observable,
         scope: batch.scope,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -486,7 +522,7 @@ describe('annotation batch', () => {
         aa: observable,
         cc: observable,
         scope: batch.scope.bound,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -550,7 +586,7 @@ test('reaction collect in batch valid', () => {
     () => obs.aa,
     () => {
       void obs.cc
-    }
+    },
   )
   const fn = jest.fn()
 
@@ -575,7 +611,7 @@ test('reaction collect in batch invalid', () => {
     () => obs.aa,
     () => {
       void obs.cc
-    }
+    },
   )
   const fn = jest.fn()
 

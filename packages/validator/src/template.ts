@@ -4,7 +4,7 @@ import { getValidateMessageTemplateEngine } from './registry'
 
 export const render = (
   result: IValidateResult,
-  rules: IValidatorRules
+  rules: IValidatorRules,
 ): IValidateResult => {
   const { message } = result
   if (isStr(message)) {
@@ -16,7 +16,7 @@ export const render = (
       /\{\{\s*([\w.]+)\s*\}\}/g,
       (_, $0) => {
         return FormPath.getIn(rules, $0)
-      }
+      },
     )
   }
   return result

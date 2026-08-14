@@ -57,7 +57,7 @@ test('reaction fireImmediately', () => {
     handler,
     {
       fireImmediately: true,
-    }
+    },
   )
   expect(handler).toHaveBeenCalledTimes(1)
   obs.aa.bb = 123
@@ -83,7 +83,7 @@ test('reaction untrack handler', () => {
     },
     () => {
       handler(obs.aa.cc)
-    }
+    },
   )
   obs.aa.bb = 222
   obs.aa.cc = 222
@@ -141,7 +141,7 @@ test('reaction with deep equals', () => {
     handler,
     {
       equals: (a, b) => JSON.stringify(a) === JSON.stringify(b),
-    }
+    },
   )
   obs.aa = { bb: 123 }
   expect(handler).toHaveBeenCalledTimes(0)
@@ -268,7 +268,7 @@ test('autorun.memo with observable', () => {
     const obs2 = autorun.memo(() =>
       observable({
         bb: 0,
-      })
+      }),
     )
     fn(obs1.aa, obs2.bb++)
   })
@@ -294,7 +294,7 @@ test('autorun.memo with observable and effect', async () => {
     const obs2 = autorun.memo(() =>
       observable({
         bb: 0,
-      })
+      }),
     )
     fn(obs1.aa, obs2.bb++)
     autorun.effect(() => {
@@ -327,7 +327,7 @@ test('autorun.memo with deps', () => {
       () => ({
         aa: 0,
       }),
-      [obs.cc]
+      [obs.cc],
     )
     fn(obs.bb, value.aa++)
   })
@@ -357,7 +357,7 @@ test('autorun.memo with deps and dispose', () => {
       () => ({
         aa: 0,
       }),
-      [obs.cc]
+      [obs.cc],
     )
     fn(obs.bb, value.aa++)
   })
@@ -732,7 +732,7 @@ test('reaction recollect dependencies', () => {
     trigger2,
     {
       fireImmediately: true,
-    }
+    },
   )
   obs.aa = '111'
   obs.bb = '222'

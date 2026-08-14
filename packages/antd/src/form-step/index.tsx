@@ -1,5 +1,11 @@
 import React, { Fragment } from 'react'
-import { define, observable, action, markRaw, model } from '@next-formily/reactive'
+import {
+  define,
+  observable,
+  action,
+  markRaw,
+  model,
+} from '@next-formily/reactive'
 import { Steps, StepsProps } from 'antd'
 import cls from 'classnames'
 import { Form, VoidField } from '@next-formily/core'
@@ -72,7 +78,7 @@ const createFormStep = (defaultCurrent = 0): IFormStep => {
       form: observable.ref,
       field: observable.ref,
       steps: observable.shallow,
-    }
+    },
   )
 
   const setDisplay = action.bound((target: number) => {
@@ -160,7 +166,7 @@ export const FormStep = connect(
         })}
       </div>
     )
-  })
+  }),
 ) as unknown as ComposedFormStep
 
 const StepPane: React.FC<React.PropsWithChildren<StepItemType>> = ({

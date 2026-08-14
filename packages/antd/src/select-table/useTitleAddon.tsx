@@ -12,14 +12,14 @@ const newCheckbox =
     disabled,
     readOnly,
     checkStrictly,
-    onChange
+    onChange,
   ) =>
   () => {
     // 全选框是否选中
     const checked = Boolean(
       selected?.length &&
-        selected?.length ===
-          flatDataSource.filter((item) => !item.disabled).length
+      selected?.length ===
+        flatDataSource.filter((item) => !item.disabled).length,
     )
     // 全选框是否未完全选中
     const indeterminate = Boolean(selected?.length && !checked)
@@ -38,7 +38,7 @@ const newCheckbox =
             flatFilteredDataSource,
             usableKeys,
             checkStrictly,
-            primaryKey
+            primaryKey,
           )
         ) {
           isSelected = false
@@ -77,7 +77,7 @@ const useTitleAddon = (
   disabled: boolean,
   readOnly: boolean,
   checkStrictly: boolean,
-  onChange: (selectedRowKeys: any[], record: any[]) => any
+  onChange: (selectedRowKeys: any[], record: any[]) => any,
 ) => {
   if (mode === 'single') {
     return {}
@@ -91,7 +91,7 @@ const useTitleAddon = (
       disabled,
       readOnly,
       checkStrictly,
-      onChange
+      onChange,
     ),
   }
 }

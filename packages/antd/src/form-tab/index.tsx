@@ -113,7 +113,7 @@ export const FormTab: ComposedFormTab = observer(
         ))}
       </Tabs>
     )
-  }
+  },
 ) as unknown as ComposedFormTab
 
 const TabPane: React.FC<React.PropsWithChildren<IFormTabPaneProps>> = ({

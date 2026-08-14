@@ -109,7 +109,7 @@ function mergeObject(target: any, source: any, options: Options) {
       destination[key] = getMergeFunction(key, options)(
         target[key],
         source[key],
-        options
+        options,
       )
     } else {
       destination[key] = cloneUnlessOtherwiseSpecified(source[key], options)
@@ -124,7 +124,7 @@ interface Options {
   assign?: boolean
   customMerge?: (
     key: string,
-    options?: Options
+    options?: Options,
   ) => ((x: any, y: any) => any) | undefined
   isMergeableObject?(value: object): boolean
   cloneUnlessOtherwiseSpecified?: (value: any, options: Options) => any
@@ -158,7 +158,7 @@ export const lazyMerge = <T extends object | Function>(
 ): any => {
   const _lazyMerge = <T extends object | Function>(
     target: T,
-    source: T
+    source: T,
   ): {} => {
     if (!isValid(source)) return target
     if (!isValid(target)) return source

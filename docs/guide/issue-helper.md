@@ -52,7 +52,7 @@ const MdInput = ({ value, onChange }) => {
           Promise.resolve(
             `<div class="markdown" style="margin:0 20px;">${
               converter.makeHtml(markdown) || ''
-            }</div>`
+            }</div>`,
           )
         }
       />
@@ -65,11 +65,11 @@ const form = createForm({
   effects() {
     onFieldMount('version', async (field) => {
       const { versions: unsort } = await fetch(
-        'https://registry.npmmirror.com/@next-formily/core'
+        'https://registry.npmmirror.com/@next-formily/core',
       ).then((res) => res.json())
 
       const versions = Object.keys(unsort).sort((v1, v2) =>
-        semver.gte(v1, v2) ? -1 : 1
+        semver.gte(v1, v2) ? -1 : 1,
       )
       field.dataSource = versions.map((version) => ({
         label: version,
@@ -78,7 +78,7 @@ const form = createForm({
     })
     onFieldMount('package', async (field) => {
       const packages = await fetch(
-        'https://formilyjs.org/.netlify/functions/npm-search?q=@formily'
+        'https://formilyjs.org/.netlify/functions/npm-search?q=@formily',
       ).then((res) => res.json())
       field.dataSource = packages.map(({ name }) => {
         return {

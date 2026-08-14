@@ -223,7 +223,7 @@ describe('annotation action', () => {
       {
         aa: observable,
         setData: action,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -253,7 +253,7 @@ describe('annotation action', () => {
       {
         aa: observable,
         setData: action,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -280,7 +280,7 @@ describe('annotation action', () => {
       {
         aa: observable,
         setData: action.bound,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -310,7 +310,7 @@ describe('annotation action', () => {
       {
         aa: observable,
         setData: action.bound,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -344,7 +344,7 @@ describe('annotation action', () => {
         dd: observable,
         scope1: action.scope,
         scope2: action.scope,
-      }
+      },
     )
 
     const handler = jest.fn()
@@ -384,7 +384,7 @@ describe('annotation action', () => {
         dd: observable,
         scope1: action.scope.bound,
         scope2: action.scope.bound,
-      }
+      },
     )
 
     const handler = jest.fn()
@@ -421,7 +421,7 @@ describe('annotation action', () => {
         aa: observable,
         cc: observable,
         scope: action.scope,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -452,7 +452,7 @@ describe('annotation action', () => {
         aa: observable,
         cc: observable,
         scope: action.scope.bound,
-      }
+      },
     )
     const handler = jest.fn()
     autorun(() => {
@@ -473,7 +473,7 @@ test('nested action to reaction', () => {
   const handler = jest.fn()
   reaction(
     () => obs.aa,
-    (v) => handler(v)
+    (v) => handler(v),
   )
   action(() => {
     obs.aa = 1
@@ -506,12 +506,12 @@ test('nested action/batch to reaction', () => {
     {
       aa: observable.computed,
       bb: observable,
-    }
+    },
   )
   const handler = jest.fn()
   reaction(
     () => obs.aa,
-    (v) => handler(v)
+    (v) => handler(v),
   )
   action(() => {
     obs.aa = 1

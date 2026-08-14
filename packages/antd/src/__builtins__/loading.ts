@@ -2,7 +2,7 @@ import { message } from 'antd'
 
 export const loading = async (
   title: React.ReactNode = 'Loading...',
-  processor: () => Promise<any>
+  processor: () => Promise<any>,
 ) => {
   let hide = null
   let loading = setTimeout(() => {

@@ -1,18 +1,14 @@
 /*
- * @Author: senthie 1214391613@qq.com
- * @Date: 2026-07-16 11:43:11
- * @LastEditors: senthie 1214391613@qq.com
- * @LastEditTime: 2026-07-16 11:55:37
- * @FilePath: /my-app/oxfmt.config.ts
- * @Description:
+ * @Date: 2026-08-14
+ * @Description: NextFormily oxfmt 配置 — 匹配仓库既有风格（空格缩进 + 单引号）
  */
-import { defineConfig } from "oxfmt"
+import { defineConfig } from 'oxfmt'
 
 export default defineConfig({
-	printWidth: 80,
-	tabWidth: 2,
-	useTabs: true,
-	semi: false,
-	singleQuote: false,
-	newlinesBetween: true,
+  printWidth: 80,
+  tabWidth: 2,
+  useTabs: false,
+  semi: false,
+  singleQuote: true,
+  newlinesBetween: true,
 })

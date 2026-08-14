@@ -13,7 +13,7 @@ export const Checkbox: ComposedCheckbox = connect(
   AntdCheckbox,
   mapProps({
     value: 'checked',
-  })
+  }),
 )
 
 Checkbox.__ANT_CHECKBOX = true
@@ -25,7 +25,7 @@ Checkbox.Group = connect(
   }),
   mapReadPretty(PreviewText.Select, {
     mode: 'tags',
-  })
+  }),
 )
 
 export default Checkbox

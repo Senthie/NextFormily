@@ -91,11 +91,11 @@ export interface IReactionOptions<T> {
 
 export type BindFunction<F = (...args: any[]) => any> = (
   callback?: F,
-  context?: any
+  context?: any,
 ) => F
 
 export type BoundaryFunction = <F extends (...args: any) => any>(
-  fn?: F
+  fn?: F,
 ) => ReturnType<F>
 
 export interface IBoundable {

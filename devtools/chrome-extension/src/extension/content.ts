@@ -9,5 +9,5 @@ window.addEventListener(
       })
     }
   },
-  false
+  false,
 )

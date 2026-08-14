@@ -49,7 +49,7 @@ export const RecursionField: ReactFC<IRecursionFieldProps> = (props) => {
       FormPath.setIn(
         fieldSchema.properties,
         target,
-        <RecursionField schema={innerSchema} name={key} />
+        <RecursionField schema={innerSchema} name={key} />,
       )
     }
   }

@@ -41,18 +41,18 @@ const FormItem = connect(
         ...props,
         help: field.selfErrors?.length ? field.selfErrors : undefined,
       }
-    }
-  )
+    },
+  ),
 )
 
 const Input = connect(
   AntdInput,
-  mapReadPretty(({ value }) => <div>{value}</div>)
+  mapReadPretty(({ value }) => <div>{value}</div>),
 )
 
 export default () => {
   const form = useMemo(() =>
-    createForm({ validateFirst: true, readPretty: true })
+    createForm({ validateFirst: true, readPretty: true }),
   )
   return (
     <FormProvider form={form}>

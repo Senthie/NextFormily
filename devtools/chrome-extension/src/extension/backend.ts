@@ -58,7 +58,7 @@ const send = ({
           return value
         }),
     },
-    '*'
+    '*',
   )
 }
 

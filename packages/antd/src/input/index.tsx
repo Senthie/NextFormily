@@ -26,7 +26,7 @@ export const Input: ComposedInput = connect(
       ),
     }
   }),
-  mapReadPretty(PreviewText.Input)
+  mapReadPretty(PreviewText.Input),
 )
 
 Input.TextArea = connect(AntdInput.TextArea, mapReadPretty(PreviewText.Input))

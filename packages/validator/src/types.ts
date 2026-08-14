@@ -38,12 +38,12 @@ export type ValidatorFunction<Context = any> = (
   value: any,
   rule: IValidatorRules<Context>,
   ctx: Context,
-  render: (message: string, scope?: any) => string
+  render: (message: string, scope?: any) => string,
 ) => ValidatorFunctionResponse | Promise<ValidatorFunctionResponse> | null
 
 export type ValidatorParsedFunction<Context = any> = (
   value: any,
-  ctx: Context
+  ctx: Context,
 ) => IValidateResult | Promise<IValidateResult> | null
 
 export type ValidatorTriggerType =

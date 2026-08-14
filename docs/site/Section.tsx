@@ -9,7 +9,7 @@ export interface ISectionProps {
 }
 
 export const Section: React.FC<React.PropsWithChildren<ISectionProps>> = (
-  props
+  props,
 ) => {
   return (
     <section className="site-section" style={props.style}>

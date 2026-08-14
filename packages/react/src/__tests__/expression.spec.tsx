@@ -36,11 +36,11 @@ test('expression scope', async () => {
           />
         </SchemaField.Void>
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
 
   expect(getByTestId('test-input').textContent).toBe(
-    'this is inner scope value this is outer scope value'
+    'this is inner scope value this is outer scope value',
   )
 })
 
@@ -73,7 +73,7 @@ test('x-compile-omitted', async () => {
         />
         <SchemaField.String name="btn" x-component="Button" />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
   await waitFor(() => {
     expect(queryByTestId('input')?.textContent).toBe('{{fake}}123321extra')
@@ -87,7 +87,7 @@ test('field hidden & visible', async () => {
       <div data-testid="testid">
         <Field name="empty" component={['input']} />
       </div>
-    </FormProvider>
+    </FormProvider>,
   )
   await findByTestId('testid')
   //

@@ -151,8 +151,9 @@ interface Feedback {
   path: string //字段数据路径
   address: string //字段绝对路径
   type: 'error' | 'success' | 'warning' //校验结果类型
-  code: //校验结果编码
-  | 'ValidateError'
+  code:
+    //校验结果编码
+    | 'ValidateError'
     | 'ValidateSuccess'
     | 'ValidateWarning'
     | 'EffectError'

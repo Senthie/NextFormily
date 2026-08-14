@@ -24,7 +24,7 @@ module.exports = {
         filename: 'index.html',
         template: path.resolve(
           __dirname,
-          '../src/extension/views/devtools.ejs'
+          '../src/extension/views/devtools.ejs',
         ),
         chunk: 'demo',
       },

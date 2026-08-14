@@ -21,7 +21,7 @@ test('traverseSchema', () => {
       } else {
         visited.push(path)
       }
-    }
+    },
   )
   expect(visited).toEqual([
     ['x-validator'],
@@ -69,9 +69,9 @@ test('traverse none circular reference', () => {
   })
   traverseSchema(a, () => {})
   expect(
-    paths.some((path) => FormPath.parse(path).includes('dd.mm'))
+    paths.some((path) => FormPath.parse(path).includes('dd.mm')),
   ).toBeTruthy()
   expect(
-    paths.some((path) => FormPath.parse(path).includes('bb.dd.mm'))
+    paths.some((path) => FormPath.parse(path).includes('bb.dd.mm')),
   ).toBeTruthy()
 })

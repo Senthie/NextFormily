@@ -39,7 +39,7 @@ describe('markup schema field', () => {
         <SchemaField>
           <SchemaField.String x-component="Input" />
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('input')).toBeVisible()
   })
@@ -55,7 +55,7 @@ describe('markup schema field', () => {
         <SchemaField>
           <SchemaField.Boolean x-component="Input" />
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('input')).toBeVisible()
   })
@@ -71,7 +71,7 @@ describe('markup schema field', () => {
         <SchemaField>
           <SchemaField.Number x-component="Input" />
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('input')).toBeVisible()
   })
@@ -87,7 +87,7 @@ describe('markup schema field', () => {
         <SchemaField>
           <SchemaField.Date x-component="Input" />
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('input')).toBeVisible()
   })
@@ -103,7 +103,7 @@ describe('markup schema field', () => {
         <SchemaField>
           <SchemaField.DateTime x-component="Input" />
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('input')).toBeVisible()
   })
@@ -122,7 +122,7 @@ describe('markup schema field', () => {
         <SchemaField>
           <SchemaField.Void x-component="VoidComponent" />
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('void-component')).toBeVisible()
   })
@@ -143,7 +143,7 @@ describe('markup schema field', () => {
             <SchemaField.Void />
           </SchemaField.Array>
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
   })
   test('other', () => {
@@ -160,7 +160,7 @@ describe('markup schema field', () => {
             <SchemaField.Markup />
           </SchemaField.Markup>
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
   })
   test('no parent', () => {
@@ -175,7 +175,7 @@ describe('markup schema field', () => {
         <SchemaField.Markup type="other">
           <SchemaField.Markup />
         </SchemaField.Markup>
-      </FormProvider>
+      </FormProvider>,
     )
   })
   test('props children', () => {
@@ -196,7 +196,7 @@ describe('markup schema field', () => {
             x-component-props={{ children: 'props' }}
           />
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('children-test')).toBeVisible()
     expect(queryByTestId('children-test').innerHTML).toEqual('props')
@@ -216,7 +216,7 @@ describe('markup schema field', () => {
         <SchemaField>
           <SchemaField.Void x-component="Text" x-content="content" />
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('content-test')).toBeVisible()
     expect(queryByTestId('content-test').innerHTML).toEqual('content')
@@ -268,7 +268,7 @@ describe('recursion field', () => {
             <SchemaField.String x-component="Input" />
           </SchemaField.Void>
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryAllByTestId('input').length).toEqual(3)
     expect(queryAllByTestId('object').length).toEqual(1)
@@ -321,7 +321,7 @@ describe('recursion field', () => {
             <SchemaField.String x-component="Input" />
           </SchemaField.Object>
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryAllByTestId('input').length).toEqual(2)
     expect(queryAllByTestId('input')[0].getAttribute('value')).toEqual('123')
@@ -375,7 +375,7 @@ describe('recursion field', () => {
             <SchemaField.String x-component="Input" />
           </SchemaField.Object>
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryAllByTestId('input').length).toEqual(1)
     expect(queryAllByTestId('object').length).toEqual(2)
@@ -404,7 +404,7 @@ describe('recursion field', () => {
             <SchemaField.String x-component="Input" />
           </SchemaField.Object>
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryAllByTestId('input').length).toEqual(0)
     expect(queryAllByTestId('object').length).toEqual(1)
@@ -443,7 +443,7 @@ describe('recursion field', () => {
             <SchemaField.String x-component="Input" />
           </SchemaField.Object>
         </SchemaField>
-      </FormProvider>
+      </FormProvider>,
     )
     expect(queryByTestId('input')).toBeNull()
   })
@@ -510,7 +510,7 @@ test('schema reactions', async () => {
           }}
         />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
   expect(queryByTestId('bbb')).toBeNull()
   fireEvent.change(queryByTestId('aaa'), {
@@ -586,7 +586,7 @@ test('expression scope', async () => {
   const { queryByTestId } = render(
     <FormProvider form={form}>
       <SchemaField schema={schema} scope={scope} />
-    </FormProvider>
+    </FormProvider>,
   )
 
   await waitFor(() => queryByTestId('aa'))
@@ -619,7 +619,7 @@ test('expression x-content', async () => {
           x-content="{{child}}"
         />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
 
   await waitFor(() => {
@@ -646,7 +646,7 @@ test('expression x-visible', async () => {
           x-visible="{{$form.values.aaa === 123}}"
         />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
 
   await waitFor(() => {
@@ -682,7 +682,7 @@ test('expression x-value', async () => {
           x-value="{{$form.values.aaa * 10}}"
         />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
 
   await waitFor(() => {
@@ -718,7 +718,7 @@ test('nested update component props with expression', async () => {
           x-component-props={{ aa: { bb: { cc: '{{$form.values.aaa}}' } } }}
         />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
   await waitFor(() => {
     expect(queryByText('xxx')).not.toBeNull()
@@ -759,7 +759,7 @@ test('nested update component props with x-reactions', async () => {
           }}
         />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
   await waitFor(() => {
     expect(queryByText('xxx')).not.toBeNull()
@@ -794,7 +794,7 @@ test('schema x-validator/required', async () => {
           x-component="Input"
         />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
   await waitFor(() => {
     expect(form.query('input').get('required')).toBeTruthy()
@@ -841,7 +841,7 @@ test('schema x-reactions when undefined', async () => {
           }}
         />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
   await waitFor(() => {
     expect(queryByTestId('input')).not.toBeNull()
@@ -864,7 +864,7 @@ test('void field children', async () => {
       <SchemaField>
         <SchemaField.Void x-component="Button" />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
   await waitFor(() => {
     expect(queryByTestId('btn')?.textContent).toBe('placeholder')
@@ -909,7 +909,7 @@ test('x-reactions runner for target', async () => {
           }}
         />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
   fireEvent.click(getByTestId('btn'))
   await waitFor(() => {
@@ -959,7 +959,7 @@ test('multi x-reactions isolate effect', async () => {
         />
         <SchemaField.String name="btn" x-component="Button" />
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
   await waitFor(() => {
     expect(queryByTestId('input')).toBeNull()
@@ -994,7 +994,7 @@ test('nested record scope', async () => {
           </SchemaField>
         </RecordScope>
       </RecordScope>
-    </FormProvider>
+    </FormProvider>,
   )
   await waitFor(() => {
     expect(queryByTestId('text')?.textContent).toBe('12332121')
@@ -1021,7 +1021,7 @@ test('literal record scope', async () => {
           />
         </SchemaField>
       </RecordScope>
-    </FormProvider>
+    </FormProvider>,
   )
   await waitFor(() => {
     expect(queryByTestId('text')?.textContent).toBe('1232')
@@ -1048,7 +1048,7 @@ test('records scope', async () => {
           />
         </SchemaField>
       </RecordsScope>
-    </FormProvider>
+    </FormProvider>,
   )
   await waitFor(() => {
     expect(queryByTestId('text')?.textContent).toBe('3')
@@ -1091,7 +1091,7 @@ test('propsRecursion as true', () => {
           </SchemaField.Object>
         </SchemaField.Object>
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
   expect(queryAllByTestId('input').length).toEqual(0)
   expect(queryAllByTestId('object').length).toEqual(1)
@@ -1132,7 +1132,7 @@ test('propsRecursion as empty', () => {
           </SchemaField.Object>
         </SchemaField.Object>
       </SchemaField>
-    </FormProvider>
+    </FormProvider>,
   )
   expect(queryAllByTestId('input').length).toEqual(1)
   expect(queryAllByTestId('object').length).toEqual(1)

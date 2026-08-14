@@ -139,10 +139,10 @@ export default () => {
                 input: 'default value',
               })),
               string_array: Array.from({ length: 10 }).map(
-                () => 'default value'
+                () => 'default value',
               ),
               string_array_unshift: Array.from({ length: 10 }).map(
-                () => 'default value'
+                () => 'default value',
               ),
             })
           }}

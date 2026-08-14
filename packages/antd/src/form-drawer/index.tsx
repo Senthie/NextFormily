@@ -64,20 +64,20 @@ export interface IDrawerProps extends DrawerProps {
 export function FormDrawer(
   title: IDrawerProps,
   id: string,
-  renderer: FormDrawerRenderer
+  renderer: FormDrawerRenderer,
 ): IFormDrawer
 export function FormDrawer(
   title: IDrawerProps,
-  id: FormDrawerRenderer
+  id: FormDrawerRenderer,
 ): IFormDrawer
 export function FormDrawer(
   title: DrawerTitle,
   id: string,
-  renderer: FormDrawerRenderer
+  renderer: FormDrawerRenderer,
 ): IFormDrawer
 export function FormDrawer(
   title: DrawerTitle,
-  id: FormDrawerRenderer
+  id: FormDrawerRenderer,
 ): IFormDrawer
 export function FormDrawer(title: any, id: any, renderer?: any): IFormDrawer {
   if (isFn(id) || React.isValidElement(id)) {
@@ -132,7 +132,7 @@ export function FormDrawer(title: any, id: any, renderer?: any): IFormDrawer {
       env.promise = new Promise(async (resolve, reject) => {
         try {
           props = await loading(drawer.loadingText, () =>
-            applyMiddleware(props, env.openMiddlewares)
+            applyMiddleware(props, env.openMiddlewares),
           )
           env.form =
             env.form ||

@@ -40,7 +40,7 @@ export const isEqual = (a: any, b: any) => {
       if (length !== b.length) {
         return false
       }
-      for (i = length; i-- !== 0; ) {
+      for (i = length; i-- !== 0;) {
         if (!isEqual(a[i], b[i])) {
           return false
         }
@@ -59,12 +59,12 @@ export const isEqual = (a: any, b: any) => {
       return false
     }
 
-    for (i = length; i-- !== 0; ) {
+    for (i = length; i-- !== 0;) {
       if (!hasProp.call(b, keys[i])) {
         return false
       }
     }
-    for (i = length; i-- !== 0; ) {
+    for (i = length; i-- !== 0;) {
       key = keys[i]
       if (!isEqual(a[key], b[key])) {
         return false

@@ -102,7 +102,7 @@ autorun.effect = (callback: () => void | Dispose, dependencies?: any[]) => {
 export const reaction = <T>(
   tracker: () => T,
   subscriber?: (value: T, oldValue: T) => void,
-  options?: IReactionOptions<T>
+  options?: IReactionOptions<T>,
 ) => {
   const realOptions = {
     name: 'Reaction',

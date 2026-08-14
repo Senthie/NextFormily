@@ -5,5 +5,5 @@ import baseConfig, {
 export default baseConfig(
   'formily.antd',
   'Formily.Antd',
-  removeImportStyleFromInputFilePlugin()
+  removeImportStyleFromInputFilePlugin(),
 )

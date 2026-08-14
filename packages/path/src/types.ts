@@ -120,13 +120,13 @@ export const isGroupExpression = isType<GroupExpressionNode>('GroupExpression')
 export const isRangeExpression = isType<RangeExpressionNode>('RangeExpression')
 
 export const isDestructorExpression = isType<DestructorExpressionNode>(
-  'DestructorExpression'
+  'DestructorExpression',
 )
 
 export const isObjectPattern = isType<ObjectPatternNode>('ObjectPattern')
 
 export const isObjectPatternProperty = isType<ObjectPatternPropertyNode>(
-  'ObjectPatternProperty'
+  'ObjectPatternProperty',
 )
 
 export const isArrayPattern = isType<ArrayPatternNode>('ArrayPattern')

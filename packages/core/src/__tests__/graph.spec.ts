@@ -7,22 +7,22 @@ test('getGraph/setGraph', () => {
   attach(
     form.createField({
       name: 'normal',
-    })
+    }),
   )
   attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: 'object',
-    })
+    }),
   )
   attach(
     form.createVoidField({
       name: 'void',
-    })
+    }),
   )
   form.query('normal').take((field) => {
     if (isVoidField(field)) return
@@ -46,17 +46,17 @@ test('clearFormGraph', () => {
   attach(
     form.createField({
       name: 'normal',
-    })
+    }),
   )
   attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: 'object',
-    })
+    }),
   )
   form.clearFormGraph('normal')
   expect(form.fields['normal']).toBeUndefined()

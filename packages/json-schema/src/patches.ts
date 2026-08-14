@@ -10,7 +10,7 @@ export const reducePatches = (schema: any) => {
     (buf, patch) => {
       return patch(buf)
     },
-    { ...schema }
+    { ...schema },
   )
 }
 

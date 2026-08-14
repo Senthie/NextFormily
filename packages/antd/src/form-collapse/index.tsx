@@ -81,7 +81,7 @@ const createFormCollapse = (defaultActiveKeys?: ActiveKeys) => {
     removeActiveKey(key: ActiveKey) {
       if (Array.isArray(formCollapse.activeKeys)) {
         formCollapse.activeKeys = formCollapse.activeKeys.filter(
-          (item) => item != key
+          (item) => item != key,
         )
       } else {
         formCollapse.activeKeys = ''
@@ -152,7 +152,7 @@ export const FormCollapse: ComposedFormCollapse = observer(
         ))}
       </Collapse>
     )
-  }
+  },
 )
 
 const CollapsePanel: React.FC<React.PropsWithChildren<CollapsePanelProps>> = ({

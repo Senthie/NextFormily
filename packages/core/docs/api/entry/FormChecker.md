@@ -347,11 +347,10 @@ Determine whether an object is an IFieldState/IArrayFieldState/IObjectFieldState
 
 ```ts
 interface isGeneralFieldState {
-  (target: any): target is
-    | IFieldState
-    | IArrayFieldState
-    | IObjectFieldState
-    | IVoidFieldState
+  (
+    target: any,
+  ): target is
+    IFieldState | IArrayFieldState | IObjectFieldState | IVoidFieldState
 }
 ```
 

@@ -20,7 +20,7 @@ interface createEffectHook {
       payload: any,
       form: Form,
       ...ctx: any[] //user-injected context
-    ) => (...args: any[]) => void //High-level callbacks are used to process the encapsulation of the listener and help users achieve parameter customization capabilities
+    ) => (...args: any[]) => void, //High-level callbacks are used to process the encapsulation of the listener and help users achieve parameter customization capabilities
   )
 }
 ```
@@ -36,7 +36,7 @@ const onCustomEvent = createEffectHook(
   'custom-event',
   (payload, form) => (listener) => {
     listener(payload, form)
-  }
+  },
 )
 
 export default () => {
@@ -50,7 +50,7 @@ export default () => {
           })
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -109,7 +109,7 @@ export default () => {
           useMyHook()
         },
       }),
-    []
+    [],
   )
   return (
     <ActionResponse response={response}>
@@ -164,7 +164,7 @@ export default () => {
           useMyHook()
         },
       }),
-    []
+    [],
   )
   return <ActionResponse response={response} />
 }

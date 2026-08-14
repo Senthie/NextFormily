@@ -18,7 +18,7 @@ export interface ISortableContainerProps {
 }
 
 export function SortableContainer<T extends React.HTMLAttributes<HTMLElement>>(
-  Component: ReactFC<T>
+  Component: ReactFC<T>,
 ): ReactFC<ISortableContainerProps & T> {
   return ({
     list,
@@ -69,7 +69,7 @@ export interface ISortableElementProps {
 }
 
 export function SortableElement<T extends React.HTMLAttributes<HTMLElement>>(
-  Component: ReactFC<T>
+  Component: ReactFC<T>,
 ): ReactFC<T & ISortableElementProps> {
   return ({ index = 0, lockAxis, ...props }) => {
     const sortable = useSortable({
@@ -136,7 +136,7 @@ export function SortableElement<T extends React.HTMLAttributes<HTMLElement>>(
 }
 
 export function SortableHandle<T extends React.HTMLAttributes<HTMLElement>>(
-  Component: ReactFC<T>
+  Component: ReactFC<T>,
 ): ReactFC<T> {
   return (props: T) => {
     const { attributes, listeners } = useSortableItem()

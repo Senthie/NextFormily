@@ -85,7 +85,7 @@ test('render field', async () => {
         decorator={[Decorator]}
         component={[Input, { onChange: null }]}
       />
-    </FormProvider>
+    </FormProvider>,
   )
   expect(form.mounted).toBeTruthy()
   expect(form.query('aa').take().mounted).toBeTruthy()
@@ -206,7 +206,7 @@ test('useFormEffects', async () => {
     <FormProvider form={form}>
       <Field name="aa" decorator={[Decorator]} component={[Input]} />
       <Field name="bb" component={[CustomField, { tag: 'xxx' }]} />
-    </FormProvider>
+    </FormProvider>,
   )
 
   expect(queryByTestId('custom-value')?.textContent).toEqual('')
@@ -222,7 +222,7 @@ test('useFormEffects', async () => {
     <FormProvider form={form}>
       <Field name="aa" decorator={[Decorator]} component={[Input]} />
       <Field name="bb" component={[CustomField, { tag: 'yyy' }]} />
-    </FormProvider>
+    </FormProvider>,
   )
 })
 
@@ -237,7 +237,7 @@ test('connect', async () => {
         mounted: field.mounted ? 1 : 2,
       }
     }),
-    mapReadPretty(() => <div>read pretty</div>)
+    mapReadPretty(() => <div>read pretty</div>),
   )
   const BaseComponent = (props: any) => {
     return <div>{props.value}</div>
@@ -246,7 +246,7 @@ test('connect', async () => {
   const CustomField2 = connect(
     BaseComponent,
     mapProps({ value: true, loading: true }),
-    mapReadPretty(() => <div>read pretty</div>)
+    mapReadPretty(() => <div>read pretty</div>),
   )
   const form = createForm()
   const MyComponent = () => {

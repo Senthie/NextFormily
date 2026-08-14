@@ -10,7 +10,7 @@ test('create lifecycle', () => {
       type: 'event1',
       payload: undefined,
     },
-    undefined
+    undefined,
   )
   lifecycle1.notify('event11', 'payload1')
   expect(handler1).toHaveBeenCalledTimes(2)
@@ -19,7 +19,7 @@ test('create lifecycle', () => {
       type: 'event11',
       payload: 'payload1',
     },
-    undefined
+    undefined,
   )
   const context: any = {}
   lifecycle1.notify('event12', 'payload11', context)
@@ -29,7 +29,7 @@ test('create lifecycle', () => {
       type: 'event12',
       payload: 'payload11',
     },
-    context
+    context,
   )
 
   const handler2 = jest.fn()

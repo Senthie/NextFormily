@@ -21,10 +21,10 @@ test('isEqual', () => {
 
   expect(isEqual([1, '123'], [1, '123'])).toBeTruthy()
   expect(
-    isEqual([1, '123', { a: 1, b: 2 }], [1, '123', { a: 1, b: 2 }])
+    isEqual([1, '123', { a: 1, b: 2 }], [1, '123', { a: 1, b: 2 }]),
   ).toBeTruthy()
   expect(
-    isEqual([1, '123', { a: 1, b: 2 }], [1, '123', { a: 1, b: 3 }])
+    isEqual([1, '123', { a: 1, b: 2 }], [1, '123', { a: 1, b: 3 }]),
   ).toBeFalsy()
   expect(isEqual([1, '123'], [1, '234'])).toBeFalsy()
   expect(isEqual([], [1])).toBeFalsy()

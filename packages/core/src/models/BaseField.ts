@@ -60,7 +60,7 @@ export class BaseField<Decorator = any, Component = any, TextType = any> {
 
   get indexes(): number[] {
     return this.path.transform(/^\d+$/, (...args) =>
-      args.map((index) => Number(index))
+      args.map((index) => Number(index)),
     ) as number[]
   }
 
@@ -249,7 +249,7 @@ export class BaseField<Decorator = any, Component = any, TextType = any> {
 
   setComponent = <C extends JSXComponent, ComponentProps extends object = {}>(
     component?: C,
-    props?: ComponentProps
+    props?: ComponentProps,
   ) => {
     if (component) {
       this.componentType = component as any
@@ -261,7 +261,7 @@ export class BaseField<Decorator = any, Component = any, TextType = any> {
   }
 
   setComponentProps = <ComponentProps extends object = {}>(
-    props?: ComponentProps
+    props?: ComponentProps,
   ) => {
     if (props) {
       this.componentProps = this.componentProps || {}
@@ -271,7 +271,7 @@ export class BaseField<Decorator = any, Component = any, TextType = any> {
 
   setDecorator = <D extends JSXComponent, ComponentProps extends object = {}>(
     component?: D,
-    props?: ComponentProps
+    props?: ComponentProps,
   ) => {
     if (component) {
       this.decoratorType = component as any
@@ -283,7 +283,7 @@ export class BaseField<Decorator = any, Component = any, TextType = any> {
   }
 
   setDecoratorProps = <ComponentProps extends object = {}>(
-    props?: ComponentProps
+    props?: ComponentProps,
   ) => {
     if (props) {
       this.decoratorProps = this.decoratorProps || {}

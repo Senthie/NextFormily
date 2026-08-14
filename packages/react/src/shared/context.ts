@@ -30,5 +30,5 @@ export const ContextCleaner = createContextCleaner(
   SchemaContext,
   SchemaExpressionScopeContext,
   SchemaComponentsContext,
-  SchemaOptionsContext
+  SchemaOptionsContext,
 )

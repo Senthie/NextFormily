@@ -40,7 +40,7 @@ const Input: React.FC<React.PropsWithChildren<InputProps>> = (props) => {
 }
 
 const NumberPicker: React.FC<React.PropsWithChildren<InputNumberProps>> = (
-  props
+  props,
 ) => {
   const prefixCls = usePrefixCls('form-text', props)
   return (
@@ -53,7 +53,7 @@ const NumberPicker: React.FC<React.PropsWithChildren<InputNumberProps>> = (
               userTyping: false,
               input: '',
             })
-          : props.value
+          : props.value,
       )}
       {props['suffix']}
       {props.addonAfter}
@@ -68,8 +68,8 @@ const Select: React.FC<React.PropsWithChildren<SelectProps<any>>> = observer(
     const dataSource: any[] = field?.dataSource?.length
       ? field.dataSource
       : props?.options?.length
-      ? props.options
-      : []
+        ? props.options
+        : []
     const placeholder = usePlaceholder()
     const getSelected = () => {
       const value = props.value
@@ -115,7 +115,7 @@ const Select: React.FC<React.PropsWithChildren<SelectProps<any>>> = observer(
         {getLabels()}
       </div>
     )
-  }
+  },
 )
 
 const TreeSelect: React.FC<React.PropsWithChildren<TreeSelectProps<any>>> =
@@ -126,8 +126,8 @@ const TreeSelect: React.FC<React.PropsWithChildren<TreeSelectProps<any>>> =
     const dataSource = field?.dataSource?.length
       ? field.dataSource
       : props?.treeData?.length
-      ? props.treeData
-      : []
+        ? props.treeData
+        : []
     const getSelected = () => {
       const value = props.value
       if (props.multiple) {
@@ -150,7 +150,7 @@ const TreeSelect: React.FC<React.PropsWithChildren<TreeSelectProps<any>>> =
     const findLabel = (
       value: any,
       dataSource: any[],
-      treeNodeLabelProp?: string
+      treeNodeLabelProp?: string,
     ) => {
       for (let i = 0; i < dataSource?.length; i++) {
         const item = dataSource[i]
@@ -191,17 +191,17 @@ const Cascader: React.FC<React.PropsWithChildren<CascaderProps<any>>> =
     const dataSource: any[] = field?.dataSource?.length
       ? field.dataSource
       : props?.options?.length
-      ? props.options
-      : []
+        ? props.options
+        : []
     const findSelectedItem = (
       items: DefaultOptionType[],
-      val: string | number
+      val: string | number,
     ) => {
       return items.find((item) => item.value == val)
     }
     const findSelectedItems = (
       sources: DefaultOptionType[],
-      selectedValues: Array<string[] | number[]>
+      selectedValues: Array<string[] | number[]>,
     ): Array<any[]> => {
       return selectedValues.map((value) => {
         const result: Array<DefaultOptionType> = []
@@ -240,7 +240,7 @@ const Cascader: React.FC<React.PropsWithChildren<CascaderProps<any>>> =
   })
 
 const DatePicker: React.FC<React.PropsWithChildren<DatePickerProps>> = (
-  props
+  props,
 ) => {
   const placeholder = usePlaceholder()
   const prefixCls = usePrefixCls('form-text', props)
@@ -268,7 +268,7 @@ const DateRangePicker: React.FC<
 }
 
 const TimePicker: React.FC<React.PropsWithChildren<TimePickerProps>> = (
-  props
+  props,
 ) => {
   const placeholder = usePlaceholder()
   const prefixCls = usePrefixCls('form-text', props)

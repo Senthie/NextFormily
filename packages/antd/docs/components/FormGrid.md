@@ -365,7 +365,7 @@ const useCollapseGrid = (maxRows: number) => {
           return node.shadowRow < maxRows + 1
         },
       }),
-    []
+    [],
   )
   const expanded = grid.maxRows === Infinity
   const realRows = grid.shadowRows

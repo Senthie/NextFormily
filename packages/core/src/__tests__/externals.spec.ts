@@ -24,22 +24,22 @@ test('type checkers', () => {
   const normal = attach(
     form.createField({
       name: 'normal',
-    })
+    }),
   )
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   const object = attach(
     form.createObjectField({
       name: 'object',
-    })
+    }),
   )
   const void_ = attach(
     form.createVoidField({
       name: 'void',
-    })
+    }),
   )
   expect(isField(normal)).toBeTruthy()
   expect(isFieldState(normal.getState())).toBeTruthy()
@@ -101,7 +101,7 @@ test('createEffectHook', () => {
         createEffectHook('xxx')()
         createEffectHook('yyy', () => () => {})()
       },
-    })
+    }),
   )
   form.notify('xxx')
   form.notify('yyy')

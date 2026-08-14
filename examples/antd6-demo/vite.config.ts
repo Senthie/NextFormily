@@ -18,7 +18,7 @@ const antdLessRedirect = (): Plugin => ({
     if (!source.endsWith('.less') || !importer) return null
     if (
       !importer.includes(
-        `${path.sep}packages${path.sep}antd${path.sep}esm${path.sep}`
+        `${path.sep}packages${path.sep}antd${path.sep}esm${path.sep}`,
       )
     ) {
       return null
@@ -27,7 +27,7 @@ const antdLessRedirect = (): Plugin => ({
     if (resolved.includes(`${path.sep}esm${path.sep}`)) {
       return resolved.replace(
         `${path.sep}esm${path.sep}`,
-        `${path.sep}src${path.sep}`
+        `${path.sep}src${path.sep}`,
       )
     }
     return null

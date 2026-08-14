@@ -15,14 +15,14 @@ test('compile', () => {
   expect(
     compile({
       hello: '{{123}}',
-    })
+    }),
   ).toEqual({
     hello: 123,
   })
   expect(
     compile({
       array: ['{{123}}'],
-    })
+    }),
   ).toEqual({
     array: [123],
   })
@@ -60,7 +60,7 @@ test('compile', () => {
   const compiledSchema = schema.compile()
   expect(compiledSchema.toJSON()).toEqual(schema.toJSON())
   expect(compiledSchema.properties?.['aa']['x-component-props']).toEqual(
-    '{{123}}'
+    '{{123}}',
   )
   const toJSable = {
     toJS() {
@@ -104,14 +104,14 @@ test('shallowCompile', () => {
   expect(
     shallowCompile({
       hello: '{{123}}',
-    })
+    }),
   ).toEqual({
     hello: '{{123}}',
   })
   expect(
     shallowCompile({
       array: ['{{123}}'],
-    })
+    }),
   ).toEqual({
     array: ['{{123}}'],
   })
@@ -144,7 +144,7 @@ test('patchCompile', () => {
       dataSource: [1, 2, 3, '{{333}}'],
       extend: '333',
     },
-    {}
+    {},
   )
   expect(targetState).toEqual({
     title: '132',
@@ -174,7 +174,7 @@ test('patchSchemaCompile', () => {
       },
       version: '1.2.3',
     },
-    {}
+    {},
   )
   expect(targetState).toEqual({
     title: '132',
@@ -217,7 +217,7 @@ test('patchSchemaCompile demand un initialized', () => {
       version: '1.2.3',
     },
     {},
-    true
+    true,
   )
   expect(targetState).toEqual({
     title: '132',
@@ -257,7 +257,7 @@ test('patchSchemaCompile demand initialized', () => {
       version: '1.2.3',
     },
     {},
-    true
+    true,
   )
   expect(targetState).toEqual({
     initialized: true,
@@ -287,7 +287,7 @@ test('patchSchemaCompile x-compile-omitted', () => {
       field: {
         value: 888,
       },
-    }
+    },
   )
   expect(targetState).toEqual({
     title: '132',
@@ -314,7 +314,7 @@ test('patchSchemaCompile x-compile-omitted', () => {
       field: {
         value: 888,
       },
-    }
+    },
   )
   expect(targetOmitState).toEqual({
     title: '132',
@@ -332,14 +332,14 @@ test('registerCompiler', () => {
   expect(
     compile({
       hello: '{{123}}',
-    })
+    }),
   ).toEqual({
     hello: 'compiled',
   })
   expect(
     compile({
       array: ['{{123}}'],
-    })
+    }),
   ).toEqual({
     array: ['compiled'],
   })

@@ -82,7 +82,9 @@ Create a calculation buffer
 ```ts
 interface computed {
   <T extends () => any>(target: T): { value: ReturnType<T> }
-  <T extends { get?: () => any; set?: (value: any) => void }>(target: T): {
+  <T extends { get?: () => any; set?: (value: any) => void }>(
+    target: T,
+  ): {
     value: ReturnType<T['get']>
   }
 }

@@ -57,7 +57,7 @@ type ComposeFormItem = React.FC<React.PropsWithChildren<IFormItemProps>> & {
 }
 
 const isTooltipProps = (
-  tooltip: React.ReactNode | React.ComponentProps<typeof Tooltip>
+  tooltip: React.ReactNode | React.ComponentProps<typeof Tooltip>,
 ): tooltip is React.ComponentProps<typeof Tooltip> => {
   return !isElement(tooltip)
 }
@@ -71,8 +71,8 @@ const useFormItemLayout = (props: IFormItemProps) => {
     colon: props.colon ?? layout.colon,
     labelAlign:
       layoutType === 'vertical'
-        ? props.labelAlign ?? 'left'
-        : props.labelAlign ?? layout.labelAlign ?? 'right',
+        ? (props.labelAlign ?? 'left')
+        : (props.labelAlign ?? layout.labelAlign ?? 'right'),
     labelWrap: props.labelWrap ?? layout.labelWrap,
     labelWidth: props.labelWidth ?? layout.labelWidth,
     wrapperWidth: props.wrapperWidth ?? layout.wrapperWidth,
@@ -98,7 +98,7 @@ const useFormItemLayout = (props: IFormItemProps) => {
 
 function useOverflow<
   Container extends HTMLElement,
-  Content extends HTMLElement
+  Content extends HTMLElement,
 >() {
   const [overflow, setOverflow] = useState(false)
   const containerRef = useRef<Container>(null)
@@ -454,7 +454,7 @@ export const FormItem: ComposeFormItem = connect(
         field.pattern === 'readPretty' && !('asterisk' in props),
       extra: props.extra || field.description,
     }
-  })
+  }),
 )
 
 FormItem.BaseItem = BaseItem

@@ -5,7 +5,7 @@ import { useCompatFactory } from './useCompatFactory'
 
 export const useObserver = <T extends () => any>(
   view: T,
-  options?: IObserverOptions
+  options?: IObserverOptions,
 ): ReturnType<T> => {
   const forceUpdate = useForceUpdate()
   const tracker = useCompatFactory(
@@ -16,7 +16,7 @@ export const useObserver = <T extends () => any>(
         } else {
           forceUpdate()
         }
-      }, options?.displayName)
+      }, options?.displayName),
   )
   return tracker.track(view)
 }

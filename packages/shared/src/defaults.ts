@@ -37,8 +37,8 @@ export const defaults = (defaults_: any, targets: any) => {
     const results = isArr(defaults_)
       ? []
       : isPlainObj(defaults_)
-      ? {}
-      : defaults_
+        ? {}
+        : defaults_
     each(targets, (value, key) => {
       results[key] = defaults(defaults_[key], value)
     })

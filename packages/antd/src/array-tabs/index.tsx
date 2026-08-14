@@ -19,7 +19,7 @@ const FeedbackBadge: ReactFC<IFeedbackBadgeProps> = observer(
     const field = useField<ArrayField>()
     const tab = `${field.title || 'Untitled'} ${props.index + 1}`
     const errors = field.errors.filter((error) =>
-      error.address.includes(`${field.address}.${props.index}`)
+      error.address.includes(`${field.address}.${props.index}`),
     )
     if (errors.length) {
       return (
@@ -34,7 +34,7 @@ const FeedbackBadge: ReactFC<IFeedbackBadgeProps> = observer(
     scheduler(request) {
       requestAnimationFrame(request)
     },
-  }
+  },
 )
 
 export const ArrayTabs: React.FC<React.PropsWithChildren<TabsProps>> = observer(
@@ -94,7 +94,7 @@ export const ArrayTabs: React.FC<React.PropsWithChildren<TabsProps>> = observer(
     scheduler(request) {
       requestAnimationFrame(request)
     },
-  }
+  },
 )
 
 export default ArrayTabs

@@ -63,7 +63,7 @@ function recursiveField(
   form: Form,
   schema: ISchema,
   basePath?: string,
-  name?: SchemaKey
+  name?: SchemaKey,
 ) {
   const fieldSchema = new Schema(schema)
   const fieldProps = fieldSchema.toFieldProps()

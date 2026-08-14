@@ -219,7 +219,7 @@ test('all methods', () => {
     'model',
   ])
   expect(
-    pattern.reduceProperties((buf, schema, key) => buf.concat('_' + key), [])
+    pattern.reduceProperties((buf, schema, key) => buf.concat('_' + key), []),
   ).toEqual(['_year', '_made', '_model'])
   expect(schema.mapPatternProperties((schema, key) => key)).toEqual([
     '^[a-zA-Z0-9]*$',
@@ -227,8 +227,8 @@ test('all methods', () => {
   expect(
     schema.reducePatternProperties(
       (buf, schema, key) => buf.concat('_' + key),
-      []
-    )
+      [],
+    ),
   ).toEqual(['_^[a-zA-Z0-9]*$'])
   schema5.toJSON()
   schema6.toJSON()

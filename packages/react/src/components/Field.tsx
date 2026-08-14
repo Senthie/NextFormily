@@ -5,7 +5,7 @@ import { FieldContext } from '../shared'
 import { JSXComponent, IFieldProps } from '../types'
 
 export const Field = <D extends JSXComponent, C extends JSXComponent>(
-  props: IFieldProps<D, C>
+  props: IFieldProps<D, C>,
 ) => {
   const form = useForm()
   const parent = useField()

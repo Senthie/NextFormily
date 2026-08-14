@@ -86,7 +86,7 @@ const calcSatisfyColumns = (
   minColumns: number,
   maxWidth: number,
   minWidth: number,
-  gap: number
+  gap: number,
 ) => {
   const results = []
   for (let columns = minColumns; columns <= maxColumns; columns++) {
@@ -125,8 +125,8 @@ const resolveChildren = (grid: Grid<HTMLElement>) => {
     const span = grid.options.strictAutoFit
       ? targetSpan
       : targetSpan > remainColumns
-      ? remainColumns
-      : targetSpan
+        ? remainColumns
+        : targetSpan
     const gridColumn =
       originSpan === -1 ? `span ${remainColumns} / -1` : `span ${span} / auto`
     if (node.element.style.gridColumn !== gridColumn) {
@@ -312,12 +312,12 @@ export class Grid<Container extends HTMLElement> {
     const baseColumns = this.childSize
 
     const strictMaxWidthColumns = Math.round(
-      this.width / (this.maxWidth + this.columnGap)
+      this.width / (this.maxWidth + this.columnGap),
     )
 
     const looseMaxWidthColumns = Math.min(
       originTotalColumns,
-      strictMaxWidthColumns
+      strictMaxWidthColumns,
     )
 
     const maxWidthColumns = this.options.strictAutoFit
@@ -325,12 +325,12 @@ export class Grid<Container extends HTMLElement> {
       : looseMaxWidthColumns
 
     const strictMinWidthColumns = Math.round(
-      this.width / (this.minWidth + this.columnGap)
+      this.width / (this.minWidth + this.columnGap),
     )
 
     const looseMinWidthColumns = Math.min(
       originTotalColumns,
-      strictMinWidthColumns
+      strictMinWidthColumns,
     )
 
     const minWidthColumns = this.options.strictAutoFit
@@ -341,14 +341,14 @@ export class Grid<Container extends HTMLElement> {
       baseColumns,
       originTotalColumns,
       maxWidthColumns,
-      minWidthColumns
+      minWidthColumns,
     )
 
     const maxCalculatedColumns = Math.max(
       baseColumns,
       originTotalColumns,
       maxWidthColumns,
-      minWidthColumns
+      minWidthColumns,
     )
 
     const finalColumns = calcSatisfyColumns(
@@ -357,7 +357,7 @@ export class Grid<Container extends HTMLElement> {
       minCalculatedColumns,
       this.maxWidth,
       this.minWidth,
-      this.columnGap
+      this.columnGap,
     )
     if (finalColumns >= this.maxColumns) {
       return this.maxColumns
@@ -415,14 +415,14 @@ export class Grid<Container extends HTMLElement> {
         this.childTotalColumns = calcChildTotalColumns(this.children)
         this.shadowChildTotalColumns = calcChildTotalColumns(
           this.children,
-          true
+          true,
         )
         this.childOriginTotalColumns = calcChildOriginTotalColumns(
-          this.children
+          this.children,
         )
         this.shadowChildOriginTotalColumns = calcChildOriginTotalColumns(
           this.children,
-          true
+          true,
         )
         const rect = this.container.getBoundingClientRect()
         if (rect.width && rect.height) {
@@ -479,6 +479,6 @@ export class Grid<Container extends HTMLElement> {
         'rowGap',
         'colWrap',
         'strictAutoFit',
-      ].map((key) => options[key])
+      ].map((key) => options[key]),
     )
 }

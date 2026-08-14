@@ -783,7 +783,7 @@ export default () => {
                 const base = form.values.array.length
                 form.values.array.push(
                   { a1: base + 1 },
-                  { a1: base + 2, a2: base + 2 }
+                  { a1: base + 2, a2: base + 2 },
                 )
               },
             }}

@@ -17,7 +17,7 @@ const importLibToEs = async ({
 
   return writeFile(
     filename,
-    fileContent.replace(new RegExp(libStr, 'g'), esStr)
+    fileContent.replace(new RegExp(libStr, 'g'), esStr),
   )
 }
 

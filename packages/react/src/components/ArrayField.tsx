@@ -7,7 +7,7 @@ import { JSXComponent, IFieldProps } from '../types'
 import { ReactiveField } from './ReactiveField'
 
 export const ArrayField = <D extends JSXComponent, C extends JSXComponent>(
-  props: IFieldProps<D, C, ArrayFieldType>
+  props: IFieldProps<D, C, ArrayFieldType>,
 ) => {
   const form = useForm()
   const parent = useField()
@@ -15,7 +15,7 @@ export const ArrayField = <D extends JSXComponent, C extends JSXComponent>(
     form.createArrayField({
       basePath: parent?.address,
       ...props,
-    })
+    }),
   )
   return (
     <FieldContext.Provider value={field}>

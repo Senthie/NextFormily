@@ -12,7 +12,7 @@ interface define<Target extends object> {
     target: Target,
     annotations?: {
       [key: string]: (...args: any[]) => any
-    }
+    },
   ): Target
 }
 ```

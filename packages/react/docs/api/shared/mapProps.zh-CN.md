@@ -51,8 +51,8 @@ const FormItem = connect(
         ...props,
         help: field.selfErrors?.length ? field.selfErrors : undefined,
       }
-    }
-  )
+    },
+  ),
 )
 
 export default () => {

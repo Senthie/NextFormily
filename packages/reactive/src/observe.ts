@@ -7,7 +7,7 @@ import { DataChange, getDataNode } from './tree'
 export const observe = (
   target: object,
   observer?: (change: DataChange) => void,
-  deep = true
+  deep = true,
 ) => {
   const addListener = (target: any) => {
     const raw = getRaw(target)

@@ -58,7 +58,7 @@ export class Field<
   Decorator extends JSXComponent = any,
   Component extends JSXComponent = any,
   TextType = any,
-  ValueType = any
+  ValueType = any,
 > extends BaseField<Decorator, Component, TextType> {
   displayName = 'Field'
 
@@ -82,7 +82,7 @@ export class Field<
     address: FormPathPattern,
     props: IFieldProps<Decorator, Component, TextType, ValueType>,
     form: Form,
-    designable: boolean
+    designable: boolean,
   ) {
     super()
     this.form = form
@@ -233,13 +233,13 @@ export class Field<
               this.form.deleteValuesIn(this.path)
             }
           }
-        }
+        },
       ),
       createReaction(
         () => this.initialValue,
         () => {
           this.notify(LifeCycleTypes.ON_FIELD_INITIAL_VALUE_CHANGE)
-        }
+        },
       ),
       createReaction(
         () => this.display,
@@ -260,7 +260,7 @@ export class Field<
               messages: [],
             })
           }
-        }
+        },
       ),
       createReaction(
         () => this.pattern,
@@ -271,8 +271,8 @@ export class Field<
               messages: [],
             })
           }
-        }
-      )
+        },
+      ),
     )
     createReactions(this)
   }

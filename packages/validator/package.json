@@ -1,28 +1,29 @@
 {
   "name": "@next-formily/validator",
   "version": "3.0.1",
+  "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
+  "homepage": "https://github.com/alibaba/formily#readme",
+  "bugs": {
+    "url": "https://github.com/alibaba/formily/issues"
+  },
   "license": "MIT",
-  "main": "lib",
-  "module": "esm",
-  "files": [
-    "lib",
-    "esm"
-  ],
-  "umd:main": "dist/formily.validator.umd.production.js",
-  "unpkg": "dist/formily.validator.umd.production.js",
-  "jsdelivr": "dist/formily.validator.umd.production.js",
-  "jsnext:main": "esm",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alibaba/formily.git"
   },
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "main": "lib",
+  "module": "esm",
   "types": "esm/index.d.ts",
-  "bugs": {
-    "url": "https://github.com/alibaba/formily/issues"
-  },
-  "homepage": "https://github.com/alibaba/formily#readme",
-  "engines": {
-    "npm": ">=3.0.0"
+  "unpkg": "dist/formily.validator.umd.production.js",
+  "jsdelivr": "dist/formily.validator.umd.production.js",
+  "jsnext:main": "esm",
+  "umd:main": "dist/formily.validator.umd.production.js",
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "rimraf -rf lib esm dist lib && npm run build:cjs && npm run build:esm && npm run build:umd",
@@ -33,8 +34,7 @@
   "dependencies": {
     "@next-formily/shared": "3.0.1"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283"
+  "engines": {
+    "npm": ">=3.0.0"
+  }
 }

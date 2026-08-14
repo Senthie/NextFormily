@@ -20,34 +20,34 @@ test('createField/createArrayField/createObjectField/createVoidField', () => {
     form.createField({
       name: 'normal',
       basePath: 'parent',
-    })
+    }),
   )
   const normal2 = attach(
     form.createField({
       name: 'normal',
       basePath: 'parent',
-    })
+    }),
   )
   const array_ = attach(
-    form.createArrayField({ name: 'array', basePath: 'parent' })
+    form.createArrayField({ name: 'array', basePath: 'parent' }),
   )
   const array2_ = attach(
-    form.createArrayField({ name: 'array', basePath: 'parent' })
+    form.createArrayField({ name: 'array', basePath: 'parent' }),
   )
   const object_ = attach(
-    form.createObjectField({ name: 'object', basePath: 'parent' })
+    form.createObjectField({ name: 'object', basePath: 'parent' }),
   )
   const object2_ = attach(
-    form.createObjectField({ name: 'object', basePath: 'parent' })
+    form.createObjectField({ name: 'object', basePath: 'parent' }),
   )
   const void_ = attach(
-    form.createVoidField({ name: 'void', basePath: 'parent' })
+    form.createVoidField({ name: 'void', basePath: 'parent' }),
   )
   const void2_ = attach(
-    form.createVoidField({ name: 'void', basePath: 'parent' })
+    form.createVoidField({ name: 'void', basePath: 'parent' }),
   )
   const children_ = attach(
-    form.createField({ name: 'children', basePath: 'parent.void' })
+    form.createField({ name: 'children', basePath: 'parent.void' }),
   )
   expect(normal).not.toBeUndefined()
   expect(array_).not.toBeUndefined()
@@ -85,13 +85,13 @@ test('setValues/setInitialValues', () => {
     form.createField({
       name: 'cc.mm',
       initialValue: 'ooo',
-    })
+    }),
   )
   const field2 = attach(
     form.createField({
       name: 'cc.pp',
       initialValue: 'www',
-    })
+    }),
   )
   expect(form.values.aa).toEqual(123)
   expect(form.values.cc.kk).toEqual(321)
@@ -154,7 +154,7 @@ test('no field initialValues merge', () => {
         aa: '333',
         bb: '321',
       },
-    })
+    }),
   )
 
   expect(form.values).toEqual({
@@ -212,7 +212,7 @@ test('observable values/initialValues', () => {
     createForm({
       values,
       initialValues,
-    })
+    }),
   )
   batch(() => {
     values.kk = 321
@@ -232,7 +232,7 @@ test('deleteValuesIn/deleteInitialValuesIn', () => {
       initialValues: {
         bb: 123,
       },
-    })
+    }),
   )
   expect(form.values.aa).toEqual(123)
   expect(form.values.bb).toEqual(123)
@@ -268,7 +268,7 @@ test('setEffects/addEffects/removeEffects', () => {
   const field = attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   field.setValue('123')
   expect(valueChange).toHaveBeenCalledTimes(1)
@@ -293,24 +293,24 @@ test('query', () => {
   attach(
     form.createObjectField({
       name: 'object',
-    })
+    }),
   )
   attach(
     form.createVoidField({
       name: 'void',
       basePath: 'object',
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'normal',
       basePath: 'object.void',
-    })
+    }),
   )
   attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   expect(form.query('object').take()).not.toBeUndefined()
   expect(form.query('object.void').take()).not.toBeUndefined()
@@ -398,7 +398,7 @@ test('setState/getState/setFormState/getFormState/setFieldState/getFieldState', 
   attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   const fieldState = form.getFieldState('aa')
   form.setFieldState('aa', (state) => {
@@ -408,7 +408,7 @@ test('setState/getState/setFormState/getFormState/setFieldState/getFieldState', 
   })
   expect(form.getFieldState('aa', (state) => state.title)).toEqual('AA')
   expect(form.getFieldState('aa', (state) => state.description)).toEqual(
-    'This is AA'
+    'This is AA',
   )
   expect(form.getFieldState('aa', (state) => state.value)).toEqual('123')
   form.setFieldState('aa', fieldState)
@@ -432,12 +432,12 @@ test('setState/getState/setFormState/getFormState/setFieldState/getFieldState', 
   const oo = attach(
     form.createField({
       name: 'oo',
-    })
+    }),
   )
   const kk = attach(
     form.createField({
       name: 'kk',
-    })
+    }),
   )
   expect(oo.value).toBeUndefined()
   expect(kk.value).toBeUndefined()
@@ -464,18 +464,18 @@ test('validate/valid/invalid/errors/warnings/successes/clearErrors/clearWarnings
           return 'error'
         }
       },
-    })
+    }),
   )
   const bb = attach(
     form.createField({
       name: 'bb',
       required: true,
-    })
+    }),
   )
   attach(
     form.createVoidField({
       name: 'cc',
-    })
+    }),
   )
   try {
     await form.validate()
@@ -641,52 +641,52 @@ test('validate/valid/invalid/errors/warnings/successes/clearErrors/clearWarnings
   expect(
     form.queryFeedbacks({
       type: 'error',
-    }).length
+    }).length,
   ).toEqual(1)
   expect(
     form.queryFeedbacks({
       type: 'success',
-    }).length
+    }).length,
   ).toEqual(1)
   expect(
     form.queryFeedbacks({
       code: 'ValidateError',
-    }).length
+    }).length,
   ).toEqual(1)
   expect(
     form.queryFeedbacks({
       code: 'ValidateSuccess',
-    }).length
+    }).length,
   ).toEqual(1)
   expect(
     form.queryFeedbacks({
       code: 'EffectError',
-    }).length
+    }).length,
   ).toEqual(0)
   expect(
     form.queryFeedbacks({
       code: 'EffectSuccess',
-    }).length
+    }).length,
   ).toEqual(0)
   expect(
     form.queryFeedbacks({
       path: 'aa',
-    }).length
+    }).length,
   ).toEqual(1)
   expect(
     form.queryFeedbacks({
       path: 'bb',
-    }).length
+    }).length,
   ).toEqual(1)
   expect(
     form.queryFeedbacks({
       address: 'aa',
-    }).length
+    }).length,
   ).toEqual(1)
   expect(
     form.queryFeedbacks({
       address: 'bb',
-    }).length
+    }).length,
   ).toEqual(1)
   aa.setValue('')
   bb.setValue('')
@@ -699,7 +699,7 @@ test('validate/valid/invalid/errors/warnings/successes/clearErrors/clearWarnings
   expect(
     form.queryFeedbacks({
       type: 'error',
-    }).length
+    }).length,
   ).toEqual(1)
   try {
     await form.validate('*')
@@ -707,7 +707,7 @@ test('validate/valid/invalid/errors/warnings/successes/clearErrors/clearWarnings
   expect(
     form.queryFeedbacks({
       type: 'error',
-    }).length
+    }).length,
   ).toEqual(2)
 })
 
@@ -715,12 +715,12 @@ test('setPattern/pattern/editable/readOnly/disabled/readPretty', () => {
   const form = attach(
     createForm({
       pattern: 'disabled',
-    })
+    }),
   )
   const field = attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   expect(form.pattern).toEqual('disabled')
   expect(form.disabled).toBeTruthy()
@@ -739,28 +739,28 @@ test('setPattern/pattern/editable/readOnly/disabled/readPretty', () => {
   const form2 = attach(
     createForm({
       editable: false,
-    })
+    }),
   )
   expect(form2.pattern).toEqual('readPretty')
   expect(form2.readPretty).toBeTruthy()
   const form3 = attach(
     createForm({
       disabled: true,
-    })
+    }),
   )
   expect(form3.pattern).toEqual('disabled')
   expect(form3.disabled).toBeTruthy()
   const form4 = attach(
     createForm({
       readOnly: true,
-    })
+    }),
   )
   expect(form4.pattern).toEqual('readOnly')
   expect(form4.readOnly).toBeTruthy()
   const form5 = attach(
     createForm({
       readPretty: true,
-    })
+    }),
   )
   expect(form5.pattern).toEqual('readPretty')
   expect(form5.readPretty).toBeTruthy()
@@ -770,12 +770,12 @@ test('setDisplay/display/visible/hidden', () => {
   const form = attach(
     createForm({
       display: 'hidden',
-    })
+    }),
   )
   const field = attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   expect(form.display).toEqual('hidden')
   expect(form.hidden).toBeTruthy()
@@ -794,7 +794,7 @@ test('setDisplay/display/visible/hidden', () => {
   const form2 = attach(
     createForm({
       hidden: true,
-    })
+    }),
   )
   expect(form2.display).toEqual('hidden')
   expect(form2.hidden).toBeTruthy()
@@ -802,7 +802,7 @@ test('setDisplay/display/visible/hidden', () => {
   const form3 = attach(
     createForm({
       visible: false,
-    })
+    }),
   )
   expect(form3.display).toEqual('none')
   expect(form3.visible).toBeFalsy()
@@ -815,7 +815,7 @@ test('submit', async () => {
     form.createField({
       name: 'aa',
       required: true,
-    })
+    }),
   )
   let errors1: Error
   try {
@@ -852,24 +852,24 @@ test('reset', async () => {
       initialValues: {
         aa: 123,
       },
-    })
+    }),
   )
   const field = attach(
     form.createField({
       name: 'aa',
       required: true,
-    })
+    }),
   )
   const field2 = attach(
     form.createField({
       name: 'bb',
       required: true,
-    })
+    }),
   )
   attach(
     form.createVoidField({
       name: 'cc',
-    })
+    }),
   )
   expect(field.value).toEqual(123)
   expect(field2.value).toEqual(123)
@@ -944,13 +944,13 @@ test('reset array field', async () => {
       values: {
         array: [{ value: 123 }],
       },
-    })
+    }),
   )
   attach(
     form.createArrayField({
       name: 'array',
       required: true,
-    })
+    }),
   )
   expect(form.values).toEqual({
     array: [{ value: 123 }],
@@ -969,13 +969,13 @@ test('reset object field', async () => {
       values: {
         object: { value: 123 },
       },
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: 'object',
       required: true,
-    })
+    }),
   )
   expect(form.values).toEqual({
     object: { value: 123 },
@@ -993,7 +993,7 @@ test('initialValues merge values before create field', () => {
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   form.values.array = [{ aa: '321' }]
   const arr_0_aa = attach(
@@ -1001,7 +1001,7 @@ test('initialValues merge values before create field', () => {
       name: 'aa',
       basePath: 'array.0',
       initialValue: '123',
-    })
+    }),
   )
   expect(array.value).toEqual([{ aa: '321' }])
   expect(arr_0_aa.value).toEqual('321')
@@ -1013,12 +1013,12 @@ test('no patch with empty initialValues', () => {
       values: {
         array: [1, 2, 3],
       },
-    })
+    }),
   )
   attach(
     form.createObjectField({
       name: 'array.0.1',
-    })
+    }),
   )
 
   expect(form.values).toEqual({
@@ -1032,19 +1032,19 @@ test('initialValues merge values after create field', () => {
     form.createArrayField({
       name: 'aa',
       initialValue: '111',
-    })
+    }),
   )
   const array = attach(
     form.createArrayField({
       name: 'array',
-    })
+    }),
   )
   const arr_0_aa = attach(
     form.createField({
       name: 'aa',
       basePath: 'array.0',
       initialValue: '123',
-    })
+    }),
   )
   form.values.aa = '222'
   form.values.array = [{ aa: '321' }]
@@ -1059,7 +1059,7 @@ test('remove property of form values with undefined value', () => {
     form.createField({
       name: 'aaa',
       initialValue: 123,
-    })
+    }),
   )
   expect(form.values).toMatchObject({ aaa: 123 })
   field.display = 'none'
@@ -1080,7 +1080,7 @@ test('empty array initialValues', () => {
         dd: [null],
         ee: [undefined],
       },
-    })
+    }),
   )
   form.createArrayField({
     name: 'aa',
@@ -1119,7 +1119,7 @@ test('form lifecycle can be triggered after call form.setXXX', () => {
       values: {
         bb: 1,
       },
-    })
+    }),
   )
 
   form.setEffects(() => {
@@ -1163,7 +1163,7 @@ test('form values change with array field(default value)', async () => {
       effects() {
         onFormValuesChange(handler)
       },
-    })
+    }),
   )
   const array = attach(
     form.createArrayField({
@@ -1173,7 +1173,7 @@ test('form values change with array field(default value)', async () => {
           hello: 'world',
         },
       ],
-    })
+    }),
   )
   await array.push({})
   expect(handler).toHaveBeenCalledTimes(2)
@@ -1189,7 +1189,7 @@ test('setValues deep merge', () => {
           dd: [11, 22, 33],
         },
       },
-    })
+    }),
   )
   expect(form.values).toEqual({
     aa: {
@@ -1222,7 +1222,7 @@ test('exception validate', async () => {
       validator() {
         throw new Error('runtime error')
       },
-    })
+    }),
   )
   try {
     await form.validate()
@@ -1235,31 +1235,31 @@ test('designable form', () => {
   const form = attach(
     createForm({
       designable: true,
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'bb',
       initialValue: 123,
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'bb',
       initialValue: 321,
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'aa',
       value: 123,
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'aa',
       value: 321,
-    })
+    }),
   )
   expect(form.values.aa).toEqual(321)
   expect(form.initialValues.bb).toEqual(321)
@@ -1274,7 +1274,7 @@ test('validate will skip display none', async () => {
         onFieldValidateStart('aa', validateA)
         onFieldValidateStart('bb', validateB)
       },
-    })
+    }),
   )
   const validator = jest.fn()
   const aa = attach(
@@ -1284,7 +1284,7 @@ test('validate will skip display none', async () => {
         validator()
         return 'error'
       },
-    })
+    }),
   )
   const bb = attach(
     form.createField({
@@ -1293,7 +1293,7 @@ test('validate will skip display none', async () => {
         validator()
         return 'error'
       },
-    })
+    }),
   )
   try {
     await form.validate()
@@ -1360,7 +1360,7 @@ test('validate will skip unmounted', async () => {
         onFieldValidateStart('aa', validateA)
         onFieldValidateStart('bb', validateB)
       },
-    })
+    }),
   )
   const validator = jest.fn()
   const aa = attach(
@@ -1370,7 +1370,7 @@ test('validate will skip unmounted', async () => {
         validator()
         return 'error'
       },
-    })
+    }),
   )
   const bb = attach(
     form.createField({
@@ -1379,7 +1379,7 @@ test('validate will skip unmounted', async () => {
         validator()
         return 'error'
       },
-    })
+    }),
   )
   try {
     await form.validate()
@@ -1454,7 +1454,7 @@ test('validate will skip uneditable', async () => {
         onFieldValidateStart('aa', validateA)
         onFieldValidateStart('bb', validateB)
       },
-    })
+    }),
   )
   const validator = jest.fn()
   const aa = attach(
@@ -1464,7 +1464,7 @@ test('validate will skip uneditable', async () => {
         validator()
         return 'error'
       },
-    })
+    }),
   )
   const bb = attach(
     form.createField({
@@ -1473,7 +1473,7 @@ test('validate will skip uneditable', async () => {
         validator()
         return 'error'
       },
-    })
+    }),
   )
   try {
     await form.validate()
@@ -1542,7 +1542,7 @@ test('validator order with format', async () => {
         format: 'url',
         message: 'custom',
       },
-    })
+    }),
   )
 
   attach(
@@ -1553,7 +1553,7 @@ test('validator order with format', async () => {
         if (!value) return ''
         return value !== '111' ? 'custom' : ''
       },
-    })
+    }),
   )
   const results = await form.submit<any[]>(() => {}).catch((e) => e)
   expect(results.map(({ messages }) => messages)).toEqual([
@@ -1568,12 +1568,12 @@ test('form unmount can not effect field values', () => {
       values: {
         aa: '123',
       },
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   expect(form.values.aa).toEqual('123')
   form.onUnmount()
@@ -1586,12 +1586,12 @@ test('form clearFormGraph need clear field values', () => {
       values: {
         aa: '123',
       },
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   expect(form.values.aa).toEqual('123')
   form.clearFormGraph('*')
@@ -1604,12 +1604,12 @@ test('form clearFormGraph not clear field values', () => {
       values: {
         aa: '123',
       },
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   expect(form.values.aa).toEqual('123')
   form.clearFormGraph('*', false)
@@ -1624,12 +1624,12 @@ test('form values auto clean with visible false', () => {
         bb: '321',
         cc: 'cc',
       },
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   attach(
     form.createField({
@@ -1637,12 +1637,12 @@ test('form values auto clean with visible false', () => {
       reactions: (field) => {
         field.visible = form.values.aa === '1233'
       },
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'cc',
-    })
+    }),
   )
 
   expect(form.values).toEqual({
@@ -1656,7 +1656,7 @@ test('form values auto clean with visible false in async setInitialValues', () =
   attach(
     form.createField({
       name: 'aa',
-    })
+    }),
   )
   attach(
     form.createField({
@@ -1664,12 +1664,12 @@ test('form values auto clean with visible false in async setInitialValues', () =
       reactions: (field) => {
         field.visible = form.values.aa === '1233'
       },
-    })
+    }),
   )
   attach(
     form.createField({
       name: 'cc',
-    })
+    }),
   )
 
   form.setInitialValues({
@@ -1690,7 +1690,7 @@ test('form values ref should not changed with setValues', () => {
       values: {
         aa: '123',
       },
-    })
+    }),
   )
   const values = form.values
   form.setValues({
@@ -1705,7 +1705,7 @@ test('form initial values ref should not changed with setInitialValues', () => {
       initialValues: {
         aa: '123',
       },
-    })
+    }),
   )
   const values = form.initialValues
   form.setInitialValues({

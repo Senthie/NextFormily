@@ -5,10 +5,10 @@ import { IObserverOptions, IObserverProps, ReactFC } from './types'
 
 export function observer<
   P,
-  Options extends IObserverOptions = IObserverOptions
+  Options extends IObserverOptions = IObserverOptions,
 >(
   component: ReactFC<P>,
-  options?: Options
+  options?: Options,
 ): React.MemoExoticComponent<
   ReactFC<
     Options extends { forwardRef: true }
@@ -27,7 +27,7 @@ export function observer<
     ? forwardRef((props: any, ref: any) => {
         return useObserver(
           () => component({ ...props, ref }),
-          realOptions
+          realOptions,
         ) as any
       })
     : (props: any) => {

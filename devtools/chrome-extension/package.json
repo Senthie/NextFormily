@@ -1,19 +1,20 @@
 {
   "name": "@next-formily/chrome-extension",
   "version": "2.3.7",
+  "gitHead": "2c44ae410a73f02735c63c6430e021a50e21f3ec",
   "private": true,
+  "homepage": "https://github.com/alibaba/formily#readme",
+  "bugs": {
+    "url": "https://github.com/alibaba/formily/issues"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alibaba/formily.git"
   },
   "types": "esm/index.d.ts",
-  "bugs": {
-    "url": "https://github.com/alibaba/formily/issues"
-  },
-  "homepage": "https://github.com/alibaba/formily#readme",
-  "engines": {
-    "npm": ">=3.0.0"
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build:devtools": "vite build",
@@ -28,8 +29,7 @@
     "react-json-view": "^1.19.1",
     "react-treebeard": "^3.2.4"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "gitHead": "2c44ae410a73f02735c63c6430e021a50e21f3ec"
+  "engines": {
+    "npm": ">=3.0.0"
+  }
 }

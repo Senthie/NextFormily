@@ -35,8 +35,8 @@ const useAddress = (pattern: FormPathPattern) => {
         children: _cities.length
           ? _cities
           : _districts.length
-          ? _districts
-          : undefined,
+            ? _districts
+            : undefined,
       })
     }, [])
   }
@@ -48,7 +48,7 @@ const useAddress = (pattern: FormPathPattern) => {
         action.bound((data) => {
           field.dataSource = transform(data)
           field.loading = false
-        })
+        }),
       )
   })
 }
@@ -114,8 +114,8 @@ const transformAddress = (data = {}) => {
       children: _cities.length
         ? _cities
         : _districts.length
-        ? _districts
-        : undefined,
+          ? _districts
+          : undefined,
     })
   }, [])
 }
@@ -129,7 +129,7 @@ const useAsyncDataSource =
         action.bound((data) => {
           field.dataSource = transform(data)
           field.loading = false
-        })
+        }),
       )
   }
 
@@ -194,8 +194,8 @@ const useAddress = (pattern: FormPathPattern) => {
         children: _cities.length
           ? _cities
           : _districts.length
-          ? _districts
-          : undefined,
+            ? _districts
+            : undefined,
       })
     }, [])
   }
@@ -207,7 +207,7 @@ const useAddress = (pattern: FormPathPattern) => {
         action.bound((data) => {
           field.dataSource = transform(data)
           field.loading = false
-        })
+        }),
       )
   })
 }

@@ -1,28 +1,29 @@
 {
   "name": "@next-formily/json-schema",
   "version": "3.0.1",
+  "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
+  "homepage": "https://github.com/alibaba/formily#readme",
+  "bugs": {
+    "url": "https://github.com/alibaba/formily/issues"
+  },
   "license": "MIT",
-  "main": "lib",
-  "module": "esm",
-  "files": [
-    "lib",
-    "esm"
-  ],
-  "umd:main": "dist/formily.json-schema.umd.production.js",
-  "unpkg": "dist/formily.json-schema.umd.production.js",
-  "jsdelivr": "dist/formily.json-schema.umd.production.js",
-  "jsnext:main": "esm",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alibaba/formily.git"
   },
+  "files": [
+    "lib",
+    "esm"
+  ],
+  "main": "lib",
+  "module": "esm",
   "types": "esm/index.d.ts",
-  "bugs": {
-    "url": "https://github.com/alibaba/formily/issues"
-  },
-  "homepage": "https://github.com/alibaba/formily#readme",
-  "engines": {
-    "npm": ">=3.0.0"
+  "unpkg": "dist/formily.json-schema.umd.production.js",
+  "jsdelivr": "dist/formily.json-schema.umd.production.js",
+  "jsnext:main": "esm",
+  "umd:main": "dist/formily.json-schema.umd.production.js",
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "rimraf -rf lib esm dist && npm run build:cjs && npm run build:esm && npm run build:umd",
@@ -30,16 +31,15 @@
     "build:esm": "tsc --project tsconfig.build.json --module esnext --outDir esm",
     "build:umd": "rollup --config"
   },
-  "peerDependencies": {
-    "typescript": ">4.1.5"
-  },
   "dependencies": {
     "@next-formily/core": "3.0.1",
     "@next-formily/reactive": "3.0.1",
     "@next-formily/shared": "3.0.1"
   },
-  "publishConfig": {
-    "access": "public"
+  "peerDependencies": {
+    "typescript": ">4.1.5"
   },
-  "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283"
+  "engines": {
+    "npm": ">=3.0.0"
+  }
 }

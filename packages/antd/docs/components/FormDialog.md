@@ -309,8 +309,7 @@ export default () => {
 import { IFormProps, Form } from '@formily/core'
 
 type FormDialogRenderer =
-  | React.ReactElement
-  | ((form: Form) => React.ReactElement)
+  React.ReactElement | ((form: Form) => React.ReactElement)
 
 type ModalTitle = string | number | React.ReactElement
 
@@ -318,14 +317,14 @@ interface IFormDialog {
   forOpen(
     middleware: (
       props: IFormProps,
-      next: (props?: IFormProps) => Promise<any>
-    ) => any
+      next: (props?: IFormProps) => Promise<any>,
+    ) => any,
   ): any //Middleware interceptor, can intercept Dialog to open
   forConfirm(
-    middleware: (props: Form, next: (props?: Form) => Promise<any>) => any
+    middleware: (props: Form, next: (props?: Form) => Promise<any>) => any,
   ): any //Middleware interceptor, which can intercept Dialog confirmation
   forCancel(
-    middleware: (props: Form, next: (props?: Form) => Promise<any>) => any
+    middleware: (props: Form, next: (props?: Form) => Promise<any>) => any,
   ): any //Middleware interceptor, can intercept Dialog to cancel
   //Open the pop-up window to receive form attributes, you can pass in initialValues/values/effects etc.
   open(props: IFormProps): Promise<any> //return form data

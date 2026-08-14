@@ -59,7 +59,7 @@ const createTree = (dataSource: any, cursor?: any) => {
       const parent = findParent(key)
       if (parent) {
         node.name = (node.path || '').slice(
-          parent && parent.path ? parent.path.length + 1 : 0
+          parent && parent.path ? parent.path.length + 1 : 0,
         )
         parent.children = parent.children || []
         parent.children.push(node)
@@ -182,7 +182,7 @@ const Header = (props) => {
           {node.name}
         </span>
         <span style={{ zIndex: 1, position: 'absolute', right: 12 }}>
-           {isObj(title) ? ((title as any).title ?? '') : title}
+          {isObj(title) ? ((title as any).title ?? '') : title}
         </span>
         <div
           className={`highlight ${node.active ? 'active' : ''}`}
