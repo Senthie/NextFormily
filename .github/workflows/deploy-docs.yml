@@ -1,0 +1,50 @@
+name: Deploy Docs to GitHub Pages
+
+on:
+  # 推送到默认分支时自动部署
+  push:
+    branches:
+      - next-ts7
+  # 允许在 Actions 页面手动触发
+  workflow_dispatch:
+
+# 权限：需要 contents 写入（推送 gh-pages 分支）
+permissions:
+  contents: write
+
+# 并发：同一时间只跑一个部署，避免冲突
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.10.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build docs
+        run: pnpm build:docs
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          # 保留历史提交，否则每次覆盖 gh-pages 分支
+          keep_history: true

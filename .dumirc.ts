@@ -15,6 +15,11 @@ for (const name of fs.readdirSync(packagesDir)) {
 
 export default defineConfig({
   alias,
+  // GitHub Pages 部署到子路径（https://senthie.github.io/NextFormily/）
+  // 若部署到自有域名/根路径，改为 base: '/' 与 publicPath: '/' 即可
+  base: '/NextFormily/',
+  publicPath: '/NextFormily/',
+  exportStatic: {},
   resolve: {
     docDirs: ['docs'],
   },
