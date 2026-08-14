@@ -1,4 +1,4 @@
-import { isFn, isArr } from '@formily/shared'
+import { isFn, isArr } from '@next-formily/shared'
 import { SchemaPatch } from './types'
 
 const patches: SchemaPatch[] = []

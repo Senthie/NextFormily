@@ -5,12 +5,12 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// 将 @formily/* 解析到仓库本地 tsc 构建的 esm 产物
+// 将 @next-formily/* 解析到仓库本地 tsc 构建的 esm 产物
 // （tsc 已正确擦除类型导入，规避 esbuild/原生 ESM 对 `export type` re-export 的限制）
 const formilyPkg = (name: string) =>
   path.resolve(__dirname, `../../packages/${name}/esm/index.js`)
 
-// @formily/antd 的 esm 产物中保留了对 `./xxx/style.less` 的导入（样式侧），
+// @next-formily/antd 的 esm 产物中保留了对 `./xxx/style.less` 的导入（样式侧），
 // 但 tsc 不会拷贝 less 源文件到 esm 目录，这里将产物里的 less 引用重定向到源码 less
 const antdLessRedirect = (): Plugin => ({
   name: 'formily-antd-less-redirect',
@@ -38,16 +38,16 @@ export default defineConfig({
   plugins: [react(), antdLessRedirect()],
   resolve: {
     alias: {
-      '@formily/antd': formilyPkg('antd'),
-      '@formily/react': formilyPkg('react'),
-      '@formily/core': formilyPkg('core'),
-      '@formily/json-schema': formilyPkg('json-schema'),
-      '@formily/shared': formilyPkg('shared'),
-      '@formily/reactive': formilyPkg('reactive'),
-      '@formily/reactive-react': formilyPkg('reactive-react'),
-      '@formily/validator': formilyPkg('validator'),
-      '@formily/grid': formilyPkg('grid'),
-      '@formily/path': formilyPkg('path'),
+      '@next-formily/antd': formilyPkg('antd'),
+      '@next-formily/react': formilyPkg('react'),
+      '@next-formily/core': formilyPkg('core'),
+      '@next-formily/json-schema': formilyPkg('json-schema'),
+      '@next-formily/shared': formilyPkg('shared'),
+      '@next-formily/reactive': formilyPkg('reactive'),
+      '@next-formily/reactive-react': formilyPkg('reactive-react'),
+      '@next-formily/validator': formilyPkg('validator'),
+      '@next-formily/grid': formilyPkg('grid'),
+      '@next-formily/path': formilyPkg('path'),
     },
   },
   css: {

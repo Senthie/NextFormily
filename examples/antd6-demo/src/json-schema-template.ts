@@ -1,4 +1,4 @@
-import { ISchema } from '@formily/json-schema'
+import { ISchema } from '@next-formily/json-schema'
 
 /**
  * JSON Schema 表单模板

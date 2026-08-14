@@ -17,8 +17,8 @@ test('observable annotation', () => {
   })
   obs.aa = { bb: { cc: 123 } }
   obs.aa.bb = 333
-  expect(handler).toBeCalledTimes(2)
-  expect(handler1).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler1).toHaveBeenCalledTimes(2)
 
   const handler2 = jest.fn()
   const handler3 = jest.fn()
@@ -30,8 +30,8 @@ test('observable annotation', () => {
   })
   obsAnno.aa = { bb: { cc: 123 } }
   obsAnno.aa.bb = 333
-  expect(handler2).toBeCalledTimes(2)
-  expect(handler3).toBeCalledTimes(2)
+  expect(handler2).toHaveBeenCalledTimes(2)
+  expect(handler3).toHaveBeenCalledTimes(2)
 })
 
 test('shallow annotation', () => {
@@ -50,8 +50,8 @@ test('shallow annotation', () => {
   expect(isObservable(obs.aa.bb)).toBe(false)
   obs.aa.bb = 333
   obs.cc = 444
-  expect(handler).toBeCalledTimes(2)
-  expect(handler1).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler1).toHaveBeenCalledTimes(2)
 })
 
 test('box annotation', () => {
@@ -64,11 +64,11 @@ test('box annotation', () => {
   })
   const boxValue = 333
   obs.set(boxValue)
-  expect(handler1).toBeCalledTimes(1)
+  expect(handler1).toHaveBeenCalledTimes(1)
   expect(handler1.mock.calls[0][0]).toMatchObject({
     value: boxValue,
   })
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
   expect(handler.mock.calls[0][0]).toBe(123)
   expect(handler.mock.calls[1][0]).toBe(boxValue)
 })
@@ -82,9 +82,9 @@ test('ref annotation', () => {
     handler(obs.value)
   })
   obs.value = 333
-  expect(handler).nthCalledWith(1, 123)
-  expect(handler).nthCalledWith(2, 333)
-  expect(handler1).toBeCalledTimes(1)
+  expect(handler).toHaveBeenNthCalledWith(1, 123)
+  expect(handler).toHaveBeenNthCalledWith(2, 333)
+  expect(handler1).toHaveBeenCalledTimes(1)
 })
 
 test('action annotation', () => {
@@ -98,8 +98,8 @@ test('action annotation', () => {
     return [obs.aa, obs.bb]
   }, handler)
   setData()
-  expect(handler).toBeCalledTimes(1)
-  expect(handler).toBeCalledWith([123, 321], [undefined, undefined])
+  expect(handler).toHaveBeenCalledTimes(1)
+  expect(handler).toHaveBeenCalledWith([123, 321], [undefined, undefined])
 })
 
 test('no action annotation', () => {
@@ -113,9 +113,9 @@ test('no action annotation', () => {
     return [obs.aa, obs.bb]
   }, handler)
   setData()
-  expect(handler).toBeCalledTimes(2)
-  expect(handler).nthCalledWith(1, [123, undefined], [undefined, undefined])
-  expect(handler).nthCalledWith(2, [123, 321], [123, undefined])
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler).toHaveBeenNthCalledWith(1, [123, undefined], [undefined, undefined])
+  expect(handler).toHaveBeenNthCalledWith(2, [123, 321], [123, undefined])
 })
 
 test('computed annotation', () => {
@@ -129,9 +129,9 @@ test('computed annotation', () => {
   const runner3 = jest.fn()
   const compu = observable.computed(handler)
   expect(compu.value).toEqual(33)
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   obs.aa = 22
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   const dispose = autorun(() => {
     compu.value
     runner1()
@@ -141,47 +141,47 @@ test('computed annotation', () => {
     runner2()
   })
   expect(compu.value).toEqual(44)
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
   obs.bb = 33
-  expect(runner1).toBeCalledTimes(2)
-  expect(runner2).toBeCalledTimes(2)
-  expect(handler).toBeCalledTimes(3)
+  expect(runner1).toHaveBeenCalledTimes(2)
+  expect(runner2).toHaveBeenCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(3)
   expect(compu.value).toEqual(55)
-  expect(handler).toBeCalledTimes(3)
+  expect(handler).toHaveBeenCalledTimes(3)
   obs.aa = 11
-  expect(runner1).toBeCalledTimes(3)
-  expect(runner2).toBeCalledTimes(3)
-  expect(handler).toBeCalledTimes(4)
+  expect(runner1).toHaveBeenCalledTimes(3)
+  expect(runner2).toHaveBeenCalledTimes(3)
+  expect(handler).toHaveBeenCalledTimes(4)
   expect(compu.value).toEqual(44)
-  expect(handler).toBeCalledTimes(4)
+  expect(handler).toHaveBeenCalledTimes(4)
   dispose()
   obs.aa = 22
-  expect(runner1).toBeCalledTimes(3)
-  expect(runner2).toBeCalledTimes(4)
-  expect(handler).toBeCalledTimes(5)
+  expect(runner1).toHaveBeenCalledTimes(3)
+  expect(runner2).toHaveBeenCalledTimes(4)
+  expect(handler).toHaveBeenCalledTimes(5)
   expect(compu.value).toEqual(55)
-  expect(handler).toBeCalledTimes(5)
+  expect(handler).toHaveBeenCalledTimes(5)
   dispose2()
   obs.aa = 33
-  expect(runner1).toBeCalledTimes(3)
-  expect(runner2).toBeCalledTimes(4)
-  expect(handler).toBeCalledTimes(5)
+  expect(runner1).toHaveBeenCalledTimes(3)
+  expect(runner2).toHaveBeenCalledTimes(4)
+  expect(handler).toHaveBeenCalledTimes(5)
   expect(compu.value).toEqual(66)
-  expect(handler).toBeCalledTimes(6)
+  expect(handler).toHaveBeenCalledTimes(6)
   expect(compu.value).toEqual(66)
-  expect(handler).toBeCalledTimes(6)
+  expect(handler).toHaveBeenCalledTimes(6)
   autorun(() => {
     compu.value
     runner3()
   })
   expect(compu.value).toEqual(66)
-  expect(handler).toBeCalledTimes(6)
+  expect(handler).toHaveBeenCalledTimes(6)
   expect(compu.value).toEqual(66)
-  expect(handler).toBeCalledTimes(6)
+  expect(handler).toHaveBeenCalledTimes(6)
   obs.aa = 11
-  expect(handler).toBeCalledTimes(7)
+  expect(handler).toHaveBeenCalledTimes(7)
   expect(compu.value).toEqual(44)
-  expect(handler).toBeCalledTimes(7)
+  expect(handler).toHaveBeenCalledTimes(7)
 })
 
 test('computed chain annotation', () => {
@@ -196,24 +196,24 @@ test('computed chain annotation', () => {
   const dispose = autorun(() => {
     compu2.value
   })
-  expect(handler).toBeCalledTimes(1)
-  expect(handler1).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
+  expect(handler1).toHaveBeenCalledTimes(1)
   expect(compu2.value).toEqual(66)
-  expect(handler).toBeCalledTimes(1)
-  expect(handler1).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
+  expect(handler1).toHaveBeenCalledTimes(1)
   obs.aa = 22
-  expect(handler).toBeCalledTimes(2)
-  expect(handler1).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler1).toHaveBeenCalledTimes(2)
   expect(compu2.value).toEqual(77)
-  expect(handler).toBeCalledTimes(2)
-  expect(handler1).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler1).toHaveBeenCalledTimes(2)
   dispose()
   obs.aa = 11
-  expect(handler).toBeCalledTimes(2)
-  expect(handler1).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler1).toHaveBeenCalledTimes(2)
   expect(compu2.value).toEqual(66)
-  expect(handler).toBeCalledTimes(3)
-  expect(handler1).toBeCalledTimes(3)
+  expect(handler).toHaveBeenCalledTimes(3)
+  expect(handler1).toHaveBeenCalledTimes(3)
 })
 
 test('computed with array length', () => {
@@ -231,10 +231,10 @@ test('computed with array length', () => {
     handler(obs.isEmpty)
     handler(obs.isNotEmpty)
   })
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
   obs.arr = ['1']
   obs.arr = []
-  expect(handler).toBeCalledTimes(6)
+  expect(handler).toHaveBeenCalledTimes(6)
 })
 
 test('computed with computed array length', () => {
@@ -256,15 +256,15 @@ test('computed with computed array length', () => {
     handler(obs.isNotEmpty)
     handler2(obs.arr2)
   })
-  expect(handler).toBeCalledTimes(1)
-  expect(handler).lastCalledWith(false)
-  expect(handler2).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
+  expect(handler).toHaveBeenLastCalledWith(false)
+  expect(handler2).toHaveBeenCalledTimes(1)
   expect(handler2.mock.calls[0][0]).toEqual([])
   obs.arr.push(1)
-  expect(handler).lastCalledWith(true)
+  expect(handler).toHaveBeenLastCalledWith(true)
   expect(handler2.mock.calls[1][0]).toEqual([2])
   obs.arr = []
-  expect(handler).lastCalledWith(false)
+  expect(handler).toHaveBeenLastCalledWith(false)
   expect(handler2.mock.calls[2][0]).toEqual([])
 })
 
@@ -288,7 +288,7 @@ test('computed recollect dependencies', () => {
   })
   obs.aa = '111'
   obs.bb = '222'
-  expect(computed).toBeCalledTimes(2)
+  expect(computed).toHaveBeenCalledTimes(2)
 })
 
 test('computed no params', () => {
@@ -331,12 +331,12 @@ test('computed cache descriptor', () => {
   autorun(() => {
     handler2(obs2.value)
   })
-  expect(handler1).toBeCalledTimes(1)
-  expect(handler2).toBeCalledTimes(1)
+  expect(handler1).toHaveBeenCalledTimes(1)
+  expect(handler2).toHaveBeenCalledTimes(1)
   obs1._value = 123
   obs2._value = 123
-  expect(handler1).toBeCalledTimes(2)
-  expect(handler2).toBeCalledTimes(2)
+  expect(handler1).toHaveBeenCalledTimes(2)
+  expect(handler2).toHaveBeenCalledTimes(2)
 })
 
 test('computed normal object', () => {
@@ -356,7 +356,7 @@ test('computed normal object', () => {
   autorun(() => {
     handler(obs.value)
   })
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   obs._value = 123
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
 })

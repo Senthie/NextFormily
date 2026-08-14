@@ -13,8 +13,8 @@ test('base tracker', () => {
 
   tracker.track(view)
   obs.value = 123
-  expect(fn).nthCalledWith(1, undefined)
-  expect(fn).nthCalledWith(2, 123)
+  expect(fn).toHaveBeenNthCalledWith(1, undefined)
+  expect(fn).toHaveBeenNthCalledWith(2, 123)
   tracker.dispose()
 })
 
@@ -31,11 +31,11 @@ test('nested tracker', () => {
   const tracker = new Tracker(scheduler)
 
   tracker.track(view)
-  expect(fn).toBeCalledTimes(1)
-  expect(fn).nthCalledWith(1, 321)
+  expect(fn).toHaveBeenCalledTimes(1)
+  expect(fn).toHaveBeenNthCalledWith(1, 321)
   obs.value = 123
-  expect(fn).toBeCalledTimes(2)
-  expect(fn).nthCalledWith(2, 123)
+  expect(fn).toHaveBeenCalledTimes(2)
+  expect(fn).toHaveBeenNthCalledWith(2, 123)
   tracker.dispose()
 })
 
@@ -61,7 +61,7 @@ test('tracker recollect dependencies', () => {
   tracker.track(view)
   obs.aa = '111'
   obs.bb = '222'
-  expect(fn).toBeCalledTimes(2)
+  expect(fn).toHaveBeenCalledTimes(2)
   tracker.dispose()
 })
 
@@ -88,6 +88,6 @@ test('shared scheduler with multi tracker(mock react strict mode)', () => {
 
   obs.value = 123
 
-  expect(scheduler1).toBeCalledTimes(1)
-  expect(scheduler2).toBeCalledTimes(0)
+  expect(scheduler1).toHaveBeenCalledTimes(1)
+  expect(scheduler2).toHaveBeenCalledTimes(0)
 })

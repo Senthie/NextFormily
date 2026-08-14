@@ -10,16 +10,16 @@ import React, {
 import { Table, Pagination, Space, Select, Badge } from 'antd'
 import { PaginationProps, TableProps, TableColumnType, SelectProps } from 'antd'
 import cls from 'classnames'
-import { GeneralField, FieldDisplayTypes, ArrayField } from '@formily/core'
+import { GeneralField, FieldDisplayTypes, ArrayField } from '@next-formily/core'
 import {
   useField,
   observer,
   useFieldSchema,
   RecursionField,
   ReactFC,
-} from '@formily/react'
-import { isArr, isBool, isFn } from '@formily/shared'
-import { Schema } from '@formily/json-schema'
+} from '@next-formily/react'
+import { isArr, isBool, isFn } from '@next-formily/shared'
+import { Schema } from '@next-formily/json-schema'
 import {
   usePrefixCls,
   SortableContainer,

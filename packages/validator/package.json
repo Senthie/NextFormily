@@ -1,5 +1,5 @@
 {
-  "name": "@formily/validator",
+  "name": "@next-formily/validator",
   "version": "2.3.7",
   "license": "MIT",
   "main": "lib",
@@ -28,7 +28,7 @@
     "build:umd": "rollup --config"
   },
   "dependencies": {
-    "@formily/shared": "2.3.7"
+    "@next-formily/shared": "2.3.7"
   },
   "publishConfig": {
     "access": "public"

@@ -1,5 +1,5 @@
 import type { Dayjs } from 'dayjs'
-import { connect, mapProps, mapReadPretty } from '@formily/react'
+import { connect, mapProps, mapReadPretty } from '@next-formily/react'
 import {
   TimePicker as AntdTimePicker,
   TimePickerProps as AntdTimePickerProps,

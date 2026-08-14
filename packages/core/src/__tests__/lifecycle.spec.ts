@@ -4,8 +4,8 @@ test('create lifecycle', () => {
   const handler1 = jest.fn()
   const lifecycle1 = new LifeCycle(handler1)
   lifecycle1.notify('event1')
-  expect(handler1).toBeCalledTimes(1)
-  expect(handler1).toBeCalledWith(
+  expect(handler1).toHaveBeenCalledTimes(1)
+  expect(handler1).toHaveBeenCalledWith(
     {
       type: 'event1',
       payload: undefined,
@@ -13,8 +13,8 @@ test('create lifecycle', () => {
     undefined
   )
   lifecycle1.notify('event11', 'payload1')
-  expect(handler1).toBeCalledTimes(2)
-  expect(handler1).toBeCalledWith(
+  expect(handler1).toHaveBeenCalledTimes(2)
+  expect(handler1).toHaveBeenCalledWith(
     {
       type: 'event11',
       payload: 'payload1',
@@ -23,8 +23,8 @@ test('create lifecycle', () => {
   )
   const context: any = {}
   lifecycle1.notify('event12', 'payload11', context)
-  expect(handler1).toBeCalledTimes(3)
-  expect(handler1).toBeCalledWith(
+  expect(handler1).toHaveBeenCalledTimes(3)
+  expect(handler1).toHaveBeenCalledWith(
     {
       type: 'event12',
       payload: 'payload11',
@@ -35,9 +35,9 @@ test('create lifecycle', () => {
   const handler2 = jest.fn()
   const lifecycle2 = new LifeCycle('event2', handler2)
   lifecycle2.notify('event1')
-  expect(handler2).not.toBeCalled()
+  expect(handler2).not.toHaveBeenCalled()
   lifecycle2.notify('event2')
-  expect(handler2).toBeCalledTimes(1)
+  expect(handler2).toHaveBeenCalledTimes(1)
 
   const handler31 = jest.fn()
   const handler32 = jest.fn()
@@ -46,12 +46,12 @@ test('create lifecycle', () => {
     event32: handler32,
   })
   lifecycle3.notify('event3')
-  expect(handler31).not.toBeCalled()
-  expect(handler32).not.toBeCalled()
+  expect(handler31).not.toHaveBeenCalled()
+  expect(handler32).not.toHaveBeenCalled()
   lifecycle3.notify('event31')
-  expect(handler31).toBeCalledTimes(1)
-  expect(handler32).not.toBeCalled()
+  expect(handler31).toHaveBeenCalledTimes(1)
+  expect(handler32).not.toHaveBeenCalled()
   lifecycle3.notify('event32')
-  expect(handler31).toBeCalledTimes(1)
-  expect(handler32).toBeCalledTimes(1)
+  expect(handler31).toHaveBeenCalledTimes(1)
+  expect(handler32).toHaveBeenCalledTimes(1)
 })

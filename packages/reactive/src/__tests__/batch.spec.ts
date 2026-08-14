@@ -14,12 +14,12 @@ describe('normal batch', () => {
     })
     obs.aa.bb = 111
     obs.aa.bb = 222
-    expect(handler).toBeCalledTimes(3)
+    expect(handler).toHaveBeenCalledTimes(3)
 
     obs.aa.bb = 333
     obs.aa.bb = 444
 
-    expect(handler).toBeCalledTimes(5)
+    expect(handler).toHaveBeenCalledTimes(5)
   })
 
   test('batch', () => {
@@ -34,16 +34,16 @@ describe('normal batch', () => {
     })
     obs.aa.bb = 111
     obs.aa.bb = 222
-    expect(handler).toBeCalledTimes(3)
-    expect(handler).lastCalledWith(222)
+    expect(handler).toHaveBeenCalledTimes(3)
+    expect(handler).toHaveBeenLastCalledWith(222)
     batch(() => {
       obs.aa.bb = 333
       obs.aa.bb = 444
     })
     batch(() => {})
     batch()
-    expect(handler).toBeCalledTimes(4)
-    expect(handler).lastCalledWith(444)
+    expect(handler).toHaveBeenCalledTimes(4)
+    expect(handler).toHaveBeenLastCalledWith(444)
   })
 
   test('batch track', () => {
@@ -62,10 +62,10 @@ describe('normal batch', () => {
         }
       })
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(2)
+    expect(handler).toHaveBeenCalledTimes(2)
     expect(obs.cc).toEqual(41)
   })
 
@@ -85,12 +85,12 @@ describe('normal batch', () => {
     })
     obs.aa.bb = 111
     obs.aa.bb = 222
-    expect(handler).toBeCalledTimes(3)
-    expect(handler).lastCalledWith(222)
+    expect(handler).toHaveBeenCalledTimes(3)
+    expect(handler).toHaveBeenLastCalledWith(222)
     setData()
     batch(() => {})
-    expect(handler).toBeCalledTimes(4)
-    expect(handler).lastCalledWith(444)
+    expect(handler).toHaveBeenCalledTimes(4)
+    expect(handler).toHaveBeenLastCalledWith(444)
   })
 
   test('batch.bound track', () => {
@@ -109,10 +109,10 @@ describe('normal batch', () => {
         }
       })()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(2)
+    expect(handler).toHaveBeenCalledTimes(2)
     expect(obs.cc).toEqual(41)
   })
 
@@ -136,11 +136,11 @@ describe('normal batch', () => {
       obs.dd = 'ddddd'
     })
 
-    expect(handler).toBeCalledTimes(4)
-    expect(handler).nthCalledWith(1, undefined, undefined, undefined, undefined)
-    expect(handler).nthCalledWith(2, 123, undefined, undefined, undefined)
-    expect(handler).nthCalledWith(3, 123, undefined, 'ccccc', undefined)
-    expect(handler).nthCalledWith(4, 123, 321, 'ccccc', 'ddddd')
+    expect(handler).toHaveBeenCalledTimes(4)
+    expect(handler).toHaveBeenNthCalledWith(1, undefined, undefined, undefined, undefined)
+    expect(handler).toHaveBeenNthCalledWith(2, 123, undefined, undefined, undefined)
+    expect(handler).toHaveBeenNthCalledWith(3, 123, undefined, 'ccccc', undefined)
+    expect(handler).toHaveBeenNthCalledWith(4, 123, 321, 'ccccc', 'ddddd')
   })
 
   test('batch.scope bound', () => {
@@ -164,11 +164,11 @@ describe('normal batch', () => {
       obs.dd = 'ddddd'
     })
 
-    expect(handler).toBeCalledTimes(4)
-    expect(handler).nthCalledWith(1, undefined, undefined, undefined, undefined)
-    expect(handler).nthCalledWith(2, 123, undefined, undefined, undefined)
-    expect(handler).nthCalledWith(3, 123, undefined, 'ccccc', undefined)
-    expect(handler).nthCalledWith(4, 123, 321, 'ccccc', 'ddddd')
+    expect(handler).toHaveBeenCalledTimes(4)
+    expect(handler).toHaveBeenNthCalledWith(1, undefined, undefined, undefined, undefined)
+    expect(handler).toHaveBeenNthCalledWith(2, 123, undefined, undefined, undefined)
+    expect(handler).toHaveBeenNthCalledWith(3, 123, undefined, 'ccccc', undefined)
+    expect(handler).toHaveBeenNthCalledWith(4, 123, 321, 'ccccc', 'ddddd')
   })
 
   test('batch.scope track', () => {
@@ -187,10 +187,10 @@ describe('normal batch', () => {
         }
       })
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(2)
+    expect(handler).toHaveBeenCalledTimes(2)
     expect(obs.cc).toEqual(41)
   })
 
@@ -210,10 +210,10 @@ describe('normal batch', () => {
         }
       })()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(2)
+    expect(handler).toHaveBeenCalledTimes(2)
     expect(obs.cc).toEqual(41)
   })
 
@@ -253,11 +253,11 @@ describe('annotation batch', () => {
     })
     obs.aa.bb = 111
     obs.aa.bb = 222
-    expect(handler).toBeCalledTimes(3)
-    expect(handler).lastCalledWith(222)
+    expect(handler).toHaveBeenCalledTimes(3)
+    expect(handler).toHaveBeenLastCalledWith(222)
     obs.setData()
-    expect(handler).toBeCalledTimes(4)
-    expect(handler).lastCalledWith(444)
+    expect(handler).toHaveBeenCalledTimes(4)
+    expect(handler).toHaveBeenLastCalledWith(444)
   })
 
   test('batch track', () => {
@@ -283,10 +283,10 @@ describe('annotation batch', () => {
     autorun(() => {
       obs.setData()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(2)
+    expect(handler).toHaveBeenCalledTimes(2)
     expect(obs.cc).toEqual(41)
   })
 
@@ -312,11 +312,11 @@ describe('annotation batch', () => {
     })
     obs.aa.bb = 111
     obs.aa.bb = 222
-    expect(handler).toBeCalledTimes(3)
-    expect(handler).lastCalledWith(222)
+    expect(handler).toHaveBeenCalledTimes(3)
+    expect(handler).toHaveBeenLastCalledWith(222)
     obs.setData()
-    expect(handler).toBeCalledTimes(4)
-    expect(handler).lastCalledWith(444)
+    expect(handler).toHaveBeenCalledTimes(4)
+    expect(handler).toHaveBeenLastCalledWith(444)
   })
 
   test('batch.bound track', () => {
@@ -342,10 +342,10 @@ describe('annotation batch', () => {
     autorun(() => {
       obs.setData()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(2)
+    expect(handler).toHaveBeenCalledTimes(2)
     expect(obs.cc).toEqual(41)
   })
 
@@ -386,11 +386,11 @@ describe('annotation batch', () => {
       obs.dd = 'ddddd'
     })
 
-    expect(handler).toBeCalledTimes(4)
-    expect(handler).nthCalledWith(1, null, null, null, null)
-    expect(handler).nthCalledWith(2, 123, null, null, null)
-    expect(handler).nthCalledWith(3, 123, null, 'ccccc', null)
-    expect(handler).nthCalledWith(4, 123, 321, 'ccccc', 'ddddd')
+    expect(handler).toHaveBeenCalledTimes(4)
+    expect(handler).toHaveBeenNthCalledWith(1, null, null, null, null)
+    expect(handler).toHaveBeenNthCalledWith(2, 123, null, null, null)
+    expect(handler).toHaveBeenNthCalledWith(3, 123, null, 'ccccc', null)
+    expect(handler).toHaveBeenNthCalledWith(4, 123, 321, 'ccccc', 'ddddd')
   })
 
   test('batch.scope bound', () => {
@@ -430,11 +430,11 @@ describe('annotation batch', () => {
       obs.dd = 'ddddd'
     })
 
-    expect(handler).toBeCalledTimes(4)
-    expect(handler).nthCalledWith(1, null, null, null, null)
-    expect(handler).nthCalledWith(2, 123, null, null, null)
-    expect(handler).nthCalledWith(3, 123, null, 'ccccc', null)
-    expect(handler).nthCalledWith(4, 123, 321, 'ccccc', 'ddddd')
+    expect(handler).toHaveBeenCalledTimes(4)
+    expect(handler).toHaveBeenNthCalledWith(1, null, null, null, null)
+    expect(handler).toHaveBeenNthCalledWith(2, 123, null, null, null)
+    expect(handler).toHaveBeenNthCalledWith(3, 123, null, 'ccccc', null)
+    expect(handler).toHaveBeenNthCalledWith(4, 123, 321, 'ccccc', 'ddddd')
   })
 
   test('batch.scope track', () => {
@@ -461,10 +461,10 @@ describe('annotation batch', () => {
     autorun(() => {
       obs.scope()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(2)
+    expect(handler).toHaveBeenCalledTimes(2)
     expect(obs.cc).toEqual(41)
   })
 
@@ -492,10 +492,10 @@ describe('annotation batch', () => {
     autorun(() => {
       obs.scope()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(2)
+    expect(handler).toHaveBeenCalledTimes(2)
     expect(obs.cc).toEqual(41)
   })
 })
@@ -562,7 +562,7 @@ test('reaction collect in batch valid', () => {
   })
 
   obs.bb = 44
-  expect(fn).toBeCalledTimes(2)
+  expect(fn).toHaveBeenCalledTimes(2)
 })
 
 test('reaction collect in batch invalid', () => {
@@ -588,5 +588,5 @@ test('reaction collect in batch invalid', () => {
 
   obs.bb = 44
   obs.cc = 55
-  expect(fn).toBeCalledTimes(3)
+  expect(fn).toHaveBeenCalledTimes(3)
 })

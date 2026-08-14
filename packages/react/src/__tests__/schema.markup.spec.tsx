@@ -1,5 +1,5 @@
 import React from 'react'
-import { createForm } from '@formily/core'
+import { createForm } from '@next-formily/core'
 import {
   FormProvider,
   createSchemaField,
@@ -914,8 +914,8 @@ test('x-reactions runner for target', async () => {
   fireEvent.click(getByTestId('btn'))
   await waitFor(() => {
     expect(getByTestId('btn').textContent).toBe('Click 123')
-    expect(getTarget).toBeCalledWith('333')
-    expect(getTarget).toBeCalledTimes(1)
+    expect(getTarget).toHaveBeenCalledWith('333')
+    expect(getTarget).toHaveBeenCalledTimes(1)
   })
 })
 
@@ -968,7 +968,7 @@ test('multi x-reactions isolate effect', async () => {
   await waitFor(() => {
     expect(getByTestId('btn').textContent).toBe('Click 123')
     expect(getByTestId('input')).not.toBeNull()
-    expect(otherEffect).toBeCalledTimes(1)
+    expect(otherEffect).toHaveBeenCalledTimes(1)
   })
 })
 

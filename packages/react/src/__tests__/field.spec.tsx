@@ -1,13 +1,13 @@
 import React from 'react'
 import { act } from 'react'
 import { render, fireEvent, waitFor } from '@testing-library/react'
-import { createForm, onFieldUnmount, isArrayField } from '@formily/core'
+import { createForm, onFieldUnmount, isArrayField } from '@next-formily/core'
 import {
   isField,
   Field as FieldType,
   isVoidField,
   onFieldChange,
-} from '@formily/core'
+} from '@next-formily/core'
 import {
   FormProvider,
   ArrayField,
@@ -102,7 +102,7 @@ test('render field', async () => {
       value: '123',
     },
   })
-  expect(onChange).toBeCalledTimes(1)
+  expect(onChange).toHaveBeenCalledTimes(1)
   expect(getByTestId('bb-children')).not.toBeUndefined()
   expect(getByTestId('dd-children')).not.toBeUndefined()
   expect(queryByTestId('ee')).toBeNull()

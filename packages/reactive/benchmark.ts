@@ -28,7 +28,7 @@ b.suite(
     func(obs, 1e3)
   }),
 
-  b.add('Case @formily/reactive', () => {
+  b.add('Case @next-formily/reactive', () => {
     const obs = formilyReactive.observable({})
     func(obs, 1e3)
   }),

@@ -22,6 +22,7 @@ fs.copy(
 export default {
   mode: 'development',
   devtool: 'inline-source-map', // 嵌入到源文件中
+  target: 'web', // webpack 5 需显式声明目标环境（默认会按 browserslist 推断）
   entry: {
     popup: getEntry('./popup.tsx'),
     devtools: getEntry('./devtools.tsx'),

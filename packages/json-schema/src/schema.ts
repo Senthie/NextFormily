@@ -8,8 +8,8 @@ import {
   ISchemaTransformerOptions,
   Slot,
 } from './types'
-import { IFieldFactoryProps } from '@formily/core'
-import { map, each, isFn, instOf, FormPath, isStr } from '@formily/shared'
+import { IFieldFactoryProps } from '@next-formily/core'
+import { map, each, isFn, instOf, FormPath, isStr } from '@next-formily/shared'
 import { compile, silent, shallowCompile, registerCompiler } from './compiler'
 import { transformFieldProps } from './transformer'
 import {

@@ -60,16 +60,16 @@ test('root replace observe', () => {
   obs.aa = {
     mm: 123,
   }
-  expect(handler1).toBeCalledTimes(1)
-  expect(handler).toBeCalledTimes(1)
+  expect(handler1).toHaveBeenCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   obs.aa = {
     bb: {
       cc: [11, 22, 33],
     },
   }
   obs.aa.bb.cc.push(44)
-  expect(handler1).toBeCalledTimes(3)
-  expect(handler).toBeCalledTimes(3)
+  expect(handler1).toHaveBeenCalledTimes(3)
+  expect(handler).toHaveBeenCalledTimes(3)
 })
 
 test('dispose observe', () => {
@@ -83,10 +83,10 @@ test('dispose observe', () => {
   const handler = jest.fn()
   const dispose = observe(obs, handler)
   obs.kk = 123
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   dispose()
   obs.aa = 123
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
 })
 
 test('dispose observe', () => {
@@ -100,18 +100,18 @@ test('dispose observe', () => {
   const handler = jest.fn()
   const dispose = observe(obs.aa, handler)
   obs.kk = 111
-  expect(handler).toBeCalledTimes(0)
+  expect(handler).toHaveBeenCalledTimes(0)
   obs.aa = { mm: 222 }
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   obs.aa = { mm: 222 }
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
   obs.aa = { mm: '111' }
-  expect(handler).toBeCalledTimes(3)
+  expect(handler).toHaveBeenCalledTimes(3)
   obs.aa = { mm: 333 }
-  expect(handler).toBeCalledTimes(4)
+  expect(handler).toHaveBeenCalledTimes(4)
   dispose()
   obs.aa = { mm: 444 }
-  expect(handler).toBeCalledTimes(4)
+  expect(handler).toHaveBeenCalledTimes(4)
 })
 
 test('array delete', () => {
@@ -143,9 +143,9 @@ test('observe dynamic tree', () => {
   tree.children = childTree
   observe(tree, handler)
   tree.children.aa = 123
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
 })
 
 test('invalid target', () => {
-  expect(() => observe(function () {})).toThrowError()
+  expect(() => observe(function () {})).toThrow()
 })

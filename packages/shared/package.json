@@ -1,5 +1,5 @@
 {
-  "name": "@formily/shared",
+  "name": "@next-formily/shared",
   "version": "2.3.7",
   "license": "MIT",
   "main": "lib",
@@ -32,12 +32,6 @@
     "build:umd": "rollup --config"
   },
   "dependencies": {
-    "@formily/path": "2.3.7",
-    "camel-case": "^4.1.1",
-    "lower-case": "^2.0.1",
-    "no-case": "^3.0.4",
-    "param-case": "^3.0.4",
-    "pascal-case": "^3.1.1",
-    "upper-case": "^2.0.1"
+    "@next-formily/path": "2.3.7"
   }
 }

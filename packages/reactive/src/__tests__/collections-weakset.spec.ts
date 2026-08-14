@@ -13,14 +13,14 @@ describe('WeakSet', () => {
     const weakSet = observable(new WeakSet())
     autorun(() => handler(weakSet.has(value)))
 
-    expect(handler).toBeCalledTimes(1)
-    expect(handler).lastCalledWith(false)
+    expect(handler).toHaveBeenCalledTimes(1)
+    expect(handler).toHaveBeenLastCalledWith(false)
     weakSet.add(value)
-    expect(handler).toBeCalledTimes(2)
-    expect(handler).lastCalledWith(true)
+    expect(handler).toHaveBeenCalledTimes(2)
+    expect(handler).toHaveBeenLastCalledWith(true)
     weakSet.delete(value)
-    expect(handler).toBeCalledTimes(3)
-    expect(handler).lastCalledWith(false)
+    expect(handler).toHaveBeenCalledTimes(3)
+    expect(handler).toHaveBeenLastCalledWith(false)
   })
 
   test('should not autorun custom property mutations', () => {
@@ -28,10 +28,10 @@ describe('WeakSet', () => {
     const weakSet = observable(new WeakSet())
     autorun(() => handler(weakSet['customProp']))
 
-    expect(handler).toBeCalledTimes(1)
-    expect(handler).lastCalledWith(undefined)
+    expect(handler).toHaveBeenCalledTimes(1)
+    expect(handler).toHaveBeenLastCalledWith(undefined)
     weakSet['customProp'] = 'Hello World'
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
   })
 
   test('should not autorun non value changing mutations', () => {
@@ -40,18 +40,18 @@ describe('WeakSet', () => {
     const weakSet = observable(new WeakSet())
     autorun(() => handler(weakSet.has(value)))
 
-    expect(handler).toBeCalledTimes(1)
-    expect(handler).lastCalledWith(false)
+    expect(handler).toHaveBeenCalledTimes(1)
+    expect(handler).toHaveBeenLastCalledWith(false)
     weakSet.add(value)
-    expect(handler).toBeCalledTimes(2)
-    expect(handler).lastCalledWith(true)
+    expect(handler).toHaveBeenCalledTimes(2)
+    expect(handler).toHaveBeenLastCalledWith(true)
     weakSet.add(value)
-    expect(handler).toBeCalledTimes(2)
+    expect(handler).toHaveBeenCalledTimes(2)
     weakSet.delete(value)
-    expect(handler).toBeCalledTimes(3)
-    expect(handler).lastCalledWith(false)
+    expect(handler).toHaveBeenCalledTimes(3)
+    expect(handler).toHaveBeenLastCalledWith(false)
     weakSet.delete(value)
-    expect(handler).toBeCalledTimes(3)
+    expect(handler).toHaveBeenCalledTimes(3)
   })
 
   test('should not autorun raw data', () => {
@@ -60,12 +60,12 @@ describe('WeakSet', () => {
     const weakSet = observable(new WeakSet())
     autorun(() => handler(raw(weakSet).has(value)))
 
-    expect(handler).toBeCalledTimes(1)
-    expect(handler).lastCalledWith(false)
+    expect(handler).toHaveBeenCalledTimes(1)
+    expect(handler).toHaveBeenLastCalledWith(false)
     weakSet.add(value)
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     weakSet.delete(value)
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
   })
 
   test('should not be triggered by raw mutations', () => {
@@ -74,11 +74,11 @@ describe('WeakSet', () => {
     const weakSet = observable(new WeakSet())
     autorun(() => handler(weakSet.has(value)))
 
-    expect(handler).toBeCalledTimes(1)
-    expect(handler).lastCalledWith(false)
+    expect(handler).toHaveBeenCalledTimes(1)
+    expect(handler).toHaveBeenLastCalledWith(false)
     raw(weakSet).add(value)
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     raw(weakSet).delete(value)
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
   })
 })

@@ -1,4 +1,4 @@
-import { createForm, Form } from '@formily/core'
+import { createForm, Form } from '@next-formily/core'
 import { ISchema, Schema, SchemaKey } from '../'
 
 // 这是schema

@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react'
-import { createForm, onFieldValueChange } from '@formily/core'
+import { createForm, onFieldValueChange } from '@next-formily/core'
 import {
   FormProvider,
   Field,
   createSchemaField,
   FormConsumer,
-} from '@formily/react'
+} from '@next-formily/react'
 import {
   FormItem,
   FormLayout,
@@ -28,7 +28,7 @@ import {
   FormDialog,
   FormDrawer,
   PreviewText,
-} from '@formily/antd'
+} from '@next-formily/antd'
 import { Button, message } from 'antd'
 import { jsonFormSchema } from './json-schema-template'
 

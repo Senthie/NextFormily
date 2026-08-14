@@ -420,20 +420,20 @@ test('path methods', () => {
 
   const matchPath = Path.parse('*')
   const regexPath = Path.parse(/.+/)
-  expect(() => matchPath.concat('a')).toThrowError()
-  expect(() => regexPath.concat('a')).toThrowError()
-  expect(() => matchPath.slice()).toThrowError()
-  expect(() => regexPath.slice()).toThrowError()
-  expect(() => matchPath.pop()).toThrowError()
-  expect(() => regexPath.pop()).toThrowError()
-  expect(() => matchPath.splice(0, 1)).toThrowError()
-  expect(() => regexPath.splice(0, 1)).toThrowError()
-  expect(() => matchPath.forEach(() => {})).toThrowError()
-  expect(() => regexPath.forEach(() => {})).toThrowError()
-  expect(() => matchPath.map(() => {})).toThrowError()
-  expect(() => regexPath.map(() => {})).toThrowError()
-  expect(() => matchPath.reduce((p) => p, '')).toThrowError()
-  expect(() => regexPath.reduce((p) => p, '')).toThrowError()
+  expect(() => matchPath.concat('a')).toThrow()
+  expect(() => regexPath.concat('a')).toThrow()
+  expect(() => matchPath.slice()).toThrow()
+  expect(() => regexPath.slice()).toThrow()
+  expect(() => matchPath.pop()).toThrow()
+  expect(() => regexPath.pop()).toThrow()
+  expect(() => matchPath.splice(0, 1)).toThrow()
+  expect(() => regexPath.splice(0, 1)).toThrow()
+  expect(() => matchPath.forEach(() => {})).toThrow()
+  expect(() => regexPath.forEach(() => {})).toThrow()
+  expect(() => matchPath.map(() => {})).toThrow()
+  expect(() => regexPath.map(() => {})).toThrow()
+  expect(() => matchPath.reduce((p) => p, '')).toThrow()
+  expect(() => regexPath.reduce((p) => p, '')).toThrow()
 
   expect(path.slice().segments).toEqual(['a', 'b', 'c'])
   expect(path.push('d').segments).toEqual(['a', 'b', 'c', 'd'])
@@ -447,9 +447,9 @@ test('path methods', () => {
   expect(path.reduce((str, p) => str + p, '')).toEqual('abc')
   expect(path.parent().segments).toEqual(['a', 'b'])
 
-  expect(() => Path.parse('*').includes('*')).toThrowError()
-  expect(() => Path.parse('*').includes('*')).toThrowError()
-  expect(() => Path.parse('a.b').includes('*')).toThrowError()
+  expect(() => Path.parse('*').includes('*')).toThrow()
+  expect(() => Path.parse('*').includes('*')).toThrow()
+  expect(() => Path.parse('a.b').includes('*')).toThrow()
   expect(Path.parse('*').includes('a.b')).toBeTruthy()
   expect(Path.parse('a.b').includes('a.b')).toBeTruthy()
   expect(Path.parse('a.b').includes('a.c')).toBeFalsy()
@@ -462,7 +462,7 @@ test('path methods', () => {
     ['a', 'b']
   )
   expect(Path.parse('a.b.c').transform('', null)).toEqual('')
-  expect(() => Path.parse('*').transform('', () => {})).toThrowError()
+  expect(() => Path.parse('*').transform('', () => {})).toThrow()
   expect(Path.transform('a.b.c', /[a-z]/, (...result) => result)).toEqual([
     'a',
     'b',
@@ -470,7 +470,7 @@ test('path methods', () => {
   ])
 
   expect(Path.parse('a.b.c').match('*')).toBeTruthy()
-  expect(() => Path.parse('*').match('*')).toThrowError()
+  expect(() => Path.parse('*').match('*')).toThrow()
   expect(Path.match('*')('a.b.c')).toBeTruthy()
   expect(Path.match('a.b')('a.b.c')).toBeFalsy()
 

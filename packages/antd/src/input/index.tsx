@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect, mapProps, mapReadPretty } from '@formily/react'
+import { connect, mapProps, mapReadPretty } from '@next-formily/react'
 import { Input as AntdInput } from 'antd'
 import { InputProps } from 'antd'
 import { TextAreaProps } from 'antd/es/input'

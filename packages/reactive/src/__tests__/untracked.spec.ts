@@ -9,9 +9,9 @@ test('basic untracked', () => {
     })
   })
 
-  expect(fn).toBeCalledTimes(1)
+  expect(fn).toHaveBeenCalledTimes(1)
   obs.value = 123
-  expect(fn).toBeCalledTimes(1)
+  expect(fn).toHaveBeenCalledTimes(1)
 })
 
 test('no params untracked', () => {

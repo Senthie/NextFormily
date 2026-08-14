@@ -1,4 +1,4 @@
-import { FormPath } from '@formily/shared'
+import { FormPath } from '@next-formily/shared'
 import { Form } from '../models'
 import { IFormProps } from '../types'
 import {
@@ -9,7 +9,7 @@ import {
   registerValidateLocale,
   registerValidateMessageTemplateEngine,
   registerValidateRules,
-} from '@formily/validator'
+} from '@next-formily/validator'
 import {
   createEffectHook,
   createEffectContext,

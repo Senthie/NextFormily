@@ -231,7 +231,7 @@ test('lazy array field query each', () => {
   })
 
   array.insert(1, { value: '11' })
-  expect(() => form.query('*').take()).not.toThrowError()
+  expect(() => form.query('*').take()).not.toThrow()
   expect(Object.keys(form.fields)).toEqual([
     'array',
     'array.0.value',
@@ -509,9 +509,9 @@ test('array field remove memo leak', async () => {
       basePath: 'array',
     })
   )
-  expect(handler).toBeCalledTimes(0)
-  expect(valuesChange).toBeCalledTimes(4)
-  expect(initialValuesChange).toBeCalledTimes(0)
+  expect(handler).toHaveBeenCalledTimes(0)
+  expect(valuesChange).toHaveBeenCalledTimes(4)
+  expect(initialValuesChange).toHaveBeenCalledTimes(0)
 })
 
 test('nest array remove', async () => {
@@ -785,7 +785,7 @@ test('array field remove can not memory leak', async () => {
     ;(field as DataField).value = '123'
   })
   expect(bb.visible).toBeTruthy()
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
 })
 
 test('array field patch values', async () => {

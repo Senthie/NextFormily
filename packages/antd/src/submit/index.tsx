@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button } from 'antd'
 import { ButtonProps } from 'antd'
-import { IFormFeedback } from '@formily/core'
-import { useParentForm, observer } from '@formily/react'
+import { IFormFeedback } from '@next-formily/core'
+import { useParentForm, observer } from '@next-formily/react'
 
 export interface ISubmitProps extends ButtonProps {
   onClick?: (e: React.MouseEvent<Element, MouseEvent>) => any

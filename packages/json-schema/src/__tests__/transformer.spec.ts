@@ -1,6 +1,6 @@
 import { Schema } from '../schema'
-import { createForm } from '@formily/core'
-import { isObservable } from '@formily/reactive'
+import { createForm } from '@next-formily/core'
+import { isObservable } from '@next-formily/reactive'
 import { ISchema, ISchemaTransformerOptions } from '../types'
 
 const attach = <T extends { onMount: () => void }>(target: T): T => {
@@ -123,7 +123,7 @@ test('userReactions with target(runner)', () => {
     }
   )
 
-  expect(mockFn).toBeCalledTimes(1)
+  expect(mockFn).toHaveBeenCalledTimes(1)
   expect(field2.title).toBe(field2Title)
 })
 
@@ -175,7 +175,7 @@ test('userReactions without target(runner)', () => {
     }
   )
 
-  expect(mockFn).toBeCalledTimes(1)
+  expect(mockFn).toHaveBeenCalledTimes(1)
   expect((field1 as any).__target__).toBe(null)
 })
 
@@ -202,11 +202,11 @@ test('userReactions with condition', () => {
     }
   )
 
-  expect(mockFn).nthCalledWith(1, true)
+  expect(mockFn).toHaveBeenNthCalledWith(1, true)
 
   field1.value = false
 
-  expect(mockFn).nthCalledWith(2, false)
+  expect(mockFn).toHaveBeenNthCalledWith(2, false)
 })
 
 test('userReactions with condition(wrong type)', () => {
@@ -230,7 +230,7 @@ test('userReactions with condition(wrong type)', () => {
     }
   )
 
-  expect(mockFn).nthCalledWith(1, [], [])
+  expect(mockFn).toHaveBeenNthCalledWith(1, [], [])
 })
 
 test('userReactions with condition(array)', () => {
@@ -277,7 +277,7 @@ test('userReactions with condition(array)', () => {
     }
   )
 
-  expect(mockFn).nthCalledWith(1, [
+  expect(mockFn).toHaveBeenNthCalledWith(1, [
     field2Value,
     field1Value,
     field1Title,
@@ -313,7 +313,7 @@ test('userReactions with condition(object)', () => {
     }
   )
 
-  expect(mockFn).nthCalledWith(1, {
+  expect(mockFn).toHaveBeenNthCalledWith(1, {
     key1: field1Title,
     key2: field2Value,
   })
@@ -345,11 +345,11 @@ test('userReactions with user-defined effects', () => {
     }
   )
 
-  expect(mockFn).toBeCalledTimes(1)
-  expect(mockFn).nthCalledWith(1, field2Value)
+  expect(mockFn).toHaveBeenCalledTimes(1)
+  expect(mockFn).toHaveBeenNthCalledWith(1, field2Value)
 
   field2.value = field1Title
-  expect(mockFn).toBeCalledTimes(1)
+  expect(mockFn).toHaveBeenCalledTimes(1)
 })
 
 test('userReactions with function type', () => {

@@ -52,11 +52,11 @@ test('onFormInit/onFormMount/onFormUnmount', () => {
       },
     })
   )
-  expect(init).toBeCalled()
-  expect(mount).toBeCalled()
-  expect(unmount).not.toBeCalled()
+  expect(init).toHaveBeenCalled()
+  expect(mount).toHaveBeenCalled()
+  expect(unmount).not.toHaveBeenCalled()
   form.onUnmount()
-  expect(unmount).toBeCalled()
+  expect(unmount).toHaveBeenCalled()
 })
 
 test('onFormValuesChange/onFormInitialValuesChange', () => {
@@ -70,20 +70,20 @@ test('onFormValuesChange/onFormInitialValuesChange', () => {
       },
     })
   )
-  expect(valuesChange).not.toBeCalled()
-  expect(initialValuesChange).not.toBeCalled()
+  expect(valuesChange).not.toHaveBeenCalled()
+  expect(initialValuesChange).not.toHaveBeenCalled()
   form.setValues({
     aa: '123',
   })
   expect(form.values.aa).toEqual('123')
-  expect(valuesChange).toBeCalled()
+  expect(valuesChange).toHaveBeenCalled()
   form.setInitialValues({
     aa: '321',
     bb: '123',
   })
   expect(form.values.aa).toEqual('321')
   expect(form.values.bb).toEqual('123')
-  expect(initialValuesChange).toBeCalled()
+  expect(initialValuesChange).toHaveBeenCalled()
 })
 
 test('onFormInputChange', () => {
@@ -102,17 +102,17 @@ test('onFormInputChange', () => {
       name: 'aa',
     })
   )
-  expect(inputChange).not.toBeCalled()
-  expect(valuesChange).not.toBeCalled()
+  expect(inputChange).not.toHaveBeenCalled()
+  expect(valuesChange).not.toHaveBeenCalled()
   field.setValue('123')
-  expect(inputChange).not.toBeCalled()
-  expect(valuesChange).toBeCalledTimes(1)
+  expect(inputChange).not.toHaveBeenCalled()
+  expect(valuesChange).toHaveBeenCalledTimes(1)
   field.onInput('123')
-  expect(inputChange).toBeCalled()
-  expect(valuesChange).toBeCalledTimes(1)
+  expect(inputChange).toHaveBeenCalled()
+  expect(valuesChange).toHaveBeenCalledTimes(1)
   field.onInput('321')
-  expect(inputChange).toBeCalledTimes(2)
-  expect(valuesChange).toBeCalledTimes(2)
+  expect(inputChange).toHaveBeenCalledTimes(2)
+  expect(valuesChange).toHaveBeenCalledTimes(2)
 })
 
 test('onFormReact', () => {
@@ -128,9 +128,9 @@ test('onFormReact', () => {
       },
     })
   )
-  expect(react).not.toBeCalled()
+  expect(react).not.toHaveBeenCalled()
   form.setValues({ aa: 123 })
-  expect(react).toBeCalled()
+  expect(react).toHaveBeenCalled()
   form.onUnmount()
 
   // will not throw error
@@ -168,11 +168,11 @@ test('onFormReset', async () => {
 
   expect(field.value).toEqual('xxxx')
   expect(form.values.aa).toEqual('xxxx')
-  expect(reset).not.toBeCalled()
+  expect(reset).not.toHaveBeenCalled()
   await form.reset()
   expect(field.value).toEqual(123)
   expect(form.values.aa).toEqual(123)
-  expect(reset).toBeCalled()
+  expect(reset).toHaveBeenCalled()
 })
 
 test('onFormSubmit', async () => {
@@ -210,28 +210,28 @@ test('onFormSubmit', async () => {
   try {
     await form.submit()
   } catch {}
-  expect(submitStart).toBeCalled()
-  expect(submit).toBeCalled()
-  expect(submitEnd).toBeCalled()
-  expect(submitSuccess).not.toBeCalled()
-  expect(submitFailed).toBeCalled()
-  expect(submitValidateStart).toBeCalled()
-  expect(submitValidateFailed).toBeCalled()
-  expect(submitValidateSuccess).not.toBeCalled()
-  expect(submitValidateEnd).toBeCalled()
+  expect(submitStart).toHaveBeenCalled()
+  expect(submit).toHaveBeenCalled()
+  expect(submitEnd).toHaveBeenCalled()
+  expect(submitSuccess).not.toHaveBeenCalled()
+  expect(submitFailed).toHaveBeenCalled()
+  expect(submitValidateStart).toHaveBeenCalled()
+  expect(submitValidateFailed).toHaveBeenCalled()
+  expect(submitValidateSuccess).not.toHaveBeenCalled()
+  expect(submitValidateEnd).toHaveBeenCalled()
   field.onInput('123')
   try {
     await form.submit()
   } catch (e) {}
-  expect(submitStart).toBeCalledTimes(2)
-  expect(submit).toBeCalledTimes(2)
-  expect(submitEnd).toBeCalledTimes(2)
-  expect(submitSuccess).toBeCalledTimes(1)
-  expect(submitFailed).toBeCalledTimes(1)
-  expect(submitValidateStart).toBeCalledTimes(2)
-  expect(submitValidateFailed).toBeCalledTimes(1)
-  expect(submitValidateSuccess).toBeCalledTimes(1)
-  expect(submitValidateEnd).toBeCalledTimes(2)
+  expect(submitStart).toHaveBeenCalledTimes(2)
+  expect(submit).toHaveBeenCalledTimes(2)
+  expect(submitEnd).toHaveBeenCalledTimes(2)
+  expect(submitSuccess).toHaveBeenCalledTimes(1)
+  expect(submitFailed).toHaveBeenCalledTimes(1)
+  expect(submitValidateStart).toHaveBeenCalledTimes(2)
+  expect(submitValidateFailed).toHaveBeenCalledTimes(1)
+  expect(submitValidateSuccess).toHaveBeenCalledTimes(1)
+  expect(submitValidateEnd).toHaveBeenCalledTimes(2)
 })
 
 test('onFormValidate', async () => {
@@ -258,18 +258,18 @@ test('onFormValidate', async () => {
   try {
     await form.validate()
   } catch {}
-  expect(validateStart).toBeCalled()
-  expect(validateEnd).toBeCalled()
-  expect(validateFailed).toBeCalled()
-  expect(validateSuccess).not.toBeCalled()
+  expect(validateStart).toHaveBeenCalled()
+  expect(validateEnd).toHaveBeenCalled()
+  expect(validateFailed).toHaveBeenCalled()
+  expect(validateSuccess).not.toHaveBeenCalled()
   field.onInput('123')
   try {
     await form.validate()
   } catch {}
-  expect(validateStart).toBeCalledTimes(2)
-  expect(validateEnd).toBeCalledTimes(2)
-  expect(validateFailed).toBeCalledTimes(1)
-  expect(validateSuccess).toBeCalledTimes(1)
+  expect(validateStart).toHaveBeenCalledTimes(2)
+  expect(validateEnd).toHaveBeenCalledTimes(2)
+  expect(validateFailed).toHaveBeenCalledTimes(1)
+  expect(validateSuccess).toHaveBeenCalledTimes(1)
 })
 
 test('onFieldChange', async () => {
@@ -303,22 +303,22 @@ test('onFieldChange', async () => {
       name: 'aa',
     })
   )
-  expect(fieldChange).toBeCalledTimes(1)
+  expect(fieldChange).toHaveBeenCalledTimes(1)
   field.setValue('123')
-  expect(fieldChange).toBeCalledTimes(2)
+  expect(fieldChange).toHaveBeenCalledTimes(2)
   field.onInput('321')
-  expect(fieldChange).toBeCalledTimes(3)
+  expect(fieldChange).toHaveBeenCalledTimes(3)
   field.setLoading(true)
-  expect(fieldChange).toBeCalledTimes(3)
+  expect(fieldChange).toHaveBeenCalledTimes(3)
   await sleep()
-  expect(fieldChange).toBeCalledTimes(4)
+  expect(fieldChange).toHaveBeenCalledTimes(4)
   field.setPattern('disabled')
-  expect(fieldChange).toBeCalledTimes(5)
+  expect(fieldChange).toHaveBeenCalledTimes(5)
   field.setDisplay('none')
-  expect(fieldChange).toBeCalledTimes(6)
+  expect(fieldChange).toHaveBeenCalledTimes(6)
   form.onUnmount()
-  expect(valueChange).toBeCalledTimes(4)
-  expect(valueChange2).toBeCalledTimes(4)
+  expect(valueChange).toHaveBeenCalledTimes(4)
+  expect(valueChange2).toHaveBeenCalledTimes(4)
 })
 
 test('onFieldInit/onFieldMount/onFieldUnmount', () => {
@@ -339,11 +339,11 @@ test('onFieldInit/onFieldMount/onFieldUnmount', () => {
       name: 'aa',
     })
   )
-  expect(fieldInit).toBeCalledTimes(1)
-  expect(fieldMount).toBeCalledTimes(1)
-  expect(fieldUnmount).toBeCalledTimes(0)
+  expect(fieldInit).toHaveBeenCalledTimes(1)
+  expect(fieldMount).toHaveBeenCalledTimes(1)
+  expect(fieldUnmount).toHaveBeenCalledTimes(0)
   field.onUnmount()
-  expect(fieldUnmount).toBeCalledTimes(1)
+  expect(fieldUnmount).toHaveBeenCalledTimes(1)
 })
 
 test('onFieldInitialValueChange/onFieldValueChange/onFieldInputValueChange', () => {
@@ -367,18 +367,18 @@ test('onFieldInitialValueChange/onFieldValueChange/onFieldInputValueChange', () 
     })
   )
   field.setValue('123')
-  expect(fieldValueChange).toBeCalledTimes(1)
-  expect(fieldInitialValueChange).toBeCalledTimes(0)
-  expect(fieldInputValueChange).toBeCalledTimes(0)
+  expect(fieldValueChange).toHaveBeenCalledTimes(1)
+  expect(fieldInitialValueChange).toHaveBeenCalledTimes(0)
+  expect(fieldInputValueChange).toHaveBeenCalledTimes(0)
   field.setInitialValue('xxx')
-  expect(fieldValueChange).toBeCalledTimes(2)
-  expect(fieldInitialValueChange).toBeCalledTimes(1)
-  expect(fieldInputValueChange).toBeCalledTimes(0)
+  expect(fieldValueChange).toHaveBeenCalledTimes(2)
+  expect(fieldInitialValueChange).toHaveBeenCalledTimes(1)
+  expect(fieldInputValueChange).toHaveBeenCalledTimes(0)
   field.onInput('321')
-  expect(fieldValueChange).toBeCalledTimes(3)
-  expect(fieldInitialValueChange).toBeCalledTimes(1)
-  expect(fieldInputValueChange).toBeCalledTimes(1)
-  expect(notTrigger).toBeCalledTimes(0)
+  expect(fieldValueChange).toHaveBeenCalledTimes(3)
+  expect(fieldInitialValueChange).toHaveBeenCalledTimes(1)
+  expect(fieldInputValueChange).toHaveBeenCalledTimes(1)
+  expect(notTrigger).toHaveBeenCalledTimes(0)
 })
 
 test('onFieldReact', () => {
@@ -404,11 +404,11 @@ test('onFieldReact', () => {
       name: 'aa',
     })
   )
-  expect(react).not.toBeCalled()
+  expect(react).not.toHaveBeenCalled()
   form.setValues({ aa: 123 })
-  expect(react).toBeCalledTimes(1)
+  expect(react).toHaveBeenCalledTimes(1)
   field.setDisplay('hidden')
-  expect(react).toBeCalledTimes(3)
+  expect(react).toHaveBeenCalledTimes(3)
   form.onUnmount()
 })
 
@@ -436,18 +436,18 @@ test('onFieldValidate', async () => {
   try {
     await field.validate()
   } catch {}
-  expect(validateStart).toBeCalled()
-  expect(validateFailed).toBeCalled()
-  expect(validateSuccess).not.toBeCalled()
-  expect(validateEnd).toBeCalled()
+  expect(validateStart).toHaveBeenCalled()
+  expect(validateFailed).toHaveBeenCalled()
+  expect(validateSuccess).not.toHaveBeenCalled()
+  expect(validateEnd).toHaveBeenCalled()
   field.setValue('123')
   try {
     await field.validate()
   } catch {}
-  expect(validateStart).toBeCalledTimes(2)
-  expect(validateFailed).toBeCalledTimes(1)
-  expect(validateSuccess).toBeCalledTimes(1)
-  expect(validateEnd).toBeCalledTimes(2)
+  expect(validateStart).toHaveBeenCalledTimes(2)
+  expect(validateFailed).toHaveBeenCalledTimes(1)
+  expect(validateSuccess).toHaveBeenCalledTimes(1)
+  expect(validateEnd).toHaveBeenCalledTimes(2)
 })
 
 test('async use will throw error', async () => {
@@ -473,7 +473,7 @@ test('async use will throw error', async () => {
   )
   await sleep(10)
   aa.setValue('123')
-  expect(valueChange).toBeCalledTimes(0)
+  expect(valueChange).toHaveBeenCalledTimes(0)
   expect(error).not.toBeUndefined()
 })
 

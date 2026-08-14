@@ -528,7 +528,7 @@ describe('shared Subscribable', () => {
     expect(handlerIdx).toEqual(1)
     obj.notify({ key: 'val' })
     expect(cb).toHaveBeenCalledTimes(1)
-    expect(cb).toBeCalledWith({ key: 'val' })
+    expect(cb).toHaveBeenCalledWith({ key: 'val' })
 
     obj.unsubscribe(handlerIdx)
     obj.notify({ key: 'val' })
@@ -548,7 +548,7 @@ describe('shared Subscribable', () => {
     expect(handlerIdx2).toEqual(2)
     objWithCustomFilter.notify({ key4: 'val4' })
     expect(cb).toHaveBeenCalledTimes(3)
-    expect(cb).toBeCalledWith({ key4: 'val4', key2: 'val2' })
+    expect(cb).toHaveBeenCalledWith({ key4: 'val4', key2: 'val2' })
 
     // subscribable with custom notify
     const objWithCustomNotify = new Subscribable()
@@ -561,7 +561,7 @@ describe('shared Subscribable', () => {
     }
     objWithCustomNotify.subscribe(cb)
     objWithCustomNotify.notify({ key3: 'val3' })
-    expect(customNotify).toBeCalledTimes(1)
+    expect(customNotify).toHaveBeenCalledTimes(1)
     objWithCustomNotify.unsubscribe()
   })
 })
@@ -1062,7 +1062,7 @@ test('applyMiddleware', async () => {
     (num: number, next) => next(num + 1),
   ]).then(resolved)
   await sleep(16)
-  expect(resolved).toBeCalledTimes(0)
+  expect(resolved).toHaveBeenCalledTimes(0)
 })
 
 test('applyMiddleware with error', async () => {

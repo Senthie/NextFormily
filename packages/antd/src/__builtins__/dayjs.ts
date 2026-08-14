@@ -1,4 +1,4 @@
-import { isArr, isFn, isEmpty } from '@formily/shared'
+import { isArr, isFn, isEmpty } from '@next-formily/shared'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import advancedFormat from 'dayjs/plugin/advancedFormat'

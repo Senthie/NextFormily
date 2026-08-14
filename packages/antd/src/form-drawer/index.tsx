@@ -5,9 +5,9 @@ import {
   IFormProps,
   Form,
   onFormSubmitSuccess,
-} from '@formily/core'
-import { toJS } from '@formily/reactive'
-import { FormProvider, observer, ReactFC } from '@formily/react'
+} from '@next-formily/core'
+import { toJS } from '@next-formily/reactive'
+import { FormProvider, observer, ReactFC } from '@next-formily/react'
 import {
   isNum,
   isStr,
@@ -15,7 +15,7 @@ import {
   isFn,
   applyMiddleware,
   IMiddleware,
-} from '@formily/shared'
+} from '@next-formily/shared'
 import { Drawer, DrawerProps } from 'antd'
 import {
   usePrefixCls,

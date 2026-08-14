@@ -7,7 +7,7 @@ import {
 } from '../effects'
 import { attach, sleep } from './shared'
 import { LifeCycleTypes } from '../types'
-import { observable, batch } from '@formily/reactive'
+import { observable, batch } from '@next-formily/reactive'
 
 test('create form', () => {
   const form = attach(createForm())
@@ -271,21 +271,21 @@ test('setEffects/addEffects/removeEffects', () => {
     })
   )
   field.setValue('123')
-  expect(valueChange).toBeCalledTimes(1)
+  expect(valueChange).toHaveBeenCalledTimes(1)
   form.removeEffects('e1')
   field.setValue('321')
-  expect(valueChange).toBeCalledTimes(1)
+  expect(valueChange).toHaveBeenCalledTimes(1)
   form.addEffects('e2', () => {
     onFieldValueChange('aa', valueChange)
   })
   field.setValue('444')
-  expect(valueChange).toBeCalledTimes(2)
+  expect(valueChange).toHaveBeenCalledTimes(2)
   form.setEffects(() => {
     onFieldValueChange('aa', valueChange2)
   })
   field.setValue('555')
-  expect(valueChange).toBeCalledTimes(3)
-  expect(valueChange2).toBeCalledTimes(1)
+  expect(valueChange).toHaveBeenCalledTimes(3)
+  expect(valueChange2).toHaveBeenCalledTimes(1)
 })
 
 test('query', () => {
@@ -355,15 +355,15 @@ test('notify/subscribe/unsubscribe', () => {
   const form = attach(createForm())
   const subscribe = jest.fn()
   const id = form.subscribe(subscribe)
-  expect(subscribe).toBeCalledTimes(0)
+  expect(subscribe).toHaveBeenCalledTimes(0)
   form.setInitialValues({ aa: 123 })
-  expect(subscribe).toBeCalledTimes(2)
+  expect(subscribe).toHaveBeenCalledTimes(2)
   expect(form.values).toEqual({ aa: 123 })
   form.notify(LifeCycleTypes.ON_FORM_SUBMIT)
-  expect(subscribe).toBeCalledTimes(3)
+  expect(subscribe).toHaveBeenCalledTimes(3)
   form.unsubscribe(id)
   form.notify(LifeCycleTypes.ON_FORM_SUBMIT)
-  expect(subscribe).toBeCalledTimes(3)
+  expect(subscribe).toHaveBeenCalledTimes(3)
 })
 
 test('setState/getState/setFormState/getFormState/setFieldState/getFieldState', () => {
@@ -824,10 +824,10 @@ test('submit', async () => {
     errors1 = e
   }
   expect(errors1).not.toBeUndefined()
-  expect(onSubmit).toBeCalledTimes(0)
+  expect(onSubmit).toHaveBeenCalledTimes(0)
   field.onInput('123')
   await form.submit(onSubmit)
-  expect(onSubmit).toBeCalledTimes(1)
+  expect(onSubmit).toHaveBeenCalledTimes(1)
   let errors2: Error
   try {
     await form.submit(() => {
@@ -1176,7 +1176,7 @@ test('form values change with array field(default value)', async () => {
     })
   )
   await array.push({})
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
 })
 
 test('setValues deep merge', () => {
@@ -1317,11 +1317,11 @@ test('validate will skip display none', async () => {
       },
     ])
   }
-  expect(validateA).toBeCalledTimes(1)
-  expect(validateB).toBeCalledTimes(1)
+  expect(validateA).toHaveBeenCalledTimes(1)
+  expect(validateB).toHaveBeenCalledTimes(1)
   expect(aa.invalid).toBeTruthy()
   expect(bb.invalid).toBeTruthy()
-  expect(validator).toBeCalledTimes(2)
+  expect(validator).toHaveBeenCalledTimes(2)
   aa.display = 'none'
   try {
     await form.validate()
@@ -1337,18 +1337,18 @@ test('validate will skip display none', async () => {
       },
     ])
   }
-  expect(validateA).toBeCalledTimes(1)
-  expect(validateB).toBeCalledTimes(2)
+  expect(validateA).toHaveBeenCalledTimes(1)
+  expect(validateB).toHaveBeenCalledTimes(2)
   expect(aa.invalid).toBeFalsy()
   expect(bb.invalid).toBeTruthy()
-  expect(validator).toBeCalledTimes(3)
+  expect(validator).toHaveBeenCalledTimes(3)
   bb.display = 'none'
   await form.validate()
-  expect(validateA).toBeCalledTimes(1)
-  expect(validateB).toBeCalledTimes(2)
+  expect(validateA).toHaveBeenCalledTimes(1)
+  expect(validateB).toHaveBeenCalledTimes(2)
   expect(aa.invalid).toBeFalsy()
   expect(bb.invalid).toBeFalsy()
-  expect(validator).toBeCalledTimes(3)
+  expect(validator).toHaveBeenCalledTimes(3)
 })
 
 test('validate will skip unmounted', async () => {
@@ -1403,11 +1403,11 @@ test('validate will skip unmounted', async () => {
       },
     ])
   }
-  expect(validateA).toBeCalledTimes(1)
-  expect(validateB).toBeCalledTimes(1)
+  expect(validateA).toHaveBeenCalledTimes(1)
+  expect(validateB).toHaveBeenCalledTimes(1)
   expect(aa.invalid).toBeTruthy()
   expect(bb.invalid).toBeTruthy()
-  expect(validator).toBeCalledTimes(2)
+  expect(validator).toHaveBeenCalledTimes(2)
   aa.onUnmount()
   try {
     await form.validate()
@@ -1431,18 +1431,18 @@ test('validate will skip unmounted', async () => {
       },
     ])
   }
-  expect(validateA).toBeCalledTimes(2)
-  expect(validateB).toBeCalledTimes(2)
+  expect(validateA).toHaveBeenCalledTimes(2)
+  expect(validateB).toHaveBeenCalledTimes(2)
   expect(aa.invalid).toBeTruthy()
   expect(bb.invalid).toBeTruthy()
-  expect(validator).toBeCalledTimes(4)
+  expect(validator).toHaveBeenCalledTimes(4)
   form.clearFormGraph('*(aa,bb)')
   await form.validate()
-  expect(validateA).toBeCalledTimes(2)
-  expect(validateB).toBeCalledTimes(2)
+  expect(validateA).toHaveBeenCalledTimes(2)
+  expect(validateB).toHaveBeenCalledTimes(2)
   expect(aa.invalid).toBeFalsy()
   expect(bb.invalid).toBeFalsy()
-  expect(validator).toBeCalledTimes(4)
+  expect(validator).toHaveBeenCalledTimes(4)
 })
 
 test('validate will skip uneditable', async () => {
@@ -1497,11 +1497,11 @@ test('validate will skip uneditable', async () => {
       },
     ])
   }
-  expect(validateA).toBeCalledTimes(1)
-  expect(validateB).toBeCalledTimes(1)
+  expect(validateA).toHaveBeenCalledTimes(1)
+  expect(validateB).toHaveBeenCalledTimes(1)
   expect(aa.invalid).toBeTruthy()
   expect(bb.invalid).toBeTruthy()
-  expect(validator).toBeCalledTimes(2)
+  expect(validator).toHaveBeenCalledTimes(2)
   aa.editable = false
   try {
     await form.validate()
@@ -1517,18 +1517,18 @@ test('validate will skip uneditable', async () => {
       },
     ])
   }
-  expect(validateA).toBeCalledTimes(1)
-  expect(validateB).toBeCalledTimes(2)
+  expect(validateA).toHaveBeenCalledTimes(1)
+  expect(validateB).toHaveBeenCalledTimes(2)
   expect(aa.invalid).toBeFalsy()
   expect(bb.invalid).toBeTruthy()
-  expect(validator).toBeCalledTimes(3)
+  expect(validator).toHaveBeenCalledTimes(3)
   bb.editable = false
   await form.validate()
-  expect(validateA).toBeCalledTimes(1)
-  expect(validateB).toBeCalledTimes(2)
+  expect(validateA).toHaveBeenCalledTimes(1)
+  expect(validateB).toHaveBeenCalledTimes(2)
   expect(aa.invalid).toBeFalsy()
   expect(bb.invalid).toBeFalsy()
-  expect(validator).toBeCalledTimes(3)
+  expect(validator).toHaveBeenCalledTimes(3)
 })
 
 test('validator order with format', async () => {
@@ -1718,6 +1718,6 @@ test('form query undefined query should not throw error', () => {
   const form = attach(createForm())
 
   ;(form.fields as any)['a'] = undefined
-  expect(() => form.query('*').take()).not.toThrowError()
+  expect(() => form.query('*').take()).not.toThrow()
   expect(Object.keys(form.fields)).toEqual([])
 })

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { Field } from '@formily/core'
-import { connect, mapProps, useField } from '@formily/react'
+import { Field } from '@next-formily/core'
+import { connect, mapProps, useField } from '@next-formily/react'
 import { Upload as AntdUpload, Button } from 'antd'
 import {
   UploadChangeParam,
@@ -9,8 +9,8 @@ import {
   UploadFile,
 } from 'antd/es/upload'
 import { InboxOutlined, UploadOutlined } from '@ant-design/icons'
-import { reaction } from '@formily/reactive'
-import { isArr, toArr } from '@formily/shared'
+import { reaction } from '@next-formily/reactive'
+import { isArr, toArr } from '@next-formily/shared'
 import { UPLOAD_PLACEHOLDER } from './placeholder'
 import { usePrefixCls } from '../__builtins__'
 

@@ -6,7 +6,7 @@ import {
   merge as deepmerge,
   isFn,
   isStr,
-} from '@formily/shared'
+} from '@next-formily/shared'
 import {
   ValidatorFunctionResponse,
   ValidatorFunction,

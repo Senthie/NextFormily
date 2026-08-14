@@ -121,12 +121,12 @@ test('shallowCompile', () => {
 
 test('unsilent', () => {
   silent(false)
-  expect(() => compile('{{ ( }}')).toThrowError()
+  expect(() => compile('{{ ( }}')).toThrow()
 })
 
 test('silent', () => {
   silent(true)
-  expect(() => compile('{{ ( }}')).not.toThrowError()
+  expect(() => compile('{{ ( }}')).not.toThrow()
   silent(false)
 })
 

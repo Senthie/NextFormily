@@ -122,16 +122,16 @@ test('calculate', () => {
 
 test('parser unexpected', () => {
   const parser = new Parser('array[]')
-  expect(() => parser.parse()).toThrowError()
+  expect(() => parser.parse()).toThrow()
 
   const parser2 = new Parser('array[0.')
-  expect(() => parser2.parse()).toThrowError()
+  expect(() => parser2.parse()).toThrow()
 
   const parser3 = new Parser('.[+]', new Path('*.1.cc'))
-  expect(() => parser3.parse()).toThrowError()
+  expect(() => parser3.parse()).toThrow()
 
   const parser4 = new Parser('[:,4]')
-  expect(() => parser4.parse()).toThrowError()
+  expect(() => parser4.parse()).toThrow()
 })
 
 test('tokenizer', () => {
@@ -190,14 +190,14 @@ test('tokenizer', () => {
   expect(parser10.data.segments).toEqual([])
 
   const parser11 = new Parser(`{a,[b,{c}]. }`)
-  expect(() => parser11.parse()).toThrowError()
+  expect(() => parser11.parse()).toThrow()
 
   const parser12 = new Parser(`*(a.*[1:3])`)
   parser12.parse()
   expect(parser12.data.segments).toEqual([])
 
   const parser13 = new Parser(`*(a.*[1:3]])`)
-  expect(() => parser13.parse()).toThrowError()
+  expect(() => parser13.parse()).toThrow()
 })
 
 batchTest({

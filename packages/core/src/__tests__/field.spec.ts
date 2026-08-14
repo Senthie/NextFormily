@@ -1,4 +1,4 @@
-import { autorun, batch, observable } from '@formily/reactive'
+import { autorun, batch, observable } from '@next-formily/reactive'
 import { createForm, onFieldReact, isField } from '../'
 import { DataField } from '../types'
 import { attach, sleep } from './shared'
@@ -1624,7 +1624,7 @@ test('field submit', async () => {
   )
   const onSubmit = jest.fn()
   await childForm.submit(onSubmit)
-  expect(onSubmit).toBeCalledWith({
+  expect(onSubmit).toHaveBeenCalledWith({
     cc: 'cc',
   })
 })
@@ -1655,7 +1655,7 @@ test('field submit with error', async () => {
   } catch (e) {
     expect(e).not.toBeUndefined()
   }
-  expect(onSubmit).toBeCalledTimes(0)
+  expect(onSubmit).toHaveBeenCalledTimes(0)
 })
 
 test('initial display with value', () => {
@@ -1834,7 +1834,7 @@ test('field setValidator repeat call', async () => {
   field.setValidator([validator1, validator2, validator3])
 
   await form.validate()
-  expect(validator1).toBeCalledTimes(1)
+  expect(validator1).toHaveBeenCalledTimes(1)
 })
 
 test('custom validator to get ctx.field', async () => {
@@ -1895,7 +1895,7 @@ test('path change will update computed value', () => {
     input.locate('select')
     input.value = '123'
   })
-  expect(value).nthCalledWith(2, '123')
+  expect(value).toHaveBeenNthCalledWith(2, '123')
 })
 
 test('object field reset', async () => {
@@ -2015,7 +2015,7 @@ test('query value with sibling path syntax', () => {
     })
   )
   textarea.value = '123'
-  expect(fn).toBeCalledWith('123', 'aaa')
+  expect(fn).toHaveBeenCalledWith('123', 'aaa')
 })
 
 test('relative query with void field', () => {
@@ -2141,9 +2141,9 @@ test('validateFirst', async () => {
   )
   await cc.onInput('cc')
 
-  expect(aaValidate).toBeCalledTimes(1)
-  expect(bbValidate).toBeCalledTimes(2)
-  expect(ccValidate).toBeCalledTimes(2)
+  expect(aaValidate).toHaveBeenCalledTimes(1)
+  expect(bbValidate).toHaveBeenCalledTimes(2)
+  expect(ccValidate).toHaveBeenCalledTimes(2)
 })
 
 test('reactions should not be triggered when field destroyed', () => {
@@ -2162,7 +2162,7 @@ test('reactions should not be triggered when field destroyed', () => {
   obs.bb = 321
   aa.destroy()
   obs.bb = 111
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
 })
 
 test('parent readPretty will overwrite self disabled or readOnly', () => {
@@ -2272,10 +2272,10 @@ test('onFieldReact with field destroyed', () => {
     })
   )
   obs.value = '321'
-  expect(fn).toBeCalledTimes(2)
+  expect(fn).toHaveBeenCalledTimes(2)
   aa.destroy()
   obs.value = '111'
-  expect(fn).toBeCalledTimes(2)
+  expect(fn).toHaveBeenCalledTimes(2)
 })
 
 test('field actions', () => {

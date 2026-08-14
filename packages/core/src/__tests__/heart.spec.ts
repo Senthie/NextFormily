@@ -13,10 +13,10 @@ test('clear heart', () => {
     lifecycles: [new LifeCycle('event', handler)],
   })
   heart.publish('event')
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   heart.clear()
   heart.publish('event')
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   heart.publish({})
 })
 
@@ -25,7 +25,7 @@ test('set lifecycles', () => {
   const heart = new Heart()
   heart.setLifeCycles([new LifeCycle('event', handler)])
   heart.publish('event')
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   heart.setLifeCycles()
 })
 
@@ -35,10 +35,10 @@ test('add/remove lifecycle', () => {
   heart.addLifeCycles('xxx', [new LifeCycle('event', handler)])
   heart.addLifeCycles('yyy')
   heart.publish('event')
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   heart.removeLifeCycles('xxx')
   heart.publish('event')
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
 })
 
 test('add/clear lifecycle', () => {
@@ -47,8 +47,8 @@ test('add/clear lifecycle', () => {
   heart.addLifeCycles('xxx', [new LifeCycle('event', handler)])
   heart.addLifeCycles('yyy')
   heart.publish('event')
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   heart.clear()
   heart.publish('event')
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
 })

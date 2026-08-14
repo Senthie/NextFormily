@@ -16,12 +16,12 @@ test('autorun', () => {
     handler(obs.aa.bb)
   })
   obs.aa.bb = 123
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   obs.aa.bb = 111
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
   dispose()
   obs.aa.bb = 222
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
 })
 
 test('reaction', () => {
@@ -35,12 +35,12 @@ test('reaction', () => {
     return obs.aa.bb
   }, handler)
   obs.aa.bb = 123
-  expect(handler).toBeCalledTimes(0)
+  expect(handler).toHaveBeenCalledTimes(0)
   obs.aa.bb = 111
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   dispose()
   obs.aa.bb = 222
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
 })
 
 test('reaction fireImmediately', () => {
@@ -59,14 +59,14 @@ test('reaction fireImmediately', () => {
       fireImmediately: true,
     }
   )
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   obs.aa.bb = 123
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   obs.aa.bb = 111
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
   dispose()
   obs.aa.bb = 222
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenCalledTimes(2)
 })
 
 test('reaction untrack handler', () => {
@@ -87,7 +87,7 @@ test('reaction untrack handler', () => {
   )
   obs.aa.bb = 222
   obs.aa.cc = 222
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   dispose()
 })
 
@@ -107,7 +107,7 @@ test('reaction dirty check', () => {
     obs.aa = 123
   })
 
-  expect(handler).toBeCalledTimes(0)
+  expect(handler).toHaveBeenCalledTimes(0)
 })
 
 test('reaction with shallow equals', () => {
@@ -122,7 +122,7 @@ test('reaction with shallow equals', () => {
     return obs.aa
   }, handler)
   obs.aa = { bb: 123 }
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
   expect(handler.mock.calls[0][0]).toEqual({ bb: 123 })
 })
 
@@ -144,7 +144,7 @@ test('reaction with deep equals', () => {
     }
   )
   obs.aa = { bb: 123 }
-  expect(handler).toBeCalledTimes(0)
+  expect(handler).toHaveBeenCalledTimes(0)
 })
 
 test('autorun direct recursive react', () => {
@@ -167,7 +167,7 @@ test('autorun direct recursive react with if', () => {
     fn(obs1.value, obs2.value)
   })
   obs2.value = '222'
-  expect(fn).toBeCalledTimes(0)
+  expect(fn).toHaveBeenCalledTimes(0)
 })
 
 test('autorun indirect recursive react', () => {
@@ -232,8 +232,8 @@ test('autorun direct recursive react with head track', () => {
     fn(obs1.value, obs2Value)
   })
   obs2.value = '222'
-  expect(fn).toBeCalledTimes(1)
-  expect(fn).lastCalledWith('111', '222')
+  expect(fn).toHaveBeenCalledTimes(1)
+  expect(fn).toHaveBeenLastCalledWith('111', '222')
 })
 
 test('autorun.memo', () => {
@@ -251,12 +251,12 @@ test('autorun.memo', () => {
   obs.bb++
   obs.bb++
   obs.bb++
-  expect(fn).toBeCalledTimes(5)
-  expect(fn).nthCalledWith(1, 0, 0)
-  expect(fn).nthCalledWith(2, 1, 1)
-  expect(fn).nthCalledWith(3, 2, 2)
-  expect(fn).nthCalledWith(4, 3, 3)
-  expect(fn).nthCalledWith(5, 4, 4)
+  expect(fn).toHaveBeenCalledTimes(5)
+  expect(fn).toHaveBeenNthCalledWith(1, 0, 0)
+  expect(fn).toHaveBeenNthCalledWith(2, 1, 1)
+  expect(fn).toHaveBeenNthCalledWith(3, 2, 2)
+  expect(fn).toHaveBeenNthCalledWith(4, 3, 3)
+  expect(fn).toHaveBeenNthCalledWith(5, 4, 4)
 })
 
 test('autorun.memo with observable', () => {
@@ -275,14 +275,14 @@ test('autorun.memo with observable', () => {
   obs1.aa++
   obs1.aa++
   obs1.aa++
-  expect(fn).toBeCalledTimes(4)
-  expect(fn).nthCalledWith(1, 0, 0)
-  expect(fn).nthCalledWith(2, 1, 1)
-  expect(fn).nthCalledWith(3, 2, 2)
-  expect(fn).nthCalledWith(4, 3, 3)
+  expect(fn).toHaveBeenCalledTimes(4)
+  expect(fn).toHaveBeenNthCalledWith(1, 0, 0)
+  expect(fn).toHaveBeenNthCalledWith(2, 1, 1)
+  expect(fn).toHaveBeenNthCalledWith(3, 2, 2)
+  expect(fn).toHaveBeenNthCalledWith(4, 3, 3)
   dispose()
   obs1.aa++
-  expect(fn).toBeCalledTimes(4)
+  expect(fn).toHaveBeenCalledTimes(4)
 })
 
 test('autorun.memo with observable and effect', async () => {
@@ -305,15 +305,15 @@ test('autorun.memo with observable and effect', async () => {
   obs1.aa++
   obs1.aa++
   await sleep(0)
-  expect(fn).toBeCalledTimes(5)
-  expect(fn).nthCalledWith(1, 0, 0)
-  expect(fn).nthCalledWith(2, 1, 1)
-  expect(fn).nthCalledWith(3, 2, 2)
-  expect(fn).nthCalledWith(4, 3, 3)
-  expect(fn).nthCalledWith(5, 3, 5)
+  expect(fn).toHaveBeenCalledTimes(5)
+  expect(fn).toHaveBeenNthCalledWith(1, 0, 0)
+  expect(fn).toHaveBeenNthCalledWith(2, 1, 1)
+  expect(fn).toHaveBeenNthCalledWith(3, 2, 2)
+  expect(fn).toHaveBeenNthCalledWith(4, 3, 3)
+  expect(fn).toHaveBeenNthCalledWith(5, 3, 5)
   dispose()
   obs1.aa++
-  expect(fn).toBeCalledTimes(5)
+  expect(fn).toHaveBeenCalledTimes(5)
 })
 
 test('autorun.memo with deps', () => {
@@ -335,15 +335,15 @@ test('autorun.memo with deps', () => {
   obs.bb++
   obs.bb++
   obs.bb++
-  expect(fn).toBeCalledTimes(5)
-  expect(fn).nthCalledWith(1, 0, 0)
-  expect(fn).nthCalledWith(2, 1, 1)
-  expect(fn).nthCalledWith(3, 2, 2)
-  expect(fn).nthCalledWith(4, 3, 3)
-  expect(fn).nthCalledWith(5, 4, 4)
+  expect(fn).toHaveBeenCalledTimes(5)
+  expect(fn).toHaveBeenNthCalledWith(1, 0, 0)
+  expect(fn).toHaveBeenNthCalledWith(2, 1, 1)
+  expect(fn).toHaveBeenNthCalledWith(3, 2, 2)
+  expect(fn).toHaveBeenNthCalledWith(4, 3, 3)
+  expect(fn).toHaveBeenNthCalledWith(5, 4, 4)
   obs.cc++
-  expect(fn).toBeCalledTimes(6)
-  expect(fn).nthCalledWith(6, 4, 0)
+  expect(fn).toHaveBeenCalledTimes(6)
+  expect(fn).toHaveBeenNthCalledWith(6, 4, 0)
 })
 
 test('autorun.memo with deps and dispose', () => {
@@ -365,15 +365,15 @@ test('autorun.memo with deps and dispose', () => {
   obs.bb++
   obs.bb++
   obs.bb++
-  expect(fn).toBeCalledTimes(5)
-  expect(fn).lastCalledWith(4, 4)
+  expect(fn).toHaveBeenCalledTimes(5)
+  expect(fn).toHaveBeenLastCalledWith(4, 4)
   obs.cc++
-  expect(fn).toBeCalledTimes(6)
-  expect(fn).lastCalledWith(4, 0)
+  expect(fn).toHaveBeenCalledTimes(6)
+  expect(fn).toHaveBeenLastCalledWith(4, 0)
   dispose()
   obs.bb++
   obs.cc++
-  expect(fn).toBeCalledTimes(6)
+  expect(fn).toHaveBeenCalledTimes(6)
 })
 
 test('autorun.memo with invalid params', () => {
@@ -389,8 +389,8 @@ test('autorun.memo with invalid params', () => {
   obs.bb++
   obs.bb++
   obs.bb++
-  expect(fn).toBeCalledTimes(5)
-  expect(fn).lastCalledWith(4, undefined)
+  expect(fn).toHaveBeenCalledTimes(5)
+  expect(fn).toHaveBeenLastCalledWith(4, undefined)
 })
 
 test('autorun.memo not in autorun', () => {
@@ -412,12 +412,12 @@ test('autorun no memo', () => {
   obs.bb++
   obs.bb++
   obs.bb++
-  expect(fn).toBeCalledTimes(5)
-  expect(fn).nthCalledWith(1, 0, 0)
-  expect(fn).nthCalledWith(2, 1, 0)
-  expect(fn).nthCalledWith(3, 2, 0)
-  expect(fn).nthCalledWith(4, 3, 0)
-  expect(fn).nthCalledWith(5, 4, 0)
+  expect(fn).toHaveBeenCalledTimes(5)
+  expect(fn).toHaveBeenNthCalledWith(1, 0, 0)
+  expect(fn).toHaveBeenNthCalledWith(2, 1, 0)
+  expect(fn).toHaveBeenNthCalledWith(3, 2, 0)
+  expect(fn).toHaveBeenNthCalledWith(4, 3, 0)
+  expect(fn).toHaveBeenNthCalledWith(5, 4, 0)
 })
 
 test('autorun.effect', async () => {
@@ -440,15 +440,15 @@ test('autorun.effect', async () => {
   obs.bb++
 
   await sleep(0)
-  expect(fn).toBeCalledTimes(5)
-  expect(fn).lastCalledWith(4)
-  expect(effect).toBeCalledTimes(1)
-  expect(disposer).toBeCalledTimes(0)
+  expect(fn).toHaveBeenCalledTimes(5)
+  expect(fn).toHaveBeenLastCalledWith(4)
+  expect(effect).toHaveBeenCalledTimes(1)
+  expect(disposer).toHaveBeenCalledTimes(0)
 
   dispose()
   await sleep(0)
-  expect(effect).toBeCalledTimes(1)
-  expect(disposer).toBeCalledTimes(1)
+  expect(effect).toHaveBeenCalledTimes(1)
+  expect(disposer).toHaveBeenCalledTimes(1)
 })
 
 test('autorun.effect dispose when autorun dispose', async () => {
@@ -472,10 +472,10 @@ test('autorun.effect dispose when autorun dispose', async () => {
 
   dispose()
   await sleep(0)
-  expect(fn).toBeCalledTimes(5)
-  expect(fn).lastCalledWith(4)
-  expect(effect).toBeCalledTimes(0)
-  expect(disposer).toBeCalledTimes(0)
+  expect(fn).toHaveBeenCalledTimes(5)
+  expect(fn).toHaveBeenLastCalledWith(4)
+  expect(effect).toHaveBeenCalledTimes(0)
+  expect(disposer).toHaveBeenCalledTimes(0)
 })
 
 test('autorun.effect with deps', async () => {
@@ -495,20 +495,20 @@ test('autorun.effect with deps', async () => {
   obs.bb++
   obs.bb++
   obs.bb++
-  expect(effect).toBeCalledTimes(0)
+  expect(effect).toHaveBeenCalledTimes(0)
   await sleep(0)
-  expect(fn).toBeCalledTimes(5)
-  expect(fn).lastCalledWith(4)
-  expect(effect).toBeCalledTimes(1)
+  expect(fn).toHaveBeenCalledTimes(5)
+  expect(fn).toHaveBeenLastCalledWith(4)
+  expect(effect).toHaveBeenCalledTimes(1)
   obs.cc++
-  expect(effect).toBeCalledTimes(1)
+  expect(effect).toHaveBeenCalledTimes(1)
   await sleep(0)
-  expect(fn).toBeCalledTimes(6)
-  expect(fn).lastCalledWith(4)
-  expect(effect).toBeCalledTimes(2)
+  expect(fn).toHaveBeenCalledTimes(6)
+  expect(fn).toHaveBeenLastCalledWith(4)
+  expect(effect).toHaveBeenCalledTimes(2)
   dispose()
   await sleep(0)
-  expect(effect).toBeCalledTimes(2)
+  expect(effect).toHaveBeenCalledTimes(2)
 })
 
 test('autorun.effect with default deps', async () => {
@@ -527,14 +527,14 @@ test('autorun.effect with default deps', async () => {
   obs.bb++
   obs.bb++
   obs.bb++
-  expect(effect).toBeCalledTimes(0)
+  expect(effect).toHaveBeenCalledTimes(0)
   await sleep(0)
-  expect(fn).toBeCalledTimes(5)
-  expect(fn).lastCalledWith(4)
-  expect(effect).toBeCalledTimes(5)
+  expect(fn).toHaveBeenCalledTimes(5)
+  expect(fn).toHaveBeenLastCalledWith(4)
+  expect(effect).toHaveBeenCalledTimes(5)
   dispose()
   await sleep(0)
-  expect(effect).toBeCalledTimes(5)
+  expect(effect).toHaveBeenCalledTimes(5)
 })
 
 test('autorun.effect not in autorun', () => {
@@ -558,7 +558,7 @@ test('autorun dispose in batch', () => {
     obs.value = 321
     dispose()
   })
-  expect(handler).toBeCalledTimes(1)
+  expect(handler).toHaveBeenCalledTimes(1)
 })
 
 test('set value by computed depend', () => {
@@ -577,9 +577,9 @@ test('set value by computed depend', () => {
     bb: 123,
     cc: 321,
   }
-  expect(handler).toBeCalledTimes(2)
-  expect(handler).nthCalledWith(1, undefined, undefined)
-  expect(handler).nthCalledWith(2, 123, 321)
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler).toHaveBeenNthCalledWith(1, undefined, undefined)
+  expect(handler).toHaveBeenNthCalledWith(2, 123, 321)
 })
 
 test('delete value by computed depend', () => {
@@ -600,9 +600,9 @@ test('delete value by computed depend', () => {
     handler(comp1.value, comp2.value)
   })
   delete obs.a
-  expect(handler).toBeCalledTimes(2)
-  expect(handler).nthCalledWith(1, 1, 2)
-  expect(handler).nthCalledWith(2, undefined, undefined)
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler).toHaveBeenNthCalledWith(1, 1, 2)
+  expect(handler).toHaveBeenNthCalledWith(2, undefined, undefined)
 })
 
 test('set Set value by computed depend', () => {
@@ -620,9 +620,9 @@ test('set Set value by computed depend', () => {
     handler(comp1.value, comp2.value)
   })
   obs.set.add(1)
-  expect(handler).toBeCalledTimes(2)
-  expect(handler).nthCalledWith(1, false, 0)
-  expect(handler).nthCalledWith(2, true, 1)
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler).toHaveBeenNthCalledWith(1, false, 0)
+  expect(handler).toHaveBeenNthCalledWith(2, true, 1)
 })
 
 test('delete Set by computed depend', () => {
@@ -640,9 +640,9 @@ test('delete Set by computed depend', () => {
     handler(comp1.value, comp2.value)
   })
   obs.set.delete(1)
-  expect(handler).toBeCalledTimes(2)
-  expect(handler).nthCalledWith(1, true, 1)
-  expect(handler).nthCalledWith(2, false, 0)
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler).toHaveBeenNthCalledWith(1, true, 1)
+  expect(handler).toHaveBeenNthCalledWith(2, false, 0)
 })
 
 test('set Map value by computed depend', () => {
@@ -660,9 +660,9 @@ test('set Map value by computed depend', () => {
     handler(comp1.value, comp2.value)
   })
   obs.map.set(1, 1)
-  expect(handler).toBeCalledTimes(2)
-  expect(handler).nthCalledWith(1, false, 0)
-  expect(handler).nthCalledWith(2, true, 1)
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler).toHaveBeenNthCalledWith(1, false, 0)
+  expect(handler).toHaveBeenNthCalledWith(2, true, 1)
 })
 
 test('delete Map by computed depend', () => {
@@ -680,9 +680,9 @@ test('delete Map by computed depend', () => {
     handler(comp1.value, comp2.value)
   })
   obs.map.delete(1)
-  expect(handler).toBeCalledTimes(2)
-  expect(handler).nthCalledWith(1, true, 1)
-  expect(handler).nthCalledWith(2, false, 0)
+  expect(handler).toHaveBeenCalledTimes(2)
+  expect(handler).toHaveBeenNthCalledWith(1, true, 1)
+  expect(handler).toHaveBeenNthCalledWith(2, false, 0)
 })
 
 test('autorun recollect dependencies', () => {
@@ -701,7 +701,7 @@ test('autorun recollect dependencies', () => {
   })
   obs.aa = '111'
   obs.bb = '222'
-  expect(fn).toBeCalledTimes(2)
+  expect(fn).toHaveBeenCalledTimes(2)
 })
 
 test('reaction recollect dependencies', () => {
@@ -736,8 +736,8 @@ test('reaction recollect dependencies', () => {
   )
   obs.aa = '111'
   obs.bb = '222'
-  expect(fn1).toBeCalledTimes(2)
-  expect(trigger1).toBeCalledTimes(1)
-  expect(fn2).toBeCalledTimes(2)
-  expect(trigger2).toBeCalledTimes(2)
+  expect(fn1).toHaveBeenCalledTimes(2)
+  expect(trigger1).toHaveBeenCalledTimes(1)
+  expect(fn2).toHaveBeenCalledTimes(2)
+  expect(trigger2).toHaveBeenCalledTimes(2)
 })

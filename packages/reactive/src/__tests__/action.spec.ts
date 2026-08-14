@@ -16,12 +16,12 @@ describe('normal action', () => {
     })
     obs.aa.bb = 111
     obs.aa.bb = 222
-    expect(handler).toBeCalledTimes(3)
+    expect(handler).toHaveBeenCalledTimes(3)
 
     obs.aa.bb = 333
     obs.aa.bb = 444
 
-    expect(handler).toBeCalledTimes(5)
+    expect(handler).toHaveBeenCalledTimes(5)
   })
 
   test('action', () => {
@@ -36,14 +36,14 @@ describe('normal action', () => {
     })
     obs.aa.bb = 111
     obs.aa.bb = 222
-    expect(handler).toBeCalledTimes(3)
+    expect(handler).toHaveBeenCalledTimes(3)
     action(() => {
       obs.aa.bb = 333
       obs.aa.bb = 444
     })
     action(() => {})
     action()
-    expect(handler).toBeCalledTimes(4)
+    expect(handler).toHaveBeenCalledTimes(4)
   })
 
   test('action track', () => {
@@ -62,10 +62,10 @@ describe('normal action', () => {
         }
       })
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
   })
 
@@ -85,10 +85,10 @@ describe('normal action', () => {
     })
     obs.aa.bb = 111
     obs.aa.bb = 222
-    expect(handler).toBeCalledTimes(3)
+    expect(handler).toHaveBeenCalledTimes(3)
     setData()
     action.bound(() => {})
-    expect(handler).toBeCalledTimes(4)
+    expect(handler).toHaveBeenCalledTimes(4)
   })
 
   test('action.bound track', () => {
@@ -107,10 +107,10 @@ describe('normal action', () => {
         }
       })()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
   })
 
@@ -134,7 +134,7 @@ describe('normal action', () => {
       obs.dd = 'ddddd'
     })
 
-    expect(handler).toBeCalledTimes(4)
+    expect(handler).toHaveBeenCalledTimes(4)
   })
 
   test('action.scope bound', () => {
@@ -158,7 +158,7 @@ describe('normal action', () => {
       obs.dd = 'ddddd'
     })
 
-    expect(handler).toBeCalledTimes(4)
+    expect(handler).toHaveBeenCalledTimes(4)
   })
 
   test('action.scope track', () => {
@@ -177,10 +177,10 @@ describe('normal action', () => {
         }
       })
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
   })
 
@@ -200,10 +200,10 @@ describe('normal action', () => {
         }
       })()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
   })
 })
@@ -231,9 +231,9 @@ describe('annotation action', () => {
     })
     obs.aa.bb = 111
     obs.aa.bb = 222
-    expect(handler).toBeCalledTimes(3)
+    expect(handler).toHaveBeenCalledTimes(3)
     obs.setData()
-    expect(handler).toBeCalledTimes(4)
+    expect(handler).toHaveBeenCalledTimes(4)
   })
 
   test('action track', () => {
@@ -259,10 +259,10 @@ describe('annotation action', () => {
     autorun(() => {
       obs.setData()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
   })
 
@@ -288,9 +288,9 @@ describe('annotation action', () => {
     })
     obs.aa.bb = 111
     obs.aa.bb = 222
-    expect(handler).toBeCalledTimes(3)
+    expect(handler).toHaveBeenCalledTimes(3)
     obs.setData()
-    expect(handler).toBeCalledTimes(4)
+    expect(handler).toHaveBeenCalledTimes(4)
   })
 
   test('action.bound track', () => {
@@ -316,10 +316,10 @@ describe('annotation action', () => {
     autorun(() => {
       obs.setData()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
   })
 
@@ -360,7 +360,7 @@ describe('annotation action', () => {
       obs.dd = 'ddddd'
     })
 
-    expect(handler).toBeCalledTimes(4)
+    expect(handler).toHaveBeenCalledTimes(4)
   })
 
   test('action.scope bound', () => {
@@ -400,7 +400,7 @@ describe('annotation action', () => {
       obs.dd = 'ddddd'
     })
 
-    expect(handler).toBeCalledTimes(4)
+    expect(handler).toHaveBeenCalledTimes(4)
   })
 
   test('action.scope track', () => {
@@ -427,10 +427,10 @@ describe('annotation action', () => {
     autorun(() => {
       obs.scope()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
   })
 
@@ -458,10 +458,10 @@ describe('annotation action', () => {
     autorun(() => {
       obs.scope()
     })
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
     obs.aa.bb = 321
-    expect(handler).toBeCalledTimes(1)
+    expect(handler).toHaveBeenCalledTimes(1)
     expect(obs.cc).toEqual(21)
   })
 })
@@ -487,9 +487,9 @@ test('nested action to reaction', () => {
       obs.aa = 4
     })
   })
-  expect(handler).nthCalledWith(1, 2)
-  expect(handler).nthCalledWith(2, 4)
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenNthCalledWith(1, 2)
+  expect(handler).toHaveBeenNthCalledWith(2, 4)
+  expect(handler).toHaveBeenCalledTimes(2)
 })
 
 test('nested action/batch to reaction', () => {
@@ -525,7 +525,7 @@ test('nested action/batch to reaction', () => {
       obs.aa = 4
     })
   })
-  expect(handler).nthCalledWith(1, 2)
-  expect(handler).nthCalledWith(2, 4)
-  expect(handler).toBeCalledTimes(2)
+  expect(handler).toHaveBeenNthCalledWith(1, 2)
+  expect(handler).toHaveBeenNthCalledWith(2, 4)
+  expect(handler).toHaveBeenCalledTimes(2)
 })

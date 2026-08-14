@@ -4,12 +4,12 @@ import {
   toArr,
   FormPathPattern,
   isArr,
-} from '@formily/shared'
+} from '@next-formily/shared'
 import {
   ValidatorTriggerType,
   parseValidatorDescriptions,
-} from '@formily/validator'
-import { define, observable, batch, toJS, action } from '@formily/reactive'
+} from '@next-formily/validator'
+import { define, observable, batch, toJS, action } from '@next-formily/reactive'
 import {
   JSXComponent,
   LifeCycleTypes,

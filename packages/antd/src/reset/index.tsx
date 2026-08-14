@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button } from 'antd'
 import { ButtonProps } from 'antd'
-import { IFieldResetOptions, IFormFeedback } from '@formily/core'
-import { useParentForm } from '@formily/react'
+import { IFieldResetOptions, IFormFeedback } from '@next-formily/core'
+import { useParentForm } from '@next-formily/react'
 
 export type IResetProps = IFieldResetOptions &
   Omit<ButtonProps, 'onClick'> & {

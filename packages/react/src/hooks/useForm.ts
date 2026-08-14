@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Form } from '@formily/core'
+import { Form } from '@next-formily/core'
 import { FormContext } from '../shared'
 
 export const useForm = <T extends object = any>(): Form<T> => {

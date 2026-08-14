@@ -1,4 +1,4 @@
-import { connect, mapProps, mapReadPretty } from '@formily/react'
+import { connect, mapProps, mapReadPretty } from '@next-formily/react'
 import { Radio as AntdRadio } from 'antd'
 import { RadioProps, RadioGroupProps } from 'antd'
 import { PreviewText } from '../preview-text'

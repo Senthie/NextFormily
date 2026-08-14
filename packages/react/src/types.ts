@@ -10,10 +10,10 @@ import {
   FormPatternTypes,
   FieldDisplayTypes,
   FieldValidator,
-} from '@formily/core'
-import { ReactFC } from '@formily/reactive-react'
-import { ISchema, Schema, SchemaKey } from '@formily/json-schema'
-import { FormPathPattern } from '@formily/shared'
+} from '@next-formily/core'
+import type { ReactFC } from '@next-formily/reactive-react'
+import { ISchema, Schema, SchemaKey } from '@next-formily/json-schema'
+import { FormPathPattern } from '@next-formily/shared'
 
 export type JSXComponent =
   | keyof React.JSX.IntrinsicElements
@@ -199,4 +199,4 @@ export interface IRecordsScopeProps {
 
 export type ReactChild = React.ReactElement | string | number
 
-export { ReactFC }
+export type { ReactFC }

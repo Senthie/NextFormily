@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { FormPath, isObj } from '@formily/shared'
+import { FormPath, isObj } from '@next-formily/shared'
 import { Treebeard, decorators } from 'react-treebeard'
 import * as filters from './filter'
 import SearchBox from './SearchBox'

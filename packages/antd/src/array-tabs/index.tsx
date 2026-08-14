@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from 'react'
 import { Tabs, Badge } from 'antd'
-import { ArrayField } from '@formily/core'
+import { ArrayField } from '@next-formily/core'
 import {
   useField,
   observer,
   useFieldSchema,
   RecursionField,
   ReactFC,
-} from '@formily/react'
+} from '@next-formily/react'
 import { TabsProps } from 'antd'
 
 interface IFeedbackBadgeProps {
