@@ -17,17 +17,14 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 22
 
-      - run: yarn -v
-      - run: yarn --ignore-engines
-      - name: ESlint
-        uses: reviewdog/action-eslint@v1
-        with:
-          reporter: github-check
-          eslint_flags: '.'
-      - run: yarn build
-      - run: yarn test:prod
+      - run: pnpm -v
+      - run: pnpm install
+      - name: Oxlint
+        run: npx oxlint .
+      - run: pnpm build
+      - run: pnpm test:prod
         env:
           CI: true
           HEADLESS: false

@@ -22,6 +22,7 @@ package/
 package.zip
 .umi
 .umi-production
+.dumi
 .cjsescache
 doc-site
 .lerna-changelog

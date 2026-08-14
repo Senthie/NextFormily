@@ -1,0 +1,18 @@
+diff --git a/dist/loaders/markdown/transformer/rehypeDemo.js b/dist/loaders/markdown/transformer/rehypeDemo.js
+index 1455a40cbf2ed3b9ac2cf44b90d1f4f11d790f55..135b6fae8e7676070a18dad87a582e5d2ae4f05f 100644
+--- a/dist/loaders/markdown/transformer/rehypeDemo.js
++++ b/dist/loaders/markdown/transformer/rehypeDemo.js
+@@ -55,10 +55,9 @@ var DUMI_DEMO_TAG = "DumiDemo";
+ var DUMI_DEMO_GRID_TAG = "DumiDemoGrid";
+ var SKIP_DEMO_PARSE = "pure";
+ var ALWAYS_DEMO_PARSE = "demo";
+-var skipDemoRE = new RegExp(
+-  /** 注意前面有空格 ==> */
+-  ` ${SKIP_DEMO_PARSE}`
+-);
++// patch: 原正则 ` pure` 要求 meta 含前导空格，标准写法 ```tsx pure 的 meta 为
++// "pure"（无前导空格）导致不匹配、demo 仍被编译；改为词边界匹配以兼容两种 meta。
++var skipDemoRE = new RegExp("(?:^|\\s)" + SKIP_DEMO_PARSE + "(?:\\s|$)");
+ var alwaysDemoRE = new RegExp(
+   /** 注意前面有空格 ==> */
+   ` ${ALWAYS_DEMO_PARSE}`

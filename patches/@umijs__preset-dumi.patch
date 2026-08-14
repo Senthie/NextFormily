@@ -1,0 +1,22 @@
+diff --git a/lib/utils/getHostPkgAlias.js b/lib/utils/getHostPkgAlias.js
+index a79ef9c84abc1efd16934f2bd5cfe3998422c8a6..d2f5bc3dbd18670fee92a712ff62769c5edbb6e2 100644
+--- a/lib/utils/getHostPkgAlias.js
++++ b/lib/utils/getHostPkgAlias.js
+@@ -46,6 +46,7 @@ var _default = paths => {
+     const lernaMainVersion = Number(lernaVersion.split('.')[0]);
+     if (lernaMainVersion >= 3) {
+       JSON.parse((0, _child_process().execSync)(`${_path().default.join(paths.cwd, 'node_modules/.bin/lerna')} ls --json --all`, {
++        maxBuffer: 1024 * 1024 * 200,
+         stdio: 'pipe'
+         // fix: 修复windows环境下有多余输出导致JSON.parse报错的问题
+       }).toString().replace(/([\r\n]\])[^]*$/, '$1')).forEach(pkg => {
+@@ -66,7 +67,9 @@ var _default = paths => {
+       });
+     }
+   } else if (isPnpmWorkspace) {
++    // patch: 超大 monorepo 下 `pnpm list -r --json` 输出 >1MB，需提升 maxBuffer（否则 ENOBUFS）
+     JSON.parse((0, _child_process().execSync)('pnpm list -r --json', {
++      maxBuffer: 1024 * 1024 * 200,
+       stdio: 'pipe'
+     }).toString().replace(/([\r\n]\])[^]*$/, '$1')).filter(pkg => pkg.path !== paths.cwd) // filter root pkg
+     .forEach(pkg => {

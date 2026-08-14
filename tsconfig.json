@@ -16,8 +16,9 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
-      "@formily/*": ["packages/*/src", "devtools/*/src"]
+      "@next-formily/*": ["packages/*/src", "devtools/*/src"]
     },
+    "preserveSymlinks": true,
     "lib": ["ESNext"]
   }
 }
