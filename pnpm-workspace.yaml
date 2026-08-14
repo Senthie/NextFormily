@@ -8,7 +8,6 @@ allowBuilds:
   core-js-pure: false
   ejs: false
   esbuild: true
-  ghooks: true
   ts-import-plugin: false
   unrs-resolver: true
 minimumReleaseAgeExclude:
