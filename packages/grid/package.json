@@ -1,6 +1,6 @@
 {
   "name": "@next-formily/grid",
-  "version": "3.0.1",
+  "version": "3.1.1",
   "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
   "homepage": "https://github.com/alibaba/formily#readme",
   "bugs": {
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@juggle/resize-observer": "^3.3.1",
-    "@next-formily/reactive": "3.0.1"
+    "@next-formily/reactive": "workspace:*"
   },
   "peerDependencies": {
     "typescript": "4.x || 5.x"

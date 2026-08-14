@@ -178,8 +178,8 @@ export const BaseItem: React.FC<React.PropsWithChildren<IFormItemProps>> = ({
     tooltip,
     tooltipIcon,
   } = formLayout
-  const labelStyle = { ...formLayout.labelStyle }
-  const wrapperStyle = { ...formLayout.wrapperStyle }
+  const labelStyle: Record<string, any> = { ...formLayout.labelStyle }
+  const wrapperStyle: Record<string, any> = { ...formLayout.wrapperStyle }
   // 固定宽度
   let enableCol = false
   if (labelWidth || wrapperWidth) {

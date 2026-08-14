@@ -12,12 +12,16 @@ import { BaseItem, IFormItemProps } from '../form-item'
 import { usePrefixCls } from '../__builtins__'
 import StickyBox from 'react-sticky-box'
 import cls from 'classnames'
+
+// csstype 版本差异：部分 antd 依赖的 CSSProperties 无 textAlign 索引，用字面量联合
+type TextAlign = 'left' | 'right' | 'center' | 'justify' | 'start' | 'end' | 'match-parent'
+
 interface IStickyProps extends React.ComponentProps<typeof StickyBox> {
-  align?: React.CSSProperties['textAlign']
+  align?: TextAlign
 }
 
 type IFormButtonGroupProps = Omit<SpaceProps, 'align' | 'size'> & {
-  align?: React.CSSProperties['textAlign']
+  align?: TextAlign
   gutter?: number
 }
 

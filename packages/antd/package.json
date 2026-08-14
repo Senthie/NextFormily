@@ -1,6 +1,6 @@
 {
   "name": "@next-formily/antd",
-  "version": "3.0.1",
+  "version": "3.1.1",
   "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
   "homepage": "https://github.com/alibaba/formily#readme",
   "bugs": {
@@ -46,13 +46,13 @@
   "dependencies": {
     "@dnd-kit/core": "^6.0.0",
     "@dnd-kit/sortable": "^7.0.0",
-    "@next-formily/core": "3.0.1",
-    "@next-formily/grid": "3.0.1",
-    "@next-formily/json-schema": "3.0.1",
-    "@next-formily/react": "3.0.1",
-    "@next-formily/reactive": "3.0.1",
-    "@next-formily/reactive-react": "3.0.1",
-    "@next-formily/shared": "3.0.1",
+    "@next-formily/core": "workspace:*",
+    "@next-formily/grid": "workspace:*",
+    "@next-formily/json-schema": "workspace:*",
+    "@next-formily/react": "workspace:*",
+    "@next-formily/reactive": "workspace:*",
+    "@next-formily/reactive-react": "workspace:*",
+    "@next-formily/shared": "workspace:*",
     "classnames": "^2.2.6",
     "dayjs": "^1.11.0",
     "react-sticky-box": "^0.9.3"

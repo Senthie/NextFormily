@@ -17,8 +17,8 @@
     "start": "vite"
   },
   "dependencies": {
-    "@next-formily/reactive": "3.0.1",
-    "@next-formily/reactive-react": "3.0.1",
+    "@next-formily/reactive": "workspace:*",
+    "@next-formily/reactive-react": "workspace:*",
     "react": "next",
     "react-dom": "next",
     "react-is": "next"

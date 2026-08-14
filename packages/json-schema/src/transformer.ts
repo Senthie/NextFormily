@@ -68,11 +68,16 @@ const getDependencies = (
       if (isStr(pattern)) {
         results.push(getDependencyValue(field, pattern))
       } else if (isPlainObj(pattern)) {
-        if (pattern.name && pattern.source) {
-          results[pattern.name] = getDependencyValue(
+        const dependency = pattern as {
+          name?: string
+          source?: string
+          property?: string
+        }
+        if (dependency.name && dependency.source) {
+          results[dependency.name] = getDependencyValue(
             field,
-            pattern.source,
-            pattern.property,
+            dependency.source,
+            dependency.property,
           )
         }
       }

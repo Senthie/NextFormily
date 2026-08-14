@@ -22,8 +22,8 @@
     "start": "vite build --watch"
   },
   "dependencies": {
-    "@next-formily/core": "3.0.1",
-    "@next-formily/shared": "3.0.1",
+    "@next-formily/core": "workspace:*",
+    "@next-formily/shared": "workspace:*",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-json-view": "^1.19.1",

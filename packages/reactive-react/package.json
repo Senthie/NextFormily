@@ -1,6 +1,6 @@
 {
   "name": "@next-formily/reactive-react",
-  "version": "3.0.1",
+  "version": "3.1.1",
   "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
   "homepage": "https://github.com/alibaba/formily#readme",
   "bugs": {
@@ -34,7 +34,7 @@
     "build:docs": "dumi build"
   },
   "dependencies": {
-    "@next-formily/reactive": "3.0.1",
+    "@next-formily/reactive": "workspace:*",
     "hoist-non-react-statics": "^3.3.2"
   },
   "devDependencies": {

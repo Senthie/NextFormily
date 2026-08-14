@@ -1,6 +1,6 @@
 {
   "name": "@next-formily/json-schema",
-  "version": "3.0.1",
+  "version": "3.1.1",
   "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
   "homepage": "https://github.com/alibaba/formily#readme",
   "bugs": {
@@ -32,9 +32,9 @@
     "build:umd": "rollup --config"
   },
   "dependencies": {
-    "@next-formily/core": "3.0.1",
-    "@next-formily/reactive": "3.0.1",
-    "@next-formily/shared": "3.0.1"
+    "@next-formily/core": "workspace:*",
+    "@next-formily/reactive": "workspace:*",
+    "@next-formily/shared": "workspace:*"
   },
   "peerDependencies": {
     "typescript": ">4.1.5"

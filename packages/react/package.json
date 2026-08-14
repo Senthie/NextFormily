@@ -1,6 +1,6 @@
 {
   "name": "@next-formily/react",
-  "version": "3.0.1",
+  "version": "3.1.1",
   "gitHead": "ac79c196ae9324889aca5e0501146f9b37b04283",
   "homepage": "https://github.com/alibaba/formily#readme",
   "bugs": {
@@ -34,12 +34,12 @@
     "build:docs": "dumi build"
   },
   "dependencies": {
-    "@next-formily/core": "3.0.1",
-    "@next-formily/json-schema": "3.0.1",
-    "@next-formily/reactive": "3.0.1",
-    "@next-formily/reactive-react": "3.0.1",
-    "@next-formily/shared": "3.0.1",
-    "@next-formily/validator": "3.0.1",
+    "@next-formily/core": "workspace:*",
+    "@next-formily/json-schema": "workspace:*",
+    "@next-formily/reactive": "workspace:*",
+    "@next-formily/reactive-react": "workspace:*",
+    "@next-formily/shared": "workspace:*",
+    "@next-formily/validator": "workspace:*",
     "hoist-non-react-statics": "^3.3.2"
   },
   "devDependencies": {
